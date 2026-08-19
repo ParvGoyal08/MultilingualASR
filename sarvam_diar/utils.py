@@ -306,6 +306,37 @@ def load_dotenv(extra: Iterable[str | os.PathLike] = (), export: bool = True) ->
     return values
 
 
+def set_dotenv_value(path: str | os.PathLike, key: str, value: str) -> Path:
+    """Set one key in a .env file, preserving every other line.
+
+    Merges rather than overwrites so writing HF_TOKEN cannot silently drop
+    SARVAM_API_KEY (or vice versa). The file is written 0600 -- it holds
+    credentials and Drive syncs it.
+    """
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    lines = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
+
+    replaced, out = False, []
+    for line in lines:
+        stripped = line.strip()
+        name = stripped[len("export "):] if stripped.startswith("export ") else stripped
+        if not stripped.startswith("#") and name.split("=", 1)[0].strip() == key:
+            out.append(f'{key}="{value}"')
+            replaced = True
+        else:
+            out.append(line)
+    if not replaced:
+        out.append(f'{key}="{value}"')
+
+    path.write_text("\n".join(out).rstrip("\n") + "\n", encoding="utf-8")
+    try:
+        os.chmod(path, 0o600)
+    except OSError:
+        pass          # Drive FUSE ignores chmod; harmless
+    return path
+
+
 # ------------------------------------------------------------- leakage guard
 
 
