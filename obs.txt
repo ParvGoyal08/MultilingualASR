@@ -86,7 +86,7 @@ Across 3,915 cross-speaker transitions the median gap is 0.250 s, but the tail m
 
 Impossible Speech Rates Reveal Misplaced Text, Not Bad Transcription
 
-Computing tokens per second on the normalized spoken form exposes 14 segments whose rate is physically impossible. The worst is Cku_X_SL7qU__60_660 [507.77-507.97]: 63 tokens in 0.20 seconds, or 315 tokens/s. The transcript there is fluent, plausible Gujarati-English code-switch; it is the timestamp that is wrong, so the text belongs to a much longer span. Nine clips contain at least one such segment, and Cku_X_SL7qU alone has twelve — the same clip already flagged for ending its annotation 90 s before the clip does, so it appears to have a systematically damaged region rather than isolated typos.
+Computing tokens per second on the normalized spoken form exposes 30 segments whose rate is physically impossible. (An earlier count of 14 was wrong: it filtered to segments longer than 0.5 s, which excluded the very shortest — and therefore worst — offenders.) The worst is Cku_X_SL7qU__60_660 [507.77-507.97]: 63 tokens in 0.20 seconds, or 315 tokens/s. The transcript there is fluent, plausible Gujarati-English code-switch; it is the timestamp that is wrong, so the text belongs to a much longer span. Nine clips contain at least one such segment, and Cku_X_SL7qU alone has twelve — the same clip already flagged for ending its annotation 90 s before the clip does, so it appears to have a systematically damaged region rather than isolated typos.
 
 QuA_B6IZ6Ls__61_1863 has a second, distinct fault: a segment spanning [108.11-1017.40], 909 seconds carrying only 57 tokens, while its neighbours are ordinary 30 s turns. That clip already contributes the dropped [939.09-155.91] segment. Both faults are end-timestamp corruption on the same clip.
 
@@ -105,3 +105,68 @@ Two Structural Conventions Worth Relying On, and One Exception
 Speaker labels follow first-appearance order in 99 of 100 clips: Speaker A is the first voice heard, then B, and so on. The single exception is 6ZeRgvDHwcI__6_100, where Speaker B is heard first — and that is the clip whose first segment is the dropped zero-duration [1.61-1.61] Speaker A entry, so the convention is probably intact in the original annotation and only broken by the corrupt segment. This means label identity carries information: comparing a system's first-emitted speaker against Speaker A is meaningful, and it gives Step 4 a cheap prior for mapping.
 
 Separately, every ground-truth timestamp lands on a 10 ms grid (19,663 of 19,880 values have exactly two decimal places). Reporting metrics to more than about three significant figures implies precision the annotation does not have.
+
+
+CONSOLIDATED INVENTORY OF CORRUPT GROUND TRUTH
+
+An index of every defect found, with what the pipeline currently does about it. Details and reasoning are in the sections above; this is the lookup table.
+
+Fatal, dropped automatically by the parser (2 segments):
+  QuA_B6IZ6Ls__61_1863  seg 93  Speaker C [939.09-155.91]  end precedes start by 783 s; text <unintelligible>
+  6ZeRgvDHwcI__6_100    seg 0   Speaker A [1.61-1.61]      zero duration; text <noise>
+
+Timestamp corruption, currently KEPT (text lands on the wrong span):
+  30 segments across 9 clips exceed 12 tokens/s, 23.5 s in total. Concentrated in
+  Cku_X_SL7qU__60_660 (12 segments, worst 315 tok/s) and 2T4pjueLrsk__677_1290 (9).
+  Also 8mvORuRHw2U (3) and one each in EmsKkNN2Me4, FDMf9ApmoNU, IfTL8SSN270,
+  LK23jX9tgZM, MmtWBUK2DKE, PQB3-4sZUeY.
+  QuA_B6IZ6Ls__61_1863 [108.11-1017.40] is a single 909.3 s "turn" carrying 57 tokens
+  (0.06 tok/s) while its neighbours are ordinary 30 s turns.
+  Negligible for DER (23.5 s), materially damaging for cpWER.
+
+Annotation stops early, leaving an unannotated tail:
+  Cku_X_SL7qU__60_660   90.3 s unannotated (15% of the clip)
+  OxYCBQKZ3iY__0_1822   12.4 s (1%)
+  CO_8ppdzq9U__0_695     6.1 s (1%)
+  Any speech in those tails scores as false alarm against silence the annotator never labelled.
+
+Annotation extends past the clip window (systematic, not per-clip corruption):
+  85 of 100 clips, median +1.43 s, max +6.41 s. Handled by cropping the reference to the UEM.
+
+Minor:
+  3 segments with empty text (FDMf9ApmoNU x1, OxYCBQKZ3iY x2), 0.52-0.58 s, all dropped from ASR scoring.
+  1 exact duplicate segment: 86mMTUeDiR8__181_1079 Speaker B [495.21-495.95] appears twice.
+  29 segments with unbalanced or doubled parentheses in the gloss convention.
+  6ZeRgvDHwcI__6_100 is the only clip violating first-appearance label ordering, and only
+  because its first segment is the dropped zero-duration one.
+
+Two clips carry multiple independent faults and are the least trustworthy in the corpus:
+  Cku_X_SL7qU__60_660   12 impossible-rate segments + 90 s unannotated tail
+  QuA_B6IZ6Ls__61_1863  the dropped end<start segment + the 909 s turn + 35% overlap (highest in corpus)
+Worth reporting per-clip metrics for these separately, or excluding them from ASR scoring with the
+limitation stated — the brief explicitly permits hand-labelling a subset and calling it out.
+
+Checks that came back CLEAN (worth stating, so they are not re-litigated):
+  no negative start times; no segment assigned to two speakers at an identical span;
+  no non-monotonic segment ordering; no timestamp disagreement between diarization_segments
+  and asr_segments across all 9,942 segments; no segment normalising to empty text;
+  no clip whose end_sec exceeds its source video duration.
+
+
+BRIEF NOTES NOT WORTH A SECTION OF THEIR OWN
+
+Duration distribution is bimodal, not continuous: 38 clips are under 120 s and 27 exceed 600 s,
+with almost nothing in between. Any per-clip average is therefore dominated by whichever mode it
+happens to weight, which is a second reason corpus metrics must pool seconds rather than average
+per-clip rates.
+
+Total clip audio is 12.28 h out of 29.3 h of source video, so a windowed fetch moves roughly 58%
+fewer bytes than downloading whole videos — though only if the player client exposes audio-only
+formats, which on a bot-gated network it may not.
+
+The corpus is 26 clips at 2 speakers, 29 at 3, 28 at 4, and only 17 at 5 or more. Models capped at
+4 speakers (NVIDIA Sortformer, for one) would degrade on 17% of clips, which is why the Step 2
+roster avoided them.
+
+Segment count per clip ranges from 5 to 556. The 556-segment clip alone contributes 5.6% of all
+segments, so per-segment statistics are noticeably sensitive to a handful of clips.
