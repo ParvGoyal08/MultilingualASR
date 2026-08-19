@@ -11,6 +11,9 @@ cookies.txt
 .work/
 pipeline_out/
 local_out/
+# exported explorer: regenerate with explorer.export(); audio is never committed
+error_explorer/audio/*.wav
+error_explorer.zip
 __pycache__/
 *.pyc
 .ipynb_checkpoints/

@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diarization Error Explorer</title>
+<style>
+  :root{
+    --bg:#0f1116; --panel:#171a21; --panel2:#1d212a; --line:#2a2f3a;
+    --fg:#e6e8ee; --dim:#9aa3b2; --accent:#5aa9e6;
+    --miss:#3E7CB1; --fa:#4C9F70; --conf:#8B5FBF; --ovl:#D9A441;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:13px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  header{padding:10px 14px;border-bottom:1px solid var(--line);display:flex;
+         gap:14px;align-items:center;flex-wrap:wrap;background:var(--panel)}
+  h1{font-size:14px;margin:0;font-weight:600;letter-spacing:.2px}
+  .grid{display:grid;grid-template-columns:minmax(360px,30%) 1fr;height:calc(100vh - 53px)}
+  .left{border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+  .right{display:flex;flex-direction:column;min-width:0;overflow:auto}
+  .controls{padding:10px;border-bottom:1px solid var(--line);display:flex;
+            flex-wrap:wrap;gap:8px;align-items:center;background:var(--panel2)}
+  select,input,button{background:#0c0e13;color:var(--fg);border:1px solid var(--line);
+                      border-radius:5px;padding:5px 8px;font-size:12px;font-family:inherit}
+  button{cursor:pointer}
+  button:hover{border-color:var(--accent)}
+  button.on{background:var(--accent);color:#08101a;border-color:var(--accent);font-weight:600}
+  label{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+  .list{overflow:auto;flex:1}
+  table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+  th,td{padding:5px 7px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{position:sticky;top:0;background:var(--panel2);cursor:pointer;user-select:none;
+     font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.3px;z-index:2}
+  th:hover{color:var(--fg)}
+  th.sorted{color:var(--accent)}
+  td:first-child,th:first-child{text-align:left}
+  tbody tr{cursor:pointer}
+  tbody tr:hover{background:#20242e}
+  tbody tr.sel{background:#243044;box-shadow:inset 3px 0 0 var(--accent)}
+  .pane{padding:12px 14px;border-bottom:1px solid var(--line)}
+  .row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:10px;
+        background:#0c0e13;border:1px solid var(--line);font-size:11px}
+  .sw{width:9px;height:9px;border-radius:2px;display:inline-block}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  canvas{display:block;width:100%;cursor:crosshair}
+  .muted{color:var(--dim)}
+  .big{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums}
+  .kv{display:grid;grid-template-columns:auto auto;gap:2px 12px;font-size:12px}
+  .kv span:nth-child(odd){color:var(--dim)}
+  .warn{background:#3a2a12;border:1px solid #6b4d1d;color:#f0c987;
+        padding:8px 10px;border-radius:6px;font-size:12px;margin:10px 14px}
+  .err{background:#3a1720;border:1px solid #7a2b3d;color:#f3a9b8}
+  #inspect{min-height:52px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Diarization Error Explorer</h1>
+  <span class="muted mono" id="meta"></span>
+  <span style="flex:1"></span>
+  <label>model</label><select id="model"></select>
+  <button id="worst">Worst failures</button>
+  <button id="reset">Reset filters</button>
+</header>
+
+<div class="grid">
+  <!-- ------------------------------------------------------------- left -->
+  <div class="left">
+    <div class="controls">
+      <input id="search" placeholder="filter clip id…" style="flex:1;min-width:120px">
+      <label>sort</label>
+      <select id="sort">
+        <option value="der">DER</option>
+        <option value="jer">JER</option>
+        <option value="error_sec">error seconds</option>
+        <option value="miss_sec">miss</option>
+        <option value="fa_sec">false alarm</option>
+        <option value="confusion_sec">confusion</option>
+        <option value="overlap_der">overlap DER</option>
+        <option value="abs_count_err">|speaker-count error|</option>
+        <option value="overlap_frac">overlap %</option>
+        <option value="short_turn_frac">short-turn %</option>
+        <option value="n_speakers_ref">speakers</option>
+        <option value="duration">duration</option>
+      </select>
+      <div class="row" style="width:100%;gap:8px">
+        <label>min DER</label><input id="minDer" type="number" step="0.05" min="0" max="1"
+              style="width:66px" placeholder="0">
+        <label>min overlap %</label><input id="minOvl" type="number" step="1" min="0" max="100"
+              style="width:66px" placeholder="0">
+        <label>speakers</label><input id="minSpk" type="number" min="1" style="width:52px"
+              placeholder="any">
+      </div>
+    </div>
+    <div class="list"><table id="tbl">
+      <thead><tr></tr></thead><tbody></tbody>
+    </table></div>
+  </div>
+
+  <!-- ------------------------------------------------------------ right -->
+  <div class="right">
+    <div id="audiowarn"></div>
+    <div class="pane">
+      <div class="row">
+        <button id="play">▶ Play</button>
+        <span class="mono" id="clock">0.00 / 0.00 s</span>
+        <label>zoom</label>
+        <button data-z="1">fit</button><button data-z="2">2×</button>
+        <button data-z="5">5×</button><button data-z="10">10×</button>
+        <button data-z="25">25×</button>
+        <span class="muted">scroll to zoom · drag to pan · click to seek</span>
+      </div>
+      <audio id="audio" preload="none"></audio>
+    </div>
+
+    <div class="pane" id="summary"></div>
+
+    <div class="pane">
+      <div class="row" style="margin-bottom:8px">
+        <span class="chip"><i class="sw" style="background:var(--miss)"></i>MISS</span>
+        <span class="chip"><i class="sw" style="background:var(--fa)"></i>FALSE ALARM</span>
+        <span class="chip"><i class="sw" style="background:var(--conf)"></i>CONFUSION</span>
+        <span class="chip"><i class="sw" style="background:var(--ovl)"></i>OVERLAP (reference)</span>
+        <span class="muted">predicted rows are drawn in the colour of the reference
+          speaker they were mapped to — a colour clash IS the confusion</span>
+      </div>
+      <canvas id="tl" height="360"></canvas>
+    </div>
+
+    <div class="pane" id="inspect"><span class="muted">Click the timeline to inspect a moment.</span></div>
+    <div class="pane" id="regions"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+const fmt = (v,d=3) => (v===null||v===undefined||Number.isNaN(v)) ? "–" : Number(v).toFixed(d);
+const COL = {MISS:"#3E7CB1", FA:"#4C9F70", CONFUSION:"#8B5FBF", OVERLAP:"#D9A441"};
+// Distinct, colour-blind-safe-ish palette for speakers.
+const SPK = ["#5aa9e6","#f2a65a","#7fd1ae","#e06c9f","#b39ddb","#a3d977","#f7d060","#8fd6e1"];
+
+let INDEX=null, MODEL=null, CLIP=null, DATA=null;
+let view={t0:0,t1:1}, dragging=null, playing=false;
+
+/* ------------------------------------------------------------------ data */
+async function boot(){
+  INDEX = await (await fetch("data/clips.json")).json();
+  MODEL = INDEX.models[0];
+  $("#model").innerHTML = INDEX.models.map(m=>`<option>${m}</option>`).join("");
+  $("#meta").textContent = `${INDEX.n_clips} clips · ${INDEX.models.join(" vs ")}`;
+
+  const v = INDEX.verification;
+  if (v && v.mismatches && v.mismatches.length){
+    $("#audiowarn").innerHTML =
+      `<div class="warn err"><b>${v.mismatches.length} clip/model pairs failed region
+       verification.</b> The regions drawn below do not reproduce the scored DER
+       components; treat this view as unreliable until the export is fixed.</div>`;
+  }
+  buildHead(); render();
+  if (INDEX.clips.length) select(sorted()[0].clip_id);
+}
+
+const COLS = [
+  ["clip_id","clip"], ["der","DER"], ["jer","JER"], ["error_sec","err s"],
+  ["miss_sec","miss"], ["fa_sec","FA"], ["confusion_sec","conf"],
+  ["overlap_der","ovl DER"], ["spk","spk r/h"], ["overlap_frac","ovl%"],
+  ["short_turn_frac","short%"], ["duration","dur s"],
+];
+function buildHead(){
+  $("#tbl thead tr").innerHTML = COLS.map(([k,l])=>`<th data-k="${k}">${l}</th>`).join("");
+  $("#tbl thead").onclick = e => {
+    const k = e.target.dataset.k; if(!k || k==="clip_id" || k==="spk") return;
+    $("#sort").value = k; render();
+  };
+}
+
+const val = (c,k) => {
+  const m = c.models[MODEL] || {};
+  if (k==="abs_count_err") return Math.abs(m.speaker_count_error ?? 0);
+  if (k in m) return m[k];
+  return c[k];
+};
+
+function sorted(){
+  const q=$("#search").value.trim().toLowerCase();
+  const minDer=parseFloat($("#minDer").value)||0;
+  const minOvl=(parseFloat($("#minOvl").value)||0)/100;
+  const minSpk=parseInt($("#minSpk").value)||0;
+  const k=$("#sort").value;
+  return INDEX.clips
+    .filter(c => (!q || c.clip_id.toLowerCase().includes(q))
+              && (val(c,"der")??0) >= minDer
+              && c.overlap_frac >= minOvl
+              && c.n_speakers_ref >= minSpk)
+    .sort((a,b) => (val(b,k)??-Infinity) - (val(a,k)??-Infinity));
+}
+
+function render(){
+  const rows = sorted();
+  $("#tbl thead tr").querySelectorAll("th").forEach(th =>
+    th.classList.toggle("sorted", th.dataset.k===$("#sort").value));
+  $("#tbl tbody").innerHTML = rows.map(c=>{
+    const m=c.models[MODEL]||{};
+    return `<tr data-id="${c.clip_id}" class="${c.clip_id===CLIP?'sel':''}">
+      <td class="mono">${c.clip_id}</td>
+      <td>${fmt(m.der,3)}</td><td>${fmt(m.jer,3)}</td>
+      <td>${fmt(m.error_sec,1)}</td><td>${fmt(m.miss_sec,1)}</td>
+      <td>${fmt(m.fa_sec,1)}</td><td>${fmt(m.confusion_sec,1)}</td>
+      <td>${fmt(m.overlap_der,3)}</td>
+      <td>${c.n_speakers_ref}/${m.n_speakers_hyp ?? "–"}</td>
+      <td>${(c.overlap_frac*100).toFixed(1)}</td>
+      <td>${(c.short_turn_frac*100).toFixed(0)}</td>
+      <td>${fmt(c.duration,0)}</td></tr>`;
+  }).join("");
+  $("#tbl tbody").querySelectorAll("tr").forEach(tr =>
+    tr.onclick = () => select(tr.dataset.id));
+}
+
+async function select(id){
+  CLIP = id; render();
+  DATA = await (await fetch(`data/${id}.json`)).json();
+  view = {t0:DATA.uem[0], t1:DATA.uem[1]};
+  const a=$("#audio"); a.src=`audio/${id}.wav`; playing=false; $("#play").textContent="▶ Play";
+  a.onerror = () => $("#audiowarn").innerHTML =
+    `<div class="warn">No audio for <span class="mono">${id}</span>.
+     Everything except playback still works — see <span class="mono">audio/README.md</span>.</div>`;
+  a.onloadeddata = () => $("#audiowarn").innerHTML = "";
+  summary(); draw(); regionList();
+}
+
+/* --------------------------------------------------------------- summary */
+function summary(){
+  const b = DATA.models[MODEL], m = b.metrics||{}, t = b.totals||{};
+  const idx = INDEX.clips.find(c=>c.clip_id===CLIP);
+  const others = INDEX.models.filter(x=>x!==MODEL).map(x=>{
+    const o=idx.models[x]||{}; const d=(m.der??0)-(o.der??0);
+    return `<span class="chip">${x}: DER ${fmt(o.der,3)}
+      <b style="color:${d>0?'#f3a9b8':'#a3d977'}">${d>0?'+':''}${fmt(d,3)}</b></span>`;
+  }).join(" ");
+  $("#summary").innerHTML = `
+    <div class="row">
+      <div><div class="muted">DER</div><div class="big">${fmt(m.der,4)}</div></div>
+      <div><div class="muted">JER</div><div class="big">${fmt(m.jer,4)}</div></div>
+      <div><div class="muted">overlap DER</div><div class="big">${fmt(m.overlap_der,4)}</div></div>
+      <div class="kv" style="margin-left:14px">
+        <span>miss</span><span class="mono">${fmt(t.miss_sec,2)} s</span>
+        <span>false alarm</span><span class="mono">${fmt(t.fa_sec,2)} s</span>
+        <span>confusion</span><span class="mono">${fmt(t.confusion_sec,2)} s</span>
+      </div>
+      <div class="kv">
+        <span>speakers ref/hyp</span><span class="mono">${DATA.ref_speakers.length}/${b.hyp_speakers.length}</span>
+        <span>overlap</span><span class="mono">${(idx.overlap_frac*100).toFixed(1)}%</span>
+        <span>short turns</span><span class="mono">${(idx.short_turn_frac*100).toFixed(0)}%</span>
+      </div>
+      <div style="margin-left:auto">${others}</div>
+    </div>
+    <div class="row muted" style="margin-top:6px;font-size:11px">
+      mapping: ${Object.entries(b.mapping).map(([h,r])=>
+        `<span class="mono">${h}→${r}</span>`).join(" · ") || "none"}
+    </div>`;
+}
+
+/* -------------------------------------------------------------- timeline */
+const cv=$("#tl"), ctx=cv.getContext("2d");
+const spkColor = s => SPK[(DATA.ref_speakers.indexOf(s)+SPK.length)%SPK.length] || "#68707e";
+const X = t => (t-view.t0)/(view.t1-view.t0)*cv.width;
+const T = x => view.t0 + x/cv.width*(view.t1-view.t0);
+
+function draw(){
+  if(!DATA) return;
+  const dpr=devicePixelRatio||1, W=cv.clientWidth;
+  cv.width=W*dpr; cv.height=360*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  const w=W, refS=DATA.ref_speakers, b=DATA.models[MODEL];
+  const hypS=[...new Set(b.hypothesis.map(t=>t.mapped))].sort();
+  ctx.clearRect(0,0,w,360);
+
+  const ROW=20, GAP=4, top=46;
+  const yRef=i=>top+i*(ROW+GAP);
+  const hTop=yRef(refS.length)+22;
+  const yHyp=i=>hTop+i*(ROW+GAP);
+
+  // error strip
+  ctx.fillStyle="#0c0e13"; ctx.fillRect(0,8,w,28);
+  for(const r of b.regions){
+    const x0=X(r.start), x1=X(r.end); if(x1<0||x0>w) continue;
+    if(r.overlap){ ctx.fillStyle=COL.OVERLAP+"55"; ctx.fillRect(x0,8,Math.max(1,x1-x0),6); }
+    const ts=r.types; if(!ts.length) continue;
+    const hgt=22/ts.length;
+    ts.forEach((t,i)=>{ ctx.fillStyle=COL[t];
+      ctx.fillRect(x0,14+i*hgt,Math.max(1,x1-x0),hgt); });
+  }
+  ctx.fillStyle="#9aa3b2"; ctx.font="10px ui-sans-serif";
+  ctx.fillText("errors",4,6);
+
+  // rows
+  const label=(txt,y,c)=>{ ctx.fillStyle=c||"#9aa3b2"; ctx.font="10px ui-monospace";
+                           ctx.fillText(txt,4,y-3); };
+  refS.forEach((s,i)=>{ const y=yRef(i);
+    ctx.fillStyle="#0c0e13"; ctx.fillRect(0,y,w,ROW);
+    label("GT "+s,y,spkColor(s)); });
+  for(const t of DATA.reference){
+    const i=refS.indexOf(t.speaker); if(i<0) continue;
+    const x0=X(t.start),x1=X(t.end); if(x1<0||x0>w) continue;
+    ctx.fillStyle=spkColor(t.speaker);
+    ctx.fillRect(x0,yRef(i)+5,Math.max(1,x1-x0),ROW-8);
+  }
+  hypS.forEach((s,i)=>{ const y=yHyp(i);
+    ctx.fillStyle="#0c0e13"; ctx.fillRect(0,y,w,ROW);
+    label("PRED "+s,y,spkColor(s)); });
+  for(const t of b.hypothesis){
+    const i=hypS.indexOf(t.mapped); if(i<0) continue;
+    const x0=X(t.start),x1=X(t.end); if(x1<0||x0>w) continue;
+    ctx.fillStyle=spkColor(t.mapped);
+    ctx.fillRect(x0,yHyp(i)+5,Math.max(1,x1-x0),ROW-8);
+  }
+
+  // axis + playhead
+  ctx.strokeStyle="#2a2f3a"; ctx.beginPath();
+  const span=view.t1-view.t0, step=niceStep(span);
+  for(let t=Math.ceil(view.t0/step)*step;t<view.t1;t+=step){
+    const x=X(t); ctx.moveTo(x,40); ctx.lineTo(x,352);
+    ctx.fillStyle="#68707e"; ctx.font="10px ui-monospace"; ctx.fillText(t.toFixed(step<1?1:0)+"s",x+2,350);
+  }
+  ctx.stroke();
+  const cur=$("#audio").currentTime;
+  if(cur>=view.t0&&cur<=view.t1){ ctx.strokeStyle="#e6e8ee"; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(X(cur),8); ctx.lineTo(X(cur),352); ctx.stroke(); ctx.lineWidth=1; }
+}
+function niceStep(span){ const raw=span/10, p=Math.pow(10,Math.floor(Math.log10(raw)));
+  return [1,2,5,10].map(m=>m*p).find(s=>s>=raw)||p*10; }
+
+/* -------------------------------------------------------------- inspect */
+function inspect(t){
+  const b=DATA.models[MODEL];
+  const ref=DATA.reference.filter(s=>s.start<=t&&t<s.end).map(s=>s.speaker);
+  const hyp=b.hypothesis.filter(s=>s.start<=t&&t<s.end);
+  const reg=b.regions.find(r=>r.start<=t&&t<r.end);
+  const utt=DATA.utterances.find(u=>u.start<=t&&t<u.end);
+  const tag=x=>`<span class="chip"><i class="sw" style="background:${spkColor(x)}"></i>${x}</span>`;
+  $("#inspect").innerHTML=`
+    <div class="row">
+      <b class="mono">t = ${t.toFixed(2)} s</b>
+      <div><span class="muted">GT:</span> ${ref.map(tag).join(" ")||"<span class=muted>silence</span>"}</div>
+      <div><span class="muted">PRED:</span> ${hyp.map(h=>tag(h.mapped)+
+          `<span class="muted mono" style="font-size:10px">(${h.speaker})</span>`).join(" ")
+          ||"<span class=muted>silence</span>"}</div>
+      <div>${reg? (reg.types.map(x=>
+          `<span class="chip" style="border-color:${COL[x]}"><i class="sw"
+            style="background:${COL[x]}"></i>${x}</span>`).join(" ")
+          + (reg.overlap?`<span class="chip" style="border-color:${COL.OVERLAP}"><i class="sw"
+            style="background:${COL.OVERLAP}"></i>OVERLAP</span>`:""))
+        : '<span class="chip" style="border-color:#3d6">correct</span>'}</div>
+    </div>
+    ${utt?`<div class="muted" style="margin-top:6px">reference text:
+      <span style="color:var(--fg)">${utt.text||"—"}</span></div>`:""}`;
+}
+
+function regionList(){
+  const b=DATA.models[MODEL];
+  const rs=[...b.regions].filter(r=>r.types.length)
+        .sort((a,c)=>(c.end-c.start)-(a.end-a.start)).slice(0,25);
+  $("#regions").innerHTML=`<div class="muted" style="margin-bottom:6px">
+      longest error regions — click to jump</div>` +
+    rs.map(r=>`<span class="chip" style="cursor:pointer;border-color:${COL[r.types[0]]}"
+        onclick="seek(${r.start})"><i class="sw" style="background:${COL[r.types[0]]}"></i>
+        <span class="mono">${r.start.toFixed(1)}–${r.end.toFixed(1)}s</span>
+        ${r.types.join("+")}${r.overlap?" ⧉":""}
+        <span class="muted">${(r.end-r.start).toFixed(2)}s</span></span>`).join(" ")
+    || '<span class="muted">no error regions</span>';
+}
+window.seek = t => { $("#audio").currentTime=t; inspect(t); draw(); };
+
+/* ---------------------------------------------------------------- events */
+$("#model").onchange = e => { MODEL=e.target.value; render(); if(DATA){summary();draw();regionList();} };
+["#search","#minDer","#minOvl","#minSpk"].forEach(s=>$(s).oninput=render);
+$("#sort").onchange = render;
+$("#reset").onclick = () => { ["#search","#minDer","#minOvl","#minSpk"].forEach(s=>$(s).value="");
+  $("#sort").value="der"; render(); };
+$("#worst").onclick = () => { $("#sort").value="error_sec"; $("#minDer").value="";
+  render(); const r=sorted()[0]; if(r) select(r.clip_id); };
+
+$("#play").onclick = () => { const a=$("#audio");
+  if(playing){a.pause();} else {a.play().catch(()=>{});} };
+$("#audio").onplay  = ()=>{playing=true; $("#play").textContent="❚❚ Pause"; tick();};
+$("#audio").onpause = ()=>{playing=false;$("#play").textContent="▶ Play";};
+function tick(){ if(!playing) return;
+  const a=$("#audio");
+  $("#clock").textContent=`${a.currentTime.toFixed(2)} / ${(a.duration||0).toFixed(2)} s`;
+  if(a.currentTime>view.t1||a.currentTime<view.t0){ const s=view.t1-view.t0;
+    view={t0:Math.max(0,a.currentTime-s*0.1),t1:Math.max(0,a.currentTime-s*0.1)+s}; }
+  draw(); requestAnimationFrame(tick); }
+
+cv.onclick = e => { if(dragging&&dragging.moved) return;
+  const r=cv.getBoundingClientRect(); seek(T((e.clientX-r.left)*(cv.width/r.width)/(devicePixelRatio||1))); };
+cv.onwheel = e => { e.preventDefault();
+  const r=cv.getBoundingClientRect();
+  const t=T((e.clientX-r.left)*(cv.width/r.width)/(devicePixelRatio||1));
+  const f=e.deltaY>0?1.25:0.8, s=(view.t1-view.t0)*f;
+  const lim=DATA.uem[1]-DATA.uem[0];
+  const w=Math.min(s,lim), frac=(t-view.t0)/(view.t1-view.t0);
+  view={t0:Math.max(0,t-w*frac), t1:Math.min(DATA.uem[1],Math.max(0,t-w*frac)+w)};
+  draw(); };
+cv.onmousedown = e => dragging={x:e.clientX,t0:view.t0,t1:view.t1,moved:false};
+addEventListener("mousemove", e => { if(!dragging) return;
+  const r=cv.getBoundingClientRect();
+  const dt=-(e.clientX-dragging.x)/r.width*(dragging.t1-dragging.t0);
+  if(Math.abs(e.clientX-dragging.x)>3) dragging.moved=true;
+  view={t0:dragging.t0+dt,t1:dragging.t1+dt}; draw(); });
+addEventListener("mouseup", ()=>setTimeout(()=>dragging=null,0));
+document.querySelectorAll("[data-z]").forEach(b => b.onclick = () => {
+  const lim=DATA.uem[1]-DATA.uem[0], z=+b.dataset.z, c=$("#audio").currentTime||view.t0;
+  const s=lim/z; view={t0:Math.max(0,c-s/2),t1:Math.min(DATA.uem[1],Math.max(0,c-s/2)+s)}; draw(); });
+addEventListener("resize", draw);
+addEventListener("keydown", e => { if(e.code==="Space"){e.preventDefault();$("#play").click();} });
+boot();
+</script>
+</body>
+</html>
