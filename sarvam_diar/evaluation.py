@@ -48,6 +48,12 @@ PROBE_FINDINGS = {
     "identity": "(false alarm + missed detection + confusion) / total == abs(metric)",
 }
 
+METRIC_COLUMNS = [
+    "model", "clip_id", "der", "der_fa_sec", "der_miss_sec", "der_confusion_sec",
+    "der_correct_sec", "der_total_sec", "jer", "n_speakers_ref", "n_speakers_hyp",
+    "speaker_count_error", "speaker_count_correct",
+]
+
 KEY_FA, KEY_MISS, KEY_CONF = "false alarm", "missed detection", "confusion"
 KEY_CORRECT, KEY_TOTAL = "correct", "total"
 ERROR_KEYS = (KEY_FA, KEY_MISS, KEY_CONF)
@@ -209,13 +215,21 @@ def score_all(cfg: Config, references: dict[str, ClipReference],
         row.update({f"lenient_{k}": v for k, v in lenient.items()})
         rows.append(row)
     df = pd.DataFrame(rows)
+    if not len(df):
+        # Keep the schema even with no hypotheses (a gated model, an interrupted
+        # sweep), so downstream groupby/column access degrades to an empty table
+        # instead of KeyError.
+        df = pd.DataFrame(columns=METRIC_COLUMNS
+                          + [f"lenient_{c}" for c in METRIC_COLUMNS if c not in ("model", "clip_id")])
     if cfg is not None and len(df):
         df.to_csv(cfg.step2_metrics_csv, index=False)
     return df
 
 
 def aggregate(df: pd.DataFrame) -> pd.DataFrame:
-    """Corpus metrics per model, pooled."""
+    """Corpus metrics per model, pooled. Empty in, empty out."""
+    if not len(df) or "model" not in df.columns:
+        return pd.DataFrame(columns=["model", "n_clips", "der"])
     out = []
     for model, sub in df.groupby("model"):
         rows = sub.to_dict("records")
@@ -236,6 +250,9 @@ def stratify_by_count_error(df: pd.DataFrame) -> pd.DataFrame:
     no reference speaker is unmappable, so its confusion component is *pure
     assignment error* -- that is the number that answers "count vs assignment".
     """
+    if not len(df) or "speaker_count_error" not in df.columns:
+        return pd.DataFrame(columns=["model", "stratum", "n_clips", "der"])
+
     def bucket(e):
         return "exact" if e == 0 else ("over" if e > 0 else "under")
 
@@ -251,6 +268,8 @@ def stratify_by_count_error(df: pd.DataFrame) -> pd.DataFrame:
 
 def count_error_correlation(df: pd.DataFrame) -> pd.DataFrame:
     """Direction and strength of the count-error -> DER relationship, per model."""
+    if not len(df) or "speaker_count_error" not in df.columns:
+        return pd.DataFrame(columns=["model", "corr_abs_count_error_vs_der"])
     rows = []
     for model, sub in df.groupby("model"):
         rows.append({
