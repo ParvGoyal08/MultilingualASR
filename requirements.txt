@@ -6,6 +6,12 @@ pandas>=2.0
 numpy>=1.24
 gdown>=5.0
 
+# Step 2 - diarization. pyannote.audio 4.x is required for community-1.
+# Both pipelines are GATED: accept conditions on their HuggingFace pages and
+# provide HF_TOKEN (Colab Secrets, or the environment).
+pyannote.audio>=4.0
+pyannote.metrics>=4.0
+
 # ffmpeg / ffprobe are system binaries, not pip packages:
 #   Colab  -> preinstalled
 #   macOS  -> brew install ffmpeg

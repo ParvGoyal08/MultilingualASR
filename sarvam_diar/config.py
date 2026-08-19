@@ -49,11 +49,30 @@ CLIENT_LADDER: list[str | None] = [
 SEGMENTS_CSV_FILE_ID = "1Ijs1IWypIY2GAjpNUKV2XNZY6o7dFvSm"
 SEGMENTS_CSV_NAME = "youtube_segments.csv"
 
+# ------------------------------------------------------------- diarization
+# Step 2 roster. Both are pyannote.audio pipelines, so one code path covers
+# both and the delta between them is the version-over-version comparison.
+DIARIZATION_MODELS = {
+    "community-1": "pyannote/speaker-diarization-community-1",
+    "pyannote-3.1": "pyannote/speaker-diarization-3.1",
+}
+
+# Primary scoring, per the brief: "Do NOT ignore overlapping speech regions when
+# computing metrics." Score everything, forgive nothing.
+DER_COLLAR = 0.0
+DER_SKIP_OVERLAP = False
+
+# Secondary, reported alongside so the numbers can be compared with published
+# results (which almost always use a collar and drop overlap). Never the headline.
+DER_COLLAR_LENIENT = 0.25
+DER_SKIP_OVERLAP_LENIENT = True
+
+
 # ----------------------------------------------------------- scoring reference
 # Stamped into every reference artifact. Bump it whenever reference.normalize_text
 # or the turn-building rules change: it invalidates the (cheap) reference
 # checkpoints without touching the (expensive) audio ones.
-NORMALIZER_VERSION = "1.0.0"
+NORMALIZER_VERSION = "1.1.0"
 
 # Column-name prefixes for anything derived from the ground truth. The brief is
 # explicit that ground truth is only for scoring, so these must never reach a
@@ -94,6 +113,10 @@ class Config:
     max_attempts: int = MAX_ATTEMPTS
     # Pin a player client to skip the ladder search entirely, e.g. "android".
     force_client: str | None = None
+    # HuggingFace token for the gated pyannote pipelines. Resolved from Colab
+    # Secrets or the environment -- never written into the notebook, which is
+    # published to a public repo.
+    hf_token: str | None = None
 
     # Optional Netscape-format cookie jar for age-gated / bot-gated videos.
     cookies_file: Path | None = None
@@ -165,6 +188,31 @@ class Config:
     def rttm_dir(self) -> Path:
         return self.reference_dir / "rttm"
 
+    # -- step 2: model hypotheses --------------------------------------------
+    def hyp_dir(self, model: str, oracle: bool = False) -> Path:
+        """Hypotheses for one model. `oracle` output is kept in a separate tree
+        so a ground-truth-informed ablation can never be mistaken for a result."""
+        root = self.root / ("hypotheses_oracle" if oracle else "hypotheses")
+        return root / model
+
+    def hyp_rttm_path(self, model: str, clip_id: str, oracle: bool = False) -> Path:
+        return self.hyp_dir(model, oracle) / f"{clip_id}.rttm"
+
+    def hyp_meta_path(self, model: str, clip_id: str, oracle: bool = False) -> Path:
+        return self.hyp_dir(model, oracle) / f"{clip_id}.json"
+
+    @property
+    def step2_metrics_csv(self) -> Path:
+        return self.results_dir / "step2_metrics.csv"
+
+    @property
+    def step2_summary(self) -> Path:
+        return self.results_dir / "step2_summary.json"
+
+    @property
+    def step2_failures_jsonl(self) -> Path:
+        return self.logs_dir / "step2_failures.jsonl"
+
     @property
     def ref_asr_dir(self) -> Path:
         return self.reference_dir / "asr"
@@ -230,6 +278,10 @@ class StageFlags:
     run_extraction: bool = True      # Step 1
     build_reference: bool = True     # scoring reference (cheap, always safe)
     run_diarization: bool = False    # Step 2
+    # DIAGNOSTIC ONLY: re-run diarization with the reference speaker count to
+    # size what count estimation costs. This feeds ground truth to the model, so
+    # it is off by default, written to a separate tree, and never a headline.
+    run_oracle_count_ablation: bool = False
     run_asr: bool = False            # Step 3
     run_refinement: bool = False     # Step 4
 

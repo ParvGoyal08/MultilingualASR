@@ -64,6 +64,18 @@ GLOSS_SUFFIX_RE = re.compile(
 ZERO_WIDTH_RE = re.compile(r"[​‌‍⁠﻿]")
 
 
+def rttm_safe(label: str) -> str:
+    """RTTM is whitespace-delimited, so a speaker label cannot contain spaces.
+
+    Labels are normalised at build time rather than encoded on write and decoded
+    on read: a decode-on-read mangles model labels that legitimately contain
+    underscores (`SPEAKER_00` -> `SPEAKER 00`), so write-then-read would not be
+    the identity. Scoring is label-agnostic, but Steps 3-4 join transcripts on
+    these labels, so they must survive a checkpoint round trip exactly.
+    """
+    return "_".join(str(label).split())
+
+
 def _is_punct(ch: str) -> bool:
     """Unicode punctuation/symbol, but never a combining mark.
 
@@ -183,8 +195,10 @@ def crop_and_union(segments: Iterable[Segment], uem_end: float) -> tuple[list[Tu
     turns: list[Turn] = []
     merged_pairs = 0
     for speaker, intervals in per_speaker.items():
+        speaker = rttm_safe(speaker)
         intervals.sort()
         for lo, hi in intervals:
+            speaker = rttm_safe(speaker)
             if turns and turns[-1].speaker == speaker and lo <= turns[-1].end + 1e-9:
                 if hi > turns[-1].end:
                     turns[-1] = Turn(speaker, turns[-1].start, hi)
@@ -241,7 +255,7 @@ def build_reference(clip: Clip, drop_nonspeech: bool = False) -> ClipReference:
             continue
         utterances.append(
             Utterance(
-                speaker=seg.speaker,
+                speaker=rttm_safe(seg.speaker),
                 start=seg.start,
                 end=min(seg.end, uem_end),
                 text_raw=seg.text,
@@ -298,7 +312,7 @@ def word_stream(ref: ClipReference) -> list[tuple[str, str]]:
 def to_rttm(ref: ClipReference) -> str:
     return "".join(
         f"SPEAKER {ref.clip_id} 1 {t.start:.3f} {t.duration:.3f} "
-        f"<NA> <NA> {t.speaker.replace(' ', '_')} <NA> <NA>\n"
+        f"<NA> <NA> {rttm_safe(t.speaker)} <NA> <NA>\n"
         for t in ref.turns
     )
 
@@ -313,7 +327,9 @@ def parse_rttm(text: str) -> list[Turn]:
         # RTTM stores onset+duration at 3 dp, so reconstructing the end
         # accumulates float dust (5.79 + 5.08 -> 10.870000000000001). Round it
         # away so a written-then-read reference compares equal to the original.
-        turns.append(Turn(parts[7].replace("_", " "), round(start, 6), round(start + dur, 6)))
+        # Verbatim: see rttm_safe(). Decoding underscores here would corrupt
+        # model labels like SPEAKER_00.
+        turns.append(Turn(parts[7], round(start, 6), round(start + dur, 6)))
     return turns
 
 
