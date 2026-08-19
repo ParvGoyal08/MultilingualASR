@@ -1,0 +1,12 @@
+# Step 1 - audio extraction.
+# Colab already ships pandas/numpy/gdown; yt-dlp must be installed and should be
+# kept current (YouTube extractor breakage is the single most common failure).
+yt-dlp>=2025.1.1
+pandas>=2.0
+numpy>=1.24
+gdown>=5.0
+
+# ffmpeg / ffprobe are system binaries, not pip packages:
+#   Colab  -> preinstalled
+#   macOS  -> brew install ffmpeg
+#   Debian -> apt-get install -y ffmpeg

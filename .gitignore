@@ -1,0 +1,20 @@
+# --- secrets: never commit ---
+.env
+.env.*
+!.env.example
+cookies.txt
+*.key
+*credentials*.json
+
+# --- environments / build artifacts ---
+.venv/
+.work/
+pipeline_out/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+sarvam_diar.zip
+
+# --- local editor / tool state ---
+.claude/settings.local.json
+.DS_Store

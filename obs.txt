@@ -1,0 +1,65 @@
+Ground Truth Annotation Artifact in Code-Switched Segments
+
+The asr_segments ground truth uses a dual-form convention for code-switched words, writing both the Marathi phonetic form and the English source in parentheses — e.g., कॉफी(coffee), आय(I) एम(am) ऑलवेज(always) देअर(there). ASR systems output only one form: Whisper tends to commit to English (coffee, I am always there) while Saaras outputs the Marathi phonetic form (कॉफी, आय एम). Both are acoustically correct transcriptions, but both incur WER penalties against the dual-form GT. This makes raw cpWER numbers unreliable for code-switched segments without prior GT normalization — either stripping parentheticals to keep only the spoken Marathi form, or normalizing ASR output script before scoring. Failing to do this inflates WER artificially and obscures where ASR is genuinely failing versus where it is simply using a different but valid script convention.
+
+
+GT diarization is actually slightly exceeding the length of the videos - Might fix later....Bracket Convention for Code-Switched Glosses Is Not Uniform
+
+The dual-form convention above is written with three different bracket styles, not one. Round parens dominate (22,050 occurrences across 4,562 segments in 96 videos), but 521 glosses in 76 segments across 8 videos use square brackets — டவுட் [doubt], தேங்க்யூ [thankyou] — and 10 glosses in a single video (Iare1Emeueg) use curly braces — ट्राई {try}, लैपटॉप {laptop}. Critically, 16 segments across 8 videos mix more than one style within the same segment, so the style cannot be selected per-video. A normalizer written against round parens alone silently leaves square- and curly-bracket glosses in the reference, inflating WER exactly where code-switching is densest.
+
+Three further traps in the same convention: 29 segments have unbalanced or doubled parens (((Stardom)), ଫାସିଲିଟିଜ((facilities)) which a naive re.sub(r'\([^)]*\)','') corrupts rather than cleans; 1,831 glosses are followed by a re-attached native case suffix (चॅनल(channel)-वर, ସେକ୍ସନରେ(section)-ରେ) that leaves a dangling hyphen-suffix token once the gloss is stripped; and 1,300 glosses are numerals (एक(1), दीड(1.5)) where the choice of which form to keep changes the reference token count.
+
+
+Square Brackets in Transcript Text Break Naive Timestamp Parsing
+
+Because 76 asr_segments entries contain literal square brackets as glosses, the [start-end] timestamp prefix cannot be found with a global regex scan over the raw field — re.findall(r'\[([\d.]+)-([\d.]+)\]') and any re.split on brackets will pick up gloss text as segment boundaries. The field must be split on the | separator first, then the timestamp regex anchored at the start of each piece. Done that way, all 9,942 segments parse with zero failures, and diarization_segments[n] and asr_segments[n] are confirmed to carry byte-identical timestamps for every single segment, so joining speaker to text by index and by time are exactly equivalent.
+
+
+Ground Truth Extends Past the Requested Clip Window
+
+85 of 100 rows have ground-truth segments ending after end_sec — median +1.43 s, max +6.41 s (Iqhnt8ENm3U) — and the overrun is uncorrelated with clip length (r = -0.11), so it is a systematic annotation-window offset rather than timing drift. Three rows go the other way with long unannotated tails: Cku_X_SL7qU ends 90.3 s before the clip end, OxYCBQKZ3iY 12.4 s, CO_8ppdzq9U 6.1 s. Since the brief mandates using only [start_sec, end_sec], the audio cannot be extended to cover the annotation; the reference must instead be cropped to a UEM of [0, end_sec - start_sec]. Failing to crop scores hypothesis silence against reference speech that was never in the audio, inflating missed-speech error on 85% of the corpus.
+
+Two ground-truth segments are outright malformed and must be dropped rather than clamped: QuA_B6IZ6Ls segment 93 is Speaker C [939.09-155.91] (end before start by 783 s; neighbours sit at 931.5 and 947.0, so ~945.9 was likely intended), and 6ZeRgvDHwcI segment 0 is Speaker A [1.61-1.61] (zero duration). Both carry only non-speech tags.
+
+
+Overlap Is Structural, and Pairwise Summation Overstates It
+
+7.16% of total corpus time has two or more distinct speakers active, measured by a sweep line over elementary intervals. Summing pairwise overlaps instead gives 8.49%, because that double-counts three-way overlap — worth noting since the brief forbids ignoring overlap, so the number reported must be the union-based one. Only 9 of 100 clips contain no overlap at all; QuA_B6IZ6Ls is 35% overlapped and seven more clips exceed 19%. Alongside this, 20% of reference segments are shorter than 0.5 s (1,953 of 9,940) and 35% are under 1 s — these are backchannels that most diarizers either miss entirely or, worse, emit as spurious speaker turns. Reference turns are also utterance-level rather than turn-level: 22.4% of adjacent segment pairs share a speaker label, so a hypothesis that merges consecutive same-speaker utterances is not wrong and must be compared against a merged view of the reference too.
+
+
+Video Availability Must Be Judged by a Real Fetch, Not an oEmbed Probe
+
+Of the 99 unique video IDs, YouTube's oEmbed endpoint reports two as unreachable, but only one actually is. GUVrL5ltiP4 is genuinely deleted (yt-dlp: "Video unavailable"). 2HGP34TNvjg returns HTTP 401 from oEmbed, which looks identical to a private video but only means embedding is disabled — yt-dlp downloads it without trouble. The practical ceiling for extraction is therefore 99/100 rows, not 98. Note also that video_id is not a unique key: RL2fhIEEbZg appears in two rows with the disjoint windows 0-65 and 66-1034, so any per-video cache keyed on video_id alone silently drops one of the two clips.
+
+
+Which yt-dlp Player Client Works Is Unstable and Unrelated to Format Quality
+
+The client exposing the best formats is frequently not one that can actually download. yt-dlp's default client rotation advertises audio-only DASH formats (itags 139/140/251, opus at ~109 kbps) but those media URLs answer 403 Forbidden without a PO token; forcing player_client=android exposes only itag 18 (muxed 360p AVC + AAC) yet downloads reliably. Which rung works varies by network, video and yt-dlp version, so the client has to be selected by trial at run time rather than hard-coded — and a 403 on the media URL should be classified as a retryable client problem, not a generic network error. Pinning a client "to be safe" is actively harmful: it suppresses the audio-only formats and forces a muxed video download for audio-only work.
+
+On accuracy, ffmpeg input seeking (-ss before -i) against a resolved HTTP media URL was verified byte-identical to downloading the full track and trimming locally, on multiple clips. The range fetch is therefore sample-exact, not merely approximate, and is safe to use as the primary path despite ground-truth timestamps being relative to start_sec.
+
+
+Python's \w Silently Destroys Indic Text in WER Normalization
+
+The idiomatic way to strip punctuation before scoring — re.sub(r'[^\w\s]', ' ', text) — is actively wrong for every Indic script in this corpus. Python's \w is Unicode-aware but keys off str.isalnum(), and combining marks are not alphanumeric: vowel signs (U+093E DEVANAGARI VOWEL SIGN AA and its 40-odd siblings) and viramas (U+094D, U+0BCD, U+0C4D, ...) are Unicode category Mn, so the expression deletes them. नमस्कार becomes नमस क र, and a three-token phrase becomes seven. Measured on this reference it inflates the token count from 124,207 to 126,291 and shreds the exact characters that distinguish one word from another, so WER computed that way is meaningless while looking perfectly plausible. The correct filter tests unicodedata.category(ch)[0] in 'PS', which removes real punctuation — including the danda U+0964, 1,706 occurrences — while leaving category M marks intact.
+
+Related normalization requirements measured on the same text: 154 segments are not in NFC (Bengali ড় U+09DC and য় U+09DF carry composition exclusions, so NFC decomposes them to base+nukta), and without NFC an identical-looking reference and hypothesis compare unequal. 193 ZWNJ (U+200C) and 1 ZWJ occurrences need removing. Digits are essentially all ASCII (2,245) with exactly one Devanagari and one Telugu digit, so digit-system unification is a non-issue here.
+
+
+Gloss Annotation Is a Sixth of the Reference Token Count
+
+Stripping the dual-form code-switch glosses removes 24,914 of 149,121 reference tokens — 16.7%. Scored raw, that is a cpWER floor of roughly one in six words that has nothing to do with any ASR system, since no system emits both forms of a word. After stripping, the reference is 99.975% native script: only 31 Latin tokens remain in 124,207. That is a useful sanity signal in itself — it confirms the parenthetical really is annotation rather than transcribed speech, so keeping the native head word is the defensible reading of "what was spoken".
+
+The suffix-reattachment rule needs two branches, not one. Of 1,827 occurrences, 1,442 need the suffix joined onto the head (चॅनल(channel)-वर is spoken चॅनलवर) while 385 need it dropped because the head already carries it (ஷோக்கு(show)-க்கு is spoken ஷோக்கு, and joining yields the doubled ஷோக்குக்கு). The split is close to language-aligned — Marathi/Hindi join, Tamil drops — but testing head.endswith(suffix) covers both without needing to know the language. A further 13 cases are not suffixes at all but chained glossed numerals (आठ(8)-नऊ(9), दोन(2)-तीन(3)) which must stay two words; they are separable by requiring the suffix to be followed by whitespace or end-of-string, which fails when another gloss follows.
+
+
+Cropping the Reference to the Audio Window Is Safe; Dropping Non-Speech Tags Is Not
+
+Cropping ground truth to the UEM [0, end_sec - start_sec] drops 38 segments entirely and truncates 88, costing 177.7 s of 44,193 s (0.4%). Critically it changes the speaker set on zero of 100 clips, so speaker-count accuracy is unaffected and the crop is free of side effects. Unioning each speaker's self-overlapping intervals merges 340 pairs; without it the same second of one speaker is counted twice in the DER denominator.
+
+By contrast, dropping the 404 tag-only segments (<noise>, <laughter>, <unintelligible>, 294 s, 0.67% of corpus) erases Speaker D entirely from 0p6cktLGIfY__12_930, changing that clip's reference speaker count from 6 to 5. They are annotated speaker activity and belong in the diarization reference even though they carry no words for WER. Measuring cross-speaker overlap after all of this gives 7.13% of corpus time, confirming nothing quietly stopped scoring the overlap the assignment mandates.
+
+
+Ground-Truth-Derived Language Hints Are a Leak, and an Easy One to Miss
+
+The assignment states the ground truth is never an input to the pipeline, and the obvious violation — passing the true speaker count to the diarizer — is easy to remember. A subtler one is language identification: deriving a per-clip language from the dominant Unicode script of the reference transcript and feeding it to a multilingual ASR as its language code. Across nine languages that is a substantial free advantage the pipeline should have to earn from audio, and it looks innocuous because the column reads like metadata rather than ground truth. The fix that actually holds is structural rather than documentary: a frozen ClipInput type carrying only clip_id, video window, and wav path is what the pipeline stages accept, so the speaker count and the language hint are not merely discouraged but absent. Naming helps too — prefixing every ground-truth-derived column with ref_ makes provenance visible at the call site.
