@@ -52,6 +52,7 @@ METRIC_COLUMNS = [
     "model", "clip_id", "der", "der_fa_sec", "der_miss_sec", "der_confusion_sec",
     "der_correct_sec", "der_total_sec", "jer", "n_speakers_ref", "n_speakers_hyp",
     "speaker_count_error", "speaker_count_correct",
+    "overlap_der", "overlap_sec", "single_speaker_der", "clip_dur_sec",
 ]
 
 KEY_FA, KEY_MISS, KEY_CONF = "false alarm", "missed detection", "confusion"
@@ -131,7 +132,62 @@ def uem_timeline(ref: ClipReference):
     return Timeline([Segment(*ref.uem)], uri=ref.clip_id)
 
 
+def overlap_timeline(ref: ClipReference):
+    """Regions where >= 2 distinct reference speakers are active.
+
+    Used as a restricted UEM so DER can be scored on overlapped speech alone.
+    That is the single hardest condition in this corpus (37% of overlapped time
+    is sustained simultaneous speech, and 2,088 segments are fully nested inside
+    another turn), and it is invisible in the corpus DER because it is only
+    ~7% of scored time.
+    """
+    from pyannote.core import Segment, Timeline
+
+    bounds = sorted({b for t in ref.turns for b in (t.start, t.end)})
+    spans = []
+    for lo, hi in zip(bounds, bounds[1:]):
+        if hi <= lo:
+            continue
+        mid = (lo + hi) / 2.0
+        if len({t.speaker for t in ref.turns if t.start <= mid < t.end}) >= 2:
+            spans.append(Segment(lo, hi))
+    return Timeline(spans, uri=ref.clip_id).support()
+
+
+def single_speaker_timeline(ref: ClipReference):
+    """Regions with exactly one speaker -- the easy condition, for contrast."""
+    from pyannote.core import Segment, Timeline
+
+    bounds = sorted({b for t in ref.turns for b in (t.start, t.end)})
+    spans = []
+    for lo, hi in zip(bounds, bounds[1:]):
+        if hi <= lo:
+            continue
+        mid = (lo + hi) / 2.0
+        if len({t.speaker for t in ref.turns if t.start <= mid < t.end}) == 1:
+            spans.append(Segment(lo, hi))
+    return Timeline(spans, uri=ref.clip_id).support()
+
+
 # ------------------------------------------------------------------ scoring
+
+
+def score_region(ref: ClipReference, hyp: list[Turn], region) -> dict[str, Any]:
+    """DER over a restricted region (an overlap or single-speaker timeline).
+
+    Returns NaN when the region is empty -- 9 clips have no overlap at all, and
+    a 0.0 there would wrongly read as a perfect score.
+    """
+    from pyannote.metrics.diarization import DiarizationErrorRate
+
+    if region is None or not len(region):
+        return {"der": float("nan"), "total_sec": 0.0}
+    der = DiarizationErrorRate(collar=0.0, skip_overlap=False)
+    comp = der.compute_components(to_annotation(ref),
+                                  turns_to_annotation(hyp, ref.clip_id), uem=region)
+    if comp[KEY_TOTAL] <= 0:
+        return {"der": float("nan"), "total_sec": 0.0}
+    return {"der": der.compute_metric(comp), "total_sec": comp[KEY_TOTAL]}
 
 
 def score_clip(ref: ClipReference, hyp: list[Turn], collar: float = DER_COLLAR,
@@ -213,6 +269,13 @@ def score_all(cfg: Config, references: dict[str, ClipReference],
         row.update(score_clip(ref, hyp, DER_COLLAR, DER_SKIP_OVERLAP))
         lenient = score_clip(ref, hyp, DER_COLLAR_LENIENT, DER_SKIP_OVERLAP_LENIENT)
         row.update({f"lenient_{k}": v for k, v in lenient.items()})
+
+        ov = score_region(ref, hyp, overlap_timeline(ref))
+        sg = score_region(ref, hyp, single_speaker_timeline(ref))
+        row["overlap_der"] = ov["der"]
+        row["overlap_sec"] = ov["total_sec"]
+        row["single_speaker_der"] = sg["der"]
+        row["clip_dur_sec"] = ref.uem[1]
         rows.append(row)
     df = pd.DataFrame(rows)
     if not len(df):

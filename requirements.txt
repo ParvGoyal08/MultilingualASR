@@ -12,6 +12,10 @@ gdown>=5.0
 pyannote.audio>=4.0
 pyannote.metrics>=4.0
 
+# Step 2 analysis: interactive sortable tables in the notebook.
+itables>=2.0
+matplotlib>=3.5
+
 # ffmpeg / ffprobe are system binaries, not pip packages:
 #   Colab  -> preinstalled
 #   macOS  -> brew install ffmpeg

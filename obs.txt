@@ -170,3 +170,5 @@ roster avoided them.
 
 Segment count per clip ranges from 5 to 556. The 556-segment clip alone contributes 5.6% of all
 segments, so per-segment statistics are noticeably sensitive to a handful of clips.
+
+Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped segment + 909s turn + highest overlap at 35%) each carry several independent faults. Worth reporting their per-clip metrics separately, or excluding them from ASR scoring with the limitation stated.
