@@ -245,6 +245,67 @@ def read_jsonl(path: str | os.PathLike) -> list[dict]:
     return out
 
 
+# ------------------------------------------------------------------ dotenv
+# Secrets live in a .env file rather than in the notebook, because main.ipynb is
+# published to a public repo. .env itself is gitignored and never committed.
+
+
+def parse_dotenv(text: str) -> dict[str, str]:
+    """Minimal .env parser -- no dependency, and the format is trivial.
+
+    Handles `KEY=value`, `KEY="value"`, `KEY='value'`, `export KEY=value`,
+    comments and blank lines. A trailing ` # comment` is stripped from unquoted
+    values only, since a quoted value may legitimately contain a '#'.
+    """
+    out: dict[str, str] = {}
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[len("export "):].lstrip()
+        key, sep, value = line.partition("=")
+        key, value = key.strip(), value.strip()
+        if not sep or not key:
+            continue
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+            value = value[1:-1]
+        elif " #" in value:
+            value = value.split(" #", 1)[0].strip()
+        out[key] = value
+    return out
+
+
+def find_dotenv(extra: Iterable[str | os.PathLike] = ()) -> Path | None:
+    """First existing .env among the candidates, nearest-first.
+
+    On Colab the repo clone will NOT contain .env (it is gitignored), so the
+    Drive root is the location that actually works there.
+    """
+    candidates = [Path(p) for p in extra]
+    candidates += [Path.cwd() / ".env", Path.cwd().parent / ".env",
+                   Path.home() / ".env"]
+    for path in candidates:
+        if path.is_file():
+            return path
+    return None
+
+
+def load_dotenv(extra: Iterable[str | os.PathLike] = (), export: bool = True) -> dict[str, str]:
+    """Read the nearest .env. With `export`, values that are not already set in
+    the environment are placed there, so later stages (e.g. SARVAM_API_KEY in
+    Step 3) can just read os.environ."""
+    path = find_dotenv(extra)
+    if path is None:
+        return {}
+    values = parse_dotenv(path.read_text(encoding="utf-8"))
+    if export:
+        for k, v in values.items():
+            os.environ.setdefault(k, v)
+    LOG.info("loaded %d key(s) from %s", len(values), path)
+    return values
+
+
 # ------------------------------------------------------------- leakage guard
 
 

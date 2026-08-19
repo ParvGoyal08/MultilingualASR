@@ -176,6 +176,15 @@ class Config:
         return self.results_dir / "step1_summary.json"
 
     @property
+    def dotenv_path(self) -> Path:
+        """Where .env is expected to live on Colab.
+
+        The repo clone cannot carry it (.env is gitignored so secrets stay out of
+        the public repo), so the Drive root is the location that persists.
+        """
+        return self.root / ".env"
+
+    @property
     def dataset_profile(self) -> Path:
         return self.results_dir / "dataset_profile.json"
 

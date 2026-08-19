@@ -36,6 +36,7 @@ from .reference import parse_rttm, rttm_safe
 from .utils import (
     LOG,
     append_jsonl,
+    load_dotenv,
     atomic_publish,
     human_time,
     now_utc_iso,
@@ -53,17 +54,32 @@ _PIPELINE_CACHE: dict[str, Any] = {}
 # ------------------------------------------------------------------ loading
 
 
-def resolve_token(cfg: Config) -> str | None:
-    """HF token from config, then Colab Secrets, then the environment.
+TOKEN_KEYS = ("HF_TOKEN", "HUGGINGFACE_TOKEN")
 
-    Never read from a notebook cell -- main.ipynb is published to a public repo.
+
+def resolve_token(cfg: Config) -> str | None:
+    """HF token, resolved from .env first.
+
+    Order: explicit Config value, then .env (Drive root, then the usual local
+    spots), then the process environment, then Colab Secrets as a fallback.
+    Never read from a notebook cell -- main.ipynb goes to a public repo.
     """
+    import os
+
     if cfg.hf_token:
         return cfg.hf_token
-    try:
+
+    values = load_dotenv([cfg.dotenv_path], export=True)
+    for key in TOKEN_KEYS:
+        if values.get(key):
+            return values[key]
+        if os.environ.get(key):
+            return os.environ[key]
+
+    try:                                    # last resort, still supported
         from google.colab import userdata
 
-        for key in ("HF_TOKEN", "HUGGINGFACE_TOKEN"):
+        for key in TOKEN_KEYS:
             try:
                 if tok := userdata.get(key):
                     return tok
@@ -71,9 +87,7 @@ def resolve_token(cfg: Config) -> str | None:
                 continue
     except ImportError:
         pass
-    import os
-
-    return os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_TOKEN")
+    return None
 
 
 def load_pipeline(cfg: Config, model_key: str, device: str | None = None):
@@ -88,8 +102,10 @@ def load_pipeline(cfg: Config, model_key: str, device: str | None = None):
     token = resolve_token(cfg)
     if not token:
         raise RuntimeError(
-            f"{repo} is gated and no HuggingFace token was found. Set it in Colab "
-            "Secrets as HF_TOKEN, or export HF_TOKEN, or pass Config(hf_token=...). "
+            f"{repo} is gated and no HuggingFace token was found.\n"
+            f"Add a line  HF_TOKEN=hf_...  to {cfg.dotenv_path}\n"
+            "(on Colab that path is in Drive; .env is gitignored so it never "
+            "reaches the public repo).\n"
             "You must also accept the model conditions on its HuggingFace page."
         )
 
