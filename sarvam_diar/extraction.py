@@ -715,6 +715,55 @@ def build_summary(cfg: Config, df: pd.DataFrame, counts: dict, wall_clock: float
     return summary
 
 
+def inventory(cfg: Config, expected_clips: int = 100) -> pd.DataFrame:
+    """What Step 1 artifacts are actually present under cfg.root.
+
+    Exists because Step 1 may run on one machine and Steps 2-4 on another (here:
+    extraction locally, GPU work on Colab), so the artifacts arrive by a manual
+    copy that can be partial. A missing file should produce a checklist, not a
+    traceback from deep inside a reporting cell.
+    """
+    checks = [
+        ("data/youtube_segments.csv", cfg.segments_csv, None),
+        ("results/step1_extraction.csv", cfg.extraction_csv, None),
+        ("results/step1_summary.json", cfg.extraction_summary, None),
+        ("results/dataset_profile.json", cfg.dataset_profile, None),
+        ("audio_16k/*.wav", cfg.audio_dir, "*.wav"),
+        ("meta/*.json", cfg.meta_dir, "*.json"),
+        ("reference/rttm/*.rttm", cfg.rttm_dir, "*.rttm"),
+        ("reference/asr/*.json", cfg.ref_asr_dir, "*.json"),
+        ("results/reference_manifest.csv", cfg.reference_manifest, None),
+    ]
+    rows = []
+    for label, path, pattern in checks:
+        if pattern:
+            n = len(list(path.glob(pattern))) if path.is_dir() else 0
+            rows.append({"artifact": label, "present": n > 0, "count": n,
+                         "expected": expected_clips, "path": str(path)})
+        else:
+            ok = path.is_file() and path.stat().st_size > 0
+            rows.append({"artifact": label, "present": ok, "count": int(ok),
+                         "expected": 1, "path": str(path)})
+    return pd.DataFrame(rows)
+
+
+def preflight(cfg: Config, expected_clips: int = 100, required: tuple = (
+        "data/youtube_segments.csv", "results/step1_extraction.csv",
+        "audio_16k/*.wav")) -> pd.DataFrame:
+    """Inventory plus a clear message naming exactly what to copy across."""
+    inv = inventory(cfg, expected_clips)
+    missing = inv[(~inv.present) & inv.artifact.isin(required)]
+    if len(missing):
+        raise FileNotFoundError(
+            "Step 1 artifacts are missing under " + str(cfg.root) + ":\n  "
+            + "\n  ".join(missing.artifact) +
+            "\n\nCopy the CONTENTS of the local `local_out/` folder into that "
+            "directory, so it contains audio_16k/, meta/, results/, reference/ "
+            "and data/."
+        )
+    return inv
+
+
 def audit(cfg: Config, clips: list[Clip]) -> pd.DataFrame:
     """Re-probe every published WAV against the exact-length contract."""
     rows = []
