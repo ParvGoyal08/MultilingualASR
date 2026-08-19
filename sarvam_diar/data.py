@@ -197,7 +197,7 @@ class ClipReference:
 
 
 def split_reference(
-    clips: Iterable[Clip], results: pd.DataFrame | None = None
+    clips: Iterable[Clip], results: pd.DataFrame | None = None, cfg=None
 ) -> tuple[dict[str, ClipInput], list[Clip]]:
     """Separate what the pipeline may see from what only the scorer may see.
 
@@ -219,8 +219,15 @@ def split_reference(
         if results is not None and clip.clip_id not in audio:
             continue
         extra = audio.get(clip.clip_id, {})
-        wav = extra.get("wav_path")
         n = extra.get("n_samples")
+        # Prefer this run's audio directory over the path recorded at extraction
+        # time: Step 1 may have run on a different machine (it did here), so the
+        # recorded absolute path is meaningless once the WAVs are copied across.
+        wav = extra.get("wav_path")
+        if cfg is not None:
+            local = cfg.wav_path(clip.clip_id)
+            if local.exists():
+                wav = str(local)
         inputs[clip.clip_id] = ClipInput(
             clip_id=clip.clip_id,
             video_id=clip.video_id,

@@ -715,6 +715,69 @@ def build_summary(cfg: Config, df: pd.DataFrame, counts: dict, wall_clock: float
     return summary
 
 
+def rebuild_results_from_sidecars(cfg: Config, clips: list[Clip]) -> pd.DataFrame:
+    """Reconstruct the results table from meta/*.json.
+
+    The sidecars are the authority: each is written LAST, after its WAV is
+    published, so it is the commit marker. step1_extraction.csv is a derived
+    convenience file. When the two disagree -- typically because a stale CSV from
+    an earlier failed run was left in place while the audio was copied in from
+    somewhere else -- the sidecars are right.
+    """
+    rows = []
+    for clip in clips:
+        meta = read_json(cfg.meta_path(clip.clip_id), None)
+        if meta:
+            # wav_path is re-resolved against this Config rather than trusted:
+            # the sidecar records the path on whichever machine ran extraction,
+            # which is not where later stages run.
+            rows.append({**meta, "status": meta.get("status", "ok"),
+                         "wav_path": str(cfg.wav_path(clip.clip_id))})
+        else:
+            rows.append({**_gt_columns(clip), "status": "pending", "permanent": False})
+    df = pd.DataFrame(rows)
+    for col in RESULT_COLUMNS:
+        if col not in df.columns:
+            df[col] = pd.NA
+    return df[RESULT_COLUMNS]
+
+
+def reconcile(cfg: Config, clips: list[Clip], write: bool = True) -> tuple[pd.DataFrame, dict]:
+    """Return the trustworthy results table, repairing the CSV if it lags.
+
+    Returns (results, info). `info` explains what happened so the notebook can
+    show it rather than silently swapping the data underneath the user.
+    """
+    from_sidecars = rebuild_results_from_sidecars(cfg, clips)
+    n_sidecar_ok = int((from_sidecars.status == "ok").sum())
+
+    csv_df, n_csv_ok = None, 0
+    if cfg.extraction_csv.exists():
+        try:
+            csv_df = pd.read_csv(cfg.extraction_csv)
+            n_csv_ok = int((csv_df.status == "ok").sum())
+        except Exception:
+            csv_df = None
+
+    info = {"csv_ok_rows": n_csv_ok, "sidecar_ok_rows": n_sidecar_ok, "action": "kept csv"}
+
+    if n_sidecar_ok > n_csv_ok:
+        info["action"] = "rebuilt from sidecars"
+        info["note"] = (f"{cfg.extraction_csv.name} showed {n_csv_ok} successful clips but "
+                        f"{n_sidecar_ok} per-clip sidecars exist. The sidecars are the commit "
+                        "markers, so the CSV was stale (usually a leftover from an earlier "
+                        "failed run) and has been rebuilt.")
+        if write:
+            tmp = cfg.work_dir / "step1_extraction.csv"
+            from_sidecars.to_csv(tmp, index=False)
+            atomic_publish(tmp, cfg.extraction_csv)
+            tmp.unlink(missing_ok=True)
+        LOG.warning(info["note"])
+        return from_sidecars, info
+
+    return (csv_df if csv_df is not None else from_sidecars), info
+
+
 def inventory(cfg: Config, expected_clips: int = 100) -> pd.DataFrame:
     """What Step 1 artifacts are actually present under cfg.root.
 
