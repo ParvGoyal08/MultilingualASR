@@ -89,7 +89,7 @@ def worst_by_overlap_der(df, n=20):
     """DER scored ONLY where >= 2 reference speakers are active.
 
     NaN for the 9 clips with no overlap. This is the hardest condition in the
-    corpus and is invisible in the corpus DER, where it is ~7% of scored time.
+    corpus and is invisible in the corpus DER, where it is ~7.13% of scored time.
     """
     sub = df[df.overlap_sec > 0] if "overlap_sec" in df.columns else df
     return _rank(sub, "overlap_der", False, n,
@@ -120,9 +120,14 @@ def model_comparison(df: pd.DataFrame, metric: str = "der") -> pd.DataFrame:
     wide = df.pivot_table(index="clip_id", columns="model", values=metric)
     models = list(wide.columns)
     wide["delta"] = wide[models[0]] - wide[models[1]]
-    wide["better"] = wide.apply(
-        lambda r: models[1] if r["delta"] > 0 else (models[0] if r["delta"] < 0 else "tie"),
-        axis=1)
+    def _better(r):
+        # A clip only one model ran has a NaN delta. Calling that a tie would
+        # inflate the tie count with clips that were never compared.
+        if pd.isna(r["delta"]):
+            return "n/a"
+        return models[1] if r["delta"] > 0 else (models[0] if r["delta"] < 0 else "tie")
+
+    wide["better"] = wide.apply(_better, axis=1)
     meta = df.drop_duplicates("clip_id").set_index("clip_id")[
         ["clip_dur_sec", "n_speakers_ref"]]
     return wide.join(meta).sort_values("delta", ascending=False).reset_index()
@@ -138,6 +143,7 @@ def head_to_head_summary(df: pd.DataFrame, metric: str = "der") -> pd.DataFrame:
         f"{models[0]}_wins": int((cmp.better == models[0]).sum()),
         f"{models[1]}_wins": int((cmp.better == models[1]).sum()),
         "ties": int((cmp.better == "tie").sum()),
+        "not_compared": int((cmp.better == "n/a").sum()),
         "mean_abs_delta": float(cmp.delta.abs().mean()),
         "max_delta_clip": cmp.iloc[0].clip_id if len(cmp) else None,
         "max_delta": float(cmp.delta.iloc[0]) if len(cmp) else None,

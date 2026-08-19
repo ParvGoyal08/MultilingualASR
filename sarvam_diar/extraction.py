@@ -624,7 +624,14 @@ def run(cfg: Config, clips: list[Clip], flags: StageFlags | None = None) -> pd.D
             if valid:
                 counts["skipped"] += 1
                 cached = detail.get("meta") or {}
-                results[clip.clip_id] = {**results[clip.clip_id], **cached, "status": "ok"}
+                # Re-resolve wav_path against THIS Config. The sidecar records the
+                # path on whichever machine extracted, and Step 1 may have run
+                # elsewhere (it did here) -- merging it verbatim would hand Step 2
+                # a path that does not exist. Same fault reconcile() guards on the
+                # other route.
+                results[clip.clip_id] = {**results[clip.clip_id], **cached,
+                                         "status": "ok",
+                                         "wav_path": str(cfg.wav_path(clip.clip_id))}
                 LOG.info("%s skip (checkpoint valid)", prefix)
                 continue
             LOG.info("%s extracting (%s)", prefix, detail["reason"])

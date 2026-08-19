@@ -214,9 +214,29 @@ def diarize_clip(cfg: Config, pipeline, clip: ClipInput,
 
 
 def is_done(cfg: Config, model: str, clip_id: str, oracle: bool = False) -> bool:
-    """Both artifacts present, sidecar written last as the commit marker."""
-    return (cfg.hyp_rttm_path(model, clip_id, oracle).exists()
-            and cfg.hyp_meta_path(model, clip_id, oracle).exists())
+    """Both artifacts present AND the RTTM holds the turns the sidecar claims.
+
+    Existence alone is not enough, for the same reason Step 1 validates sample
+    counts: a run interrupted mid-copy leaves a short but plausible file. The
+    sidecar records n_turns, so the RTTM is checked against it -- an empty
+    hypothesis is legitimate only when the sidecar also says zero turns.
+    """
+    rttm, meta_path = cfg.hyp_rttm_path(model, clip_id, oracle), cfg.hyp_meta_path(
+        model, clip_id, oracle)
+    if not rttm.exists() or not meta_path.exists():
+        return False
+    meta = read_json(meta_path, None)
+    if not meta or meta.get("status") != "ok":
+        return False
+    expected = meta.get("n_turns")
+    if expected is None:
+        # Every sidecar this module writes records n_turns. One without it was
+        # not written by a completed run, so fail safe and re-diarize rather
+        # than trust a file of unknown provenance.
+        return False
+    lines = [ln for ln in rttm.read_text(encoding="utf-8").splitlines()
+             if ln.startswith("SPEAKER ")]
+    return len(lines) == expected
 
 
 def load_hypothesis(cfg: Config, model: str, clip_id: str,
@@ -272,7 +292,17 @@ def run(cfg: Config, inputs: list[ClipInput], flags: StageFlags | None = None,
             if pipeline is None:                       # load lazily: a fully
                 pipeline = load_pipeline(cfg, model)   # cached model costs nothing
             try:
-                n_spk = oracle_counts.get(clip.clip_id) if oracle else None
+                if oracle:
+                    if clip.clip_id not in oracle_counts:
+                        # Falling through with num_speakers=None would write a
+                        # NORMAL result into hypotheses_oracle/ and silently
+                        # contaminate the ablation.
+                        raise KeyError(
+                            f"oracle_counts has no entry for {clip.clip_id}; refusing "
+                            "to write a non-oracle result into the oracle tree")
+                    n_spk = oracle_counts[clip.clip_id]
+                else:
+                    n_spk = None
                 turns, meta = diarize_clip(cfg, pipeline, clip, num_speakers=n_spk)
             except Exception as exc:
                 counts["failed"] += 1

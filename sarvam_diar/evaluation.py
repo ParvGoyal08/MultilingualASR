@@ -139,7 +139,7 @@ def overlap_timeline(ref: ClipReference):
     That is the single hardest condition in this corpus (37% of overlapped time
     is sustained simultaneous speech, and 2,088 segments are fully nested inside
     another turn), and it is invisible in the corpus DER because it is only
-    ~7% of scored time.
+    ~7.13% of scored time.
     """
     from pyannote.core import Segment, Timeline
 

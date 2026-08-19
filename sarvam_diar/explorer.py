@@ -265,7 +265,10 @@ def export(cfg: Config, metrics: pd.DataFrame, references: dict[str, ClipReferen
             "overlap_frac": round(ref.stats.get("gt_overlap_frac", 0.0), 4),
             "short_turn_frac": round(short_turn_fraction(ref), 4),
             "n_turns_ref": len(ref.turns),
-            "has_audio": (cfg.wav_path(clip_id).exists() or copy_audio),
+            # Whether audio EXISTS, not whether we intended to copy it: with
+            # copy_audio=True and a missing source, promising audio makes the UI
+            # show a load error instead of its "no audio" message.
+            "has_audio": cfg.wav_path(clip_id).exists(),
             "models": {},
         }
         for model, block in payload["models"].items():

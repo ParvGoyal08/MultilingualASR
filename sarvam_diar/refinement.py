@@ -9,7 +9,7 @@ Candidate signals, from the dataset profile:
   transcript content is a cheap discriminator.
 * Repeated / stuttered text spanning a speaker boundary suggests a false split;
   incoherent speaker alternation suggests speaker confusion.
-* Overlap is 7.16% of corpus time, so an overlap-aware second pass has real
+* Overlap is 7.13% of corpus time, so an overlap-aware second pass has real
   headroom against a baseline that emits one speaker per frame.
 """
 
