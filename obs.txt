@@ -63,3 +63,45 @@ By contrast, dropping the 404 tag-only segments (<noise>, <laughter>, <unintelli
 Ground-Truth-Derived Language Hints Are a Leak, and an Easy One to Miss
 
 The assignment states the ground truth is never an input to the pipeline, and the obvious violation — passing the true speaker count to the diarizer — is easy to remember. A subtler one is language identification: deriving a per-clip language from the dominant Unicode script of the reference transcript and feeding it to a multilingual ASR as its language code. Across nine languages that is a substantial free advantage the pipeline should have to earn from audio, and it looks innocuous because the column reads like metadata rather than ground truth. The fix that actually holds is structural rather than documentary: a frozen ClipInput type carrying only clip_id, video window, and wav path is what the pipeline stages accept, so the speaker count and the language hint are not merely discouraged but absent. Naming helps too — prefixing every ground-truth-derived column with ref_ makes provenance visible at the call site.
+
+
+A Handful of Reference Speakers Are Acoustically Undetectable
+
+Eight reference speakers across seven clips hold under two seconds of total speech, and the extreme case is a single 0.04 s segment — MmtWBUK2DKE__0_310 Speaker C says जी once, for forty milliseconds, and that is the speaker's entire existence in the reference. No clustering-based diarizer will ever emit a separate cluster for forty milliseconds of audio; the embedding window alone is longer than the segment. These speakers are therefore guaranteed misses, and because speaker-count accuracy is an exact-match metric, a clip with a 0.04 s speaker is unwinnable no matter how good the system is. Seven clips (7%) contain a speaker holding under 1% of the clip's speech. This is worth reporting as a floor on speaker-count accuracy rather than being mistaken for model weakness, and it is a strong argument for reporting mean absolute count error alongside exact-match: missing a 0.04 s speaker and hallucinating three extra ones are not the same failure.
+
+Related: 26 speakers first appear after the midpoint of their clip, several past the 400 s mark. Online or streaming diarizers, and any approach that fixes the speaker inventory from an early window, will systematically miss these.
+
+
+Overlap Is Not Mostly Backchannel, and a Fifth of It Is Long
+
+Splitting the 4,678 cross-speaker overlap events by duration changes the picture considerably. Events under 0.5 s — the backchannel-shaped ones — are the majority by count (2,871) but only 19.1% of overlapped time. Events longer than five seconds number just 48, yet carry 21.7% of all overlap time, and the longest single overlap runs 55.6 s. Sustained two-to-five-second overlaps add another 15.1%. So roughly 37% of overlapped time is genuine sustained simultaneous speech rather than short interjections, which is the regime where a one-speaker-per-frame model cannot represent the truth at all.
+
+Reinforcing that: 2,088 cross-speaker segments are fully nested inside another speaker's turn — an interjection wholly contained within someone else's speech. A diarizer emitting a single label per frame is structurally incapable of expressing these, so they convert directly into missed-speech error that no threshold tuning can recover.
+
+
+Half of Speaker Boundaries Have No Silence to Find
+
+Across 3,915 cross-speaker transitions the median gap is 0.250 s, but the tail matters more than the median: 17.8% of transitions have a gap of zero or less (the speakers touch or overlap), 34.6% are within 0.10 s, and 50% are within 0.25 s. Voice-activity-based segmentation has nothing acoustic to key on at these boundaries. This also explains why the conventional 0.25 s forgiveness collar is so consequential on this corpus — it would erase the region containing half of all speaker changes, which is precisely why the brief's no-collar requirement is the honest setting and why the collared variant should never be the headline. Turn churn is high too: a median of 9.2 speaker changes per minute, with the busiest clip at 34.4.
+
+
+Impossible Speech Rates Reveal Misplaced Text, Not Bad Transcription
+
+Computing tokens per second on the normalized spoken form exposes 14 segments whose rate is physically impossible. The worst is Cku_X_SL7qU__60_660 [507.77-507.97]: 63 tokens in 0.20 seconds, or 315 tokens/s. The transcript there is fluent, plausible Gujarati-English code-switch; it is the timestamp that is wrong, so the text belongs to a much longer span. Nine clips contain at least one such segment, and Cku_X_SL7qU alone has twelve — the same clip already flagged for ending its annotation 90 s before the clip does, so it appears to have a systematically damaged region rather than isolated typos.
+
+QuA_B6IZ6Ls__61_1863 has a second, distinct fault: a segment spanning [108.11-1017.40], 909 seconds carrying only 57 tokens, while its neighbours are ordinary 30 s turns. That clip already contributes the dropped [939.09-155.91] segment. Both faults are end-timestamp corruption on the same clip.
+
+Total affected duration is only 23.5 s, so DER is barely moved — but the consequence for cpWER is much larger, because the words are attributed to the wrong span and, via the speaker at that span, potentially to the wrong speaker. These segments are worth excluding or hand-correcting for ASR scoring while being harmless to leave in for diarization; the brief explicitly permits hand-labelling a subset and calling out the limitation.
+
+For reference, legitimate rates cluster tightly by language, from a median 2.33 tokens/s for Telugu to 3.40 for Punjabi, corpus median 2.72. Those numbers are not comparable across scripts — they reflect word-segmentation convention as much as speaking speed — but within a language they make an effective outlier detector.
+
+
+Repeated Text Across a Speaker Boundary Is Already Present in the Ground Truth
+
+206 consecutive segment pairs carry identical normalized text. 138 are same-speaker, which is ordinary backchannel repetition (हं twice in a row). The other 68 are cross-speaker, and many have a negative gap, meaning the two segments overlap: 0p6cktLGIfY has Speaker C and Speaker E both saying સપના વિનાની રાત with a -0.31 s gap, and 2gGHQgj9yno has three different speakers saying જય શ્રી કૃષ્ણ within 0.04 s of each other. Some are genuine chorus (a greeting said together), others look like annotation splitting one utterance across two labels. Either way this is exactly the false-split signature the brief suggests exploiting in Step 4, and it is worth knowing that the pattern exists in the reference itself, not only in model output — a Step 4 heuristic that merges repeated text across a boundary will sometimes be "correcting" toward something the reference also does.
+
+
+Two Structural Conventions Worth Relying On, and One Exception
+
+Speaker labels follow first-appearance order in 99 of 100 clips: Speaker A is the first voice heard, then B, and so on. The single exception is 6ZeRgvDHwcI__6_100, where Speaker B is heard first — and that is the clip whose first segment is the dropped zero-duration [1.61-1.61] Speaker A entry, so the convention is probably intact in the original annotation and only broken by the corrupt segment. This means label identity carries information: comparing a system's first-emitted speaker against Speaker A is meaningful, and it gives Step 4 a cheap prior for mapping.
+
+Separately, every ground-truth timestamp lands on a 10 ms grid (19,663 of 19,880 values have exactly two decimal places). Reporting metrics to more than about three significant figures implies precision the annotation does not have.
