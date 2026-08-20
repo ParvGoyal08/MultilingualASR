@@ -71,7 +71,8 @@ def _load_audio(path: str | os.PathLike, sr: int = 16_000):
     return audio, rate
 
 
-def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3") -> tuple[list[Word], dict]:
+def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
+                       word_timestamps: bool = True) -> tuple[list[Word], dict]:
     """faster-whisper with word timestamps.
 
     Deliberately not WhisperX: it pins an older pyannote and would fight the
@@ -93,15 +94,22 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3") -> 
     segments, info = model.transcribe(
         str(wav),
         language=None,          # detect; never hinted from the reference
-        word_timestamps=True,
+        word_timestamps=word_timestamps,
         vad_filter=False,       # diarization already decides what is speech
     )
     words: list[Word] = []
     for seg in segments:
-        for w in (seg.words or []):
-            text = w.word.strip()
-            if text:
-                words.append(Word(text, float(w.start), float(w.end)))
+        if word_timestamps and seg.words:
+            for w in seg.words:
+                text = w.word.strip()
+                if text:
+                    words.append(Word(text, float(w.start), float(w.end)))
+        else:
+            # Per-segment work needs only the text, and forcing the extra
+            # alignment pass on every one of thousands of short segments is
+            # pure cost. Words carry the segment span so the shape is uniform.
+            for tok in (seg.text or "").split():
+                words.append(Word(tok, float(seg.start), float(seg.end)))
     meta = {"detected_language": info.language,
             "language_probability": round(float(info.language_probability), 4)}
     return words, meta
@@ -168,14 +176,23 @@ def _sarvam_post(path: Path, key: str, model: str, retries: int = 4) -> dict:
                 )
             if r.status_code == 200:
                 return r.json()
-            # 429 and 5xx are worth retrying; 4xx otherwise is not.
+            # 429 and 5xx are transient; any other 4xx is a request the server
+            # will refuse identically forever. Raising it inside the try meant
+            # the except below caught it and retried a 400 four times, turning a
+            # fast failure into a slow one.
             if r.status_code != 429 and r.status_code < 500:
-                raise RuntimeError(f"sarvam {r.status_code}: {r.text[:300]}")
+                raise _Fatal(f"sarvam {r.status_code}: {r.text[:300]}")
             last = f"{r.status_code}: {r.text[:200]}"
+        except _Fatal:
+            raise
         except Exception as exc:  # noqa: BLE001 - network layer
             last = f"{type(exc).__name__}: {exc}"
         time.sleep(2.0 * (attempt + 1))
     raise RuntimeError(f"sarvam failed after {retries} attempts -- {last}")
+
+
+class _Fatal(RuntimeError):
+    """A response the server will refuse identically no matter how often asked."""
 
 
 def _sarvam_words(payload: dict, offset: float) -> tuple[list[Word], str]:
@@ -213,7 +230,8 @@ _MODEL_CACHE: dict = {}
 
 BACKENDS: dict[str, Callable[..., tuple[list[Word], dict]]] = {
     "whisper-large-v3": lambda cfg, wav: transcribe_whisper(cfg, wav, "large-v3"),
-    "sarvam-saaras-v3": lambda cfg, wav: transcribe_sarvam(cfg, wav, SARVAM_MODEL),
+    "sarvam-saaras-v3": lambda cfg, wav: transcribe_sarvam(cfg, wav, "saaras:v3"),
+    "sarvam-saaras-v4": lambda cfg, wav: transcribe_sarvam(cfg, wav, "saaras:v4"),
 }
 
 
@@ -515,6 +533,18 @@ def oracle_ceiling(cfg: Config, references: dict, clip_ids: Sequence[str] | None
 # of 6.46 s against community-1's 14,380 at 1.21 s.
 
 
+def sarvam_model_for(system: str) -> str:
+    """Map a system key to the API model id, so v3 and v4 are separate systems.
+
+    Keeping them as distinct system keys rather than a parameter means their
+    checkpoints, metrics rows and explorer columns never collide, and a sweep
+    of one cannot be silently attributed to the other.
+    """
+    if system.endswith("v4") or ":v4" in system:
+        return "saaras:v4"
+    return SARVAM_MODEL
+
+
 def merge_same_speaker(turns: Sequence[Turn], gap: float = 1.0) -> list[Turn]:
     """Join consecutive turns of one speaker separated by at most `gap`.
 
@@ -532,9 +562,54 @@ def merge_same_speaker(turns: Sequence[Turn], gap: float = 1.0) -> list[Turn]:
     return out
 
 
+# Hard server limit, not a guideline: over this the API answers 400 with
+# "Audio duration exceeds the maximum limit of 30 seconds."
+SARVAM_MAX_SEC = 29.0
+
+
 def _sarvam_text(cfg: Config, key: str, wav: Path, model: str) -> tuple[str, str | None]:
-    payload = _sarvam_post(wav, key, model)
-    return (payload.get("transcript") or "").strip(), payload.get("language_code")
+    """Transcribe one segment, splitting it if it exceeds the server's limit.
+
+    Splitting is safe here in a way it would not be for the long-form path: the
+    whole segment belongs to one diarized speaker, so every sub-chunk does too,
+    and concatenating their transcripts cannot mix speakers. Sub-chunks overlap
+    slightly and the pieces are joined in order, which risks a duplicated word
+    at a seam -- accepted, because the alternative is dropping one.
+    """
+    import soundfile as sf
+
+    info = sf.info(str(wav))
+    if info.duration <= SARVAM_MAX_SEC:
+        payload = _sarvam_post(wav, key, model)
+        return (payload.get("transcript") or "").strip(), payload.get("language_code")
+
+    audio, sr = sf.read(str(wav), dtype="float32")
+    texts: list[str] = []
+    langs: list[str] = []
+    step = SARVAM_MAX_SEC - 0.5
+    n = 0
+    while n * step < info.duration:
+        a = n * step
+        b = min(info.duration, a + SARVAM_MAX_SEC)
+        piece = audio[int(a * sr):int(b * sr)]
+        n += 1
+        if len(piece) < int(0.3 * sr):
+            break
+        tmp = wav.with_name(f"{wav.stem}_p{n}.wav")
+        sf.write(str(tmp), piece, sr, subtype="PCM_16")
+        try:
+            payload = _sarvam_post(tmp, key, model)
+        finally:
+            tmp.unlink(missing_ok=True)
+        t = (payload.get("transcript") or "").strip()
+        if t:
+            texts.append(t)
+        if payload.get("language_code"):
+            langs.append(payload["language_code"])
+        if b >= info.duration:
+            break
+    lang = max(set(langs), key=langs.count) if langs else None
+    return " ".join(texts), lang
 
 
 def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Turn],
@@ -550,7 +625,7 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
 
     audio, sr = _load_audio(wav)
     key = resolve_sarvam_key(cfg) if system.startswith("sarvam") else None
-    model = SARVAM_MODEL
+    model = sarvam_model_for(system)
 
     def one(idx_turn):
         idx, t = idx_turn
@@ -569,7 +644,7 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
             if system.startswith("sarvam"):
                 text, lang = _sarvam_text(cfg, key, buf, model)
             else:
-                words, meta = transcribe_whisper(cfg, buf)
+                words, meta = transcribe_whisper(cfg, buf, word_timestamps=False)
                 text, lang = " ".join(w.text for w in words), meta.get("detected_language")
             return {"i": idx, "start": t.start, "end": t.end, "speaker": t.speaker,
                     "text": text, "skipped": None, "lang": lang}
