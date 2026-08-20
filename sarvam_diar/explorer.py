@@ -307,9 +307,15 @@ def export(cfg: Config, metrics: pd.DataFrame, references: dict[str, ClipReferen
         "verification": {"checked": verify, "mismatches": problems},
     })
 
-    src_html = ASSETS / "index.html"
-    if src_html.exists():
-        shutil.copyfile(src_html, out / "index.html")
+    # index.html is the UI; serve.py is how it must be served. `python -m
+    # http.server` does not implement HTTP Range, so a browser cannot seek in a
+    # 30-minute WAV served by it -- the export ships its own tiny server rather
+    # than leaving that as a footgun.
+    for name in ("index.html", "serve.py"):
+        src = ASSETS / name
+        if src.exists():
+            shutil.copyfile(src, out / name)
+    (out / "serve.py").chmod(0o755)
     (out / "audio" / "README.md").write_text(AUDIO_README, encoding="utf-8")
     (out / "README.md").write_text(EXPORT_README, encoding="utf-8")
 
@@ -360,6 +366,7 @@ computed by the Python pipeline and serialised; the browser only draws it.
 ## Layout
 
     index.html          the UI, single file
+    serve.py            static server WITH HTTP Range, so audio seeking works
     data/clips.json     index: one row per clip, all sortable/filterable metrics
     data/<clip_id>.json GT turns, hypothesis turns, optimal speaker mapping,
                         DER/JER components, and time-aligned MISS/FA/CONFUSION/

@@ -17,15 +17,21 @@ Unzip it anywhere.
 
 ## 2. Serve it
 
-The UI fetches JSON, and browsers block `fetch()` from `file://`. So it needs a
-static server — any will do:
+The UI fetches JSON, and browsers block `fetch()` from `file://`, so it needs a
+static server. Use the one in the export:
 
 ```bash
 cd error_explorer
-python -m http.server 8000
+python3 serve.py            # http://localhost:8000
 ```
 
 Open <http://localhost:8000>. That is the whole setup.
+
+> **Use `serve.py`, not `python -m http.server`.** The stdlib server does not
+> implement HTTP `Range`: it answers every request with the entire file. A
+> browser cannot seek in media served that way, so on our longest clip (30 min,
+> 55 MB) dragging the scrubber appears to do nothing until the whole file has
+> downloaded. `serve.py` is the stdlib handler plus `206 Partial Content`.
 
 > Opening `index.html` by double-clicking will show an empty page. That is the
 > `file://` restriction, not a broken export.
@@ -36,7 +42,14 @@ Audio is **not** bundled — the corpus is 1.3 GB and does not belong in a repo 
 a zip. The timeline, error regions, filtering and speaker rows all work without
 it; only playback is missing, and the UI says so per clip.
 
-To hear a clip, copy its WAV in:
+Symlink rather than copy — the export is a view of the corpus, not a second
+copy, and `serve.py` follows symlinks:
+
+```bash
+ln -sf /path/to/sarvam_diarization/audio_16k/*.wav audio/
+```
+
+Or copy, if the export has to move to another machine:
 
 ```bash
 # just the clips you are inspecting
@@ -103,3 +116,40 @@ drift from the one that produced the benchmark.
 `data/clips.json` records that verification result, and the UI shows a red banner
 if it ever fails — so a disagreement surfaces as a warning rather than a quietly
 wrong picture.
+
+## Filtering by error type and by speaker
+
+The four coloured tags above the timeline are toggles.
+
+* **Click one** to isolate it — click `FALSE ALARM` and only false-alarm regions
+  are drawn and listed. Click it again to clear.
+* **Shift-click** to combine, for questions like "miss and confusion, but not
+  false alarm".
+
+The speaker row below does the same for one speaker. Clicking `Speaker_D`
+(or clicking that speaker's row label on the timeline) restricts everything to
+regions where **that speaker is implicated**, and the panel underneath splits
+their confusion by direction:
+
+* *their speech credited to* — Speaker_D spoke, the model said someone else;
+* *their row actually spoken by* — the model said Speaker_D, someone else spoke.
+
+Those are different failures with different fixes, so they are never summed.
+
+The region chips are relabelled under focus: instead of `CONFUSION` you get
+`Speaker_D → Speaker_C`, naming the counterpart.
+
+### These seconds are not DER seconds
+
+Chip totals are **region seconds** — how long this speaker is implicated in an
+error — and they deliberately do not partition DER:
+
+* a confusion implicates *both* the speaker who spoke and the one credited, so
+  the same second counts on both;
+* where more reference speakers are lost than there are predicted speakers to
+  have taken their turn, pyannote calls one of them *missed* rather than
+  *confused*, and which one is arbitrary. Per-speaker miss therefore runs a
+  little below the scored figure (about 3% of miss corpus-wide).
+
+Use the chips to find **who**, and **with whom**; use the summary panel above
+the timeline for **how much**. That panel is the scored figure.
