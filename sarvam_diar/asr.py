@@ -72,7 +72,9 @@ def _load_audio(path: str | os.PathLike, sr: int = 16_000):
 
 
 def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
-                       word_timestamps: bool = True) -> tuple[list[Word], dict]:
+                       word_timestamps: bool = True, beam_size: int = 5,
+                       condition_on_previous_text: bool = True,
+                       batch_size: int = 0) -> tuple[list[Word], dict]:
     """faster-whisper with word timestamps.
 
     Deliberately not WhisperX: it pins an older pyannote and would fight the
@@ -87,15 +89,38 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
 
         device = "cuda" if torch.cuda.is_available() else "cpu"
         compute = "float16" if device == "cuda" else "int8"
-        LOG.info("loading faster-whisper %s on %s (%s)", model_size, device, compute)
+        t0 = time.perf_counter()
+        LOG.info("loading faster-whisper %s on %s (%s) -- the first call also "
+                 "downloads ~3 GB", model_size, device, compute)
         _MODEL_CACHE[key] = WhisperModel(model_size, device=device, compute_type=compute)
+        LOG.info("model ready in %.0fs", time.perf_counter() - t0)
     model = _MODEL_CACHE[key]
 
+    if batch_size and batch_size > 1:
+        # Long-form only. Batching runs several windows of one clip together,
+        # which is where the throughput is. It cannot help the per-segment path,
+        # where every call is already a single short window.
+        from faster_whisper import BatchedInferencePipeline
+
+        bkey = ("whisper-batched", model_size)
+        if bkey not in _MODEL_CACHE:
+            _MODEL_CACHE[bkey] = BatchedInferencePipeline(model=model)
+        model = _MODEL_CACHE[bkey]
+
+    # Whisper pads every input to a fixed 30 s window, so a 1 s segment costs
+    # the same encoder pass as a 30 s one -- per-segment work is dominated by
+    # call count, not audio length. beam_size=5 then multiplies the decoder work
+    # on top for no benefit on short fragments, and conditioning on previous
+    # text is meaningless when each call is an independent segment (and is a
+    # known cause of repetition loops). Both are dropped for that path.
     segments, info = model.transcribe(
         str(wav),
         language=None,          # detect; never hinted from the reference
         word_timestamps=word_timestamps,
         vad_filter=False,       # diarization already decides what is speech
+        beam_size=beam_size,
+        **({"batch_size": batch_size} if batch_size and batch_size > 1
+           else {"condition_on_previous_text": condition_on_previous_text}),
     )
     words: list[Word] = []
     for seg in segments:
@@ -157,7 +182,16 @@ def transcribe_sarvam(cfg: Config, wav: Path, model: str = SARVAM_MODEL) -> tupl
     return words, meta
 
 
-def _sarvam_post(path: Path, key: str, model: str, retries: int = 4) -> dict:
+def _sarvam_post(path: Path, key: str, model: str, retries: int = 7) -> dict:
+    """POST one file, backing off on rate limits.
+
+    429 is the normal steady state at any useful concurrency, not an
+    exceptional event, so it gets a real backoff: the server's Retry-After when
+    offered, otherwise exponential with jitter. The jitter matters because
+    without it every worker in the pool retries on the same schedule and they
+    collide again on each round.
+    """
+    import random
     import requests
 
     last = None
@@ -183,11 +217,14 @@ def _sarvam_post(path: Path, key: str, model: str, retries: int = 4) -> dict:
             if r.status_code != 429 and r.status_code < 500:
                 raise _Fatal(f"sarvam {r.status_code}: {r.text[:300]}")
             last = f"{r.status_code}: {r.text[:200]}"
+            wait = float(r.headers.get("Retry-After") or 0) or None
         except _Fatal:
             raise
         except Exception as exc:  # noqa: BLE001 - network layer
             last = f"{type(exc).__name__}: {exc}"
-        time.sleep(2.0 * (attempt + 1))
+            wait = None
+        # 1.5, 3, 6, 12, 24, 48 s plus jitter, unless the server named a delay.
+        time.sleep(wait if wait else min(60.0, 1.5 * (2 ** attempt)) * (0.5 + random.random()))
     raise RuntimeError(f"sarvam failed after {retries} attempts -- {last}")
 
 
@@ -229,7 +266,9 @@ def _sarvam_words(payload: dict, offset: float) -> tuple[list[Word], str]:
 _MODEL_CACHE: dict = {}
 
 BACKENDS: dict[str, Callable[..., tuple[list[Word], dict]]] = {
-    "whisper-large-v3": lambda cfg, wav: transcribe_whisper(cfg, wav, "large-v3"),
+    # Long-form: batched and greedy. 99 model calls rather than one per segment.
+    "whisper-large-v3": lambda cfg, wav: transcribe_whisper(
+        cfg, wav, "large-v3", word_timestamps=True, beam_size=1, batch_size=8),
     "sarvam-saaras-v3": lambda cfg, wav: transcribe_sarvam(cfg, wav, "saaras:v3"),
     "sarvam-saaras-v4": lambda cfg, wav: transcribe_sarvam(cfg, wav, "saaras:v4"),
 }
@@ -613,7 +652,7 @@ def _sarvam_text(cfg: Config, key: str, wav: Path, model: str) -> tuple[str, str
 
 
 def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Turn],
-                        min_dur: float = 0.30, workers: int = 8) -> tuple[list[dict], dict]:
+                        min_dur: float = 0.30, workers: int = 4) -> tuple[list[dict], dict]:
     """Transcribe each turn separately. Returns per-segment rows plus meta.
 
     Segments shorter than `min_dur` are skipped rather than sent: they were
@@ -644,7 +683,9 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
             if system.startswith("sarvam"):
                 text, lang = _sarvam_text(cfg, key, buf, model)
             else:
-                words, meta = transcribe_whisper(cfg, buf, word_timestamps=False)
+                words, meta = transcribe_whisper(
+                    cfg, buf, word_timestamps=False, beam_size=1,
+                    condition_on_previous_text=False)
                 text, lang = " ".join(w.text for w in words), meta.get("detected_language")
             return {"i": idx, "start": t.start, "end": t.end, "speaker": t.speaker,
                     "text": text, "skipped": None, "lang": lang}
@@ -669,7 +710,7 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
 
 def run_segmented(cfg: Config, inputs: Sequence[ClipInput], diar_model: str,
                   systems: Sequence[str], flags: StageFlags | None = None,
-                  merge_gap: float = 1.0, workers: int = 8) -> pd.DataFrame:
+                  merge_gap: float = 1.0, workers: int = 4) -> pd.DataFrame:
     """Per-segment ASR over one diarization's turns, checkpointed per clip."""
     from . import diarization
 
