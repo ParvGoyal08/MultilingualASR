@@ -83,11 +83,44 @@ gives `GatedRepoError: 403`.
 | restart | Runtime → Restart session | Run → Restart & clear cell outputs |
 | download | `files.download()` | Output tab, or *Save Version* |
 
-## Persisting results
+## Persisting results — read this before starting a long sweep
 
-`/kaggle/working` does not survive a session. Before you close the tab, either
-**Save Version** (commits the notebook and its outputs) or download
-`error_explorer.zip` from the Output tab. Otherwise the sweep has to re-run.
+**`/kaggle/working` is wiped when the session ends, and every Step 2 artifact is
+written there.** Diarization results do not survive on their own. The outputs are
+small (~1-2 MB of RTTM plus sidecars), so keeping them is cheap — but you have to
+actually do it.
+
+Two options, and they are not interchangeable:
+
+| | What it does | Can you resume a sweep from it? |
+|---|---|---|
+| **Save Version** (top right) | Commits the notebook and all of `/kaggle/working` as its Output | **Yes** |
+| **Cell 2.8 zip** → Output tab | Downloads the results bundle | No, not without re-uploading |
+
+### Resuming in a later session
+
+1. Finish (or partly finish) a sweep, then **Save Version**.
+2. In the next session: **Input → Add Input → Your Work**, pick that notebook
+   version's output.
+3. In cell 1.1 set:
+
+   ```python
+   PREV_RESULTS = Path("/kaggle/input/<that-output>")
+   ```
+
+Cell 1.1 copies `hypotheses/`, `results/` and `reference/` into the working root
+before anything runs, and the per-clip checkpointing then skips every clip
+already done. A half-finished sweep picks up where it stopped instead of starting
+over.
+
+Copied rather than symlinked, because `/kaggle/input` is read-only and the sweep
+writes as it goes.
+
+### Practical advice
+
+Kaggle sessions have a wall-clock limit. Cell 2.1 prints a projected sweep time
+for your GPU — if that projection is close to the limit, run the sweep in chunks
+with `LIMIT` in cell 2.2, Save Version each time, and resume via `PREV_RESULTS`.
 
 `run_extraction` stays **False**: Kaggle's IPs are bot-gated by YouTube exactly
 as Colab's are, which is why the audio is uploaded rather than fetched.
