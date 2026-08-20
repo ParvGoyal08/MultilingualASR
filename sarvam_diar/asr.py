@@ -221,7 +221,9 @@ def resolve_sarvam_key(cfg: Config) -> str:
     """Same ladder as the HF token: explicit, .env, environment, platform vault."""
     from .utils import load_dotenv
 
-    load_dotenv(cfg=cfg)
+    # `extra` is where a Drive/Kaggle root .env lives -- the repo clone cannot
+    # carry one, since .env is gitignored so the key stays out of a public repo.
+    load_dotenv(extra=[cfg.dotenv_path, cfg.root / ".env"])
     key = os.environ.get("SARVAM_API_KEY")
     if key:
         return key
@@ -496,3 +498,173 @@ def oracle_ceiling(cfg: Config, references: dict, clip_ids: Sequence[str] | None
     out["cpwer_no_overlap_clips"] = (
         zero["cperrors"].sum() / zero["cpn_ref_words"].sum() if len(zero) else float("nan"))
     return out
+
+
+# ------------------------------------------------- per-segment (strategy "A")
+#
+# Forced rather than chosen for Sarvam. Saaras returns exactly ONE timestamp
+# span per request -- measured across v3 and v4, 5 s and 20 s inputs, and every
+# `mode` -- so there are no word timings to attribute with, and the long-form
+# path is unavailable. Cutting the audio at the diarized turn boundaries instead
+# makes attribution exact by construction: every word of a request belongs to
+# that turn's speaker.
+#
+# The cost is context. On this corpus 46% of community-1's turns are under a
+# second, which is close to useless to a recogniser, so adjacent same-speaker
+# turns are merged first. reverb-v2 needs it least -- 2,833 segments at a median
+# of 6.46 s against community-1's 14,380 at 1.21 s.
+
+
+def merge_same_speaker(turns: Sequence[Turn], gap: float = 1.0) -> list[Turn]:
+    """Join consecutive turns of one speaker separated by at most `gap`.
+
+    Purely an ASR segmentation choice; the diarization being scored is
+    untouched. Diarizers emit utterance-level fragments, and handing a
+    recogniser a 0.3 s fragment throws away the context it needs.
+    """
+    out: list[Turn] = []
+    for t in sorted(turns, key=lambda x: x.start):
+        if out and out[-1].speaker == t.speaker and t.start - out[-1].end <= gap:
+            out[-1] = Turn(start=out[-1].start, end=max(out[-1].end, t.end),
+                           speaker=t.speaker)
+        else:
+            out.append(Turn(start=t.start, end=t.end, speaker=t.speaker))
+    return out
+
+
+def _sarvam_text(cfg: Config, key: str, wav: Path, model: str) -> tuple[str, str | None]:
+    payload = _sarvam_post(wav, key, model)
+    return (payload.get("transcript") or "").strip(), payload.get("language_code")
+
+
+def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Turn],
+                        min_dur: float = 0.30, workers: int = 8) -> tuple[list[dict], dict]:
+    """Transcribe each turn separately. Returns per-segment rows plus meta.
+
+    Segments shorter than `min_dur` are skipped rather than sent: they were
+    measured to come back empty anyway, and each one still costs a request and a
+    spurious language guess. They are counted so the skip is visible.
+    """
+    import soundfile as sf
+    from concurrent.futures import ThreadPoolExecutor
+
+    audio, sr = _load_audio(wav)
+    key = resolve_sarvam_key(cfg) if system.startswith("sarvam") else None
+    model = SARVAM_MODEL
+
+    def one(idx_turn):
+        idx, t = idx_turn
+        dur = t.end - t.start
+        if dur < min_dur:
+            return {"i": idx, "start": t.start, "end": t.end, "speaker": t.speaker,
+                    "text": "", "skipped": "too_short", "lang": None}
+        seg = audio[int(t.start * sr):int(t.end * sr)]
+        if not len(seg):
+            return {"i": idx, "start": t.start, "end": t.end, "speaker": t.speaker,
+                    "text": "", "skipped": "empty", "lang": None}
+        buf = cfg.work_dir / f"seg_{wav.stem}_{idx}.wav"
+        buf.parent.mkdir(parents=True, exist_ok=True)
+        sf.write(str(buf), seg, sr, subtype="PCM_16")
+        try:
+            if system.startswith("sarvam"):
+                text, lang = _sarvam_text(cfg, key, buf, model)
+            else:
+                words, meta = transcribe_whisper(cfg, buf)
+                text, lang = " ".join(w.text for w in words), meta.get("detected_language")
+            return {"i": idx, "start": t.start, "end": t.end, "speaker": t.speaker,
+                    "text": text, "skipped": None, "lang": lang}
+        finally:
+            buf.unlink(missing_ok=True)
+
+    items = list(enumerate(turns))
+    # Only the API backend benefits from concurrency; a local GPU model is
+    # already saturated by one worker and threads would just contend.
+    n_workers = workers if system.startswith("sarvam") else 1
+    with ThreadPoolExecutor(max_workers=n_workers) as pool:
+        rows = list(pool.map(one, items))
+    rows.sort(key=lambda r: r["i"])
+
+    langs = [r["lang"] for r in rows if r["lang"]]
+    meta = {"n_segments": len(rows),
+            "n_skipped_short": sum(1 for r in rows if r["skipped"] == "too_short"),
+            "detected_language": max(set(langs), key=langs.count) if langs else None,
+            "languages_seen": sorted(set(langs))}
+    return rows, meta
+
+
+def run_segmented(cfg: Config, inputs: Sequence[ClipInput], diar_model: str,
+                  systems: Sequence[str], flags: StageFlags | None = None,
+                  merge_gap: float = 1.0, workers: int = 8) -> pd.DataFrame:
+    """Per-segment ASR over one diarization's turns, checkpointed per clip."""
+    from . import diarization
+
+    flags = flags or StageFlags()
+    clips = apply_selection(list(inputs), flags)
+    rows: list[dict] = []
+    t0 = time.perf_counter()
+
+    for system in systems:
+        tag = f"{system}@{diar_model}"
+        done = skipped = failed = 0
+        for i, clip in enumerate(clips, 1):
+            prefix = f"[{tag} {i}/{len(clips)}] {clip.clip_id}"
+            if is_done(cfg, tag, clip.clip_id) and not flags.force_redo:
+                skipped += 1
+                continue
+            if not diarization.is_done(cfg, diar_model, clip.clip_id):
+                continue
+            wav = Path(clip.wav_path or cfg.wav_path(clip.clip_id))
+            if not wav.exists():
+                failed += 1
+                continue
+            turns = merge_same_speaker(
+                diarization.load_hypothesis(cfg, diar_model, clip.clip_id), merge_gap)
+            try:
+                started = time.perf_counter()
+                segs, meta = transcribe_segments(cfg, system, wav, turns, workers=workers)
+                elapsed = time.perf_counter() - started
+            except Exception as exc:  # noqa: BLE001
+                LOG.error("%s  FAILED %s: %s", prefix, type(exc).__name__, exc)
+                failed += 1
+                continue
+            payload = {"clip_id": clip.clip_id, "system": tag, "status": "ok",
+                       "strategy": "segment", "diar_model": diar_model,
+                       "merge_gap": merge_gap, "segments": segs,
+                       "words": [],  # keeps the is_done() contract uniform
+                       "n_words": sum(len(s["text"].split()) for s in segs),
+                       "elapsed_sec": round(elapsed, 2),
+                       "rtf": round(elapsed / clip.duration, 4) if clip.duration else None,
+                       "clip_dur_sec": clip.duration,
+                       "transcribed_at_utc": now_utc_iso(), **meta}
+            write_json_atomic(asr_path(cfg, tag, clip.clip_id), payload)
+            rows.append(payload)
+            done += 1
+            LOG.info("%s  %d segs, %d words  %.1fs  rtf %.3f  lang=%s", prefix,
+                     len(segs), payload["n_words"], elapsed, payload["rtf"] or 0,
+                     meta.get("detected_language"))
+        LOG.info("%s: %d ok, %d skipped, %d failed", tag, done, skipped, failed)
+
+    LOG.info("step 3 (segmented) done in %s", human_time(time.perf_counter() - t0))
+    return pd.DataFrame(rows)
+
+
+def load_pairs(cfg: Config, system: str, clip_id: str, normalize=None) -> list[tuple[str, str]]:
+    """(word, speaker) stream from either strategy, so scoring is one code path.
+
+    Per-segment runs already carry the speaker on every segment, so attribution
+    is exact and no time-overlap assignment is involved.
+    """
+    from . import reference as refmod
+
+    if normalize is None:
+        def normalize(text):
+            return refmod.normalize_text(text, strip_gloss=False)
+
+    payload = read_json(asr_path(cfg, system, clip_id))
+    if payload.get("strategy") == "segment":
+        out: list[tuple[str, str]] = []
+        for seg in sorted(payload["segments"], key=lambda s: s["start"]):
+            for tok in normalize(seg["text"]).split():
+                out.append((tok, seg["speaker"]))
+        return out
+    raise ValueError(f"{clip_id}: not a segmented run; use load_words + assign_words")

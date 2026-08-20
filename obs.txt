@@ -447,3 +447,55 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      chosen, so the total is a sum of independent cells and minimising it IS
      linear assignment. Verified against brute force on 396 (clip, corruption)
      cases spanning 2 to 40,320 permutations: zero disagreements.
+
+--------------------------------------------------------------------------
+[28] Sarvam Saaras returns no word timings, which forces the ASR segmentation
+     strategy rather than leaving it a design choice.
+
+     Measured against the live API: every request returns exactly ONE timestamp
+     entry spanning the whole submitted audio. Identical for saaras:v3 and
+     saaras:v4, for 5 s and 20 s inputs, and for mode=transcribe and
+     mode=verbatim. The documentation says "chunk-level ... not individual
+     words" while the response schema names the field `words`; the field exists
+     but holds one multi-word span.
+
+     Consequence: the long-form strategy -- transcribe the clip once, then
+     attribute each word to the diarized turn covering it -- is unavailable for
+     Sarvam, because there are no word times to attribute with. Per-segment ASR
+     is the only option, and attribution is then exact by construction: every
+     word of a request belongs to that request's turn.
+
+     This confounds system with strategy unless handled. Both systems are
+     therefore run per-segment for the ASR comparison, and Whisper is
+     additionally run long-form so the strategy effect is isolated on one
+     system rather than mixed into the system comparison.
+
+     Cost of per-segment, measured: latency is 2-3.4 s per request almost
+     regardless of segment length, so the segment COUNT is what matters.
+
+       model          segments (merged, gap 1 s)   median length
+       community-1              10,279                 1.13 s
+       pyannote-3.1              8,432                 1.47 s
+       reverb-v2                 2,650                 7.66 s
+
+     reverb-v2 is the natural pairing: a quarter of the requests and segments
+     five times longer, so the recogniser gets context instead of fragments.
+     46% of community-1's raw turns are under a second, which is close to
+     useless to an ASR. Adjacent same-speaker turns are merged before
+     transcription -- an ASR segmentation choice only, the scored diarization is
+     untouched.
+
+     Segments under 0.30 s are skipped rather than sent: measured, they come
+     back empty and still cost a request and a spurious language guess (a 0.02 s
+     turn was confidently labelled Kannada inside a Telugu clip).
+
+     End to end on ARZl7LT0UC0__73_130 (57 s, Telugu, reverb-v2 turns):
+     7 segments, 157 hypothesis words against 150 reference words, 2.5 s wall
+     clock at 8 workers (RTF 0.043), WER 0.267, cpWER 0.493, WDER 0.239.
+     Projected full corpus: roughly half an hour, not the hours a sequential
+     14,000-call design would have taken.
+
+     Language auto-detection works and needs no hint: language_code="unknown"
+     returned mr-IN at probability 0.982 for a Devanagari clip whose reference
+     script is ambiguous between Hindi and Marathi, and te-IN for the Telugu
+     clip. No ground-truth language is passed to either system.
