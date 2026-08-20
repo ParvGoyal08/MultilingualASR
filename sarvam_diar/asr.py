@@ -284,6 +284,16 @@ BACKENDS: dict[str, Callable[..., tuple[list[Word], dict]]] = {
     # Long-form, greedy, unbatched: 99 model calls rather than one per segment,
     # and no second VAD deciding what counts as speech. Batching would need
     # Whisper's own VAD (see transcribe_whisper), so it stays opt-in.
+    #
+    # large-v3 was measured at RTF ~0.5 on a T4 -- about 6.6 h for this corpus,
+    # which does not fit. large-v3-turbo is the practical default: distilled
+    # from large-v3 with 4 decoder layers instead of 32, and decoding is where
+    # long-form time goes. Crucially it stays MULTILINGUAL, unlike the distil-*
+    # models, which are English-only and therefore useless on a corpus spanning
+    # nine Indic scripts. The cost is a small accuracy loss against large-v3;
+    # both are kept so the trade can be measured rather than assumed.
+    "whisper-large-v3-turbo": lambda cfg, wav: transcribe_whisper(
+        cfg, wav, "large-v3-turbo", word_timestamps=True, beam_size=1),
     "whisper-large-v3": lambda cfg, wav: transcribe_whisper(
         cfg, wav, "large-v3", word_timestamps=True, beam_size=1),
     "whisper-large-v3-batched": lambda cfg, wav: transcribe_whisper(
@@ -702,8 +712,9 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
             if system.startswith("sarvam"):
                 text, lang = _sarvam_text(cfg, key, buf, model)
             else:
+                size = "large-v3-turbo" if "turbo" in system else "large-v3"
                 words, meta = transcribe_whisper(
-                    cfg, buf, word_timestamps=False, beam_size=1,
+                    cfg, buf, model_size=size, word_timestamps=False, beam_size=1,
                     condition_on_previous_text=False)
                 text, lang = " ".join(w.text for w in words), meta.get("detected_language")
             return {"i": idx, "start": t.start, "end": t.end, "speaker": t.speaker,
