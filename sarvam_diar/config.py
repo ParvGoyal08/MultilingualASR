@@ -309,14 +309,29 @@ class Config:
             # meta ARE symlinks into /kaggle/input, and the mount path changes
             # whenever the attached inputs change -- so this is the normal way
             # the next session fails, and "File exists" is a terrible clue.
-            if d.is_symlink() and not d.exists():
-                raise FileNotFoundError(
-                    f"{d} is a symlink to {os.readlink(d)}, which does not exist. "
-                    "The dataset it pointed at was renamed, detached, or remounted "
-                    "under a different path. Delete the link and re-create it "
-                    "against the current mount (cell 1.1 does this automatically "
-                    "on Kaggle)."
-                )
+            # mkdir(exist_ok=True) only swallows FileExistsError when the path
+            # turns out to BE a directory. Anything else there -- a dangling
+            # link, a link to a file, a plain file -- surfaces as a bare
+            # "File exists", which names the symptom and hides the cause. On
+            # Kaggle audio_16k and meta are symlinks into /kaggle/input and that
+            # mount moves whenever the attached inputs change, so this is the
+            # ordinary way the next session fails.
+            if d.exists() or d.is_symlink():
+                if not d.is_dir():
+                    link = f" -> {os.readlink(d)}" if d.is_symlink() else ""
+                    kind = ("a symlink whose target no longer exists"
+                            if d.is_symlink() and not d.exists()
+                            else "a symlink to something that is not a directory"
+                            if d.is_symlink() else "a file, not a directory")
+                    raise NotADirectoryError(
+                        f"{d}{link} is {kind}.\n"
+                        "  Remove it and re-link it against the current mount:\n"
+                        f"    import os; os.remove({str(d)!r})\n"
+                        "    utils.relink_dataset(ROOT, '/kaggle/input')\n"
+                        "  (cell 1.1 does this automatically once the notebook is "
+                        "re-imported from the repo)"
+                    )
+                continue
             d.mkdir(parents=True, exist_ok=True)
         return self
 
