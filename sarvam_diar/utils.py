@@ -384,6 +384,34 @@ def assert_no_reference_fields(frame, where: str = "pipeline stage") -> None:
         )
 
 
+def assert_fresh(*required: str, module=None) -> None:
+    """Fail immediately if this session is holding an older checkout.
+
+    A hosted notebook imports the package once and keeps those module objects
+    for the rest of the session. Pull a fix, re-run the cell that uses it, and
+    you are still executing the old code -- which then fails somewhere deep in a
+    library with a message about the library, not about staleness. This turns
+    that into one line naming the missing symbol.
+
+    Pass the names a cell depends on:
+
+        utils.assert_fresh("SARVAM_MAX_SEC", module=asr)
+    """
+    import sys
+
+    mod = module or sys.modules[__name__]
+    missing = [n for n in required if not hasattr(mod, n)]
+    if missing:
+        raise ImportError(
+            f"{mod.__name__} is stale -- missing {missing}. This kernel is still "
+            "holding an older checkout.\n"
+            "  Re-run cell 1.0 (it fetches, resets to origin/main and purges the "
+            "cached modules).\n"
+            "  If that does not clear it, Run > Restart and run 1.0 again -- "
+            "resetting files on disk cannot replace modules already imported."
+        )
+
+
 def relink_dataset(root: str | os.PathLike,
                    search_root: str | os.PathLike = "/kaggle/input",
                    subs: Iterable[str] = ("audio_16k", "meta"),
