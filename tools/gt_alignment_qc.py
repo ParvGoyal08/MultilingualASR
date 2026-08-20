@@ -1,0 +1,222 @@
+#!/usr/bin/env python3
+"""Run ground-truth alignment QC over every clip and write results/gt_alignment_qc/.
+
+    python3 tools/gt_alignment_qc.py [--root local_out] [--corrections FILE]
+
+Produces:
+  candidates.csv            every clip, ranked by evidence for a global offset
+  shortlist.csv             the flagged subset, for manual verification
+  corrections.json          versioned manifest; only `verified` rows are applied
+  diagnostics/<clip>.svg    GT vs consensus vs energy-VAD, before and after
+  metrics_raw_vs_qc.csv     the benchmark scored both ways
+  README.md                 what was found and what it changes
+
+The raw annotations are never written to. A correction is a manifest row.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+import numpy as np  # noqa: E402
+
+from sarvam_diar import (config, data, diarization, evaluation,  # noqa: E402
+                         gt_qc, reference)
+from sarvam_diar.config import Config  # noqa: E402
+
+OUT = Path("results/gt_alignment_qc")
+
+
+def svg_diagnostic(path: Path, clip_id: str, cand, detail, vad, corrected_act):
+    """One self-contained SVG per flagged clip.
+
+    Deliberately not matplotlib: this has to be readable from a repo checkout
+    with no plotting stack, and an SVG opens in any browser.
+    """
+    W, H, pad = 1100, 340, 60
+    n = len(detail["ref_act"])
+    dur = n * gt_qc.HOP
+    x = lambda f: pad + f / max(n, 1) * (W - 2 * pad)
+
+    def band(track, y, h, colour, label):
+        parts = [f'<text x="4" y="{y + h - 2}" font-size="11" fill="#555">{label}</text>']
+        if track is None:
+            parts.append(f'<text x="{pad}" y="{y + h - 2}" font-size="11" '
+                         f'fill="#999">unavailable</text>')
+            return "".join(parts)
+        d = np.diff(np.concatenate(([0], np.asarray(track, dtype=np.int8), [0])))
+        for s, e in zip(np.where(d == 1)[0], np.where(d == -1)[0]):
+            parts.append(f'<rect x="{x(s):.1f}" y="{y}" width="{max(1.0, x(e) - x(s)):.1f}" '
+                         f'height="{h}" fill="{colour}"/>')
+        return "".join(parts)
+
+    lags, prof = np.array(detail["lags"]), np.array(detail["profile"])
+    px = lambda l: pad + (l - lags[0]) / (lags[-1] - lags[0]) * (W - 2 * pad)
+    py = lambda v: 300 - v / max(prof.max(), 1e-6) * 60
+    poly = " ".join(f"{px(l):.1f},{py(v):.1f}" for l, v in zip(lags, prof))
+
+    ticks = "".join(
+        f'<line x1="{x(int(t / gt_qc.HOP)):.1f}" y1="30" x2="{x(int(t / gt_qc.HOP)):.1f}" '
+        f'y2="200" stroke="#eee"/><text x="{x(int(t / gt_qc.HOP)):.1f}" y="215" '
+        f'font-size="10" fill="#999" text-anchor="middle">{t:.0f}s</text>'
+        for t in np.linspace(0, dur, 9))
+
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" font-family="ui-sans-serif,system-ui,sans-serif">
+<rect width="{W}" height="{H}" fill="#fff"/>
+<text x="8" y="18" font-size="14" font-weight="600">{clip_id}</text>
+<text x="8" y="34" font-size="11" fill="#666">candidate offset {cand.best_lag:+.2f}s
+ · IoU {cand.zero_lag_iou:.3f} at lag 0 -&gt; {cand.peak_iou:.3f} at peak
+ (+{cand.improvement:.3f}) · margin {cand.peak_margin:.3f}
+ · {cand.n_models} models, spread {cand.model_spread:.2f}s
+ · VAD {"agrees" if cand.vad_agrees else "differs"}{f" ({cand.vad_lag:+.2f}s)" if cand.vad_lag is not None else ""}</text>
+{ticks}
+{band(detail["ref_act"], 46, 20, "#c0392b", "GT raw")}
+{band(corrected_act, 74, 20, "#e67e22", "GT shifted")}
+{band(detail["consensus"], 102, 20, "#2c6fbb", "consensus")}
+{band(vad, 130, 20, "#7f8c8d", "energy VAD")}
+<text x="8" y="248" font-size="11" fill="#555">IoU vs lag</text>
+<line x1="{pad}" y1="300" x2="{W - pad}" y2="300" stroke="#ddd"/>
+<line x1="{px(0):.1f}" y1="240" x2="{px(0):.1f}" y2="300" stroke="#bbb" stroke-dasharray="3,3"/>
+<text x="{px(0):.1f}" y="315" font-size="10" fill="#999" text-anchor="middle">0</text>
+<polyline points="{poly}" fill="none" stroke="#2c6fbb" stroke-width="1.5"/>
+<line x1="{px(cand.best_lag):.1f}" y1="240" x2="{px(cand.best_lag):.1f}" y2="300"
+      stroke="#c0392b" stroke-width="1.5"/>
+<text x="{px(cand.best_lag):.1f}" y="332" font-size="10" fill="#c0392b"
+      text-anchor="middle">{cand.best_lag:+.2f}s</text>
+</svg>'''
+    path.write_text(svg, encoding="utf-8")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--root", default="local_out")
+    ap.add_argument("--corrections", default=str(OUT / "corrections.json"))
+    args = ap.parse_args()
+
+    cfg = Config.create(root=args.root, work_dir=f"{args.root}/.work")
+    (OUT / "diagnostics").mkdir(parents=True, exist_ok=True)
+
+    clips = data.parse_ground_truth(data.load_segments_csv(cfg))
+    inputs, _ = data.split_reference(clips, None, cfg=cfg)
+    refs = {c.clip_id: reference.build_reference(c) for c in clips if c.clip_id in inputs}
+    models = [m for m in config.scored_models()]
+
+    cands, details = [], {}
+    for cid, ref in refs.items():
+        per_model = {m: diarization.load_hypothesis(cfg, m, cid)
+                     for m in models if diarization.is_done(cfg, m, cid)}
+        if not per_model:
+            continue
+        wav = cfg.wav_path(cid)
+        cand, detail = gt_qc.assess_clip(cid, ref.turns, ref.uem[1], per_model,
+                                         wav if wav.exists() else None)
+        cands.append(cand)
+        details[cid] = detail
+
+    cands.sort(key=lambda c: (-int(c.flagged), -abs(c.best_lag), -c.improvement))
+    fields = list(cands[0].as_row())
+    with open(OUT / "candidates.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields); w.writeheader()
+        for c in cands:
+            w.writerow(c.as_row())
+    flagged = [c for c in cands if c.flagged]
+    with open(OUT / "shortlist.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields + ["proposed_offset_sec", "verified", "note"])
+        w.writeheader()
+        for c in flagged:
+            w.writerow({**c.as_row(),
+                        "proposed_offset_sec": gt_qc.round_correction(c.best_lag),
+                        "verified": "", "note": ""})
+
+    # diagnostics for the flagged clips only
+    for c in flagged:
+        d = details[c.clip_id]
+        ref = refs[c.clip_id]
+        n = len(d["ref_act"])
+        corrected = gt_qc.activity(
+            gt_qc.apply_correction(ref.turns, gt_qc.round_correction(c.best_lag),
+                                   ref.uem[0], ref.uem[1]), n)
+        wav = cfg.wav_path(c.clip_id)
+        vad = gt_qc.energy_vad(wav, n) if wav.exists() else None
+        svg_diagnostic(OUT / "diagnostics" / f"{c.clip_id}.svg",
+                       c.clip_id, c, d, vad, corrected)
+
+    # manifest: pre-populated as UNVERIFIED, except where two independent
+    # signals agree, which is recorded as auto-corroborated but still flagged
+    # for a human to confirm.
+    manifest_path = Path(args.corrections)
+    existing = {}
+    if manifest_path.exists():
+        existing = {r["clip_id"]: r for r in json.loads(manifest_path.read_text())
+                    .get("corrections", [])}
+    rows = []
+    for c in flagged:
+        prev = existing.get(c.clip_id, {})
+        rows.append({
+            "clip_id": c.clip_id,
+            "offset_sec": prev.get("offset_sec", gt_qc.round_correction(c.best_lag)),
+            "detected_lag_sec": round(c.best_lag, 3),
+            "iou_gain": round(c.improvement, 4),
+            "peak_margin": round(c.peak_margin, 4),
+            "model_spread_sec": round(c.model_spread, 3),
+            "vad_corroborates": bool(c.vad_agrees),
+            "verified": prev.get("verified", False),
+            "verified_by": prev.get("verified_by", ""),
+            "note": prev.get("note", ""),
+        })
+    write = {"version": 1, "grid_sec": gt_qc.ROUND_TO,
+             "convention": "offset_sec is SUBTRACTED from every reference timestamp",
+             "detector": {"hop_sec": gt_qc.HOP, "max_lag_sec": gt_qc.MAX_LAG,
+                          "min_votes": 2, "models": models,
+                          "min_flag_lag": gt_qc.MIN_FLAG_LAG,
+                          "min_improvement": gt_qc.MIN_IMPROVEMENT,
+                          "min_peak_margin": gt_qc.MIN_PEAK_MARGIN},
+             "raw_gt": "immutable; corrections are applied to a copy at scoring time",
+             "corrections": rows}
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_text(json.dumps(write, indent=1), encoding="utf-8")
+
+    # scoring, raw vs QC-adjusted (verified rows only)
+    verified = gt_qc.load_corrections(manifest_path)
+    out_rows = []
+    for m in models:
+        for label, corr in (("raw", {}), ("qc_adjusted", verified)):
+            rows_m = []
+            for cid, ref in refs.items():
+                if not diarization.is_done(cfg, m, cid):
+                    continue
+                turns = ref.turns
+                off = corr.get(cid, 0.0)
+                if off:
+                    turns = gt_qc.apply_correction(turns, off, ref.uem[0], ref.uem[1])
+                import dataclasses
+                r2 = dataclasses.replace(ref, turns=turns)
+                rows_m.append(evaluation.score_clip(r2, diarization.load_hypothesis(cfg, m, cid)))
+            p = evaluation.pool(rows_m)
+            out_rows.append({"model": m, "gt_version": label, "n_clips": p["n_clips"],
+                             "der": round(p["der"], 4),
+                             "miss": round(p["der_miss_frac"], 4),
+                             "fa": round(p["der_fa_frac"], 4),
+                             "confusion": round(p["der_confusion_frac"], 4),
+                             "jer_mean": round(p["jer_mean"], 4),
+                             "n_corrected": len(corr)})
+    with open(OUT / "metrics_raw_vs_qc.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(out_rows[0])); w.writeheader()
+        w.writerows(out_rows)
+
+    print(f"  {len(cands)} clips assessed, {len(flagged)} flagged")
+    print(f"  corroborated by the energy VAD: "
+          f"{sum(1 for c in flagged if c.vad_agrees)}/{len(flagged)}")
+    print(f"  verified corrections applied: {len(verified)}")
+    print(f"  -> {OUT}/")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
