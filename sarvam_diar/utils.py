@@ -430,8 +430,17 @@ def relink_dataset(root: str | os.PathLike,
                 dst.unlink()
             else:
                 continue
+        elif dst.is_dir():
+            continue          # a real directory holding real data: leave it
         elif dst.exists():
-            continue          # a real directory: leave it alone
+            # A plain FILE at a directory path. Kaggle's Save Version does not
+            # preserve symlinks -- it archives them as regular files -- so a
+            # session that was saved and restored comes back with audio_16k as a
+            # file. `elif dst.exists()` used to catch this and skip, which meant
+            # the repair silently did nothing and Config.mkdirs() then failed
+            # with "File exists" on every subsequent run.
+            LOG.info("removing %s: a file is occupying a directory path", dst)
+            dst.unlink()
         if src.exists():
             dst.parent.mkdir(parents=True, exist_ok=True)
             dst.symlink_to(src)
