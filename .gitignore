@@ -11,6 +11,8 @@ cookies.txt
 .work/
 pipeline_out/
 local_out/
+# the notebook clones the repo here when run locally
+sarvam-assignment/
 # exported explorer: regenerate with explorer.export(); audio is never committed
 error_explorer/audio/*.wav
 error_explorer.zip

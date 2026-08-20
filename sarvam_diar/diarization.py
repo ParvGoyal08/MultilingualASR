@@ -61,9 +61,10 @@ TOKEN_KEYS = ("HF_TOKEN", "HUGGINGFACE_TOKEN")
 def resolve_token(cfg: Config) -> str | None:
     """HF token, resolved from .env first.
 
-    Order: explicit Config value, then .env (Drive root, then the usual local
-    spots), then the process environment, then Colab Secrets as a fallback.
-    Never read from a notebook cell -- main.ipynb goes to a public repo.
+    Order: explicit Config value, then .env (the config root, then the usual
+    local spots), then the process environment, then the host secret store
+    (Colab Secrets, or Kaggle Add-ons > Secrets).
+    Never read from a notebook cell -- the notebooks go to a public repo.
     """
     import os
 
@@ -77,12 +78,27 @@ def resolve_token(cfg: Config) -> str | None:
         if os.environ.get(key):
             return os.environ[key]
 
-    try:                                    # last resort, still supported
-        from google.colab import userdata
+    # Platform secret stores, as a last resort. Same role as .env, just managed
+    # by the host -- Colab's Secrets panel and Kaggle's Add-ons > Secrets.
+    try:
+        from google.colab import userdata  # type: ignore[import-not-found]
 
         for key in TOKEN_KEYS:
             try:
                 if tok := userdata.get(key):
+                    return tok
+            except Exception:
+                continue
+    except ImportError:
+        pass
+
+    try:
+        from kaggle_secrets import UserSecretsClient  # type: ignore[import-not-found]
+
+        client = UserSecretsClient()
+        for key in TOKEN_KEYS:
+            try:
+                if tok := client.get_secret(key):
                     return tok
             except Exception:
                 continue
