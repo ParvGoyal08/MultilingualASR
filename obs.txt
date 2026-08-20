@@ -741,3 +741,56 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      BOTH protocols. Its value here is less that it is 3% better on average and
      more that it removes the variance -- picking any single model amounts to
      betting on which half of the corpus you drew.
+
+--------------------------------------------------------------------------
+[35] Tested and rejected: transplanting one model's segmentation onto another's
+     clustering. The clustering advantage does not transfer.
+
+     The idea from [31]: reverb-v2 owns detection and diarizen-large owns
+     assignment, so keep each model's strength. Implemented as a LABEL
+     transplant (refinement.transplant) -- every frame the segmenter calls
+     speech takes the speaker the labeller assigns there, with the segmenter's
+     own label kept where the labeller is silent, so the miss advantage is not
+     handed straight back.
+
+     Full grid on dev, raw GT. Rows are the segmentation source, columns the
+     labelling source, last column each model alone:
+
+                        community  pyannote    reverb  diarizen   (alone)
+       community-1             --    0.2478    0.2427    0.2518    0.2556
+       pyannote-3.1        0.2555        --    0.2427    0.2517    0.2482
+       reverb-v2           0.2367    0.2289        --    0.2328    0.2238
+       diarizen-large      0.2699    0.2623    0.2567        --    0.2659
+
+     No cell beats reverb-v2 alone at 0.2238. Transplants help the WEAK
+     segmenters -- community-1 improves 0.2556 -> 0.2427, diarizen-large
+     0.2659 -> 0.2567 -- but every transplant onto reverb-v2's segmentation is
+     worse than reverb-v2 by itself.
+
+     The mechanism, from the components:
+
+       seg=reverb + lab=diarizen   miss 0.0581  FA 0.0803  conf 0.0944
+       reverb-v2 alone             miss 0.0731  FA 0.0614  conf 0.0894
+       diarizen-large alone        miss 0.1279  FA 0.0530  conf 0.0849
+
+     Miss improved exactly as predicted, 0.0731 -> 0.0581. But CONFUSION got
+     WORSE, 0.0894 -> 0.0944, against diarizen-large's own 0.0849. The thing the
+     transplant existed to import is the one thing it failed to import.
+
+     So diarizen-large's low confusion is not a portable property of its
+     clustering; it is entangled with its own segmentation. Its turns average
+     2.6 s against reverb-v2's 15.5 s, and a single reverb region routinely
+     spans several diarizen speakers, so painting labels frame-by-frame into
+     those long regions creates boundary errors that its own tight boundaries
+     never had to survive.
+
+     This is the limitation named in the docstring before the experiment ran:
+     a real hybrid would re-cluster inside the segmenter's boundaries using the
+     labeller's speaker EMBEDDINGS, which an RTTM does not carry. Testing that
+     properly means re-running inference with a modified pipeline, not
+     recombining stored outputs.
+
+     The fusion in [34] stands as the Step 4 answer. On the same dev split it is
+     0.2390 against reverb-v2's 0.2238 on raw GT, and 0.2105 against 0.2146
+     aligned -- and unlike any single model or any transplant, it does not
+     collapse on the other half of the split.

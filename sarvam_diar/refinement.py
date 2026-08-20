@@ -216,3 +216,61 @@ def fuse_corpus(cfg: Config, references: dict, models: Sequence[str],
     LOG.info("fused %d clips from %d systems at threshold %.2f",
              len(out), len(models), threshold)
     return out
+
+
+# ------------------------------------------------- segmentation transplant
+
+
+def transplant(seg_turns: Sequence[Turn], lab_turns: Sequence[Turn],
+               duration: float, min_dur: float = 0.20) -> list[Turn]:
+    """Take WHERE speech is from one system and WHO is speaking from another.
+
+    The components table says one model owns detection and a different one owns
+    assignment, which invites keeping each model's strength. A true hybrid would
+    re-cluster inside the first system's boundaries using the second's speaker
+    embeddings; those are not recoverable from an RTTM, so this transplants the
+    LABELS instead: every frame the segmenter calls speech is given the speaker
+    the labeller assigns there.
+
+    That approximation is the honest limitation of this experiment. It inherits
+    the labeller's clustering decisions exactly as the labeller made them, on
+    the labeller's own boundaries -- so if the labeller's low confusion depended
+    on its own tight segmentation, the transplant will not reproduce it. The
+    result is therefore a test of the hypothesis, not an upper bound on it.
+
+    Frames the segmenter calls speech but the labeller calls silence keep the
+    segmenter's own label: dropping them would hand back the miss advantage the
+    transplant exists to keep.
+    """
+    n = max(1, int(duration / HOP))
+    seg_labels = sorted({t.speaker for t in seg_turns})
+    lab_labels = sorted({t.speaker for t in lab_turns})
+    if not seg_labels:
+        return []
+    if not lab_labels:
+        return list(seg_turns)
+
+    seg = rasterise(seg_turns, n, seg_labels)
+    lab = rasterise(lab_turns, n, lab_labels)
+    speech = seg.max(axis=0) > 0                      # where the segmenter hears speech
+
+    # Put the segmenter's labels into the labeller's space, so a fallback frame
+    # is not a speaker nobody else has heard of.
+    m = map_labels(lab, lab_labels, seg, seg_labels)
+    out_labels = list(lab_labels)
+    for v in m.values():
+        if v not in out_labels:
+            out_labels.append(v)
+    idx = {l: i for i, l in enumerate(out_labels)}
+
+    active = np.zeros((len(out_labels), n), dtype=bool)
+    for j, l in enumerate(lab_labels):
+        active[idx[l]] = (lab[j] > 0) & speech        # labeller's view, gated by segmenter
+
+    covered = active.any(axis=0)
+    gap = speech & ~covered                           # segmenter says speech, labeller silent
+    if gap.any():
+        for j, l in enumerate(seg_labels):
+            active[idx[m[l]]] |= (seg[j] > 0) & gap
+
+    return to_turns(active, out_labels, min_dur)
