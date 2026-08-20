@@ -388,3 +388,62 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      Practical consequence: 21,893 sub-0.5 s regions cannot be inspected by
      hand. Any claim about them has to be made statistically, which is what
      [24] does for the confusion half.
+
+--------------------------------------------------------------------------
+[26] Step 3 has a structural floor of cpWER 12.4% that no system can beat.
+
+     Measured by feeding the reference transcript back as if it had been
+     recognised, with word times spread across each utterance, and attributing
+     it against the reference diarization -- a perfect ASR joined to a perfect
+     diarizer (asr.oracle_ceiling(), scoring-side only):
+
+       cpWER                          0.1240   <- the floor
+       DI-cpWER (words only)          0.0817
+       cpWER - DI-cpWER (attribution) 0.0423
+       WDER                           0.0348
+       the 9 clips with no overlap    0.0000   exactly
+
+     Every word is correct and every turn is correct, so the residual is
+     entirely the long-form strategy meeting overlapped speech: one transcript
+     cannot carry two people talking at once, so assign_words must give the
+     instant to one of them and the other speaker's words are lost. The nine
+     zero-overlap clips scoring exactly 0 is what proves this is the mechanism
+     rather than a harness artifact; correlation between a clip's overlap
+     fraction and its oracle cpWER is 0.935.
+
+     The DI-cpWER part (0.0817) is a separate, smaller artifact: the reference
+     word stream is in utterance order while a recogniser emits in time order,
+     and under overlap those orders genuinely differ.
+
+     Consequence: any reported cpWER must be read against 0.124, not against 0.
+     A system at 0.35 is 0.23 above the achievable floor, not 0.35 of avoidable
+     error. This is also the number that would justify separation or
+     target-speaker ASR in Step 4 -- it is the entire prize for that work.
+
+     12.8% of reference WORDS lie in overlapped speech, against 7.13% of TIME.
+     Overlapped speech is denser, so it costs ASR nearly twice what the
+     diarization figure suggests.
+
+[27] Two metric definitions were wrong on the first pass; both were caught by
+     tests rather than review, and both would have changed conclusions.
+
+     * WDER was written as "correct words with the wrong speaker, over correct
+       words". The definition (El Shafey, Soltau & Shafran, Interspeech 2019)
+       is (S_IS + C_IS) / (S + C): substitutions count on BOTH sides, because a
+       misrecognised word still carries an attribution that can be wrong.
+       Insertions and deletions are excluded from both, having no speaker pair
+       to disagree about.
+
+     * DI-cpWER was implemented by concatenating each speaker's words and
+       joining the groups. Grouping by speaker is exactly what makes a metric
+       diarization-DEPENDENT, so the "invariant" figure still moved with
+       attribution and cpWER - DI-cpWER measured nothing. It now takes flat
+       word streams with no speaker structure at all. Caught because a perfect
+       ASR plus a perfect diarizer scored 0.08 where it had to score 0.
+
+     Also settled: cpWER's assignment does NOT need a permutation search, and
+     Hungarian is not an approximation of it. A (reference speaker, hypothesis
+     speaker) pair's error count does not depend on which other pairs are
+     chosen, so the total is a sum of independent cells and minimising it IS
+     linear assignment. Verified against brute force on 396 (clip, corruption)
+     cases spanning 2 to 40,320 permutations: zero disagreements.

@@ -256,6 +256,17 @@ class Config:
         return self.logs_dir / "step2_failures.jsonl"
 
     @property
+    def step3_metrics_csv(self) -> Path:
+        return self.results_dir / "step3_metrics.csv"
+
+    @property
+    def step3_summary(self) -> Path:
+        return self.results_dir / "step3_summary.json"
+
+    def asr_dir(self, system: str) -> Path:
+        return self.root / "asr" / system
+
+    @property
     def ref_asr_dir(self) -> Path:
         return self.reference_dir / "asr"
 
