@@ -815,6 +815,34 @@ def inventory(cfg: Config, expected_clips: int = 100) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def missing_audio(cfg: Config, clips: list[Clip]) -> pd.DataFrame:
+    """Which clips have no usable WAV under this root, and how big each should be.
+
+    Exists because Step 1 may run on one machine and the audio reach the other by
+    a manual copy that can stop part-way -- typically on the largest files. The
+    size column is what you sort by to see the pattern, and the total is what is
+    left to transfer.
+    """
+    rows = []
+    for clip in clips:
+        wav = cfg.wav_path(clip.clip_id)
+        n_expected = expected_samples(clip.duration, cfg.sample_rate)
+        size = wav.stat().st_size if wav.exists() else 0
+        # 44-byte WAV header plus 2 bytes per sample.
+        want = 44 + 2 * n_expected
+        if size != want:
+            rows.append({
+                "clip_id": clip.clip_id,
+                "state": "absent" if size == 0 else "wrong size",
+                "have_bytes": size,
+                "expect_bytes": want,
+                "expect_mb": round(want / 1e6, 1),
+                "duration_sec": round(clip.duration, 1),
+            })
+    df = pd.DataFrame(rows)
+    return df.sort_values("expect_bytes", ascending=False) if len(df) else df
+
+
 def preflight(cfg: Config, expected_clips: int = 100, required: tuple = (
         "data/youtube_segments.csv", "results/step1_extraction.csv",
         "audio_16k/*.wav")) -> pd.DataFrame:
