@@ -377,3 +377,76 @@ def summarize(cfg: Config, df: pd.DataFrame, extra: dict | None = None) -> dict[
     if cfg is not None:
         write_json_atomic(cfg.step2_summary, summary)
     return summary
+
+# --------------------------------------------------- reference alignment check
+
+
+def estimate_reference_lag(ref, hypotheses: dict, hop: float = 0.01,
+                           max_lag: float = 10.0) -> dict:
+    """Seconds by which this clip's reference appears to lag the audio.
+
+    Speaker identity is irrelevant to a global time shift, so this works on raw
+    speech activity: rasterise the reference and each hypothesis, cross-correlate,
+    and take the lag that maximises agreement. A POSITIVE lag means the reference
+    is LATER than the speech every model heard.
+
+    `hypotheses` maps model name to its turns. The discriminating evidence is
+    agreement ACROSS models: independent segmenters have no reason to be wrong in
+    the same direction by the same amount on the same clip, so a tight spread
+    around a non-zero lag indicts the reference rather than the models.
+
+    Scoring-side only, and NOT a correction: the brief fixes the scoring
+    protocol, so the headline numbers stay as measured. This exists to quantify
+    the limitation, which the brief explicitly asks for when the labels look
+    wrong.
+    """
+    import numpy as np
+
+    n = int(ref.uem[1] / hop)
+    if n < 100 or not hypotheses:
+        return {"lag": 0.0, "spread": 0.0, "n_models": 0, "suspect": False}
+
+    def raster(turns):
+        a = np.zeros(n, dtype=np.float32)
+        for t in turns:
+            i, j = int(max(0.0, t.start) / hop), int(min(n * hop, t.end) / hop)
+            if j > i:
+                a[i:j] = 1.0
+        return a
+
+    r = raster(ref.turns)
+    r = r - r.mean()
+    lim = int(max_lag / hop)
+    out = []
+    for turns in hypotheses.values():
+        h = raster(turns)
+        h = h - h.mean()
+        best, bl = -np.inf, 0
+        for lag in range(-lim, lim + 1):
+            if lag >= 0:
+                if lag >= n:
+                    continue
+                v = float(np.dot(r[lag:], h[:n - lag]))
+            else:
+                v = float(np.dot(r[:lag], h[-lag:]))
+            if v > best:
+                best, bl = v, lag
+        out.append(bl * hop)
+    arr = np.array(out)
+    lag, spread = float(np.median(arr)), float(np.ptp(arr))
+    return {"lag": lag, "spread": spread, "n_models": len(arr),
+            # A tight spread across independent segmenters is what makes this
+            # a statement about the reference rather than about one model.
+            "suspect": bool(abs(lag) > 0.5 and spread < 0.6 and len(arr) >= 2)}
+
+
+def shift_turns(turns, delta: float, lo: float, hi: float):
+    """Move turns by `delta` seconds and clip to [lo, hi]."""
+    from .data import Turn
+
+    out = []
+    for t in turns:
+        a, b = max(lo, t.start + delta), min(hi, t.end + delta)
+        if b > a:
+            out.append(Turn(start=a, end=b, speaker=t.speaker))
+    return out

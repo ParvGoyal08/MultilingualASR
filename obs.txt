@@ -625,3 +625,66 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      evidence, and Step 3 produces the evidence as a byproduct. Worth trying in
      Step 4 -- but sized honestly against the ~0.003 DER that blind padding
      already reaches, since the ceiling on this whole effect is small.
+
+--------------------------------------------------------------------------
+[33] 27 of 99 clips have ground truth displaced in time by up to 4.6 seconds.
+     This is the largest single distortion in the benchmark, and correcting it
+     REVERSES the model ranking.
+
+     Hypothesis under test, from watching the source videos: "GT timestamps on
+     several clips start 1-2 s later than the speech."
+
+     Method. A global time shift needs no speaker mapping, so the test runs on
+     raw speech activity: rasterise reference and hypothesis at 10 ms, cross-
+     correlate, take the lag maximising agreement (evaluation.estimate_reference_lag).
+     A positive lag means the reference is LATER than the speech the models
+     heard. The evidence is cross-model AGREEMENT -- four diarizers with
+     different segmenters have no reason to be wrong in the same direction by
+     the same amount on the same clip.
+
+     Result: 27 clips where all four agree on a lag beyond 0.5 s, spread across
+     models never exceeding 0.54 s, lags from +0.54 s to +4.64 s.
+
+     Confirmation by re-scoring. Undoing the shift on those 27 clips:
+
+       model            DER as measured -> aligned    relative
+       diarizen-large        0.2625  ->  0.1919        -26.9%
+       community-1           0.2634  ->  0.2039        -22.6%
+       pyannote-3.1          0.2637  ->  0.2059        -21.9%
+       reverb-v2             0.2521  ->  0.2360         -6.4%
+
+     Individual clips move from nonsense to normal: 2iMXYxBTwbM__339_401 goes
+     0.848 -> 0.103 for DiariZen, 7c9ePKgqams__299_869 0.370 -> 0.073.
+
+     IT IS NOT OUR EXTRACTION. Re-cutting a flagged clip with accurate seeking
+     (-ss AFTER -i, sample-accurate) gives byte-identical alignment to the
+     original (-ss BEFORE -i): lag +3.91 s either way, matching the +3.92 s the
+     diarizers agreed on. The published WAV is a correct cut of
+     [start_sec, end_sec].
+
+     The mechanism follows from the arithmetic. If the annotator's window began
+     D seconds BEFORE start_sec, their timestamps run D larger than ours. D
+     cannot be negative when start_sec is 0 -- and of the 26 clips with
+     start_sec == 0, exactly ZERO are affected (median lag -0.010 s, max
+     0.01 s), against 27 of the 73 that need a seek (median +1.935 s). Nothing
+     else correlates: corr(lag, start_sec) is only +0.333, so it is not a fixed
+     offset or a scaling, and no script or speaker count predicts it.
+
+     WHY THIS MATTERS MOST. The ranking is an artifact of the misalignment.
+     reverb-v2 looked best at 0.2521 only because its turns are long and loose
+     (15.5 s mean) and therefore robust to a shifted reference; it gains least
+     from correction. DiariZen, the most precise model, was punished hardest.
+     Aligned, the order inverts completely:
+
+       diarizen-large 0.1919 < community-1 0.2039 < pyannote-3.1 0.2059 < reverb-v2 0.2360
+
+     obs [29]-[31] were computed on the uncorrected reference and their
+     conclusions about which model owns which component must be re-derived
+     before the hybrid in [31] is built on them.
+
+     HOW IT IS REPORTED. The brief fixes the scoring protocol, so the headline
+     numbers stay as measured against the ground truth as given. The aligned
+     figures are a named diagnostic alongside them. The brief also says: "If for
+     any reason the ground-truth labels look incorrect, hand-label a subset and
+     call out the limitation" -- this is that call-out, with the subset
+     identified automatically and confirmed by eye on the source videos.

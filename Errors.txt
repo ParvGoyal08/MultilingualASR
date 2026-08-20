@@ -35,4 +35,15 @@ PSIzXy5-y2E__2_918 - 153s of Miss - total audio length is 916s - Miss range from
 OxYCBQKZ3iY__0_1822 - 142s of Miss - total audio length is 1822s - Miss range from 0-2 seconds max
 
 
+JER - Top 5 files with highest JER
+L7xRazDdtgw__19_83	0.803	0.821	34.3	13.0	7.4	13.8	1.000	3/2	0.1	0	64
+2iMXYxBTwbM__339_401	0.811	0.812	46.3	15.3	14.7	16.3	0.524	3/2	10.4	3	62
+Kdi-ECuOaKg__2_78	0.914	0.776	35.7	14.8	16.6	4.4	–	6/4	0.0	10	76
+Iqhnt8ENm3U__27_88	0.670	0.770	44.6	16.4	4.9	23.2	0.667	3/2	16.4	11	61
+4Qg2jWP6_T0__136_202	0.678	0.727	47.7	14.5	10.4	22.8	0.556	3/2	18.4	29	66
+
+
 Kdi-ECuOaKg__2_78 - Extremely poor GT Labelling - Large portions of 5-10s are unlabelled in GT. GT starts are not aligned with actual audio.
+L7xRazDdtgw__19_83 - GT seems to be delayed by 3.5s throughout the audio
+2iMXYxBTwbM__339_401 - There are only 2 speakers. Lot of erronous entries. Lots of speaker C entries in which it aint actually speaking. 
+Kdi-ECuOaKg__2_78 - Delayed by 1s throughout producing very poor JER
