@@ -688,3 +688,56 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      any reason the ground-truth labels look incorrect, hand-label a subset and
      call out the limitation" -- this is that call-out, with the subset
      identified automatically and confirmed by eye on the source videos.
+
+--------------------------------------------------------------------------
+[34] Step 4: majority-vote fusion of three diarizations. +3.1% on the brief's
+     protocol, and the only system that is never near-worst on either half.
+
+     Method: DOVER-Lap (Raj et al., SLT 2021). Map each system's speaker labels
+     onto a growing centroid by Hungarian on frame overlap -- the same
+     assignment problem cpWER solves, exact for the same reason -- then vote per
+     10 ms frame, thresholding each speaker INDEPENDENTLY so overlap survives.
+     No ground truth is used; the only fitted quantity is the vote threshold.
+
+     Corpus, 99 clips:
+
+       system            DER    miss      FA    conf     JER  spk acc  aligned
+       FUSION         0.2442  0.1138  0.0498  0.0806  0.3608   79.8%   0.1850
+       reverb-v2      0.2521  0.0719  0.0681  0.1121  0.3834   60.6%   0.2360
+       diarizen-large 0.2625  0.1143  0.0640  0.0842  0.3660   72.7%   0.1919
+       community-1    0.2634  0.1079  0.0602  0.0954  0.3768   78.8%   0.2039
+       pyannote-3.1   0.2637  0.1079  0.0602  0.0957  0.3785   71.7%   0.2059
+
+     Best on DER, false alarm, confusion, JER, speaker-count accuracy and
+     aligned DER; worse only on miss, where it sits with the pyannote pair
+     rather than with reverb-v2. Voting cannot recover speech that a majority
+     never found, which is the mechanism.
+
+     Two design choices, both measured rather than assumed:
+
+     * EQUAL WEIGHTS, not DOVER-Lap's 1/rank. Rank weighting gives the leader 1
+       and the runner-up 0.5, so with two systems the leader alone clears any
+       threshold below 0.67 and the fusion silently degenerates into "use the
+       best system" -- it returned reverb-v2's dev score to four decimal places.
+       Equal weights beat it 0.2105 to 0.2223 on dev.
+
+     * THREE SYSTEMS, dropping pyannote-3.1. It and community-1 differ by 0.44 s
+       of miss+FA over 12.4 h ([18]), so including both double-weights one
+       segmentation and lets a single lineage carry a majority. Dropping it
+       improved dev from 0.2181 to 0.2105.
+
+     Chosen on dev (50 clips), test (49) scored once: 0.2481 against the best
+     single system's 0.2600, +4.6%.
+
+     THE HONEST CAVEAT, which is also the most useful finding here. Dev and test
+     disagree violently about which SINGLE model is best -- aligned, reverb-v2
+     runs 0.2146 on dev and 0.2524 on test while diarizen-large runs 0.2326 and
+     0.1606. Every single system ranks 1st on one half and 4th or 5th on the
+     other. With ~50 clips per half and a duration-pooled DER dominated by a
+     handful of long clips, a 0.02-0.04 DER gap is inside split noise, and the
+     "best model" claim in [29]/[33] should be read with that in mind.
+
+     The fusion is the only entry that ranks 1st or 2nd on BOTH halves under
+     BOTH protocols. Its value here is less that it is 3% better on average and
+     more that it removes the variance -- picking any single model amounts to
+     betting on which half of the corpus you drew.

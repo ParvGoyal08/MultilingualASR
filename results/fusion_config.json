@@ -1,0 +1,12 @@
+{
+ "models": [
+  "community-1",
+  "reverb-v2",
+  "diarizen-large"
+ ],
+ "threshold": 0.5,
+ "weights": "equal",
+ "min_dur": 0.2,
+ "chosen_on": "dev",
+ "frozen": "2026-08-21"
+}
