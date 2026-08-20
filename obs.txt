@@ -315,3 +315,76 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      hallucination, which would make it a measurement floor rather than a
      tuning target. That is a listening question, not a computation, and it is
      unresolved.
+
+--------------------------------------------------------------------------
+[23] The full error budget, partitioned so each part maps to one intervention.
+     community-1, DER 26.34, denominator 44,569 s. Parts are disjoint and sum.
+
+       part                                        DER pts   share  explicable
+                                                                    by GT?
+       mid-turn confusion                            6.45     24%   no
+       overlap miss (2+ ref speakers, model hears 1) 5.42     21%   no
+       turn-transition confusion (<0.5s of a change) 3.08     12%   partly
+       FA in short silences (<5s between turns)      2.70     10%   partly
+       FA on single-speaker regions                  2.83     11%   partly
+       miss on single speakers, excl. the 927s label 4.14     16%   partly
+       miss inside the one 927s Speaker_D label      1.23      5%   YES
+       FA inside unannotated stretches over 5s       0.49      2%   YES
+                                                    ------
+                                                     26.34
+
+     Only 1.72 points -- 6.5% -- is attributable to a ground-truth artifact we
+     have actually identified and can point at. Even reading the "partly" rows
+     generously, ground truth cannot account for more than a fifth of this.
+
+[24] Where the model is genuinely weak, stated so it cannot be waved away.
+
+     (a) MID-TURN CONFUSION, 6.45 points, 24% of all error, 2,585 regions.
+         This is speech that both the reference and the model agree is speech,
+         attributed to the wrong speaker, more than 0.5 s away from any
+         reference speaker change. A ground-truth GAP produces false alarm; an
+         over-long ground-truth LABEL produces miss. Neither produces
+         confusion. Only a wrong speaker IDENTITY in the reference could, and
+         that is a different defect from the ones found so far. This is the
+         embedding failing to separate two voices, and it is the single
+         largest addressable component of the benchmark.
+
+         For contrast, confusion within 0.5 s of a speaker change is 3.08
+         points across 5,160 regions -- twice the region count for half the
+         time, i.e. exactly the sliver profile of boundary jitter. The two are
+         different failures and should not be reported as one number.
+
+     (b) OVERLAP UNDER-DETECTION, 5.42 points, 21%, all of it miss.
+         The corpus has 52.5 minutes of overlapped speech; community-1 and
+         pyannote-3.1 each predict 36.9 minutes, 70% of it. Where the reference
+         says two people are talking the model reports one, and the second is
+         charged as miss. Ground truth cannot inflate this: annotating overlap
+         is a positive assertion that two people speak, and an annotator who
+         is sloppy about overlap will under-mark it, which would make the true
+         figure worse rather than better.
+
+     Together (a) and (b) are 45% of all error and neither has a ground-truth
+     explanation. The conclusion "the main weakness is ground-truth
+     reliability" does not survive the decomposition.
+
+[25] 79% of all error lives in regions shorter than 2 seconds.
+
+       span        regions      miss      FA   confusion    total
+       0-0.5s       21893      4.12    2.29      1.97       8.38
+       0.5-1s        4334      3.33    1.72      1.94       6.99
+       1-2s          1754      1.70    1.16      2.70       5.56
+       2-4s           539      0.54    0.56      2.14       3.24
+       4s+            113      1.10    0.29      0.79       2.17
+
+     This confirms corpus-wide the pattern noted by hand on individual clips
+     ("miss range from 0-2 seconds max" on three of the five worst miss clips).
+     Note what it does NOT say: sub-2 s error is not automatically annotation
+     noise. Confusion actually grows with span -- 2.70 points in 1-2 s regions
+     against 1.97 in 0-0.5 s -- so the sustained wrong-speaker attributions are
+     concentrated in the LONGER regions, while miss and FA are concentrated in
+     the short ones. Only the miss/FA half of this table looks like annotation
+     granularity.
+
+     Practical consequence: 21,893 sub-0.5 s regions cannot be inspected by
+     hand. Any claim about them has to be made statistically, which is what
+     [24] does for the confusion half.

@@ -2,7 +2,7 @@ clip_id,start,end,dur,fa_sec,covered_pct,abs_start,video_id,tail,verdict,note
 Cku_X_SL7qU__60_660,509.69,600.0,90.31,88.19,90,569.7,Cku_X_SL7qU,True,,
 QuA_B6IZ6Ls__61_1863,24.34,54.03,29.69,28.63,96,85.3,QuA_B6IZ6Ls,False,,
 QuA_B6IZ6Ls__61_1863,54.83,76.85,22.02,21.16,96,115.8,QuA_B6IZ6Ls,False,,
-HpYG46tGyYs__103_998,866.37,880.19,13.82,13.7,99,969.4,HpYG46tGyYs,False,,
+HpYG46tGyYs__103_998,866.37,880.19,13.82,13.7,99,969.4,HpYG46tGyYs,False,GT-MISSING,listened: speaker is audibly speaking; reference does not annotate it
 Kdi-ECuOaKg__2_78,38.35,49.97,11.62,7.87,68,40.4,Kdi-ECuOaKg,False,,
 8mvORuRHw2U__0_1197,424.05,430.83,6.78,7.28,93,424.1,8mvORuRHw2U,False,,
 OxYCBQKZ3iY__0_1822,1809.59,1822.0,12.41,6.92,54,1809.6,OxYCBQKZ3iY,True,,

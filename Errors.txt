@@ -3,6 +3,7 @@ False Alarm - No speaker recorded from 22.87-76.49
 
 
 FA ------ Top 5  files with highest FA
+CLIP DER JER ERRS MISS FA CONF OVL_DER SPK_R/H OVL% SHORT% DURS
 83gP2vLH7UY__255_2005	0.305	0.323	623.4	272.0	194.4	156.9	0.451	5/5	19.6	33	1750
 Cku_X_SL7qU__60_660	0.643	0.543	319.2	111.7	159.8	47.6	0.547	3/3	7.7	22	600
 Bngfppo1QtA__28_927	0.475	0.519	465.5	139.4	134.0	192.1	0.510	5/5	12.2	9	899
@@ -11,13 +12,16 @@ QuA_B6IZ6Ls__61_1863	0.411	0.389	979.1	655.6	131.6	191.9	0.512	4/4	35.5	16	1802
 
 83gP2vLH7UY__255_2005 - 194s of FA - total audio length is 1750s - Composed of many 2-4s regions many of which are laughters, short sentences, etc which are not reliably captured in GT
 Cku_X_SL7qU__60_660 - 159.8s of FA - total audio length is 600s - diarization till 510s only whereas the audio is till 660 seconds hence contributing significantly to all types of errors - 50s of FA due to 1 singular issue
-Cku_X_SL7qU__60_660 - 134s of FA - total audio length is 899s - Composed of many 2-4s regions many of which are laughters, short sentences, etc many of which are not reliably captured in GT
+Bngfppo1QtA__28_927 - 134s of FA - total audio length is 899s - Composed of many 2-4s regions many of which are laughters, short sentences, etc many of which are not reliably captured in GT
 QuA_B6IZ6Ls__61_1863 - 131s of FA - total audio length is 1802 - sseveral major chunks are missing in GT such as 22-77s, The audio consists of very long regions in which several gaps ranging from 3-7s exists which should ideally have been broken down in GT. Overall a very decent performace as fas as FA is concerned but scores poor due to GT artifacts
 0p6cktLGIfY__12_930 - 113 of FA - total audio length is 918s - Composed of many 2-4s regions many of which are laughters, short sentences, etc which are not reliably captured in GT
 
+HpYG46tGyYs__103_998 - 866.37–880.19s - Not marked in GT - 13.82s of FA are detected even though the speaker actually speaks in this region. 
 
 
 Miss - Top 5 files with highest Miss
+CLIP DER JER ERRS MISS FA CONF OVL_DER SPK_R/H OVL% SHORT% DURS
+
 QuA_B6IZ6Ls__61_1863	0.411	0.389	979.1	655.6	131.6	191.9	0.512	4/4	35.5	16	1802
 83gP2vLH7UY__255_2005	0.305	0.323	623.4	272.0	194.4	156.9	0.451	5/5	19.6	33	1750
 PSIzXy5-y2E__2_918	0.300	0.286	266.9	152.5	78.7	35.7	0.499	3/3	4.0	9	916
