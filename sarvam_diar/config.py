@@ -55,7 +55,22 @@ SEGMENTS_CSV_NAME = "youtube_segments.csv"
 DIARIZATION_MODELS = {
     "community-1": "pyannote/speaker-diarization-community-1",
     "pyannote-3.1": "pyannote/speaker-diarization-3.1",
+    # Rev's Reverb v2. Published as a pyannote-audio pipeline, so it loads
+    # through the same Pipeline.from_pretrained path as the two above and needs
+    # no separate code. Gated with auto-approval: accept at
+    # https://hf.co/Revai/reverb-diarization-v2 and it is granted immediately.
+    # Rev report ~22% relative WDER improvement over pyannote 3.0. Licence is
+    # Rev's own "other" -- fine for evaluation, check before commercial use.
+    "reverb-v2": "Revai/reverb-diarization-v2",
 }
+
+# DiariZen is NOT here on purpose. It is a strong model (beats pyannote 3.1 on
+# all eight of its reported benchmarks) but it is not a pyannote pipeline: it
+# ships as a GitHub-only package that pins numpy==1.26.4, while pyannote.audio
+# 4.x pulls numpy 2.5.x. The two cannot share an environment, so DiariZen runs
+# in its own notebook and exports RTTMs that this scoring harness reads
+# unchanged -- see diarization.import_external_rttm().
+DIARIZEN_MODEL = "BUT-FIT/diarizen-wavlm-large-s80-md-v2"
 
 # Primary scoring, per the brief: "Do NOT ignore overlapping speech regions when
 # computing metrics." Score everything, forgive nothing.

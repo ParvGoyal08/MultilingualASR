@@ -58,6 +58,10 @@ account that owns the token:
 * https://huggingface.co/pyannote/speaker-diarization-community-1
 * https://huggingface.co/pyannote/speaker-diarization-3.1
 * https://huggingface.co/pyannote/segmentation-3.0
+* https://huggingface.co/Revai/reverb-diarization-v2  (auto-approved)
+
+DiariZen is **not** gated and needs no token, but it also cannot run in this
+notebook -- see `notebooks/diarizen_runner.ipynb`.
 
 The third is easy to miss: 3.1 pulls it in, so accepting only the pipeline still
 gives `GatedRepoError: 403`.

@@ -352,6 +352,55 @@ def run(cfg: Config, inputs: list[ClipInput], flags: StageFlags | None = None,
     return pd.DataFrame(rows)
 
 
+def import_external_rttm(cfg: Config, src_dir, model: str,
+                         clip_durations: dict[str, float] | None = None) -> pd.DataFrame:
+    """Adopt RTTMs produced OUTSIDE this environment as a model's hypotheses.
+
+    The escape hatch for systems that cannot share an environment with
+    pyannote.audio 4.x -- DiariZen pins numpy==1.26.4, NeMo pins
+    lightning<=2.4.0 -- but whose output is still just speaker turns. Run them in
+    their own notebook, drop the RTTMs in a folder named <clip_id>.rttm, and
+    point this at it. Scoring, ranking and the error explorer then treat the
+    model exactly like the ones run in-process.
+
+    Writes the same RTTM + sidecar pair as a normal run, so is_done() and every
+    downstream stage behave identically.
+    """
+    src_dir = Path(src_dir)
+    if not src_dir.is_dir():
+        raise NotADirectoryError(f"{src_dir} is not a directory")
+
+    rows = []
+    for rttm in sorted(src_dir.glob("*.rttm")):
+        clip_id = rttm.stem
+        turns = parse_rttm(rttm.read_text(encoding="utf-8"))
+        # Normalised through our own writer so labels and precision match the
+        # in-process models exactly -- an imported model must not differ from a
+        # native one in anything but its origin.
+        tmp = cfg.work_dir / f"import_{model}_{clip_id}.rttm"
+        tmp.parent.mkdir(parents=True, exist_ok=True)
+        tmp.write_text(to_rttm(clip_id, turns), encoding="utf-8")
+        atomic_publish(tmp, cfg.hyp_rttm_path(model, clip_id))
+        tmp.unlink(missing_ok=True)
+
+        dur = (clip_durations or {}).get(clip_id)
+        record = {
+            "model": model, "clip_id": clip_id, "status": "ok", "oracle": False,
+            "clip_dur_sec": dur,
+            "elapsed_sec": None, "rtf": None,       # unknown: run elsewhere
+            "n_turns": len(turns),
+            "n_speakers_hyp": len({t.speaker for t in turns}),
+            "max_end": round(max((t.end for t in turns), default=0.0), 3),
+            "imported_from": str(rttm),
+            "diarized_at_utc": now_utc_iso(),
+        }
+        write_json_atomic(cfg.hyp_meta_path(model, clip_id), record)
+        rows.append(record)
+
+    LOG.info("imported %d RTTMs as model '%s' from %s", len(rows), model, src_dir)
+    return pd.DataFrame(rows)
+
+
 def throughput_report(df: pd.DataFrame, corpus_sec: float = 44193.0) -> pd.DataFrame:
     """Measured RTF and the projected full-sweep time. No estimates, only data."""
     rows = []
