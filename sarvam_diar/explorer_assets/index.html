@@ -223,6 +223,22 @@ function focusRole(r, S){
   return null;
 }
 const focusOK = r => !FOCUS || focusRole(r, FOCUS) !== null;
+
+/* How much of a region's scored error the per-speaker view fails to explain.
+   `ref`/`hyp` are sets while pyannote matches a multiset, so one reference
+   speaker against two overlapping hypothesis turns of that SAME speaker is a
+   false alarm that no speaker-vs-speaker comparison can see. pyannote's own
+   pipelines never emit that, but an imported RTTM can -- and an error explorer
+   that quietly loses error time is worse than one that says it did. */
+function residual(r, speakers){
+  if(!r.n) return 0;                       // export predates the counts
+  const got={MISS:0,FA:0,CONFUSION:0};
+  for(const s of speakers){ const x=focusRole(r,s); if(x) got[x.kind]++; }
+  // Confusion legitimately implicates both sides, so it is only short if the
+  // set view found none at all where the matcher counted some.
+  return Math.max(0, r.n.miss-got.MISS) + Math.max(0, r.n.fa-got.FA)
+       + (r.n.confusion && !got.CONFUSION ? r.n.confusion : 0);
+}
 const shown = r => typeOK(r) && focusOK(r);
 
 /* ------------------------------------------------------------------ data */
@@ -551,6 +567,10 @@ function chipBars(){
       const role=focusRole(r,s); if(role) per[s][role.kind]+=r.end-r.start;
     }
   }
+  let unattr=0;
+  for(const r of b.regions){ if(!typeOK(r)) continue;
+    if(residual(r,[...refS,...extra])) unattr += r.end-r.start; }
+
   $("#spkbar").innerHTML =
     `<span class="muted">speaker</span>` +
     [...refS,...extra].map(s=>{
@@ -560,6 +580,9 @@ function chipBars(){
         <i class="sw" style="background:${spkColor(s)}"></i>${s}
         <b class="muted">${tot.toFixed(0)}s</b></span>`;
     }).join(" ") +
+    (unattr ? ` <span class="chip" style="border-color:#D9A441"
+        title="Scored error time that cannot be attributed to any single speaker, because the model has the same speaker active on two overlapping turns. pyannote matches labels as a multiset; the per-speaker view compares sets. Filtering by speaker will not show these seconds.">
+        ⚠ ${unattr.toFixed(1)}s unattributed</span>` : "") +
     (FOCUS?` <span class="chip tog" data-spk="">clear</span>`:"");
   $("#spkbar").querySelectorAll("[data-spk]").forEach(el=>
     el.onclick=()=>{ const v=el.dataset.spk; FOCUS=(!v||FOCUS===v)?null:v; refresh(); });

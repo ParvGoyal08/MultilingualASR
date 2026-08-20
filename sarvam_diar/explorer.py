@@ -82,6 +82,21 @@ def _boundaries(ref: ClipReference, hyp: list[Turn]) -> list[float]:
     return sorted(pts)
 
 
+def _relabel(label: str, mapping: dict[str, str], targets: set[str]) -> str:
+    """Apply the optimal mapping, keeping unmapped labels distinct from it.
+
+    A plain `mapping.get(s, s)` collides when a model emits a label that is
+    already the NAME of a reference speaker: if `SPK_1 -> Speaker_C` and the
+    hypothesis separately contains a raw `Speaker_C`, both become `Speaker_C`
+    and the matcher sees one speaker where there are two, undercounting
+    confusion. pyannote's own pipelines emit `SPEAKER_00`-style labels so this
+    cannot bite them, but an imported RTTM is free to use any label at all.
+    """
+    if label in mapping:
+        return mapping[label]
+    return f"{label}#unmapped" if label in targets else label
+
+
 def error_regions(ref: ClipReference, hyp: list[Turn],
                   mapping: dict[str, str] | None = None) -> tuple[list[dict], dict]:
     """Per-interval error decomposition over the whole UEM.
@@ -97,6 +112,7 @@ def error_regions(ref: ClipReference, hyp: list[Turn],
     matcher = LabelMatcher()
     lo, hi = ref.uem
     bounds = _boundaries(ref, hyp)
+    mapped_targets = set(mapping.values())
 
     raw: list[dict] = []
     for a, b in zip(bounds, bounds[1:]):
@@ -107,7 +123,7 @@ def error_regions(ref: ClipReference, hyp: list[Turn],
         # twice, exactly as pyannote's get_labels(unique=False) reports it.
         rlabels = [t.speaker for t in ref.turns if t.start <= mid < t.end]
         hraw = [t.speaker for t in hyp if t.start <= mid < t.end]
-        hlabels = [mapping.get(s, s) for s in hraw]
+        hlabels = [_relabel(s, mapping, mapped_targets) for s in hraw]
 
         counts, _ = matcher(rlabels, hlabels)
         raw.append({
@@ -143,12 +159,19 @@ def error_regions(ref: ClipReference, hyp: list[Turn],
     }
 
     # Only the intervals that actually carry an error need to reach the browser.
+    # `n` carries the matcher's COUNTS, not just which types fired. `ref`/`hyp`
+    # are sets, but pyannote matches labels as a multiset: one reference speaker
+    # against two overlapping hypothesis turns of that same speaker is one
+    # correct plus one false alarm, which no set comparison can see. The UI
+    # attributes errors to speakers from the sets, so without these counts it
+    # would silently drop that error instead of reporting it as unattributed.
     regions = [
         {"start": round(s["start"], 3), "end": round(s["end"], 3),
          "types": [t for t, k in (("MISS", "miss"), ("FA", "fa"),
                                   ("CONFUSION", "confusion")) if s[k]],
          "overlap": bool(s["overlap"]),
-         "ref": s["ref"], "hyp": s["hyp"]}
+         "ref": s["ref"], "hyp": s["hyp"],
+         "n": {"miss": s["miss"], "fa": s["fa"], "confusion": s["confusion"]}}
         for s in merged
         if s["miss"] or s["fa"] or s["confusion"] or s["overlap"]
     ]
@@ -285,8 +308,11 @@ def export(cfg: Config, metrics: pd.DataFrame, references: dict[str, ClipReferen
                                    + block["totals"]["confusion_sec"], 3),
                 "overlap_der": m.get("overlap_der"),
                 # DER denominator, so the UI can pool by script the same way
-                # evaluation.pool() does rather than averaging rates.
-                "total_sec": m.get("total_sec"),
+                # evaluation.pool() does rather than averaging rates. The column
+                # is `der_total_sec`: `total_sec` exists too but belongs to
+                # score_region() and is the duration of a RESTRICTED region
+                # (overlap-only, single-speaker-only), not the DER denominator.
+                "total_sec": m.get("der_total_sec"),
                 "n_speakers_hyp": len(block["hyp_speakers"]),
                 "speaker_count_error": len(block["hyp_speakers"]) - entry["n_speakers_ref"],
             }
