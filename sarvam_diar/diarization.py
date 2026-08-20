@@ -37,6 +37,7 @@ from .utils import (
     LOG,
     append_jsonl,
     apply_selection,
+    assert_no_reference_fields,
     load_dotenv,
     atomic_publish,
     human_time,
@@ -349,7 +350,13 @@ def run(cfg: Config, inputs: list[ClipInput], flags: StageFlags | None = None,
                  counts["ok"], counts["skipped"], counts["failed"])
 
     LOG.info("step 2 done in %s", human_time(time.perf_counter() - run_started))
-    return pd.DataFrame(rows)
+    out = pd.DataFrame(rows)
+    # The type boundary (ClipInput) is what actually prevents a leak here; this
+    # is the second half of that guarantee, on the frame this stage HANDS ON.
+    # Steps 3 and 4 consume it, and a stray `n_gt_speakers` column reaching them
+    # is one .get() away from being passed to a model as a hint.
+    assert_no_reference_fields(out, where="diarization.run() output")
+    return out
 
 
 def import_external_rttm(cfg: Config, src_dir, model: str,
