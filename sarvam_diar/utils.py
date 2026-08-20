@@ -337,6 +337,27 @@ def set_dotenv_value(path: str | os.PathLike, key: str, value: str) -> Path:
     return path
 
 
+def apply_selection(items, flags, id_of=lambda x: x.clip_id):
+    """Apply `only_clip_ids` then `limit`, identically for every stage.
+
+    Each stage used to filter its own way, which is how diarization ended up
+    honouring `limit` but silently ignoring `only_clip_ids` -- so asking for one
+    clip diarized all of them. One implementation removes that whole class of
+    divergence.
+
+    `only_clip_ids` matches a clip_id or a bare video_id, so
+    ["T3I2T-cfhG4"] selects that video's clip without the window suffix.
+    """
+    out = list(items)
+    if flags is not None and getattr(flags, "only_clip_ids", None):
+        wanted = set(flags.only_clip_ids)
+        out = [x for x in out
+               if id_of(x) in wanted or str(id_of(x)).split("__")[0] in wanted]
+    if flags is not None and getattr(flags, "limit", None) is not None:
+        out = out[: flags.limit]
+    return out
+
+
 # ------------------------------------------------------------- leakage guard
 
 

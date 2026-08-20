@@ -41,6 +41,7 @@ from .data import Clip
 from .utils import (
     LOG,
     append_jsonl,
+    apply_selection,
     atomic_publish,
     clear_dir,
     ffprobe_audio,
@@ -581,19 +582,16 @@ def _flush(cfg: Config, results: dict[str, dict]) -> pd.DataFrame:
 
 
 def select_clips(clips: list[Clip], flags: StageFlags, results: dict[str, dict]) -> list[Clip]:
+    """only_clip_ids / limit come from the shared helper; retry_failed_only is
+    extraction-specific because it needs the results table."""
     selected = list(clips)
-    if flags.only_clip_ids:
-        wanted = set(flags.only_clip_ids)
-        selected = [c for c in selected if c.clip_id in wanted or c.video_id in wanted]
     if flags.retry_failed_only:
         selected = [
             c for c in selected
             if results.get(c.clip_id, {}).get("status") == "failed"
             and not bool(results.get(c.clip_id, {}).get("permanent"))
         ]
-    if flags.limit is not None:
-        selected = selected[: flags.limit]
-    return selected
+    return apply_selection(selected, flags)
 
 
 def run(cfg: Config, clips: list[Clip], flags: StageFlags | None = None) -> pd.DataFrame:

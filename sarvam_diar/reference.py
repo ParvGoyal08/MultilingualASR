@@ -40,7 +40,7 @@ import pandas as pd
 
 from .config import NORMALIZER_VERSION, Config
 from .data import Clip, ClipReference, Segment, Turn, Utterance
-from .utils import LOG, atomic_publish, write_json_atomic
+from .utils import LOG, apply_selection, atomic_publish, write_json_atomic
 
 # --------------------------------------------------------------------- regexes
 
@@ -351,12 +351,18 @@ def to_uem_line(ref: ClipReference) -> str:
 
 
 def run(cfg: Config, clips: list[Clip], drop_nonspeech: bool = False,
-        force: bool = False) -> pd.DataFrame:
+        force: bool = False, flags=None) -> pd.DataFrame:
     """Build and checkpoint the reference for every clip.
 
     Cheap compared to extraction, but checkpointed the same way so a bumped
     NORMALIZER_VERSION invalidates references without touching the audio.
     """
+    # Accept a StageFlags so callers do not have to remember that this stage
+    # spells force_redo differently from the others.
+    if flags is not None:
+        force = force or bool(getattr(flags, "force_redo", False))
+        clips = apply_selection(clips, flags)
+
     rows, rebuilt, skipped = [], 0, 0
     for clip in clips:
         rttm_path, asr_path = cfg.rttm_path(clip.clip_id), cfg.ref_asr_path(clip.clip_id)

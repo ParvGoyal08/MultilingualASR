@@ -36,6 +36,7 @@ from .reference import parse_rttm, rttm_safe
 from .utils import (
     LOG,
     append_jsonl,
+    apply_selection,
     load_dotenv,
     atomic_publish,
     human_time,
@@ -274,9 +275,7 @@ def run(cfg: Config, inputs: list[ClipInput], flags: StageFlags | None = None,
     rows: list[dict] = []
 
     for model in models:
-        todo = list(inputs)
-        if flags.limit is not None:
-            todo = todo[: flags.limit]
+        todo = apply_selection(inputs, flags)
         pipeline = None
         counts = {"ok": 0, "skipped": 0, "failed": 0}
 
