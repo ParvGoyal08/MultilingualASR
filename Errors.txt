@@ -35,3 +35,4 @@ PSIzXy5-y2E__2_918 - 153s of Miss - total audio length is 916s - Miss range from
 OxYCBQKZ3iY__0_1822 - 142s of Miss - total audio length is 1822s - Miss range from 0-2 seconds max
 
 
+Kdi-ECuOaKg__2_78 - Extremely poor GT Labelling - Large portions of 5-10s are unlabelled in GT. GT starts are not aligned with actual audio.

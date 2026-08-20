@@ -560,3 +560,68 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
 
      Cost recorded for honesty: DiariZen took roughly 4 h of T4 time for the
      99-clip sweep, against Reverb's 1h25m.
+
+--------------------------------------------------------------------------
+[32] Tested: "DiariZen's miss is boundary tightness against a looser reference,
+     not detection failure." Correct in mechanism, negligible in payoff.
+
+     Three independent measurements, all agreeing:
+
+     (a) TOTAL SPEECH. DiariZen predicts 96% of the reference's union speech
+         duration -- not grossly under-detecting. reverb-v2 predicts 106%.
+
+     (b) SIGNED BOUNDARY OFFSETS, matched turn against matched turn:
+
+           model            onset med   offset med   inward both   ref wider
+           diarizen-large     +0.023       -0.137        39%          72%
+           community-1        -0.010       -0.139        31%          58%
+           pyannote-3.1       -0.022       -0.101        29%          55%
+           reverb-v2          -6.577       +5.983         7%          12%
+
+         DiariZen is the tightest by a clear margin: on 72% of matched pairs the
+         reference turn is longer than the hypothesis turn. reverb-v2 is the
+         opposite -- its turns span several reference turns, which is what a
+         15.5 s mean turn against a 2.6 s one means.
+
+         But the bias is almost ENTIRELY on the trailing edge. Onsets are
+         aligned (+0.023 s); offsets end 137 ms early. And community-1 shows
+         -0.139 and pyannote-3.1 -0.101 -- the same trailing bias. That makes it
+         a property of the REFERENCE, not of DiariZen: annotations run ~100-140
+         ms past where every model says speech stopped.
+
+     (c) DILATION, the direct intervention. Padding turns by 0.1 s:
+
+           model            miss before -> after   FA added   recovered/FA
+           diarizen-large     0.1143 -> 0.0805      +0.0331       1.02
+           pyannote-3.1       0.1079 -> 0.0820      +0.0258       1.00
+           community-1        0.1079 -> 0.0816      +0.0310       0.85
+           reverb-v2          0.0719 -> 0.0689      +0.0092       0.33
+
+         DiariZen's miss is by far the most boundary-adjacent: 100 ms recovers
+         30% of it, against Reverb's 4%. So the hypothesis is right.
+
+     Why it does not pay. False alarm rises about 1:1 with the miss recovered,
+     so DER barely moves. Padding is blind -- it cannot tell a turn whose
+     reference is loose from one whose neighbouring silence is real, so it lands
+     on genuine non-speech about as often as on annotator slack.
+
+     Exploiting the asymmetry helps, and confirms the diagnosis: extending only
+     the trailing edge beats symmetric padding roughly twofold, because
+     symmetric spends half its budget on the leading edge where the measured
+     bias is ~0.
+
+           diarizen-large   sym 0.10s   DER -0.0016
+                            after 0.10s DER -0.0031   <- best
+           community-1      sym 0.10s   DER +0.0026   (symmetric actively hurts)
+                            after 0.10s DER -0.0009
+
+     -0.0031 DER, 1.2% relative. Real, reproducible, and far too small to be an
+     improvement worth reporting as one.
+
+     What would exploit it. The padding needs a signal for WHERE to extend
+     rather than extending everywhere. ASR word timings are exactly that: carry
+     a turn's trailing edge forward only as far as recognised words continue,
+     and stop at the first real silence. That converts a blind 100 ms guess into
+     evidence, and Step 3 produces the evidence as a byproduct. Worth trying in
+     Step 4 -- but sized honestly against the ~0.003 DER that blind padding
+     already reaches, since the ceiling on this whole effect is small.
