@@ -112,3 +112,71 @@ peak away from zero. A flat or multi-peaked curve means the clip needs a human.
 * `Kdi-ECuOaKg__2_78` +2.0s — needs manual review: energy VAD disagrees, per-model lags spread 4.10s
 * `T3I2T-cfhG4__160_210` +1.5s — needs manual review: per-model lags spread 1.33s
 * `0VEwL9XZ0LY__261_557` +1.0s — needs manual review: per-model lags spread 1.19s
+
+## Is this a leak? The honest answer
+
+**No correction reaches the pipeline.** The diarizers ran before this stage
+existed, the fusion never sees a lag, and corrections modify the *reference* at
+scoring time, never a hypothesis. `grep` confirms no pipeline module imports
+`gt_qc`. On the brief's own terms -- "the ground truth is never an input to your
+pipeline" -- this is clean.
+
+**But there is a real objection, and it should be stated rather than hidden.**
+The lag is chosen to maximise agreement between the ground truth and the models
+being evaluated. That is moving the target toward the shooters. Using IoU rather
+than DER makes it indirect, not innocent: if every model were wrong the same way
+-- all calling the same music speech, say -- the "correction" would shift the
+reference to match that shared error, and the QC-adjusted numbers would flatter
+them.
+
+Four things bound that risk:
+
+* **A model-free second opinion.** The energy VAD is arithmetic on the waveform,
+  sharing no code, training data or assumptions with any diarizer. It
+  corroborates 26 of 27.
+* **A high floor.** Only offsets of at least 1 s are flagged. Four independent
+  segmenters being wrong by more than a second in the same direction on the same
+  clip is not a plausible coincidence.
+* **Agreement is required, not just a peak.** Auto-acceptance also needs the
+  per-model lags to agree within 1 s. Where voting alone carried the peak, the
+  clip is held for a human -- that is 9 of the 27.
+* **Raw stays the headline.** QC-adjusted is reported beside it as a labelled
+  diagnostic, never instead of it.
+
+**What actually closes the objection is a human ear**, and that is what the
+worksheet is for. "The models disagree with the annotation" is an argument;
+"I listened, and the words are not where the annotation says" is evidence.
+
+## Manual verification
+
+```bash
+python3 tools/gt_qc_worksheet.py     # -> verification_worksheet.csv
+```
+
+The check uses the **transcript**, not speech activity. For one well-isolated
+mid-clip utterance the ground truth claims "these words start at t" and the QC
+claims "no, at t - offset". Both are YouTube links in the worksheet. Open both;
+the words are audible at exactly one. Write `GT` or `QC` in `which_is_right`.
+
+The transcript check is the right one for three reasons: it works on clips that
+open with speech, where comparing first onsets is useless because both sides say
+0.01 s; it is **lexical**, so it shares nothing with the acoustic models that
+proposed the offset, which is precisely the circularity a reviewer would press
+on; and it needs no tooling beyond a browser.
+
+**Controls are included and are the part that makes this rigorous.** Six clips
+the detector did NOT flag are in the worksheet with offset 0, so both links point
+at the same moment and the words should simply be there. Verifying only flagged
+clips can confirm what the detector already believes. Controls are what
+establish it is not flagging everything -- and a control whose words are absent
+is a detector miss worth more than any confirmation.
+
+Ten flagged plus six controls is enough. If all ten flagged read `QC` and all
+six controls read `GT`, the detector has perfect precision and recall on a
+16-clip audited sample, and the remaining 17 auto-accepted rows inherit that
+credibility. If even one control fails, stop and re-examine the thresholds.
+
+Record outcomes in the worksheet, then set `verified` and `verified_by` in
+`corrections.json` for the confirmed rows and re-run
+`tools/gt_alignment_qc.py`, which rescores using only verified corrections.
+
