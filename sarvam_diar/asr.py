@@ -83,6 +83,10 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
     """
     from faster_whisper import WhisperModel
 
+    # Default: the diarizer decides what is speech, and Whisper transcribes
+    # everything it is given. Only the batched path overrides this.
+    vad_filter = False
+
     key = ("whisper", model_size)
     if key not in _MODEL_CACHE:
         import torch
@@ -97,15 +101,24 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
     model = _MODEL_CACHE[key]
 
     if batch_size and batch_size > 1:
-        # Long-form only. Batching runs several windows of one clip together,
-        # which is where the throughput is. It cannot help the per-segment path,
-        # where every call is already a single short window.
+        # BatchedInferencePipeline refuses to run without either vad_filter=True
+        # or explicit clip_timestamps (in SAMPLES), and a single whole-file span
+        # would collapse to one chunk and defeat the batching anyway. So
+        # batching here necessarily means letting Whisper's own Silero VAD
+        # decide where speech is.
+        #
+        # That is a second voice-activity decision on top of the diarizer's, and
+        # anything it drops is speech no downstream stage can recover -- it
+        # becomes a miss attributable to the ASR rather than the diarization we
+        # are trying to measure. It is therefore opt-in, never the default, and
+        # the cost is recorded in the meta so a run using it is identifiable.
         from faster_whisper import BatchedInferencePipeline
 
         bkey = ("whisper-batched", model_size)
         if bkey not in _MODEL_CACHE:
             _MODEL_CACHE[bkey] = BatchedInferencePipeline(model=model)
         model = _MODEL_CACHE[bkey]
+        vad_filter = True
 
     # Whisper pads every input to a fixed 30 s window, so a 1 s segment costs
     # the same encoder pass as a 30 s one -- per-segment work is dominated by
@@ -117,7 +130,7 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
         str(wav),
         language=None,          # detect; never hinted from the reference
         word_timestamps=word_timestamps,
-        vad_filter=False,       # diarization already decides what is speech
+        vad_filter=vad_filter,
         beam_size=beam_size,
         **({"batch_size": batch_size} if batch_size and batch_size > 1
            else {"condition_on_previous_text": condition_on_previous_text}),
@@ -136,7 +149,9 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
             for tok in (seg.text or "").split():
                 words.append(Word(tok, float(seg.start), float(seg.end)))
     meta = {"detected_language": info.language,
-            "language_probability": round(float(info.language_probability), 4)}
+            "language_probability": round(float(info.language_probability), 4),
+            "beam_size": beam_size, "batched": bool(batch_size and batch_size > 1),
+            "whisper_vad": vad_filter}
     return words, meta
 
 
@@ -266,8 +281,12 @@ def _sarvam_words(payload: dict, offset: float) -> tuple[list[Word], str]:
 _MODEL_CACHE: dict = {}
 
 BACKENDS: dict[str, Callable[..., tuple[list[Word], dict]]] = {
-    # Long-form: batched and greedy. 99 model calls rather than one per segment.
+    # Long-form, greedy, unbatched: 99 model calls rather than one per segment,
+    # and no second VAD deciding what counts as speech. Batching would need
+    # Whisper's own VAD (see transcribe_whisper), so it stays opt-in.
     "whisper-large-v3": lambda cfg, wav: transcribe_whisper(
+        cfg, wav, "large-v3", word_timestamps=True, beam_size=1),
+    "whisper-large-v3-batched": lambda cfg, wav: transcribe_whisper(
         cfg, wav, "large-v3", word_timestamps=True, beam_size=1, batch_size=8),
     "sarvam-saaras-v3": lambda cfg, wav: transcribe_sarvam(cfg, wav, "saaras:v3"),
     "sarvam-saaras-v4": lambda cfg, wav: transcribe_sarvam(cfg, wav, "saaras:v4"),
