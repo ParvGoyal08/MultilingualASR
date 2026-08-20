@@ -384,6 +384,63 @@ def assert_no_reference_fields(frame, where: str = "pipeline stage") -> None:
         )
 
 
+def relink_dataset(root: str | os.PathLike,
+                   search_root: str | os.PathLike = "/kaggle/input",
+                   subs: Iterable[str] = ("audio_16k", "meta"),
+                   dataset: str | os.PathLike | None = None) -> Path | None:
+    """Point `root/<sub>` at wherever the read-only dataset is mounted now.
+
+    Kaggle keeps the writable root across a session but remounts /kaggle/input
+    whenever the attached inputs change, so adding one dataset silently breaks
+    the links into another. A dangling link then fails Config.mkdirs() with a
+    bare `FileExistsError`, because pathlib only swallows that when `is_dir()`
+    holds and a dead link is not a directory.
+
+    This lives in the library rather than in a notebook cell on purpose: the
+    notebook is a copy held by the hosting platform and does not update when the
+    repo does, while this arrives with the next `git pull`.
+
+    Returns the dataset directory it linked against, or None off-platform.
+    """
+    root = Path(root)
+    search_root = Path(search_root)
+    if not search_root.exists():
+        return None
+
+    if dataset is not None:
+        ds = Path(dataset)
+    else:
+        # Locate by content, not by name: the slug is exactly what changes.
+        ds = next((c.parent for c in sorted(search_root.rglob("audio_16k")) if c.is_dir()), None)
+    if ds is None or not ds.exists():
+        attached = sorted(p.name for p in search_root.glob("*"))
+        raise FileNotFoundError(
+            f"no audio_16k/ found under {search_root}. Attached: {attached or 'none'}. "
+            "Attach the audio dataset, or pass dataset= explicitly."
+        )
+
+    for sub in subs:
+        src, dst = ds / sub, root / sub
+        if dst.is_symlink():
+            if not dst.exists():
+                LOG.info("removing dangling link %s -> %s", dst, os.readlink(dst))
+                dst.unlink()
+            elif dst.resolve() != src.resolve():
+                LOG.info("re-pointing %s: %s -> %s", sub, dst.resolve(), src)
+                dst.unlink()
+            else:
+                continue
+        elif dst.exists():
+            continue          # a real directory: leave it alone
+        if src.exists():
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.symlink_to(src)
+            LOG.info("linked %s -> %s", sub, src)
+        else:
+            LOG.warning("%s missing in the dataset at %s", sub, ds)
+    return ds
+
+
 def clear_dir(path: str | os.PathLike, patterns: Iterable[str] = ("*",)) -> int:
     """Remove scratch files. Used to keep /content/work from filling the disk."""
     path = Path(path)
