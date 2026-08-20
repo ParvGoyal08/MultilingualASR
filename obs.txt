@@ -259,7 +259,12 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
          scored as miss. 584.5 s of that clip's 655.6 s of miss (89%) lies
          inside that one label.
 
-         Corpus-wide: 16 reference turns exceed 60 s, totalling 36 minutes.
+         Corpus-wide there are 16 reference turns over 60 s totalling 36
+         minutes, but they are NOT a class problem and it would be wrong to
+         report them as one. That 927 s label alone carries 546 s of the 563 s
+         of miss they produce (97%); the other 15 have a median miss of 1% of
+         their length, i.e. those speakers really do talk continuously. The
+         finding is one pathological label, not a labelling convention.
 
      (b) UNANNOTATED SPEECH. QuA has two unlabelled stretches, 24.34-54.03 s
          and 54.83-76.85 s, holding 49.8 s of FA (38% of the clip's FA).
@@ -268,7 +273,9 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
          that clip's FA) falls in the 90-second unannotated tail.
 
          Corpus-wide: 39 unannotated stretches longer than 5 s, totalling
-         9 minutes.
+         8.6 minutes and carrying 218 s of false alarm. This one IS diffuse
+         but still top-heavy -- the 3 largest carry 63% of it and the top 10
+         carry 85%.
 
      NOTE the direction on Cku. The working note recorded it as "diarization
      till 510s only", i.e. a truncated hypothesis and therefore a pipeline
@@ -276,8 +283,12 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      the full 600 s (284 turns for community-1). It is a labelling artifact
      like the rest, and there is nothing to fix in the code.
 
-     Across the corpus that is ~45 minutes of a 12.3-hour benchmark where the
-     reference is structurally unreliable. The writeup should report DER as
+     Together the two classes account for 1.75 of community-1's 26.34 DER
+     points -- 6.6% of all error, and that is the CEILING on what re-labelling
+     them could reclassify. Enumerated with timestamps in GT_AUDIT.md and
+     results/gt_*.csv. The earlier framing of "~45 minutes where the reference
+     is unreliable" overstated it: 36 of those 45 minutes are the long turns,
+     and all but one of those are fine. The writeup should report DER as
      measured AND re-report it with these regions excluded, labelled clearly as
      a diagnostic rather than the headline -- the brief fixes the scoring
      protocol, so the measured number stays the number.
