@@ -274,6 +274,20 @@ class Config:
             self.results_dir,
             self.work_dir,
         ):
+            # A broken symlink here raises a bare FileExistsError from mkdir,
+            # because pathlib only swallows that error when `is_dir()` is true
+            # and a dangling link is not a directory. On Kaggle audio_16k and
+            # meta ARE symlinks into /kaggle/input, and the mount path changes
+            # whenever the attached inputs change -- so this is the normal way
+            # the next session fails, and "File exists" is a terrible clue.
+            if d.is_symlink() and not d.exists():
+                raise FileNotFoundError(
+                    f"{d} is a symlink to {os.readlink(d)}, which does not exist. "
+                    "The dataset it pointed at was renamed, detached, or remounted "
+                    "under a different path. Delete the link and re-create it "
+                    "against the current mount (cell 1.1 does this automatically "
+                    "on Kaggle)."
+                )
             d.mkdir(parents=True, exist_ok=True)
         return self
 
