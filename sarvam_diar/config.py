@@ -72,6 +72,24 @@ DIARIZATION_MODELS = {
 # unchanged -- see diarization.import_external_rttm().
 DIARIZEN_MODEL = "BUT-FIT/diarizen-wavlm-large-s80-md-v2"
 
+# Models whose hypotheses are ADOPTED rather than produced here, via
+# diarization.import_external_rttm(). They are scored, ranked and explored
+# exactly like the others -- the only difference is where the RTTMs came from.
+#
+# Kept separate from DIARIZATION_MODELS because that dict drives inference:
+# putting an external model there would send load_pipeline() looking for a
+# pyannote pipeline that does not exist. Everything downstream of inference
+# should use scored_models() instead, or an imported model is silently dropped
+# from the scoring loop and the comparison quietly omits it.
+EXTERNAL_MODELS = {
+    "diarizen-large": DIARIZEN_MODEL,
+}
+
+
+def scored_models() -> list[str]:
+    """Every model key the scoring, ranking and export stages should consider."""
+    return list(DIARIZATION_MODELS) + list(EXTERNAL_MODELS)
+
 # Primary scoring, per the brief: "Do NOT ignore overlapping speech regions when
 # computing metrics." Score everything, forgive nothing.
 DER_COLLAR = 0.0
