@@ -499,3 +499,64 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      returned mr-IN at probability 0.982 for a Devanagari clip whose reference
      script is ambiguous between Hindi and Marathi, and te-IN for the Telugu
      clip. No ground-truth language is passed to either system.
+
+--------------------------------------------------------------------------
+[29] Four diarizers, and none of them is best at more than one thing.
+
+     Corpus, collar 0.0, overlap scored, 99 clips:
+
+       model            DER     miss      FA     conf   spk acc  spk bias  JER
+       reverb-v2      0.2521  0.0719  0.0681  0.1121    60.6%    -0.35   0.383
+       diarizen-large 0.2626  0.1143  0.0640  0.0842    72.7%    +0.02   0.366
+       community-1    0.2634  0.1079  0.0602  0.0954    78.8%    -0.17   0.377
+       pyannote-3.1   0.2637  0.1079  0.0602  0.0957    71.7%    -0.17   0.378
+
+     On DER the four span 0.011, which is nothing. On COMPONENTS they are
+     completely different systems, and that is the actual result:
+
+       * reverb-v2 owns detection -- miss 0.0719, a third below the field.
+       * diarizen-large owns assignment -- confusion 0.0842, and the only model
+         with essentially no speaker-count bias (+0.02 against -0.17 to -0.35).
+         It also has the best JER.
+       * the two pyannote pipelines own false alarm, marginally.
+
+     Ranking by DER alone would report "the models are equivalent" and throw
+     away the only finding here.
+
+[30] Overlap detection is inverted against miss, which was not expected.
+
+       model            predicted overlapped speech   as % of the 52.5 min ref
+       diarizen-large            44.2 min                      84%
+       community-1               36.9 min                      70%
+       pyannote-3.1              36.9 min                      70%
+       reverb-v2                  8.0 min                      15%
+
+     reverb-v2 predicts almost NO overlap -- 15% of the reference -- and still
+     has the lowest miss of the four. Its advantage therefore comes entirely
+     from single-speaker detection, and is large enough to outweigh conceding
+     nearly all the overlapped speech. diarizen-large is the mirror: it recovers
+     84% of overlap, the closest match of any model, and still has the WORST
+     miss, so it is losing more elsewhere than it gains there.
+
+     This kills the assumption behind [24](b), that overlap under-detection and
+     miss are the same story. They are separable, and no model currently does
+     both.
+
+[31] The components suggest a hybrid worth roughly 14% relative.
+
+     Taking each component from whichever model owns it:
+
+       best miss 0.0719 (reverb-v2)
+     + best FA   0.0602 (pyannote)
+     + best conf 0.0842 (diarizen-large)
+     = 0.2163 DER, against the best single system's 0.2521
+
+     That is a 14% relative reduction and it is the Step 4 target: segmentation
+     from reverb-v2, clustering from diarizen-large. The obvious caveat is that
+     it assumes the stages compose -- confusion measured on DiariZen's own
+     segmentation need not survive being handed Reverb's, and Reverb's low miss
+     was achieved while conceding overlap that DiariZen's clustering may then be
+     asked to assign. 0.2163 is a ceiling on the hybrid, not a prediction.
+
+     Cost recorded for honesty: DiariZen took roughly 4 h of T4 time for the
+     99-clip sweep, against Reverb's 1h25m.
