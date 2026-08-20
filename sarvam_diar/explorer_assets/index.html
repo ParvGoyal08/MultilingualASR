@@ -65,6 +65,12 @@
   .sheet th{color:#9aa3b2;font-weight:600;position:sticky;top:0;background:var(--panel)}
   .sheet td.mono{text-align:left}
   .sheet tr:hover td{background:#141821}
+  .utt{display:grid;grid-template-columns:74px 92px 1fr;gap:8px;padding:4px 6px;
+       border-radius:4px;cursor:pointer;align-items:baseline}
+  .utt:hover{background:#141821}
+  .utt.hot{background:#1b2030;outline:1px solid #3d64ff}
+  .utt .t{font:11px ui-monospace;color:#68707e}
+  .utt .x{font-size:13px;line-height:1.5}
   .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
   canvas{display:block;width:100%;cursor:crosshair}
   .muted{color:var(--dim)}
@@ -165,6 +171,7 @@
 
     <div class="pane" id="inspect"><span class="muted">Click the timeline to inspect a moment.</span></div>
     <div class="pane" id="regions"></div>
+    <div class="pane" id="transcript"></div>
   </div>
 </div>
 
@@ -377,9 +384,16 @@ const cv=$("#tl"), ctx=cv.getContext("2d");
 // you to read as confusion.
 const spkColor = s => { const i = DATA.ref_speakers.indexOf(s);
                         return i < 0 ? "#6b7280" : SPK[i % SPK.length]; };
+// Labels live in a reserved gutter and the plot starts after it. Before this,
+// labels were drawn at baseline y-3 -- ABOVE their own row rectangle -- which
+// put each label's text (y-11..y-3) inside the PREVIOUS row's bar band
+// (y+5..y+17 of the row above). Every bar therefore appeared to be labelled by
+// the row beneath it, which for this tool means reading every speaker wrong.
+const GUT = 150;
 const cssW = () => cv.clientWidth || 1;
-const X = t => (t-view.t0)/(view.t1-view.t0)*cssW();
-const T = x => view.t0 + x/cssW()*(view.t1-view.t0);
+const plotW = () => Math.max(1, cssW() - GUT);
+const X = t => GUT + (t-view.t0)/(view.t1-view.t0)*plotW();
+const T = x => view.t0 + (x-GUT)/plotW()*(view.t1-view.t0);
 
 function draw(){
   if(!DATA) return;
@@ -407,9 +421,10 @@ function draw(){
   const yHyp=i=>hTop+i*(ROW+GAP);
 
   // error strip
-  ctx.fillStyle="#0c0e13"; ctx.fillRect(0,8,w,28);
+  ctx.fillStyle="#0c0e13"; ctx.fillRect(GUT,8,w-GUT,28);
   for(const r of b.regions){
-    const x0=X(r.start), x1=X(r.end); if(x1<0||x0>w) continue;
+    let x0=X(r.start), x1=X(r.end); if(x1<GUT||x0>w) continue;
+    x0=Math.max(GUT,x0); x1=Math.min(w,x1);
     if(r.overlap){ ctx.fillStyle=COL.OVERLAP+"55"; ctx.fillRect(x0,8,Math.max(1,x1-x0),6); }
     if(!shown(r)) continue;
     // When a type is isolated, draw only that type's band -- otherwise an
@@ -426,17 +441,20 @@ function draw(){
       ctx.fillRect(x0,14+i*hgt,Math.max(1,x1-x0),hgt); });
   }
   ctx.fillStyle="#9aa3b2"; ctx.font="10px ui-sans-serif";
-  ctx.fillText("errors",4,6);
+  ctx.fillText("errors",4,26);
 
   // rows
+  // Baseline at y+14 centres a 10px face inside the 20px row, so a label sits
+  // level with its OWN bar.
   const label=(txt,y,c)=>{ ctx.fillStyle=c||"#9aa3b2"; ctx.font="10px ui-monospace";
-                           ctx.fillText(txt,4,y-3); };
+                           ctx.fillText(txt,4,y+14); };
   refS.forEach((s,i)=>{ const y=yRef(i);
     ctx.fillStyle = (FOCUS===s) ? "#161b26" : "#0c0e13"; ctx.fillRect(0,y,w,ROW);
     label("GT "+s,y, (!FOCUS||FOCUS===s) ? spkColor(s) : "#4b515e"); });
   for(const t of DATA.reference){
     const i=refS.indexOf(t.speaker); if(i<0) continue;
-    const x0=X(t.start),x1=X(t.end); if(x1<0||x0>w) continue;
+    let x0=X(t.start),x1=X(t.end); if(x1<GUT||x0>w) continue;
+    x0=Math.max(GUT,x0); x1=Math.min(w,x1);
     // Focus dims rather than hides: the speaker a segment was confused WITH is
     // the point of the view, so the other rows have to stay legible.
     ctx.globalAlpha = (!FOCUS || t.speaker===FOCUS) ? 1 : 0.16;
@@ -458,7 +476,8 @@ function draw(){
     ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); ctx.setLineDash([]); }
   for(const t of b.hypothesis){
     const i=hypS.indexOf(t.mapped); if(i<0) continue;
-    const x0=X(t.start),x1=X(t.end); if(x1<0||x0>w) continue;
+    let x0=X(t.start),x1=X(t.end); if(x1<GUT||x0>w) continue;
+    x0=Math.max(GUT,x0); x1=Math.min(w,x1);
     ctx.globalAlpha = (!FOCUS || t.mapped===FOCUS) ? 1 : 0.16;
     ctx.fillStyle=spkColor(t.mapped);
     ctx.fillRect(x0,yHyp(i)+5,Math.max(1,x1-x0),ROW-8);
@@ -533,6 +552,35 @@ function regionList(){
         <span class="muted">${(r.end-r.start).toFixed(2)}s</span></span>`;
     }).join(" ")
     || '<span class="muted">no regions match the current filter</span>';
+}
+
+/* -------------------------------------------------------------- transcript
+   The reference text was only reachable by clicking one instant at a time.
+   Every utterance carries text, so the whole clip is listed here, coloured by
+   the speaker who said it and clickable to seek. Under a speaker focus it
+   narrows to that speaker, which is what makes "did the model confuse these
+   two because they say similar things?" answerable. */
+function transcript(){
+  const utts = DATA.utterances
+    .filter(u => !FOCUS || u.speaker === FOCUS)
+    .sort((a,b)=>a.start-b.start);
+  const cur = $("#audio").currentTime || 0;
+  $("#transcript").innerHTML =
+    `<div class="row muted" style="margin-bottom:6px">
+       reference transcript — ${utts.length} utterance${utts.length===1?"":"s"}
+       ${FOCUS?`for <b style="color:${spkColor(FOCUS)}">${FOCUS}</b>`:""} · click to seek
+       <span style="flex:1"></span>
+       <span class="mono">${utts.reduce((a,u)=>a+(u.text||"").split(/\s+/).filter(Boolean).length,0)} words</span>
+     </div>` +
+    (utts.length ? utts.map(u=>`
+      <div class="utt ${u.start<=cur&&cur<u.end?"hot":""}" onclick="seek(${u.start})">
+        <span class="t">${u.start.toFixed(1)}–${u.end.toFixed(1)}</span>
+        <span class="chip" style="border-color:${spkColor(u.speaker)}"><i class="sw"
+          style="background:${spkColor(u.speaker)}"></i>${u.speaker}</span>
+        <span class="x">${(u.text||"").replace(/[<>&]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;"}[c]))
+                        || '<span class="muted">(no text)</span>'}</span>
+      </div>`).join("")
+     : '<span class="muted">no utterances for this speaker</span>');
 }
 
 /* ------------------------------------------------------------ filter bars */
@@ -625,7 +673,7 @@ function focusNote(p){
 
 /* One redraw path, so a filter change can never update the canvas but not the
    chips (or vice versa). */
-function refresh(){ chipBars(); draw(); regionList(); }
+function refresh(){ chipBars(); draw(); regionList(); transcript(); }
 let pendingSeek=null;
 window.seek = t => {
   const a=$("#audio");
@@ -807,7 +855,7 @@ cv.onclick = e => { if(dragging&&dragging.moved) return;
   const x=e.clientX-r.left, y=e.clientY-r.top;
   const hit=rowAt(y);
   // The label gutter is a click target for focus; everywhere else seeks.
-  if(hit && x<150){ FOCUS = (FOCUS===hit)?null:hit; refresh(); return; }
+  if(hit && x<GUT){ FOCUS = (FOCUS===hit)?null:hit; refresh(); return; }
   seek(T(x)); };
 // Mirrors draw()'s geometry. Kept adjacent to it so the two cannot drift.
 function rowAt(y){
@@ -833,7 +881,7 @@ cv.onwheel = e => { e.preventDefault();
 cv.onmousedown = e => dragging={x:e.clientX,t0:view.t0,t1:view.t1,moved:false};
 addEventListener("mousemove", e => { if(!dragging) return;
   const r=cv.getBoundingClientRect();
-  const dt=-(e.clientX-dragging.x)/r.width*(dragging.t1-dragging.t0);
+  const dt=-(e.clientX-dragging.x)/plotW()*(dragging.t1-dragging.t0);
   if(Math.abs(e.clientX-dragging.x)>3) dragging.moved=true;
   view={t0:dragging.t0+dt,t1:dragging.t1+dt}; draw(); });
 addEventListener("mouseup", ()=>setTimeout(()=>dragging=null,0));
