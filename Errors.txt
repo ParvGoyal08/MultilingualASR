@@ -1,3 +1,33 @@
 QuA_B6IZ6Ls
 False Alarm - No speaker recorded from 22.87-76.49
 
+
+FA ------ Top 5  files with highest FA
+83gP2vLH7UY__255_2005	0.305	0.323	623.4	272.0	194.4	156.9	0.451	5/5	19.6	33	1750
+Cku_X_SL7qU__60_660	0.643	0.543	319.2	111.7	159.8	47.6	0.547	3/3	7.7	22	600
+Bngfppo1QtA__28_927	0.475	0.519	465.5	139.4	134.0	192.1	0.510	5/5	12.2	9	899
+QuA_B6IZ6Ls__61_1863	0.411	0.389	979.1	655.6	131.6	191.9	0.512	4/4	35.5	16	1802
+0p6cktLGIfY__12_930	0.419	0.603	347.4	130.2	113.8	103.4	0.554	6/5	2.9	11	918
+
+83gP2vLH7UY__255_2005 - 194s of FA - total audio length is 1750s - Composed of many 2-4s regions many of which are laughters, short sentences, etc which are not reliably captured in GT
+Cku_X_SL7qU__60_660 - 159.8s of FA - total audio length is 600s - diarization till 510s only whereas the audio is till 660 seconds hence contributing significantly to all types of errors - 50s of FA due to 1 singular issue
+Cku_X_SL7qU__60_660 - 134s of FA - total audio length is 899s - Composed of many 2-4s regions many of which are laughters, short sentences, etc many of which are not reliably captured in GT
+QuA_B6IZ6Ls__61_1863 - 131s of FA - total audio length is 1802 - sseveral major chunks are missing in GT such as 22-77s, The audio consists of very long regions in which several gaps ranging from 3-7s exists which should ideally have been broken down in GT. Overall a very decent performace as fas as FA is concerned but scores poor due to GT artifacts
+0p6cktLGIfY__12_930 - 113 of FA - total audio length is 918s - Composed of many 2-4s regions many of which are laughters, short sentences, etc which are not reliably captured in GT
+
+
+
+Miss - Top 5 files with highest Miss
+QuA_B6IZ6Ls__61_1863	0.411	0.389	979.1	655.6	131.6	191.9	0.512	4/4	35.5	16	1802
+83gP2vLH7UY__255_2005	0.305	0.323	623.4	272.0	194.4	156.9	0.451	5/5	19.6	33	1750
+PSIzXy5-y2E__2_918	0.300	0.286	266.9	152.5	78.7	35.7	0.499	3/3	4.0	9	916
+86mMTUeDiR8__181_1079	0.472	0.570	388.6	152.5	112.5	123.6	0.596	5/5	4.5	12	898
+OxYCBQKZ3iY__0_1822	0.221	0.264	376.5	142.3	83.1	151.1	0.319	7/7	5.8	8	1822
+
+QuA_B6IZ6Ls__61_1863 - 656s of Miss - total audio length is 1802s - Speaker D Labelling from 110 - 1040s in which the said speaker is barely speaking for less than half of the actual time 
+83gP2vLH7UY__255_2005 - 272s of Miss - total audio length is 1750s - Miss range from 0-4 seconds out of which most are just poor GT Labelling such as 875.4–879.7s MISS ⧉ 4.25s 460.7–464.9s MISS ⧉ 4.22s 74.0–78.2s MISS ⧉ 4.18s 1073.2–1077.4s MISS 
+PSIzXy5-y2E__2_918 - 153s of Miss - total audio length is 916s - Miss range from 0-2 seconds max
+86mMTUeDiR8__181_1079 - 152s of Miss - Miss range from 0-2 seconds max
+OxYCBQKZ3iY__0_1822 - 142s of Miss - total audio length is 1822s - Miss range from 0-2 seconds max
+
+
