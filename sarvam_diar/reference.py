@@ -277,6 +277,11 @@ def build_reference(clip: Clip, drop_nonspeech: bool = False) -> ClipReference:
         "n_utterances": len(utterances),
         "n_ref_tokens": sum(len(tokenize(u.text_norm)) for u in utterances),
         "n_bad_gt_segments": len(clip.bad_segments),
+        # Dominant Unicode script of the reference transcript, so the explorer
+        # can group metrics by language. Scoring-side only: ClipReference is
+        # never handed to a model, so this is not the lang_hint leak.
+        "lang_script": clip.stats.get("lang_script"),
+        "lang_hint": clip.stats.get("lang_hint"),
         "drop_nonspeech": drop_nonspeech,
         **crop_stats,
     }

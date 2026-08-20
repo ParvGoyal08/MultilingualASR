@@ -16,7 +16,13 @@
   header{padding:10px 14px;border-bottom:1px solid var(--line);display:flex;
          gap:14px;align-items:center;flex-wrap:wrap;background:var(--panel)}
   h1{font-size:14px;margin:0;font-weight:600;letter-spacing:.2px}
-  .grid{display:grid;grid-template-columns:minmax(360px,30%) 1fr;height:calc(100vh - 53px)}
+  .grid{display:grid;grid-template-columns:var(--leftw,32%) 5px 1fr;height:calc(100vh - 53px)}
+  /* Drag handle for the clip list. Width is persisted, because the useful
+     width depends on the task: wide to compare component columns, narrow to
+     give the timeline room. */
+  .gutter{cursor:col-resize;background:var(--line);transition:background .12s}
+  .gutter:hover,.gutter.drag{background:#3d64ff}
+  body.resizing{cursor:col-resize;user-select:none}
   .left{border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
   .right{display:flex;flex-direction:column;min-width:0;overflow:auto}
   .controls{padding:10px;border-bottom:1px solid var(--line);display:flex;
@@ -43,6 +49,13 @@
   .chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:10px;
         background:#0c0e13;border:1px solid var(--line);font-size:11px}
   .sw{width:9px;height:9px;border-radius:2px;display:inline-block}
+  .sheet-wrap{display:none;position:fixed;inset:0;background:#00000099;z-index:50;
+              align-items:center;justify-content:center;padding:24px}
+  .sheet-box{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+             max-width:min(1200px,95vw);max-height:88vh;overflow:auto;padding:16px 18px}
+  .sheet th{color:#9aa3b2;font-weight:600;position:sticky;top:0;background:var(--panel)}
+  .sheet td.mono{text-align:left}
+  .sheet tr:hover td{background:#141821}
   .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
   canvas{display:block;width:100%;cursor:crosshair}
   .muted{color:var(--dim)}
@@ -92,12 +105,15 @@
               style="width:66px" placeholder="0">
         <label>speakers</label><input id="minSpk" type="number" min="1" style="width:52px"
               placeholder="any">
+        <label>script</label><select id="script" style="max-width:130px"></select>
+        <button id="byScript" title="pooled metrics grouped by writing system">by script</button>
       </div>
     </div>
     <div class="list"><table id="tbl">
       <thead><tr></tr></thead><tbody></tbody>
     </table></div>
   </div>
+  <div class="gutter" id="gutter" title="drag to resize · double-click to reset"></div>
 
   <!-- ------------------------------------------------------------ right -->
   <div class="right">
@@ -126,11 +142,21 @@
         <span class="muted">predicted rows are drawn in the colour of the reference
           speaker they were mapped to — a colour clash IS the confusion</span>
       </div>
-      <canvas id="tl" height="360"></canvas>
+      <canvas id="tl"></canvas>
     </div>
 
     <div class="pane" id="inspect"><span class="muted">Click the timeline to inspect a moment.</span></div>
     <div class="pane" id="regions"></div>
+  </div>
+</div>
+
+<div class="sheet-wrap" id="sheet">
+  <div class="sheet-box">
+    <div class="row" style="margin-bottom:10px">
+      <b>Metrics by script</b><span style="flex:1"></span>
+      <button id="sheetClose">close</button>
+    </div>
+    <div id="sheetBody"></div>
   </div>
 </div>
 
@@ -151,6 +177,12 @@ async function boot(){
   MODEL = INDEX.models[0];
   $("#model").innerHTML = INDEX.models.map(m=>`<option>${m}</option>`).join("");
   $("#meta").textContent = `${INDEX.n_clips} clips · ${INDEX.models.join(" vs ")}`;
+
+  // Scripts come from the export, not a hard-coded list: an export with only
+  // Devanagari clips should not offer nine dead options.
+  const scripts=[...new Set(INDEX.clips.map(c=>c.script||"unknown"))].sort();
+  $("#script").innerHTML = `<option value="">all</option>` +
+    scripts.map(x=>`<option value="${x}">${x}</option>`).join("");
 
   const v = INDEX.verification;
   if (v && v.mismatches && v.mismatches.length){
@@ -189,12 +221,14 @@ function sorted(){
   const minDer=parseFloat($("#minDer").value)||0;
   const minOvl=(parseFloat($("#minOvl").value)||0)/100;
   const minSpk=parseInt($("#minSpk").value)||0;
+  const scr=$("#script").value;
   const k=$("#sort").value;
   return INDEX.clips
     .filter(c => (!q || c.clip_id.toLowerCase().includes(q))
               && (val(c,"der")??0) >= minDer
               && c.overlap_frac >= minOvl
-              && c.n_speakers_ref >= minSpk)
+              && c.n_speakers_ref >= minSpk
+              && (!scr || (c.script||"unknown") === scr))
     .sort((a,b) => (val(b,k)??-Infinity) - (val(a,k)??-Infinity));
 }
 
@@ -266,16 +300,29 @@ function summary(){
 /* -------------------------------------------------------------- timeline */
 const cv=$("#tl"), ctx=cv.getContext("2d");
 const spkColor = s => SPK[(DATA.ref_speakers.indexOf(s)+SPK.length)%SPK.length] || "#68707e";
-const X = t => (t-view.t0)/(view.t1-view.t0)*cv.width;
-const T = x => view.t0 + x/cv.width*(view.t1-view.t0);
+const cssW = () => cv.clientWidth || 1;
+const X = t => (t-view.t0)/(view.t1-view.t0)*cssW();
+const T = x => view.t0 + x/cssW()*(view.t1-view.t0);
 
 function draw(){
   if(!DATA) return;
   const dpr=devicePixelRatio||1, W=cv.clientWidth;
-  cv.width=W*dpr; cv.height=360*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
-  const w=W, refS=DATA.ref_speakers, b=DATA.models[MODEL];
-  const hypS=[...new Set(b.hypothesis.map(t=>t.mapped))].sort();
-  ctx.clearRect(0,0,w,360);
+  const b0=DATA.models[MODEL];
+  const nExtra=[...new Set(b0.hypothesis.map(t=>t.mapped))]
+                 .filter(x=>!DATA.ref_speakers.includes(x)).length;
+  const H=46 + (DATA.ref_speakers.length*2+nExtra)*24 + 22 + 30;
+  cv.style.height=H+"px";
+  cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  const w=W, refS=DATA.ref_speakers, b=b0;
+  // PRED rows are laid out in REFERENCE order, so row i of the lower block is
+  // the same speaker as row i of the upper block and the two can be compared by
+  // eye. A ref speaker the model never produced keeps its (empty) row rather
+  // than collapsing the layout -- that gap IS the finding. Unmapped predicted
+  // speakers are spurious by construction and go underneath, after a divider.
+  const mappedSet=new Set(b.hypothesis.map(t=>t.mapped));
+  const extra=[...mappedSet].filter(x=>!refS.includes(x)).sort();
+  const hypS=[...refS, ...extra];
+  ctx.clearRect(0,0,w,H);
 
   const ROW=20, GAP=4, top=46;
   const yRef=i=>top+i*(ROW+GAP);
@@ -309,7 +356,15 @@ function draw(){
   }
   hypS.forEach((s,i)=>{ const y=yHyp(i);
     ctx.fillStyle="#0c0e13"; ctx.fillRect(0,y,w,ROW);
-    label("PRED "+s,y,spkColor(s)); });
+    const absent=!mappedSet.has(s), spurious=!refS.includes(s);
+    // A row with no counterpart is worth naming: "never found" is an entire
+    // reference speaker missed, "spurious" is one the model invented.
+    label("PRED "+s+(absent?"  (never found)":spurious?"  (spurious)":""),
+          y, absent?"#4b515e":spkColor(s)); });
+  // Divider above the spurious block, so the mirrored region is unambiguous.
+  if(extra.length){ const y=yHyp(refS.length)-GAP/2;
+    ctx.strokeStyle="#2a2f3a"; ctx.setLineDash([3,3]); ctx.beginPath();
+    ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); ctx.setLineDash([]); }
   for(const t of b.hypothesis){
     const i=hypS.indexOf(t.mapped); if(i<0) continue;
     const x0=X(t.start),x1=X(t.end); if(x1<0||x0>w) continue;
@@ -321,13 +376,14 @@ function draw(){
   ctx.strokeStyle="#2a2f3a"; ctx.beginPath();
   const span=view.t1-view.t0, step=niceStep(span);
   for(let t=Math.ceil(view.t0/step)*step;t<view.t1;t+=step){
-    const x=X(t); ctx.moveTo(x,40); ctx.lineTo(x,352);
-    ctx.fillStyle="#68707e"; ctx.font="10px ui-monospace"; ctx.fillText(t.toFixed(step<1?1:0)+"s",x+2,350);
+    const x=X(t); ctx.moveTo(x,40); ctx.lineTo(x,H-8);
+    ctx.fillStyle="#68707e"; ctx.font="10px ui-monospace";
+    ctx.fillText(t.toFixed(step<1?1:0)+"s",x+2,H-10);
   }
   ctx.stroke();
   const cur=$("#audio").currentTime;
   if(cur>=view.t0&&cur<=view.t1){ ctx.strokeStyle="#e6e8ee"; ctx.lineWidth=1.5;
-    ctx.beginPath(); ctx.moveTo(X(cur),8); ctx.lineTo(X(cur),352); ctx.stroke(); ctx.lineWidth=1; }
+    ctx.beginPath(); ctx.moveTo(X(cur),8); ctx.lineTo(X(cur),H-8); ctx.stroke(); ctx.lineWidth=1; }
 }
 function niceStep(span){ const raw=span/10, p=Math.pow(10,Math.floor(Math.log10(raw)));
   return [1,2,5,10].map(m=>m*p).find(s=>s>=raw)||p*10; }
@@ -377,8 +433,103 @@ window.seek = t => { $("#audio").currentTime=t; inspect(t); draw(); };
 $("#model").onchange = e => { MODEL=e.target.value; render(); if(DATA){summary();draw();regionList();} };
 ["#search","#minDer","#minOvl","#minSpk"].forEach(s=>$(s).oninput=render);
 $("#sort").onchange = render;
+$("#script").onchange = render;
 $("#reset").onclick = () => { ["#search","#minDer","#minOvl","#minSpk"].forEach(s=>$(s).value="");
-  $("#sort").value="der"; render(); };
+  $("#script").value=""; $("#sort").value="der"; render(); };
+
+/* ------------------------------------------------------- resizable list */
+(() => {
+  const g=$("#gutter"), grid=document.querySelector(".grid");
+  const set=px=>{ const w=Math.max(280,Math.min(px,innerWidth-420));
+                  grid.style.setProperty("--leftw",w+"px");
+                  localStorage.setItem("dee.leftw",w); draw(); };
+  const saved=parseInt(localStorage.getItem("dee.leftw")||"",10);
+  if(saved) grid.style.setProperty("--leftw",saved+"px");
+  let on=false;
+  g.onmousedown = e => { on=true; g.classList.add("drag");
+                         document.body.classList.add("resizing"); e.preventDefault(); };
+  addEventListener("mousemove", e => { if(on) set(e.clientX); });
+  addEventListener("mouseup", () => { on=false; g.classList.remove("drag");
+                                      document.body.classList.remove("resizing"); });
+  // Reset to the default proportion rather than a pixel width, so it still
+  // looks right on a different display.
+  g.ondblclick = () => { grid.style.setProperty("--leftw","32%");
+                         localStorage.removeItem("dee.leftw"); draw(); };
+})();
+
+/* ------------------------------------------------ metrics grouped by script
+   Pooled, not averaged: DER is a ratio of durations, so a script's figure is
+   sum(error) / sum(reference duration) across its clips. Averaging per-clip
+   DERs would weight a 60 s clip like a 30 min one and is a different
+   statistic from the corpus number reported elsewhere. */
+function scriptTable(){
+  const groups={};
+  for(const c of INDEX.clips){
+    const k=c.script||"unknown";
+    (groups[k]=groups[k]||[]).push(c);
+  }
+  const cells=(rows,model)=>{
+    let miss=0,fa=0,conf=0,tot=0,jerSum=0,jerN=0,spkOk=0,spkN=0,dur=0;
+    for(const c of rows){
+      const m=c.models[model]; if(!m) continue;
+      // A clip with no exported denominator cannot join the pool; counting its
+      // error without its total would inflate every script it appears in.
+      if(m.total_sec==null||!(m.total_sec>0)) continue;
+      miss+=m.miss_sec||0; fa+=m.fa_sec||0; conf+=m.confusion_sec||0;
+      tot+=m.total_sec; dur+=c.duration||0;
+      if(m.jer!=null){ jerSum+=m.jer; jerN++; }
+      spkN++; if((m.speaker_count_error??1)===0) spkOk++;
+    }
+    if(!tot) return null;
+    return {der:(miss+fa+conf)/tot, miss:miss/tot, fa:fa/tot, conf:conf/tot,
+            jer:jerN?jerSum/jerN:null, spk:spkN?spkOk/spkN:null,
+            n:spkN, hours:dur/3600};
+  };
+  const names=Object.keys(groups).sort();
+  const head=`<tr><th>script</th><th>clips</th><th>hours</th>` +
+    INDEX.models.map(m=>`<th colspan="6">${m}</th>`).join("") + `</tr>` +
+    `<tr><th></th><th></th><th></th>` + INDEX.models.map(()=>
+      `<th>DER</th><th>JER</th><th>miss</th><th>FA</th><th>conf</th><th>spk✓</th>`
+    ).join("") + `</tr>`;
+  const body=names.map(k=>{
+    const per=INDEX.models.map(m=>cells(groups[k],m));
+    const ref=per[0];
+    return `<tr><td class="mono">${k}</td><td>${groups[k].length}</td>
+      <td>${(groups[k].reduce((a,c)=>a+(c.duration||0),0)/3600).toFixed(2)}</td>` +
+      per.map(v=>v?`<td>${fmt(v.der,3)}</td><td>${fmt(v.jer,3)}</td>
+        <td>${fmt(v.miss,3)}</td><td>${fmt(v.fa,3)}</td><td>${fmt(v.conf,3)}</td>
+        <td>${v.spk==null?"–":(v.spk*100).toFixed(0)+"%"}</td>`
+        :`<td colspan="6" class="muted">–</td>`).join("") + `</tr>`;
+  }).join("");
+  // Corpus row, so a script can be read against the whole rather than in
+  // isolation -- 0.42 means nothing until you know the corpus is 0.38.
+  const all=INDEX.models.map(m=>cells(INDEX.clips,m));
+  const total=`<tr style="border-top:2px solid var(--line);font-weight:600">
+    <td>ALL</td><td>${INDEX.clips.length}</td>
+    <td>${(INDEX.clips.reduce((a,c)=>a+(c.duration||0),0)/3600).toFixed(2)}</td>` +
+    all.map(v=>v?`<td>${fmt(v.der,3)}</td><td>${fmt(v.jer,3)}</td>
+      <td>${fmt(v.miss,3)}</td><td>${fmt(v.fa,3)}</td><td>${fmt(v.conf,3)}</td>
+      <td>${v.spk==null?"–":(v.spk*100).toFixed(0)+"%"}</td>`
+      :`<td colspan="6" class="muted">–</td>`).join("") + `</tr>`;
+  return `<table class="sheet">${head}${body}${total}</table>`;
+}
+
+$("#byScript").onclick = () => {
+  const el=$("#sheet");
+  if(el.style.display==="flex"){ el.style.display="none"; return; }
+  $("#sheetBody").innerHTML = scriptTable() +
+    `<p class="muted" style="margin:10px 0 0">DER, miss, FA and confusion are pooled
+     (Σ seconds ÷ Σ reference seconds), matching the corpus figure. JER is a mean of
+     per-clip values because it has no shared denominator. spk✓ is the exact
+     speaker-count match rate. Click a script row's name to filter the list.</p>`;
+  el.style.display="flex";
+  el.querySelectorAll("tbody tr, tr").forEach(tr=>{
+    const k=tr.querySelector("td.mono"); if(!k) return;
+    tr.style.cursor="pointer";
+    tr.onclick=()=>{ $("#script").value=k.textContent.trim(); render();
+                     el.style.display="none"; };
+  });
+};
 $("#worst").onclick = () => { $("#sort").value="error_sec"; $("#minDer").value="";
   render(); const r=sorted()[0]; if(r) select(r.clip_id); };
 
@@ -394,10 +545,10 @@ function tick(){ if(!playing) return;
   draw(); requestAnimationFrame(tick); }
 
 cv.onclick = e => { if(dragging&&dragging.moved) return;
-  const r=cv.getBoundingClientRect(); seek(T((e.clientX-r.left)*(cv.width/r.width)/(devicePixelRatio||1))); };
+  const r=cv.getBoundingClientRect(); seek(T((e.clientX-r.left))); };
 cv.onwheel = e => { e.preventDefault();
   const r=cv.getBoundingClientRect();
-  const t=T((e.clientX-r.left)*(cv.width/r.width)/(devicePixelRatio||1));
+  const t=T((e.clientX-r.left));
   const f=e.deltaY>0?1.25:0.8, s=(view.t1-view.t0)*f;
   const lim=DATA.uem[1]-DATA.uem[0];
   const w=Math.min(s,lim), frac=(t-view.t0)/(view.t1-view.t0);
@@ -414,7 +565,11 @@ document.querySelectorAll("[data-z]").forEach(b => b.onclick = () => {
   const lim=DATA.uem[1]-DATA.uem[0], z=+b.dataset.z, c=$("#audio").currentTime||view.t0;
   const s=lim/z; view={t0:Math.max(0,c-s/2),t1:Math.min(DATA.uem[1],Math.max(0,c-s/2)+s)}; draw(); });
 addEventListener("resize", draw);
-addEventListener("keydown", e => { if(e.code==="Space"){e.preventDefault();$("#play").click();} });
+$("#sheetClose").onclick = () => $("#sheet").style.display="none";
+$("#sheet").onclick = e => { if(e.target.id==="sheet") $("#sheet").style.display="none"; };
+addEventListener("keydown", e => {
+  if(e.code==="Escape"){ $("#sheet").style.display="none"; return; }
+  if(e.code==="Space"){e.preventDefault();$("#play").click();} });
 boot();
 </script>
 </body>

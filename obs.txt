@@ -172,3 +172,42 @@ Segment count per clip ranges from 5 to 556. The 556-segment clip alone contribu
 segments, so per-segment statistics are noticeably sensitive to a handful of clips.
 
 Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped segment + 909s turn + highest overlap at 35%) each carry several independent faults. Worth reporting their per-clip metrics separately, or excluding them from ASR scoring with the limitation stated.
+--------------------------------------------------------------------------
+[18] community-1 and pyannote-3.1 share their segmentation model, so the
+     benchmark comparison between them is purely a clustering comparison.
+
+     Measured over all 99 clips (44,568.8 s of reference speech):
+
+         summed |delta miss|         0.20 s   (0.000% of total)
+         summed |delta false alarm|  0.24 s   (0.001%)
+         summed |delta confusion|  730.30 s   (1.639%)
+
+     Largest speech-detection disagreement on any single clip is 0.03 s.
+     Miss and false alarm depend only on the speech/non-speech decision, so
+     the two pipelines are running the same VAD (pyannote/segmentation-3.0);
+     community-1's changes are in the embedding and clustering stages.
+
+     Consequence for the writeup: our corpus DER (0.263 vs 0.264) is NOT
+     evidence that community-1 fails to improve on 3.1 in general -- it is
+     evidence that on THIS corpus the improvement is confined to assignment,
+     and the two happen to trade off evenly. It also means every second of
+     our 10.8% miss+FA is attributable to one shared segmentation model,
+     which is where Step 4's improvement has to come from. A model with
+     genuinely different segmentation (Reverb v2, DiariZen) is therefore a
+     far more informative addition to the roster than a third pyannote.
+
+[19] DER varies ~2x by script, far more than it varies by model.
+
+         Malayalam  0.364      Devanagari 0.251
+         Telugu     0.338      Oriya      0.223
+         Bengali    0.335      Gurmukhi   0.206
+         Gujarati   0.286      Tamil      0.193
+                               Kannada    0.182
+                               ALL        0.263   (community-1, pooled)
+
+     Pooled, not averaged (sum of error seconds / sum of reference seconds),
+     so this is the same statistic as the corpus number. Malayalam is 2.0x
+     Kannada while the two models differ by 0.001 corpus-wide, so language is
+     the dominant axis of variation in this benchmark and any per-model
+     conclusion should be read against it. Group sizes are small (7-25 clips)
+     so treat the ordering as indicative, not significant.

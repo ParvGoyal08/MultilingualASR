@@ -1,0 +1,1999 @@
+{
+  "clip_id": "7YfsQPYY-W0__351_411",
+  "uem": [
+    0.0,
+    60.0
+  ],
+  "reference": [
+    {
+      "speaker": "Speaker_A",
+      "start": 0.01,
+      "end": 3.63
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 4.31,
+      "end": 5.91
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 5.85,
+      "end": 6.31
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 6.37,
+      "end": 11.03
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 10.57,
+      "end": 14.45
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 12.45,
+      "end": 21.61
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 16.15,
+      "end": 16.73
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 21.69,
+      "end": 28.21
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 28.69,
+      "end": 33.37
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 31.53,
+      "end": 35.11
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 35.11,
+      "end": 35.21
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 35.21,
+      "end": 35.93
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 36.11,
+      "end": 39.75
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 39.75,
+      "end": 43.33
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 40.27,
+      "end": 41.43
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 43.31,
+      "end": 44.27
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 43.51,
+      "end": 43.67
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 44.27,
+      "end": 46.39
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 47.63,
+      "end": 49.99
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 49.89,
+      "end": 51.31
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 51.29,
+      "end": 53.17
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 53.07,
+      "end": 53.37
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 53.37,
+      "end": 55.51
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 55.09,
+      "end": 56.97
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 56.91,
+      "end": 60.0
+    }
+  ],
+  "ref_speakers": [
+    "Speaker_A",
+    "Speaker_B"
+  ],
+  "utterances": [
+    {
+      "speaker": "Speaker_A",
+      "start": 0.01,
+      "end": 3.63,
+      "text": "ଆସିନିଅନ୍ତୁ ଯେକୌଣସି ଯାହା ବି ନିଅନ୍ତୁ ଆପଣଙ୍କୁ ସ୍ପେଶାଲ ମିଳିଯିବ ଏଇଟା ଗୋଟେ ଗିଫ୍ଟ"
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 4.31,
+      "end": 5.91,
+      "text": "ଏଇଟା ଆପଣଙ୍କୁ କମ୍ପ୍ଲିମେଣ୍ଟାରୀ ମିଳିବ"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 5.85,
+      "end": 6.31,
+      "text": "ଆଜ୍ଞା"
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 6.37,
+      "end": 11.03,
+      "text": "ଆଉ ଆମର କହିବା ଆପଲ୍ରେ ଏଇଟା ମିଳିବ ଆଣ୍ଡ୍ରୋଏଡ୍ରେ ଆପଣଙ୍କର ସେଇଟା ରହିବ"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 10.57,
+      "end": 14.45,
+      "text": "ନାହିଁ ସିଏ ବି ଆମର ଆମେ ଦେଇପାରିବୁ ଆପଲ୍ ଆପଲ୍ରେ ବି ଦେଇପାରିବୁ ଆପଲ୍ରେ ବି ରହିବ ଆଜ୍ଞା"
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 12.45,
+      "end": 21.61,
+      "text": "ଆଜ୍ଞା ଆପଲ୍ରେ ବି ରହିବ ଆପଲ୍ରେ ତାହାଲେ ଆପଣଙ୍କର ଯୋଡାଏ ଗିଫ୍ଟ ଆଇଟମ୍ ଆପଣଙ୍କୁ ଦେଖିବାପାଇଁ ମିଳିବ ଆଉ ଆମର କହିବା ଆପଲ୍ ଫୋନ୍ ଭାଇ ଯୋଉମାନେ ନବା ଭାଇ ଡାଟା ଟ୍ରାନ୍ସଫର୍ କେମିତି କଣ ସବୁ ରହୁଛି"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 16.15,
+      "end": 16.73,
+      "text": "ଆଜ୍ଞା"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 21.69,
+      "end": 28.21,
+      "text": "ଡାଟା ଟ୍ରାନ୍ସଫର୍ ଆପଣ କିଛି ଟେନସନ୍ ନିଅନ୍ତୁ ନାହିଁ ଆପଣ ଓଲ୍ଡ ଫୋନ୍ରୁ ନ୍ୟୁ ଫୋନ୍କୁ ଡାଟା ଟ୍ରାନ୍ସଫର୍ ଆମେ ଟୋଟାଲ୍ ନିଟ୍ ଆଣ୍ଡ କ୍ଲିନ୍ କରି ହଣ୍ଡ୍ରେଡ୍ ପର୍ସେଣ୍ଟ କରିକି ଦବୁ ଆମେ ଆପଣଙ୍କୁ"
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 28.69,
+      "end": 33.37,
+      "text": "ଆପଲ୍ର କୌଣସି ବି ଫୋନ୍ ନିଅନ୍ତୁ ଆପଣଙ୍କୁ ଇଣ୍ଟ୍ରେଷ୍ଟ ଲାଗିବନି ପ୍ରୋସେସିଙ୍ଗ୍ କିଛି ବି ଲାଗିବନି"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 31.53,
+      "end": 35.11,
+      "text": "କିଛି ଲାଗିବନି ଆଜ୍ଞା ଆପଣ ଆସନ୍ତୁ ଟ୍ରିପଲ୍ ଜିରୋରେ ନେଇକି ଯିବେ"
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 35.11,
+      "end": 35.21,
+      "text": "ଆଜ୍ଞା"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 35.21,
+      "end": 35.93,
+      "text": "ଆଜ୍ଞା"
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 36.11,
+      "end": 39.75,
+      "text": "ତା ପରେ ଆମର ଆସିବା ହେରି ସାମସଙ୍ଗ ଫୋନ୍ ସାମସଙ୍ଗ ଫୋନ୍ ଭାଇ କେତେ ଟଙ୍କାରୁ ଷ୍ଟାର୍ଟିଙ୍ଗ୍ ହଉଛି"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 39.75,
+      "end": 43.33,
+      "text": "ସାର୍ ସାମସଙ୍ଗ ଫୋନ୍ ଆପଣଙ୍କର ଏଇଟ୍ ଥାଉଜେଣ୍ଡରୁ ଷ୍ଟାର୍ଟିଙ୍ଗ୍ ହେଇଯିବ"
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 43.31,
+      "end": 44.27,
+      "text": "ଆଜ୍ଞା"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 43.51,
+      "end": 43.67,
+      "text": "ହୁଁ"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 44.27,
+      "end": 46.39,
+      "text": "ନେଇକି ଆପଣଙ୍କୁ ୱାନ୍ ଲାକ୍ଷ"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 47.63,
+      "end": 49.99,
+      "text": "ଫିଫ୍ଟି ସିକ୍ସଟି ଟୁ ଲାକ୍ଷସ୍ ପର୍ଯ୍ୟନ୍ତ ଆସିଯିବ"
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 49.89,
+      "end": 51.31,
+      "text": "ଆଉ ଆମର ଏଇଟା ବି କେତେ ଟଙ୍କା ଆସୁଛି"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 51.29,
+      "end": 53.17,
+      "text": "ଏଇଟା ଆଠ ହଜାରରୁ ଷ୍ଟାର୍ଟିଙ୍ଗ୍ ରହିବ"
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 53.07,
+      "end": 53.37,
+      "text": "ହୁଁ"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 53.37,
+      "end": 55.51,
+      "text": "ଆପଣ ଆରାମସେ ଏଇଟାକୁ ଆସିକି ନେଇ ବି ପାରିବେ"
+    },
+    {
+      "speaker": "Speaker_B",
+      "start": 55.09,
+      "end": 56.97,
+      "text": "ଏ ସ୍କିମ୍ କେତେ ଆଠ ମାସ ନା ଛଅ ମାସ କେତେ"
+    },
+    {
+      "speaker": "Speaker_A",
+      "start": 56.91,
+      "end": 60.0,
+      "text": "ଇଏ ଛଅ ମାସ ଅଛି ଆଠ ମାସ ଦୁଇଟାଯାକ ଅଛି ଆପଣଙ୍କ ପାଖରେ ଆମ ପାଖରେ ସ୍କିମ୍ ଆପଣ ଆସିକି ଦେଖିକି"
+    }
+  ],
+  "models": {
+    "community-1": {
+      "hypothesis": [
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_A",
+          "start": 0.031,
+          "end": 17.041
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_B",
+          "start": 6.038,
+          "end": 6.426
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_B",
+          "start": 8.654,
+          "end": 9.228
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_B",
+          "start": 17.176,
+          "end": 22.964
+        },
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_A",
+          "start": 22.964,
+          "end": 23.69
+        },
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_A",
+          "start": 24.162,
+          "end": 29.123
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_B",
+          "start": 27.031,
+          "end": 31.452
+        },
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_A",
+          "start": 31.638,
+          "end": 36.835
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_B",
+          "start": 35.789,
+          "end": 39.198
+        },
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_A",
+          "start": 39.772,
+          "end": 39.789
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_B",
+          "start": 39.788,
+          "end": 41.779
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_B",
+          "start": 43.113,
+          "end": 52.124
+        },
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_A",
+          "start": 50.588,
+          "end": 50.925
+        },
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_A",
+          "start": 52.124,
+          "end": 52.276
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_B",
+          "start": 52.276,
+          "end": 59.971
+        }
+      ],
+      "mapping": {
+        "SPEAKER_00": "Speaker_B",
+        "SPEAKER_01": "Speaker_A"
+      },
+      "hyp_speakers": [
+        "SPEAKER_00",
+        "SPEAKER_01"
+      ],
+      "regions": [
+        {
+          "start": 0.01,
+          "end": 0.031,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 3.63,
+          "end": 4.31,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 4.31,
+          "end": 5.85,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 5.85,
+          "end": 5.91,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 6.038,
+          "end": 6.31,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 6.31,
+          "end": 6.37,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 6.37,
+          "end": 6.426,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 6.426,
+          "end": 8.654,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 8.654,
+          "end": 9.228,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 9.228,
+          "end": 10.57,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 10.57,
+          "end": 11.03,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 12.45,
+          "end": 14.45,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 14.45,
+          "end": 16.15,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 16.15,
+          "end": 16.73,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 16.73,
+          "end": 17.041,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 17.041,
+          "end": 17.176,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 21.61,
+          "end": 21.69,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 21.69,
+          "end": 22.964,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 23.69,
+          "end": 24.162,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 27.031,
+          "end": 28.21,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 28.21,
+          "end": 28.69,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 28.69,
+          "end": 29.123,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 31.452,
+          "end": 31.53,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 31.53,
+          "end": 31.638,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 31.638,
+          "end": 33.37,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 35.11,
+          "end": 35.21,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 35.789,
+          "end": 35.93,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 35.93,
+          "end": 36.11,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 36.11,
+          "end": 36.835,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 39.198,
+          "end": 39.75,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 39.75,
+          "end": 39.772,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 39.788,
+          "end": 39.789,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 39.789,
+          "end": 40.27,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 40.27,
+          "end": 41.43,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 41.43,
+          "end": 41.779,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 41.779,
+          "end": 43.113,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 43.113,
+          "end": 43.31,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 43.31,
+          "end": 43.33,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 43.51,
+          "end": 43.67,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 44.27,
+          "end": 46.39,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 46.39,
+          "end": 47.63,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 47.63,
+          "end": 49.89,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 49.89,
+          "end": 49.99,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 50.588,
+          "end": 50.925,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 51.29,
+          "end": 51.31,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 51.31,
+          "end": 52.124,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 52.276,
+          "end": 53.07,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 53.07,
+          "end": 53.17,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 53.37,
+          "end": 55.09,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 55.09,
+          "end": 55.51,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 56.91,
+          "end": 56.97,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 56.97,
+          "end": 59.971,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 59.971,
+          "end": 60.0,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": []
+        }
+      ],
+      "totals": {
+        "miss_sec": 9.731,
+        "fa_sec": 7.158,
+        "confusion_sec": 20.231,
+        "correct_sec": 34.288,
+        "overlap_sec": 6.98
+      },
+      "metrics": {
+        "der": 0.5777431906614787,
+        "der_fa_sec": 7.158000000000007,
+        "der_miss_sec": 9.730999999999991,
+        "der_confusion_sec": 20.231,
+        "der_correct_sec": 34.288,
+        "der_total_sec": 64.25,
+        "jer": 0.6257167804450363,
+        "n_speakers_ref": 2,
+        "n_speakers_hyp": 2,
+        "speaker_count_error": 0,
+        "speaker_count_correct": 1,
+        "lenient_der": 0.5594448205822613,
+        "lenient_der_fa_sec": 4.9159999999999995,
+        "lenient_der_miss_sec": 2.3679999999999914,
+        "lenient_der_confusion_sec": 17.505000000000006,
+        "lenient_der_correct_sec": 24.437000000000005,
+        "lenient_der_total_sec": 44.31,
+        "lenient_jer": 0.6338791195714848,
+        "lenient_n_speakers_ref": 2,
+        "lenient_n_speakers_hyp": 2,
+        "lenient_speaker_count_error": 0,
+        "lenient_speaker_count_correct": 1,
+        "overlap_der": 0.5077363896848138,
+        "overlap_sec": 13.959999999999994,
+        "single_speaker_der": 0.5287731159276198,
+        "clip_dur_sec": 60.0
+      }
+    },
+    "pyannote-3.1": {
+      "hypothesis": [
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_B",
+          "start": 0.031,
+          "end": 17.041
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_A",
+          "start": 6.038,
+          "end": 6.426
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_A",
+          "start": 8.654,
+          "end": 9.228
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_A",
+          "start": 17.176,
+          "end": 23.69
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_A",
+          "start": 24.162,
+          "end": 31.452
+        },
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_B",
+          "start": 27.031,
+          "end": 29.124
+        },
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_B",
+          "start": 31.638,
+          "end": 36.835
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_A",
+          "start": 35.789,
+          "end": 39.198
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_A",
+          "start": 39.772,
+          "end": 41.78
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_A",
+          "start": 43.113,
+          "end": 52.124
+        },
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_B",
+          "start": 50.588,
+          "end": 50.925
+        },
+        {
+          "speaker": "SPEAKER_01",
+          "mapped": "Speaker_B",
+          "start": 52.124,
+          "end": 52.276
+        },
+        {
+          "speaker": "SPEAKER_00",
+          "mapped": "Speaker_A",
+          "start": 52.276,
+          "end": 59.971
+        }
+      ],
+      "mapping": {
+        "SPEAKER_00": "Speaker_A",
+        "SPEAKER_01": "Speaker_B"
+      },
+      "hyp_speakers": [
+        "SPEAKER_00",
+        "SPEAKER_01"
+      ],
+      "regions": [
+        {
+          "start": 0.01,
+          "end": 0.031,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 0.031,
+          "end": 3.63,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 3.63,
+          "end": 4.31,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 5.85,
+          "end": 5.91,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 5.91,
+          "end": 6.038,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 6.038,
+          "end": 6.31,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 6.31,
+          "end": 6.37,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 6.37,
+          "end": 6.426,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 8.654,
+          "end": 9.228,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 10.57,
+          "end": 11.03,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 11.03,
+          "end": 12.45,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 12.45,
+          "end": 14.45,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 16.15,
+          "end": 16.73,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 17.041,
+          "end": 17.176,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 17.176,
+          "end": 21.61,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 21.61,
+          "end": 21.69,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 23.69,
+          "end": 24.162,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 27.031,
+          "end": 28.21,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 28.21,
+          "end": 28.69,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 28.69,
+          "end": 29.124,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 29.124,
+          "end": 31.452,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 31.452,
+          "end": 31.53,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 31.53,
+          "end": 31.638,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 31.638,
+          "end": 33.37,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 33.37,
+          "end": 35.11,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 35.21,
+          "end": 35.789,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 35.789,
+          "end": 35.93,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 35.93,
+          "end": 36.11,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 36.11,
+          "end": 36.835,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 36.835,
+          "end": 39.198,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 39.198,
+          "end": 39.75,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 39.75,
+          "end": 39.772,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 40.27,
+          "end": 41.43,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 41.78,
+          "end": 43.113,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": []
+        },
+        {
+          "start": 43.31,
+          "end": 43.33,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 43.33,
+          "end": 43.51,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 43.51,
+          "end": 43.67,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 43.67,
+          "end": 44.27,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 46.39,
+          "end": 47.63,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 49.89,
+          "end": 49.99,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 49.99,
+          "end": 50.588,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 50.588,
+          "end": 50.925,
+          "types": [
+            "FA"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A",
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 50.925,
+          "end": 51.29,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 51.29,
+          "end": 51.31,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 52.124,
+          "end": 52.276,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": [
+            "Speaker_B"
+          ]
+        },
+        {
+          "start": 53.07,
+          "end": 53.17,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 53.17,
+          "end": 53.37,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 55.09,
+          "end": 55.51,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 55.51,
+          "end": 56.91,
+          "types": [
+            "CONFUSION"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 56.91,
+          "end": 56.97,
+          "types": [
+            "MISS"
+          ],
+          "overlap": true,
+          "ref": [
+            "Speaker_A",
+            "Speaker_B"
+          ],
+          "hyp": [
+            "Speaker_A"
+          ]
+        },
+        {
+          "start": 59.971,
+          "end": 60.0,
+          "types": [
+            "MISS"
+          ],
+          "overlap": false,
+          "ref": [
+            "Speaker_A"
+          ],
+          "hyp": []
+        }
+      ],
+      "totals": {
+        "miss_sec": 9.73,
+        "fa_sec": 7.158,
+        "confusion_sec": 20.086,
+        "correct_sec": 34.434,
+        "overlap_sec": 6.98
+      },
+      "metrics": {
+        "der": 0.5754708171206226,
+        "der_fa_sec": 7.1579999999999995,
+        "der_miss_sec": 9.729999999999993,
+        "der_confusion_sec": 20.086000000000006,
+        "der_correct_sec": 34.434,
+        "der_total_sec": 64.25,
+        "jer": 0.6261877332885389,
+        "n_speakers_ref": 2,
+        "n_speakers_hyp": 2,
+        "speaker_count_error": 0,
+        "speaker_count_correct": 1,
+        "lenient_der": 0.5662153012863913,
+        "lenient_der_fa_sec": 4.916999999999997,
+        "lenient_der_miss_sec": 2.3669999999999938,
+        "lenient_der_confusion_sec": 17.805000000000007,
+        "lenient_der_correct_sec": 24.138,
+        "lenient_der_total_sec": 44.31,
+        "lenient_jer": 0.6497286292248228,
+        "lenient_n_speakers_ref": 2,
+        "lenient_n_speakers_hyp": 2,
+        "lenient_speaker_count_error": 0,
+        "lenient_speaker_count_correct": 1,
+        "overlap_der": 0.5077363896848138,
+        "overlap_sec": 13.959999999999994,
+        "single_speaker_der": 0.5258699542652614,
+        "clip_dur_sec": 60.0
+      }
+    }
+  }
+}

@@ -262,9 +262,11 @@ def export(cfg: Config, metrics: pd.DataFrame, references: dict[str, ClipReferen
             "clip_id": clip_id,
             "duration": round(ref.uem[1], 2),
             "n_speakers_ref": len(payload["ref_speakers"]),
-            "overlap_frac": round(ref.stats.get("gt_overlap_frac", 0.0), 4),
+            "overlap_frac": round(ref.stats.get("overlap_frac", 0.0), 4),
             "short_turn_frac": round(short_turn_fraction(ref), 4),
             "n_turns_ref": len(ref.turns),
+            "script": ref.stats.get("lang_script") or "unknown",
+            "lang": ref.stats.get("lang_hint") or "unknown",
             # Whether audio EXISTS, not whether we intended to copy it: with
             # copy_audio=True and a missing source, promising audio makes the UI
             # show a load error instead of its "no audio" message.
@@ -282,6 +284,9 @@ def export(cfg: Config, metrics: pd.DataFrame, references: dict[str, ClipReferen
                                    + block["totals"]["fa_sec"]
                                    + block["totals"]["confusion_sec"], 3),
                 "overlap_der": m.get("overlap_der"),
+                # DER denominator, so the UI can pool by script the same way
+                # evaluation.pool() does rather than averaging rates.
+                "total_sec": m.get("total_sec"),
                 "n_speakers_hyp": len(block["hyp_speakers"]),
                 "speaker_count_error": len(block["hyp_speakers"]) - entry["n_speakers_ref"],
             }
