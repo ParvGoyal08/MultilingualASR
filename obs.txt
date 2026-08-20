@@ -211,3 +211,96 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      the dominant axis of variation in this benchmark and any per-model
      conclusion should be read against it. Group sizes are small (7-25 clips)
      so treat the ordering as indicative, not significant.
+
+--------------------------------------------------------------------------
+[20] Reverb v2 breaks the shared-segmentation ceiling that [18] identified.
+
+     Corpus, collar 0.0, overlap scored, 99 clips:
+
+       model          DER      miss      FA    confusion   spk acc   bias
+       community-1   0.2634   0.1079   0.0602    0.0954      78.8%   -0.17
+       pyannote-3.1  0.2637   0.1079   0.0602    0.0957      71.7%   -0.17
+       reverb-v2     0.2521   0.0719   0.0681    0.1121      60.6%   -0.35
+
+       lenient (collar 0.25, overlap skipped): 0.2024 / 0.2028 / 0.1721
+
+     Miss falls 33% relative, 0.1079 -> 0.0719. That is the largest single
+     movement in this benchmark and it confirms [18] directly: the two pyannote
+     pipelines could not move miss or FA at all (0.44 s apart over 12.4 h)
+     because they share pyannote/segmentation-3.0, and the first model with a
+     different segmenter moved it immediately.
+
+     But Reverb gives back 0.008 on FA and 0.017 on confusion, so the net gain
+     is only 0.011 DER. It detects speech markedly better and clusters it
+     markedly worse: speaker-count accuracy drops 78.8% -> 60.6% with bias
+     -0.35, and the under-estimating stratum grows from 18 clips to 31. Its
+     confusion is a consequence of under-splitting, not of poor embeddings per
+     se.
+
+     Consequence for Step 4: the two halves are separable stages and each side
+     wins a different one, so Reverb's segmentation combined with pyannote's
+     clustering is the concrete first thing to try, not a generic "tune
+     thresholds" pass. The lenient number (0.172 vs 0.202, 15% relative) says
+     the same thing more loudly, because a collar forgives exactly the boundary
+     work segmentation is responsible for.
+
+     Cost: RTF ~0.12 on a Kaggle T4, 1h25m for the 99-clip sweep.
+
+[21] A large share of what is scored as error is annotation, not model error.
+     Hand inspection of the top-5 FA and top-5 miss clips (Errors.txt), then
+     verified against the data.
+
+     Two artifact types, both confirmed by measurement:
+
+     (a) IMPLAUSIBLY LONG REFERENCE TURNS. QuA_B6IZ6Ls__61_1863 labels
+         Speaker_D as ONE turn from 108.1-1035.1 s -- 927 seconds, i.e. a
+         single 15-minute continuous utterance. The speaker is audibly silent
+         for much of it, the model correctly says so, and every such second is
+         scored as miss. 584.5 s of that clip's 655.6 s of miss (89%) lies
+         inside that one label.
+
+         Corpus-wide: 16 reference turns exceed 60 s, totalling 36 minutes.
+
+     (b) UNANNOTATED SPEECH. QuA has two unlabelled stretches, 24.34-54.03 s
+         and 54.83-76.85 s, holding 49.8 s of FA (38% of the clip's FA).
+         Cku_X_SL7qU__60_660 stops annotating at 509.7 s in a 600 s clip: both
+         models produce output across the full 600 s, and 84.8 s of FA (53% of
+         that clip's FA) falls in the 90-second unannotated tail.
+
+         Corpus-wide: 39 unannotated stretches longer than 5 s, totalling
+         9 minutes.
+
+     NOTE the direction on Cku. The working note recorded it as "diarization
+     till 510s only", i.e. a truncated hypothesis and therefore a pipeline
+     failure. It is the reference that stops at 509.7 s; the hypothesis runs
+     the full 600 s (284 turns for community-1). It is a labelling artifact
+     like the rest, and there is nothing to fix in the code.
+
+     Across the corpus that is ~45 minutes of a 12.3-hour benchmark where the
+     reference is structurally unreliable. The writeup should report DER as
+     measured AND re-report it with these regions excluded, labelled clearly as
+     a diagnostic rather than the headline -- the brief fixes the scoring
+     protocol, so the measured number stays the number.
+
+[22] FA in reference silence: 3.19 DER points, and how it is measured.
+
+     Reference speech (union across speakers) covers 93.7% of wall-clock audio,
+     leaving 46.2 minutes the reference calls silence. Within it, community-1
+     predicts at least one speaker for 1362 s -- 49% of that silence by
+     duration -- contributing 1421 speaker-weighted seconds of false alarm,
+     which is 3.19% of the 44,569 s DER denominator.
+
+     The two numerators differ and must not be mixed. 1362 s is DURATION where
+     any speaker is predicted; 1421 s is that duration weighted by how many
+     speakers are predicted, which is what DER counts and can exceed the
+     available duration when two predicted speakers overlap in a silent region.
+     An earlier note quoted 51% from 1421/2769, a speaker-weighted numerator
+     over a duration denominator. The correct coverage figure is 49%; the
+     correct DER contribution is 3.19 points. The conclusion is unchanged
+     because the two nearly coincide -- most silent-region false alarms involve
+     a single predicted speaker -- but the ratio was not well formed.
+
+     Given [21], much of this is likely unannotated speech rather than
+     hallucination, which would make it a measurement floor rather than a
+     tuning target. That is a listening question, not a computation, and it is
+     unresolved.
