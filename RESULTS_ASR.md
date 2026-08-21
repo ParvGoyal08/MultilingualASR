@@ -216,7 +216,7 @@ Attribution for the long-form rows uses the **fusion** diarization.
 | system | clips | ratio | WER | cpWER | DI-cpWER | attribution | WDER |
 |---|---|---|---|---|---|---|---|
 | `sarvam-saaras-v3@reverb-v2` | 99 | 0.96 | 0.2728 | **0.3957** | 0.2728 | 0.1229 | 0.1128 |
-| `sarvam-saaras-v3@fusion` | **81 (partial)** | 1.01 | 0.3179 | **0.3446** | — | — | 0.0846 |
+| `sarvam-saaras-v3@fusion` | 99 | 0.979 | 0.2787 | **0.3181** | 0.2787 | 0.0394 | 0.0628 |
 | `sarvam-saaras-v4@reverb-v2` | 9 | 0.96 | 0.2606 | **0.3485** | 0.2606 | 0.0879 | 0.0718 |
 | `whisper-large-v3-turbo` | 99 | 0.75 | 0.9827 | **0.9957** | 0.9827 | 0.0130 | 0.5471 |
 | `whisper-large-v3` | 35 | 0.31 | 0.9296 | **0.9340** | 0.9296 | 0.0044 | 0.2664 |
@@ -224,15 +224,20 @@ Attribution for the long-form rows uses the **fusion** diarization.
 `ratio` = hypothesis words ÷ reference words; a system producing about as many
 words as were spoken sits near 1.0.
 
-> **The `@fusion` row is not comparable to the `@reverb-v2` row.** 81 clips
-> against 99, and the 81 are whichever the sweep had finished. It is shown
-> because the sweep is still running, and it will be replaced, not because the
-> comparison is currently valid.
->
-> The trend across sweep progress is nonetheless consistent: at 32 clips the row
-> read cpWER 0.3811 / WDER 0.1197, at 81 it reads 0.3446 / 0.0846. If it holds to
-> 99, the fusion front-end is worth roughly 13% relative on cpWER and 25% on WDER
-> against `reverb-v2` — which would be the Step 4 result.
+**The `@fusion` row is now complete at 99 clips** and is the final system. It
+supersedes the partial rows quoted in earlier revisions of this file (32 clips:
+cpWER 0.3811; 81 clips: 0.3446). Two things changed between those and this one:
+the sweep finished, and 27 clips were re-transcribed after the fusion→ASR
+provenance defect was found (see WRITEUP.md §5) — that fix alone moved corpus
+cpWER 0.3381 → 0.3181.
+
+Against `@reverb-v2` on the same 99 clips the fusion front-end is worth **−19.6%
+relative cpWER** and **−44.3% relative WDER**, winning on 88 of 99 clips. Flat WER
+is 2.2% worse, because preserving overlap means overlapped audio is transcribed
+once per speaker and some words appear twice.
+
+**WRITEUP.md is the authoritative summary**; this file is the Step 3 working
+record.
 
 The Whisper cpWER/WDER figures differ slightly from earlier revisions of this
 file (1.0082 → 0.9957, 0.5551 → 0.5471) for one reason: attribution moved from
