@@ -1151,3 +1151,40 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      One clip resisted language ID entirely: 7YfsQPYY-W0__351_411 is Oriya and
      was detected bn (p=0.87) by every configuration. Oriya is the thinnest
      Indic language in Whisper's training data and it is the single script miss.
+
+--------------------------------------------------------------------------
+[44] One bad segment discarded an entire clip, and it cost the two largest.
+     The Saaras fusion sweep reported 97/99. The by-script table summed to 97
+     with Devanagari at 24 (of 25) and Gurmukhi at 6 (of 7), and the reference
+     word gap was 123,896 - 113,918 = 9,978, which identifies the two exactly:
+
+       8o7jKmq6HsM__30_1770   Devanagari  4,454 words  1740 s  113 segments
+       OxYCBQKZ3iY__0_1822    Gurmukhi    5,524 words  1822 s  476 segments
+
+     The two longest clips in the corpus, and the second has more segments than
+     any other. That is the mechanism, not a coincidence: transcribe_segments
+     fans segments out with pool.map, which RE-RAISES the first exception, so a
+     single non-retryable 400 anywhere in a clip propagated to run_segmented and
+     the whole transcript was dropped. 476 segments means 476 chances to hit one.
+     The failure rate per segment need not be high for this to be near-certain
+     on the longest clips, which is why exactly the two largest were lost.
+
+     Two things made it hard to see. The failure was logged and counted but
+     never persisted, so it lived only in the kernel scrollback and vanished
+     with the session; and the only surviving symptom was a clip count of 97,
+     which reads as "still running" rather than "failed".
+
+     Fixed three ways. A failing segment is now caught inside the worker and
+     returns an empty row marked error:<Type>, so the clip completes with its
+     other segments. meta carries n_failed_segments and the clip logs
+     "transcript is INCOMPLETE", so a partial result cannot pass for a whole
+     one. Clip-level failures append to logs/step3_failures.jsonl, matching the
+     step1/step2 convention that already existed and that step 3 lacked.
+
+     Verified by injecting a _Fatal into one segment of a two-segment clip: both
+     rows return, one carries text, meta reports n_failed_segments 1. Before the
+     fix that clip raised and was discarded.
+
+     Worth noting the metric consequence. Those 9,978 words are 8% of the corpus
+     and both clips are long, so the 97-clip figures are not a random subsample
+     of the 99-clip ones -- they systematically exclude the hardest material.

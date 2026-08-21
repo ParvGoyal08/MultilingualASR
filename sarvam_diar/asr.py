@@ -35,8 +35,8 @@ import pandas as pd
 
 from .config import Config, StageFlags
 from .data import ClipInput, Turn
-from .utils import (LOG, apply_selection, human_time, now_utc_iso, read_json,
-                    write_json_atomic)
+from .utils import (LOG, append_jsonl, apply_selection, human_time, now_utc_iso,
+                    read_json, write_json_atomic)
 
 SARVAM_URL = "https://api.sarvam.ai/speech-to-text"
 SARVAM_MODEL = "saaras:v3"
@@ -583,7 +583,14 @@ def run(cfg: Config, inputs: Sequence[ClipInput], flags: StageFlags | None = Non
                 words, meta = BACKENDS[system](cfg, wav)
                 elapsed = time.perf_counter() - started
             except Exception as exc:  # noqa: BLE001
+                # Persisted, not just logged: a failure that lives only in the
+                # kernel's scrollback is invisible the moment the session ends,
+                # and a short clips count is the only symptom left.
                 LOG.error("%s  FAILED %s: %s", prefix, type(exc).__name__, exc)
+                append_jsonl(cfg.step3_failures_jsonl, {
+                    "clip_id": clip.clip_id, "system": system,
+                    "error_type": type(exc).__name__, "error": str(exc)[:500],
+                    "at_utc": now_utc_iso()})
                 failed += 1
                 continue
 
@@ -909,6 +916,17 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
                 text, lang = " ".join(w.text for w in words), meta.get("detected_language")
             return {"i": idx, "start": t.start, "end": t.end, "speaker": t.speaker,
                     "text": text, "skipped": None, "lang": lang}
+        except Exception as exc:  # noqa: BLE001
+            # One segment must not discard the clip. pool.map re-raises, so a
+            # single non-retryable 400 anywhere in a long clip used to lose the
+            # whole transcript -- and a clip with hundreds of segments has
+            # hundreds of chances to hit one. Measured: the Saaras fusion sweep
+            # completed 97 of 99, and the two it lost were the two largest.
+            LOG.warning("%s seg %d [%.1f-%.1f]s FAILED %s: %s", wav.stem, idx,
+                        t.start, t.end, type(exc).__name__, str(exc)[:160])
+            return {"i": idx, "start": t.start, "end": t.end, "speaker": t.speaker,
+                    "text": "", "skipped": f"error:{type(exc).__name__}",
+                    "lang": None, "error": str(exc)[:300]}
         finally:
             buf.unlink(missing_ok=True)
 
@@ -921,7 +939,12 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
     rows.sort(key=lambda r: r["i"])
 
     langs = [r["lang"] for r in rows if r["lang"]]
+    n_err = sum(1 for r in rows if (r["skipped"] or "").startswith("error:"))
+    if n_err:
+        LOG.error("%s: %d/%d segments failed -- transcript is INCOMPLETE",
+                  wav.stem, n_err, len(rows))
     meta = {"clip_language": clip_lang, "n_segments": len(rows),
+            "n_failed_segments": n_err,
             "n_skipped_short": sum(1 for r in rows if r["skipped"] == "too_short"),
             "detected_language": max(set(langs), key=langs.count) if langs else None,
             "languages_seen": sorted(set(langs))}
@@ -960,7 +983,14 @@ def run_segmented(cfg: Config, inputs: Sequence[ClipInput], diar_model: str,
                 segs, meta = transcribe_segments(cfg, system, wav, turns, workers=workers)
                 elapsed = time.perf_counter() - started
             except Exception as exc:  # noqa: BLE001
+                # Persisted, not just logged: a failure that lives only in the
+                # kernel's scrollback is invisible the moment the session ends,
+                # and a short clips count is the only symptom left.
                 LOG.error("%s  FAILED %s: %s", prefix, type(exc).__name__, exc)
+                append_jsonl(cfg.step3_failures_jsonl, {
+                    "clip_id": clip.clip_id, "system": system,
+                    "error_type": type(exc).__name__, "error": str(exc)[:500],
+                    "at_utc": now_utc_iso()})
                 failed += 1
                 continue
             payload = {"clip_id": clip.clip_id, "system": tag, "status": "ok",

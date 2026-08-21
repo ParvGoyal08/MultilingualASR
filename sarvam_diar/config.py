@@ -256,6 +256,10 @@ class Config:
         return self.logs_dir / "step2_failures.jsonl"
 
     @property
+    def step3_failures_jsonl(self) -> Path:
+        return self.logs_dir / "step3_failures.jsonl"
+
+    @property
     def step3_metrics_csv(self) -> Path:
         return self.results_dir / "step3_metrics.csv"
 
