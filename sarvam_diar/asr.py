@@ -853,6 +853,25 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
     key = resolve_sarvam_key(cfg) if system.startswith("sarvam") else None
     model = sarvam_model_for(system)
 
+    # Language is identified ONCE for the whole clip, not per segment. Two
+    # reasons, and the first is the bug this fixes: the per-segment path called
+    # transcribe_whisper without lid_model, so every segment fell back to the
+    # transcribing model's own detection -- for turbo, the defect that makes it
+    # translate to English. Measured, per-segment turbo produced 469 words
+    # against 405 reference words with only ~18 of them matching.
+    #
+    # The second reason is that per-segment detection would be worse even if it
+    # worked. A turn can be two seconds long, and identifying a language from
+    # two seconds of code-switched speech is far less reliable than from thirty;
+    # it also multiplies the cost by the segment count. The language of a clip
+    # does not change between its turns, so detecting once is both cheaper and
+    # more accurate.
+    clip_lang = None
+    if not system.startswith("sarvam"):
+        clip_lang, _p = detect_language(cfg, wav)
+        LOG.info("%s: language %s (p=%.2f) for all %d segments",
+                 wav.stem, clip_lang, _p, len(turns))
+
     def one(idx_turn):
         idx, t = idx_turn
         dur = t.end - t.start
@@ -873,7 +892,7 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
                 size = "large-v3-turbo" if "turbo" in system else "large-v3"
                 words, meta = transcribe_whisper(
                     cfg, buf, model_size=size, word_timestamps=False, beam_size=1,
-                    condition_on_previous_text=False)
+                    condition_on_previous_text=False, language=clip_lang)
                 text, lang = " ".join(w.text for w in words), meta.get("detected_language")
             return {"i": idx, "start": t.start, "end": t.end, "speaker": t.speaker,
                     "text": text, "skipped": None, "lang": lang}
@@ -889,7 +908,7 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
     rows.sort(key=lambda r: r["i"])
 
     langs = [r["lang"] for r in rows if r["lang"]]
-    meta = {"n_segments": len(rows),
+    meta = {"clip_language": clip_lang, "n_segments": len(rows),
             "n_skipped_short": sum(1 for r in rows if r["skipped"] == "too_short"),
             "detected_language": max(set(langs), key=langs.count) if langs else None,
             "languages_seen": sorted(set(langs))}
