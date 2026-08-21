@@ -794,3 +794,54 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      0.2390 against reverb-v2's 0.2238 on raw GT, and 0.2105 against 0.2146
      aligned -- and unlike any single model or any transplant, it does not
      collapse on the other half of the split.
+
+--------------------------------------------------------------------------
+[36] whisper-large-v3-turbo cannot identify these languages, and silently
+     translates instead of transcribing. WER ~1.0.
+
+     Scored against the reference (reverb-v2 turns, per-segment attribution for
+     Sarvam, long-form for Whisper):
+
+       system                      clips  ref words     WER   cpWER    WDER
+       whisper-large-v3-turbo         99    123,896  0.9827  1.0082  0.5551
+       whisper-large-v3               35     45,046  0.9296  0.9367  0.3286
+       sarvam-saaras-v3@reverb-v2      4      5,033  0.1997  0.2291  0.0237
+
+     A WER near 1.0 is not a weak system, it is a broken one -- and Sarvam
+     reaching 0.20 on clips where turbo reaches 0.99 shows the audio is fine.
+
+     The cause is language identification, not transcription:
+
+       detected language   large-v3 (35 clips)   turbo (99 clips)
+         correct Indic     34                    24
+         "en"               1                    75
+
+     Given "en" for Marathi or Kannada audio, Whisper emits English. The output
+     is not garbage, it is a TRANSLATION, which scores near-total error against
+     an Indic-script reference:
+
+       reference : भारताचा वर्तमान आणि भविष्य तिघांनाही पहिला प्रश्न आहे
+       turbo     : foreign foreign Thank you.
+
+       reference : ನಾನು ಒಂದು ವರ್ಷದಿಂದ ಆಪ್ ಯೂಸ್ ಮಾಡ್ತಾ ಇದ್ದೀನಿ
+       turbo     : I am the only way to use my work. I have learned this...
+
+     large-v3 gets the same audio right, so this is specific to the distilled
+     model: turbo keeps the encoder but cuts the decoder from 32 layers to 4,
+     and language identification degraded with it. The speed came at a cost that
+     is not visible in a WER benchmark for English.
+
+     Fix, implemented: split the two jobs. large-v3 identifies the language --
+     an encoder-only pass over ~30 s, cheap -- and turbo does the decoding,
+     which is where its speed actually lives. Detection uses 4 segments rather
+     than 1, since a code-switched clip can open on an English phrase and
+     committing the whole clip from the first window is how "en" wins.
+
+     This is NOT a ground-truth leak. The language comes from a model listening
+     to the audio; ref_lang_script is derived from the reference transcript and
+     remains unavailable to every pipeline stage.
+
+     The wider lesson for the writeup: a model swap justified on throughput was
+     validated on throughput alone. Language identification is upstream of
+     everything else in a multilingual pipeline, and it fails silently -- the
+     output looks like fluent text, just in the wrong language.

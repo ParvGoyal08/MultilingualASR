@@ -71,21 +71,46 @@ def _load_audio(path: str | os.PathLike, sr: int = 16_000):
     return audio, rate
 
 
-def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
-                       word_timestamps: bool = True, beam_size: int = 5,
-                       condition_on_previous_text: bool = True,
-                       batch_size: int = 0) -> tuple[list[Word], dict]:
-    """faster-whisper with word timestamps.
+# Which model decides the language, when the transcribing model cannot be
+# trusted to. large-v3-turbo is distilled and its language identification is
+# badly degraded on this corpus -- it returned "en" on 75 of 99 clips and then
+# TRANSLATED to English instead of transcribing, giving WER ~1.0. large-v3 on
+# the same audio got 34 of 35 right. Language ID is an encoder-only pass over
+# roughly 30 s, so borrowing the accurate model for that one step costs a few
+# seconds a clip and leaves the fast model doing the decoding, which is where
+# turbo's speed actually comes from.
+#
+# This is NOT a ground-truth leak: the language comes from a model listening to
+# the audio, never from ref_lang_script, which is derived from the reference
+# transcript and stays unavailable to every pipeline stage.
+LID_MODEL = "large-v3"
 
-    Deliberately not WhisperX: it pins an older pyannote and would fight the
-    environment Step 2 needs, while the only part of it we want -- assigning
-    words to speakers -- is `assign_words()` below.
+
+def detect_language(cfg: Config, wav: Path, model_size: str = LID_MODEL,
+                    segments: int = 4) -> tuple[str | None, float]:
+    """Identify the spoken language with a model chosen for that job.
+
+    `segments` > 1 because a code-switched clip can open on an English phrase,
+    and detecting from the first window alone then commits the whole clip to the
+    wrong language.
+    """
+    model = _whisper_model(cfg, model_size)
+    try:
+        lang, prob, _ = model.detect_language(
+            audio=str(wav), language_detection_segments=segments)
+        return lang, float(prob)
+    except Exception as exc:  # noqa: BLE001
+        LOG.warning("language detection failed on %s: %s", wav.name, exc)
+        return None, 0.0
+
+
+def _whisper_model(cfg: Config, model_size: str):
+    """Load and cache one faster-whisper model, keyed by size.
+
+    Cached because the two-model arrangement -- large-v3 for language ID, turbo
+    for decoding -- would otherwise reload weights on every clip.
     """
     from faster_whisper import WhisperModel
-
-    # Default: the diarizer decides what is speech, and Whisper transcribes
-    # everything it is given. Only the batched path overrides this.
-    vad_filter = False
 
     key = ("whisper", model_size)
     if key not in _MODEL_CACHE:
@@ -95,10 +120,33 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
         compute = "float16" if device == "cuda" else "int8"
         t0 = time.perf_counter()
         LOG.info("loading faster-whisper %s on %s (%s) -- the first call also "
-                 "downloads ~3 GB", model_size, device, compute)
+                 "downloads the weights", model_size, device, compute)
         _MODEL_CACHE[key] = WhisperModel(model_size, device=device, compute_type=compute)
         LOG.info("model ready in %.0fs", time.perf_counter() - t0)
-    model = _MODEL_CACHE[key]
+    return _MODEL_CACHE[key]
+
+
+def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
+                       word_timestamps: bool = True, beam_size: int = 5,
+                       condition_on_previous_text: bool = True,
+                       batch_size: int = 0, language: str | None = None,
+                       lid_model: str | None = None) -> tuple[list[Word], dict]:
+    """faster-whisper with word timestamps.
+
+    Deliberately not WhisperX: it pins an older pyannote and would fight the
+    environment Step 2 needs, while the only part of it we want -- assigning
+    words to speakers -- is `assign_words()` below.
+    """
+
+    # Default: the diarizer decides what is speech, and Whisper transcribes
+    # everything it is given. Only the batched path overrides this.
+    vad_filter = False
+
+    model = _whisper_model(cfg, model_size)
+
+    lid_prob = None
+    if language is None and lid_model:
+        language, lid_prob = detect_language(cfg, wav, lid_model)
 
     if batch_size and batch_size > 1:
         # BatchedInferencePipeline refuses to run without either vad_filter=True
@@ -128,7 +176,7 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
     # known cause of repetition loops). Both are dropped for that path.
     segments, info = model.transcribe(
         str(wav),
-        language=None,          # detect; never hinted from the reference
+        language=language,      # from audio only; never from the reference
         word_timestamps=word_timestamps,
         vad_filter=vad_filter,
         beam_size=beam_size,
@@ -150,6 +198,7 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
                 words.append(Word(tok, float(seg.start), float(seg.end)))
     meta = {"detected_language": info.language,
             "language_probability": round(float(info.language_probability), 4),
+            "lid_model": lid_model, "lid_probability": lid_prob,
             "beam_size": beam_size, "batched": bool(batch_size and batch_size > 1),
             "whisper_vad": vad_filter}
     return words, meta
@@ -292,8 +341,11 @@ BACKENDS: dict[str, Callable[..., tuple[list[Word], dict]]] = {
     # models, which are English-only and therefore useless on a corpus spanning
     # nine Indic scripts. The cost is a small accuracy loss against large-v3;
     # both are kept so the trade can be measured rather than assumed.
+    # turbo decodes, large-v3 decides the language. Turbo alone returned "en"
+    # on 75 of 99 clips and translated instead of transcribing.
     "whisper-large-v3-turbo": lambda cfg, wav: transcribe_whisper(
-        cfg, wav, "large-v3-turbo", word_timestamps=True, beam_size=1),
+        cfg, wav, "large-v3-turbo", word_timestamps=True, beam_size=1,
+        lid_model=LID_MODEL),
     "whisper-large-v3": lambda cfg, wav: transcribe_whisper(
         cfg, wav, "large-v3", word_timestamps=True, beam_size=1),
     "whisper-large-v3-batched": lambda cfg, wav: transcribe_whisper(
