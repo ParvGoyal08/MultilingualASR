@@ -293,3 +293,62 @@ def transplant(seg_turns: Sequence[Turn], lab_turns: Sequence[Turn],
             active[idx[m[l]]] |= (seg[j] > 0) & gap
 
     return to_turns(active, out_labels, min_dur)
+
+
+# ------------------------------------------------------------- materialise
+
+
+def materialise(cfg: Config, references: dict, models: Sequence[str],
+                clip_ids: Iterable[str] | None = None, name: str = "fusion",
+                threshold: float = 0.5, min_dur: float = 0.20,
+                force: bool = False):
+    """Write the fusion to disk as an ordinary diarization model.
+
+    Everything downstream -- scoring, the error explorer, and above all the
+    per-segment ASR -- loads hypotheses by model name from
+    `hypotheses/<model>/<clip>.rttm`. A fusion computed on the fly is invisible
+    to all of it. Writing the same RTTM + sidecar pair a real run writes makes
+    `name` usable anywhere a model name is accepted, including as the ASR
+    segmentation source.
+
+    Deterministic given its inputs, so re-running is a no-op unless `force`.
+    """
+    import pandas as pd
+
+    from . import diarization
+    from .utils import atomic_publish, now_utc_iso, write_json_atomic
+
+    rows = []
+    for cid in (clip_ids if clip_ids is not None else references):
+        ref = references.get(cid)
+        if ref is None:
+            continue
+        if diarization.is_done(cfg, name, cid) and not force:
+            rows.append({"model": name, "clip_id": cid, "status": "skipped"})
+            continue
+        systems = {m: diarization.load_hypothesis(cfg, m, cid)
+                   for m in models if diarization.is_done(cfg, m, cid)}
+        if not systems:
+            continue
+        turns = dover_lap(systems, ref.uem[1], weights={m: 1.0 for m in systems},
+                          threshold=threshold, min_dur=min_dur)
+        tmp = cfg.work_dir / f"fuse_{name}_{cid}.rttm"
+        tmp.parent.mkdir(parents=True, exist_ok=True)
+        tmp.write_text(diarization.to_rttm(cid, turns), encoding="utf-8")
+        atomic_publish(tmp, cfg.hyp_rttm_path(name, cid))
+        tmp.unlink(missing_ok=True)
+        record = {
+            "model": name, "clip_id": cid, "status": "ok", "oracle": False,
+            "n_turns": len(turns),
+            "n_speakers_hyp": len({t.speaker for t in turns}),
+            "clip_dur_sec": ref.uem[1],
+            "max_end": round(max((t.end for t in turns), default=0.0), 3),
+            "elapsed_sec": None, "rtf": None,
+            "fused_from": list(systems), "threshold": threshold,
+            "min_dur": min_dur, "weights": "equal",
+            "diarized_at_utc": now_utc_iso(),
+        }
+        write_json_atomic(cfg.hyp_meta_path(name, cid), record)
+        rows.append(record)
+    LOG.info("materialised '%s' for %d clips from %s", name, len(rows), list(models))
+    return pd.DataFrame(rows)
