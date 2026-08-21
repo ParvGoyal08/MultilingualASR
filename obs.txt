@@ -1215,3 +1215,43 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      quietly claim the oracle language was used when it was not. The honest
      reading of those rows is that one script is being scored against a model
      that cannot target it.
+
+--------------------------------------------------------------------------
+[46] turbo's language confidence is ANTI-correlated with correctness;
+     large-v3's is properly calibrated. Scored against the reference language
+     (oracle_language) over every long-form output on disk:
+
+                            clips  wrong   mean p right   mean p wrong
+       large-v3-turbo          99     92           0.65           0.70
+       large-v3                35      4           0.88           0.64
+
+     Turbo is not merely inaccurate, it is confidently inaccurate: it answers
+     "en" at p=1.00 on a Gujarati clip, and at p>=0.97 on Tamil, Malayalam,
+     Punjabi, Telugu, Kannada and Marathi ones. Its probability carries no
+     usable signal, which is exactly why [36] stayed invisible until output
+     SCRIPT was checked rather than confidence. When it is wrong it says en 75
+     times, hi 8, ta 4, gu 4, ur once.
+
+     large-v3 shows the opposite and healthier pattern -- 0.88 when right
+     against 0.64 when wrong -- so its p is a usable reliability signal. All
+     four of its errors:
+
+       0.87  bn <- or   Oriya      7YfsQPYY-W0__351_411
+       0.78  ne <- or   Oriya      8Ve4SWhlrrA__0_70
+       0.26  ne <- or   Oriya      2HGP34TNvjg__84_194
+       0.64  en <- gu   Gujarati   2T4pjueLrsk__677_1290
+
+     Three of the four are Oriya, the language Whisper cannot express at all
+     ([45]). It reaches for neighbours: bn once, ne twice. Nepali is the worse
+     substitution of the two, being Devanagari-script -- Oriya audio then comes
+     back in the wrong script AND the wrong language, while bn is at least the
+     nearest relative.
+
+     Exactly ONE genuine misdetection exists outside the label-set gap, and its
+     low p flagged it. So on this corpus a p<0.70 gate on large-v3 catches half
+     the errors at almost no cost in false alarms -- worth having if the
+     pipeline ever needs to route clips to a fallback recogniser.
+
+     Method note: this comparison is only possible because oracle_language
+     resolves hi_or_mr from the reference text. It is scoring-side and never
+     reaches a model.
