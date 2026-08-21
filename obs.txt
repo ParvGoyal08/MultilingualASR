@@ -1411,3 +1411,63 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      that "is the input what I think it is" outranks "is the model good enough",
      and settings_key/segmentation_key exist because that question was answered
      wrongly once already.
+
+--------------------------------------------------------------------------
+[51] The Gemini refinement stage is a null result, and the interesting part is
+     the failure the guards did NOT catch.
+
+     10 GT-blind pilot clips (dev only), gemini-3.5-flash, temperature 0:
+
+       system                    ratio      WER    cpWER     WDER   ins
+       baseline                 0.9734   0.2357   0.2498   0.0346   223
+       arm A text correction    0.9722   0.2369   0.2493   0.0334   223
+       arm B + overlap cleanup  0.9700   0.2371   0.2498   0.0335   217
+
+     Arm A mean delta -0.0014, 95% CI [-0.0054, +0.0014]. Arm B +0.0013, CI
+     [-0.0008, +0.0038]. Both CIs include zero, both win 2 of 10 clips. Every
+     pre-registered abandon criterion fired: CI includes zero, win rate 20%
+     against a 60% bar, insertions did not fall, revert rate 29% against 20%.
+
+     THE ARCHITECTURE WORKED. All 20 refined payloads have a segmentation
+     byte-identical to source -- same segmentation_key, speakers, timestamps,
+     order, count. Returning only {id, text} made changing a timestamp or a
+     speaker structurally impossible rather than merely forbidden, and the
+     pre-write assertion never fired once. The model was also appropriately
+     conservative: 24 edits across 402 segments, and every zero-overlap control
+     clip came back untouched.
+
+     THE GUARD WAS THE WRONG SHAPE. 7 of 24 applied edits (29%) introduced a
+     script that was absent from the original, and all 7 passed the R1
+     dominant-script rail because the dominant script did not change:
+
+       Telugu   పార్టీ        -> パーティー     (Japanese katakana)
+       Bengali  এটাও         -> 것도          (Korean hangul)
+       Marathi  हे           -> হে           (Bengali)
+       + Thai, + Devanagari into Bengali
+
+     The model is substituting a SINGLE token with a phonetically similar word
+     in an unrelated script. One corrupted token in forty leaves the dominant
+     script intact, so a dominant-script test cannot see it. That also explains
+     why WER got slightly WORSE (0.2357 -> 0.2369) while cpWER barely moved:
+     sparse token-level damage, never an improvement.
+
+     The right rail is per-token -- reject any output token whose script is
+     absent from the input segment. Two lines, and it would have caught all 7.
+     Deliberately NOT applied: the prompt and guards were frozen before the run,
+     and changing them after seeing the result would invalidate the pilot. It is
+     recorded as the first thing to change if this is ever revisited.
+
+     Why the null was likely, stated in advance and borne out: [50] had already
+     taken the prize. The provenance fix moved cpWER 0.3381 -> 0.3181 and cut
+     insertions 41%, and the free deterministic dedup rule had already reversed
+     sign on the corrected baseline. Arm B matching baseline is the PREDICTED
+     outcome. And arm A aims at word error that a text-only refiner cannot hear:
+     Saaras's residual errors here are code-switched surface forms and ambiguous
+     short turns, not linguistic implausibilities, and the model correctly
+     declined to touch them.
+
+     Operational note: the free tier caps GenerateRequestsPerDayPerProjectPerModel
+     at 2/day for gemini-3.7-flash and ~20 for others, which forced whole-clip
+     windows (10 calls/arm) instead of the designed 12-segment cores (37/arm).
+     At 402 segments and 24 edits the pilot cannot resolve an effect below about
+     0.005 cpWER, which is itself a reason not to read anything into the sign.
