@@ -337,16 +337,45 @@ LLM's translation quality as an ASR result. As a **diagnostic** it is legitimate
 judging semantic adequacy separates "heard it, answered in English" from
 "hallucinated" — but never as a headline number.
 
-### 7.2 It deletes about half the words
+### 7.2 It deletes about half the words — but not by truncating
 
 Both variants produce roughly half the reference words, with ~50% of the error
-being deletions rather than substitutions. Part of it is **repetition collapse**:
-on `0AEEA8NyVwY__11_609` Whisper transcribes 47 s correctly then repeats one
-five-word phrase for the remaining 550 s; on `83gP2vLH7UY__255_2005` a single
-5-gram occupies 37% of the output.
+being deletions rather than substitutions. Two mechanisms have been proposed and
+both are now **measured and rejected** as the explanation.
+
+Over all 99 turbo outputs:
+
+| | |
+|---|---|
+| transcripts spanning <50% of their clip | **0 / 99** |
+| `rep5` > 50% (one 5-gram dominates) | 1 / 99 |
+| `rep5` > 20% | 3 / 99 |
+| median `rep5` | 3.0% |
+
+`rep5` is the share of output tokens covered by occurrences of the most frequent
+5-gram, counted by **position** — consecutive repeats produce overlapping
+n-grams, so counting occurrences × n yields figures above 100%.
+
+**Not one transcript stops early.** Every one emits words across the full clip
+duration, so the deficit is word *density*, not early termination. An earlier
+revision of this file said the cause was greedy decoding truncating output; that
+is **retracted**.
+
+**Repetition collapse is real but rare.** `Kdi-ECuOaKg__2_78` reaches `rep5`
+79.8% (272 words for 76 s) and `83gP2vLH7UY__255_2005` produces 273 words for
+1750 s at `rep5` 32.6%. Three clips out of 99 cannot move a corpus ratio from
+1.0 to 0.75.
+
+The clip previously cited here as the canonical collapse case,
+`0AEEA8NyVwY__11_609`, **is not one**: 896 words, transcript spanning 100% of its
+598 s, top 5-gram occurring once, `rep5` 0.6%. Its actual failure is
+mis-recognition — garbled Devanagari, Marathi content detected as `hi`.
 
 Sarvam reaches ratio 0.96 on the same audio, so the reference word counts are
-right and the audio is transcribable.
+right and the audio is transcribable. The density deficit remains **unexplained**;
+§7.1 gives the likeliest candidate (English translation is more compact than the
+code-switched Indic source), but the 7 in-script clips show the same 0.74 ratio
+as the 92 out-of-script ones, which that story does not predict.
 
 ### 7.3 The probe — what has been tested, exactly
 

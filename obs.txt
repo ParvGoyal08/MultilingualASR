@@ -1056,3 +1056,45 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      would also report an LLM's translation quality as an ASR result. As a
      DIAGNOSTIC it is legitimate -- judging semantic adequacy separates "heard
      it, answered in English" from "hallucinated" -- but never as a headline.
+
+--------------------------------------------------------------------------
+[42] Retracts the mechanism in [37]. Whisper's deletions are NOT truncation,
+     and repetition collapse is real but far too rare to explain them.
+
+     Measured over all 99 whisper-large-v3-turbo outputs:
+
+       transcripts spanning <50% of their clip     0 / 99
+       rep5 > 50% (single 5-gram dominates)        1 / 99
+       rep5 > 20%                                  3 / 99
+       median rep5                                 3.0%
+
+     rep5 is the share of output tokens covered by occurrences of its most
+     frequent 5-gram, counted by POSITION -- consecutive repeats of one token
+     produce overlapping n-grams, and counting occurrences x n gives figures
+     above 100%, which is how the first version of this metric reported 391%.
+
+     Not one transcript stops early. Every one emits words across the whole
+     clip. So "greedy decoding truncates" -- the headline of [37] -- is wrong:
+     the deficit is word DENSITY, roughly half as many words spread over the
+     full duration, not early termination. The A/B in [37] showing beam size
+     changing nothing was pointing at this all along and I read it as a null
+     result rather than as evidence against the mechanism.
+
+     The specific clip [37] cites is not a collapse case at all.
+     0AEEA8NyVwY__11_609: 896 words, transcript spans 100% of the 598 s, top
+     5-gram occurs ONCE, rep5 0.6%. The claim that it "transcribes 47 s
+     correctly then repeats a five-word phrase for the remaining 550 s" is
+     false. What is actually wrong with that clip is mis-recognition -- garbled
+     Devanagari, Marathi content detected as hi, one stray CJK character.
+
+     Collapse does exist. Kdi-ECuOaKg__2_78 reaches rep5 79.8% (272 words for
+     76 s), and 83gP2vLH7UY__255_2005 produces 273 words for 1750 s of audio at
+     rep5 32.6%. Three clips out of 99 cannot move a corpus ratio from 1.0 to
+     0.75.
+
+     What remains unexplained is therefore the density itself, and [41] gives
+     the likeliest reason: on 92 of 99 clips the output is English translation,
+     and English is more compact than the code-switched Indic source. Against
+     that, the 7 in-script clips had ratio 0.74 -- the same as the 92 -- which
+     the compression story does not predict. Seven clips is thin, and this is
+     the open question the configuration probe is built to close.
