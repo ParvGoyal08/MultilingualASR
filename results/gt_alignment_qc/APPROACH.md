@@ -161,10 +161,27 @@ on.
 * **Diagnostic: alignment-adjusted DER/JER**, labelled as such, beside the
   headline — showing how much of the measured diarization error is annotation
   rather than model.
-* **The limitation, stated plainly:** *"K clips were spot-checked against the
-  waveform and confirmed to have annotations displaced by 1.0–5.0 s. The same
-  procedure flags N of 99 clips. Correcting only those moves corpus DER from A
-  to B — reported as a diagnostic, not as a result."*
+* **The limitation, as actually supported.** The audit performed was a visual
+  spot-check of 15–20 of the 39 flagged clips against the waveform, and the
+  large majority matched the proposed shift. Individual verdicts were not
+  recorded, so the wording has to match that:
+
+  > *"Cross-model consensus with independent energy-VAD corroboration flags 39
+  > of 99 clips as having annotations displaced by 1.0–5.0 s, every one in the
+  > same direction. A visual spot-check of 15–20 of them against the audio
+  > waveform found the large majority correct. Applying the 23 shifts that carry
+  > two independent corroborations moves corpus DER from 0.2625 to 0.2039 for
+  > diarizen-large — reported as a diagnostic, not as a benchmark result."*
+
+  Note what that sentence does **not** claim: no individual shift is described
+  as verified, and no precision figure is quoted, because per-clip verdicts were
+  not written down. The spot-check supports the **procedure**, not the
+  individual labels. That is a weaker claim than a full audit would license, and
+  it is the one the evidence actually carries.
+
+  Recording per-clip verdicts in `hand_labels.csv` would upgrade this to a
+  measured precision — "P of N audited flags confirmed" — which is worth doing
+  only if the adjusted numbers are ever promoted to a headline.
 
 ## What stays true regardless
 

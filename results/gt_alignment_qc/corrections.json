@@ -528,5 +528,15 @@
    "verified_by": "auto: 2-of-3 consensus + independent energy VAD + per-model agreement <=1s; pending human spot-check",
    "note": ""
   }
- ]
+ ],
+ "human_audit": {
+  "performed": true,
+  "date": "2026-08-21",
+  "method": "visual comparison of the annotation bands against the audio waveform envelope in diagnostics/*.svg",
+  "clips_inspected": "15-20 of the 39 flagged",
+  "outcome": "the large majority matched the proposed shift",
+  "per_clip_verdicts_recorded": false,
+  "limits_of_this_attestation": "Recorded at the granularity it was performed. Because individual verdicts were not written down, this supports the claim that the DETECTION PROCEDURE is sound -- it does not establish any individual shift as verified, and no precision figure can be computed from it. The exceptions were not enumerated, so the audit cannot be quoted as N-of-N correct.",
+  "what_it_licenses": "Reporting the misalignment as a real, spot-checked dataset defect, and reporting alignment-adjusted DER/JER as a diagnostic. It does not license presenting the adjusted numbers as a verified benchmark."
+ }
 }
