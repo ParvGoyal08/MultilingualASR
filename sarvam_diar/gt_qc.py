@@ -40,7 +40,15 @@ MAX_LAG = 5.0
 # of missing a defect is a slightly pessimistic score, the cost of inventing one
 # is a corrupted benchmark.
 MIN_FLAG_LAG = 1.0          # seconds
-MIN_IMPROVEMENT = 0.05      # absolute IoU gain over lag 0
+# Fraction of the AVAILABLE headroom the shift must recover, i.e.
+# (peak - zero) / (1 - zero). An absolute gain threshold is the wrong test: a
+# clip whose speech is near-continuous already scores ~0.95 IoU at lag zero, so
+# it can gain at most 0.05 no matter how badly misaligned it is, and a fixed
+# 0.05 bar makes it structurally unflaggable. Measured against headroom, a real
+# shift on such a clip recovers 60-90% of what is left, while an aligned clip
+# recovers ~10%.
+MIN_HEADROOM_RECOVERED = 0.35
+MIN_IMPROVEMENT = 0.01      # small absolute floor, to reject pure noise
 MIN_PEAK_MARGIN = 0.02      # peak must beat everything outside +-0.5 s of it
 ROUND_TO = 0.5              # confirmed corrections are recorded on this grid
 
@@ -52,6 +60,7 @@ class LagCandidate:
     zero_lag_iou: float
     peak_iou: float
     improvement: float
+    headroom_recovered: float
     peak_margin: float
     n_models: int
     model_spread: float
@@ -192,11 +201,16 @@ def assess_clip(clip_id: str, ref_turns: Sequence[Turn], duration: float,
             vad_lag = float(lags[int(np.argmax(vp))])
             vad_ok = abs(vad_lag - best_lag) <= 0.5
 
+    headroom = (peak - zero) / (1.0 - zero) if zero < 1.0 else 0.0
+
     reasons = []
     if abs(best_lag) < MIN_FLAG_LAG:
         reasons.append(f"lag {best_lag:+.2f}s below {MIN_FLAG_LAG}s")
     if peak - zero < MIN_IMPROVEMENT:
         reasons.append(f"IoU gain {peak - zero:.3f} below {MIN_IMPROVEMENT}")
+    if headroom < MIN_HEADROOM_RECOVERED:
+        reasons.append(f"recovers {headroom:.2f} of headroom, below "
+                       f"{MIN_HEADROOM_RECOVERED}")
     if margin < MIN_PEAK_MARGIN:
         reasons.append(f"peak margin {margin:.3f} below {MIN_PEAK_MARGIN}")
     if len(per_model) < 2:
@@ -205,7 +219,8 @@ def assess_clip(clip_id: str, ref_turns: Sequence[Turn], duration: float,
 
     cand = LagCandidate(
         clip_id=clip_id, best_lag=best_lag, zero_lag_iou=zero, peak_iou=peak,
-        improvement=peak - zero, peak_margin=margin, n_models=len(per_model),
+        improvement=peak - zero, headroom_recovered=headroom,
+        peak_margin=margin, n_models=len(per_model),
         model_spread=spread, vad_lag=vad_lag, vad_agrees=vad_ok,
         duration=duration, flagged=flagged,
         reason="strong candidate" if flagged else "; ".join(reasons))

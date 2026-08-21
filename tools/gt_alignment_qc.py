@@ -180,6 +180,7 @@ def main() -> int:
             "offset_sec": prev.get("offset_sec", gt_qc.round_correction(c.best_lag)),
             "detected_lag_sec": round(c.best_lag, 3),
             "iou_gain": round(c.improvement, 4),
+            "headroom_recovered": round(c.headroom_recovered, 3),
             "peak_margin": round(c.peak_margin, 4),
             "model_spread_sec": round(c.model_spread, 3),
             "vad_corroborates": bool(c.vad_agrees),
@@ -195,6 +196,7 @@ def main() -> int:
                               [m for m in config.scored_models() if m not in models],
                           "min_flag_lag": gt_qc.MIN_FLAG_LAG,
                           "min_improvement": gt_qc.MIN_IMPROVEMENT,
+                          "min_headroom_recovered": gt_qc.MIN_HEADROOM_RECOVERED,
                           "min_peak_margin": gt_qc.MIN_PEAK_MARGIN},
              "raw_gt": "immutable; corrections are applied to a copy at scoring time",
              "corrections": rows}
