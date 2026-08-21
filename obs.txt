@@ -845,3 +845,54 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      validated on throughput alone. Language identification is upstream of
      everything else in a multilingual pipeline, and it fails silently -- the
      output looks like fluent text, just in the wrong language.
+
+--------------------------------------------------------------------------
+[37] Whisper's high WER is TRUNCATION, not mis-recognition. Greedy decoding
+     dropped roughly four fifths of the words.
+
+     whisper-large-v3 scored WER 0.9296 on 35 clips, which looked like a broken
+     model until the edits were decomposed:
+
+       hits            3,299   7.3% of reference words
+       substitutions  10,689  23.7%
+       DELETIONS      31,058  68.9%   <- reference words with no hypothesis word
+       insertions        126
+
+     Deletions are 69% of the error. The words it does produce are largely
+     right -- Gujarati "નમસકાર ખેડુત મિત્રો પિસાન સફર પરિવારમાં હું એજે મુલીયા
+     આપનું આર્તિક સ્વાગેત કરું છું" against a reference of "નમસ્કાર ખેડૂત મિત્રો
+     કિસાન સફર પરિવારમાં હું એજે મૂળિયા આપનું હાર્દિક સ્વાગત કરું છું" is a
+     recognisable transcript, not noise. It simply stops producing them.
+
+     Where they are missing, on 0AEEA8NyVwY__11_609 (598 s):
+
+       reference speech                    93.9% of the clip
+       hypothesis word spans               56.1%
+       annotated speech with NO word       247 s
+       stretches over 2 s with no words    24, longest 18 s
+       words per 30 s window               median 5   (60-90 expected)
+
+     Time coverage is 100% -- the first and last words bracket the clip -- so
+     nothing stopped early. Every 30 s window contains a few words and then
+     nothing, which is the signature of the decoder emitting end-of-transcript
+     prematurely rather than of audio being skipped.
+
+     Cause: both runs used beam_size=1. Greedy decoding makes Whisper far more
+     prone to early EOT, and it was chosen for speed, on the assumption that
+     decoding quality would degrade gracefully. It does not degrade gracefully;
+     it truncates.
+
+     Defaults changed to beam_size=5 with condition_on_previous_text=False. The
+     second matters independently: conditioning feeds each window's output back
+     as the next window's prompt, so on long code-switched audio one bad window
+     compounds, and it is a known cause of repetition collapse.
+
+     tools/whisper_ab.py transcribes a few short clips under all four
+     combinations and reports words-produced against words-spoken, because the
+     failure is omission and WORD COUNT is the diagnostic that exposes it. Run
+     it before committing to another sweep.
+
+     Note the interaction with [36]: turbo produced MORE words than large-v3 on
+     the same clip (896 against 239) while scoring worse, because those words
+     were fluent English. Word count and WER each hide a different failure, and
+     neither alone would have found both.

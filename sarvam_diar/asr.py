@@ -343,11 +343,23 @@ BACKENDS: dict[str, Callable[..., tuple[list[Word], dict]]] = {
     # both are kept so the trade can be measured rather than assumed.
     # turbo decodes, large-v3 decides the language. Turbo alone returned "en"
     # on 75 of 99 clips and translated instead of transcribing.
+    #
+    # beam_size is 5, NOT 1. Greedy decoding was measured to truncate badly on
+    # this audio: 68.9% of the word error was DELETIONS, with a median of 5
+    # words per 30 s window where continuous speech should give 60-90, and 247 s
+    # of annotated speech in one 598 s clip carrying no hypothesis word at all.
+    # Whisper emits end-of-transcript early without beam search, and the saving
+    # is not worth a transcript that is four fifths absent.
+    #
+    # condition_on_previous_text is off: it feeds each window's output back as
+    # the next window's prompt, which on long code-switched audio compounds a
+    # bad window into a worse one and is a known cause of repetition collapse.
     "whisper-large-v3-turbo": lambda cfg, wav: transcribe_whisper(
-        cfg, wav, "large-v3-turbo", word_timestamps=True, beam_size=1,
-        lid_model=LID_MODEL),
+        cfg, wav, "large-v3-turbo", word_timestamps=True, beam_size=5,
+        condition_on_previous_text=False, lid_model=LID_MODEL),
     "whisper-large-v3": lambda cfg, wav: transcribe_whisper(
-        cfg, wav, "large-v3", word_timestamps=True, beam_size=1),
+        cfg, wav, "large-v3", word_timestamps=True, beam_size=5,
+        condition_on_previous_text=False),
     "whisper-large-v3-batched": lambda cfg, wav: transcribe_whisper(
         cfg, wav, "large-v3", word_timestamps=True, beam_size=1, batch_size=8),
     "sarvam-saaras-v3": lambda cfg, wav: transcribe_sarvam(cfg, wav, "saaras:v3"),
