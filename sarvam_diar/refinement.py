@@ -123,7 +123,8 @@ def map_labels(centroid: np.ndarray, cent_labels: list[str],
 def dover_lap(systems: dict[str, Sequence[Turn]], duration: float,
               weights: dict[str, float] | None = None,
               threshold: float = 0.5, min_dur: float = 0.20,
-              rank_weighted: bool = False) -> list[Turn]:
+              rank_weighted: bool = False,
+              overlap_threshold: float | None = None) -> list[Turn]:
     """Combine several diarizations of one clip into one.
 
     `threshold` is the share of total weight a speaker needs in a frame to be
@@ -194,7 +195,25 @@ def dover_lap(systems: dict[str, Sequence[Turn]], duration: float,
         for j, l in enumerate(labs):
             votes[idx[mapped[name][l]]] += a[j] * w[name]
 
-    return to_turns(votes >= threshold * total_w - 1e-9, cent_labels, min_dur)
+    active = votes >= threshold * total_w - 1e-9
+
+    # A plain majority suppresses overlap. A second concurrent speaker needs the
+    # same majority as the first, but the systems disagree most about exactly
+    # those frames -- reverb-v2 predicts 15% of the reference's overlapped
+    # speech against diarizen-large's 84%, so it votes against nearly every
+    # second speaker. Measured, the majority fusion recovers 50% of overlap
+    # where its best member recovers 84%.
+    #
+    # `overlap_threshold` lowers the bar for ADDITIONAL speakers only, in frames
+    # where a first speaker already cleared the full majority. The leading
+    # speaker still needs a majority, so this cannot invent speech in silence --
+    # it only decides whether someone else is talking at the same time.
+    if overlap_threshold is not None and overlap_threshold < threshold:
+        lead = active.any(axis=0)
+        extra = (votes >= overlap_threshold * total_w - 1e-9) & lead
+        active = active | extra
+
+    return to_turns(active, cent_labels, min_dur)
 
 
 def fuse_corpus(cfg: Config, references: dict, models: Sequence[str],
