@@ -445,6 +445,40 @@ printed to stdout and never saved. **Retracted**: §7.3 measures both, and
 
 ---
 
+## 7b. IndicConformer-600M — the control that settles §7
+
+Ten clips, per-segment on the fusion, language supplied to both systems.
+Full detail: `results/indic_probe10.md`.
+
+| system | language | ratio | WER | cpWER | del% | script |
+|---|---|---|---|---|---|---|
+| `sarvam-saaras-v3@fusion` | self-detected | 0.97 | **0.2876** | **0.3119** | 9.3% | — |
+| **IndicConformer CTC** | oracle | 0.82 | 0.4158 | 0.4252 | 19.6% | **10/10** |
+| **IndicConformer RNNT** | oracle | 0.69 | 0.4730 | 0.4865 | 33.0% | **10/10** |
+| Whisper `large-v3` | oracle | 0.43 | 0.9058 | 0.9158 | 58.5% | 8/10 |
+
+**A 600M open-source Indic model beats Whisper `large-v3` by 2.2× on identical
+audio with identical segmentation and the language handed to both.** Together
+with §7.3 (0.058 spread across every configuration) and §7.4 (the oracle
+language buys nothing), this closes the question: Whisper's failure here is
+neither decoding nor language identification. It does not know these languages.
+
+IndicConformer also matches all ten scripts including Oriya, which Whisper
+cannot target at all.
+
+**Saaras still wins**, 0.2876 against 0.4158, *while detecting its own language*
+where IndicConformer was given it. Removing that advantage can only widen the
+gap.
+
+CTC beat RNNT (0.4158 vs 0.4730) at 1.7× the speed — the reverse of published
+Indic benchmarks, and unexplained.
+
+IndicConformer's WDER (0.0332 vs Saaras 0.0641) is a **coverage artefact**, not
+better attribution: both run on the same fusion turns, and WDER's S + C
+denominator shrinks when a system emits ratio 0.82 instead of 0.97.
+
+---
+
 ## 8. Saaras v3 vs v4
 
 Paired on the 9 clips both cover:

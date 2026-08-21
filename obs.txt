@@ -1283,3 +1283,42 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      (0.1843 -> 0.1297) while WER does not. At WER 0.94 almost nothing aligns,
      so WDER's denominator (S + C) is small and unstable. Not evidence either
      way.
+
+--------------------------------------------------------------------------
+[48] IndicConformer-600M is 2.2x better than Whisper on identical audio, and
+     that settles what Whisper's failure was. Same ten clips, same fusion
+     segmentation, per-segment, language supplied to BOTH:
+
+       system                       ratio     WER   cpWER    WDER   del%  script
+       sarvam-saaras-v3@fusion       0.97  0.2876  0.3119  0.0641   9.3%     --
+       IndicConformer ctc [oracle]   0.82  0.4158  0.4252  0.0332  19.6%  10/10
+       IndicConformer rnnt [oracle]  0.69  0.4730  0.4865  0.0393  33.0%  10/10
+       whisper large-v3 [oracle]     0.43  0.9058  0.9158  0.1743  58.5%   8/10
+
+     [43] concluded Whisper's failure was recognition rather than decoding, from
+     a 0.058 spread across every configuration. [47] confirmed it by handing
+     Whisper the language and getting nothing. This closes it from the other
+     side: a 600M open-source model, an order of magnitude smaller than the
+     comparison implies, does the same job 2.2x better on the same audio. The
+     problem was never configuration, and never language identification. It is
+     that Whisper large-v3 does not know these languages well enough.
+
+     10/10 script match against 8/10, and that includes the Oriya clip Whisper
+     cannot target at all ([45]).
+
+     SAARAS STILL WINS, and by more than it looks: 0.2876 against 0.4158 while
+     detecting its own language, where IndicConformer was handed the right
+     answer. Removing the oracle can only widen the gap.
+
+     CTC beats RNNT, 0.4158 against 0.4730, and is 1.7x faster (138s vs 231s)
+     with lower deletions (19.6% vs 33.0%) and less repetition (3.9% vs 6.8%).
+     Published Indic benchmarks usually favour RNNT, so this inverts the
+     expectation. INFERRED, not established: RNNT looks more prone to early
+     termination on short diarized segments than on the full utterances it was
+     trained on -- consistent with its much higher deletion rate.
+
+     Do NOT quote IndicConformer's WDER 0.0332 as better attribution than
+     Saaras's 0.0641. Both run per-segment on the SAME fusion turns, so
+     attribution is identical by construction. WDER's denominator counts only
+     aligned words (S + C), and IndicConformer emits ratio 0.82 against 0.97, so
+     fewer words align and the denominator shrinks. Coverage artefact.
