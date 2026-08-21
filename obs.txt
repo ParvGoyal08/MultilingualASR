@@ -1322,3 +1322,47 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      attribution is identical by construction. WDER's denominator counts only
      aligned words (S + C), and IndicConformer emits ratio 0.82 against 0.97, so
      fewer words align and the denominator shrinks. Coverage artefact.
+
+--------------------------------------------------------------------------
+[49] The Saaras ASR ran on a fusion that is not the fusion being scored. For 27
+     of 99 clips the segmentation sent to Saaras cannot be reproduced from the
+     fusion RTTMs on disk, and all 27 reproduce EXACTLY from a two-system
+     dover_lap of community-1 + reverb-v2:
+
+       reproduces from        clips
+       fusion (3-system)      72/99
+       c1 + rv2 (2-system)    27/27 of the remainder
+
+     Not a merge-gap difference -- gap 1.0 is the best fit at 72/99 and every
+     other gap is worse. Not a different model -- reverb-v2 alone matches 1/99,
+     the others 0. It is the same algorithm with a different member set.
+
+     Corroborated independently, from a direction that has nothing to do with
+     segmentation: the step2_metrics.csv exported from that Kaggle session has
+     297 rows over three models and NO diarizen-large, while the local copy has
+     396 rows over four. DiariZen was absent from the session that materialised
+     the fusion the ASR then consumed.
+
+     Consequence, and it matters for the writeup: DER 0.2442 describes the
+     3-system fusion, and cpWER 0.3381 describes a fusion that is 2-system for
+     27% of the corpus. Reporting them side by side as "the Step 4 system"
+     conflates two different diarizations.
+
+     Second consequence: the longest segment actually sent is 356.6s, while the
+     longest merged turn the on-disk fusion can produce is 195.0s. A 2-system
+     vote is less fragmented, so turns merge further. Those swollen segments are
+     where the duplicated-audio problem concentrates -- roughly 44% of it comes
+     from this, i.e. from a diarization that no longer exists.
+
+     Root cause is a provenance gap I built and did not close. asr.settings_key
+     records the DECODING settings ("beam5-cond1-lidlarge-v3-batch0") so stale
+     work is visibly stale, and I reasoned about it that way repeatedly. It does
+     not record anything about the SEGMENTATION, so a checkpoint produced from a
+     different diarization is indistinguishable from one produced from this one.
+     is_done() then happily skips it.
+
+     Fix is not to re-run blindly: verify first by re-deriving
+     merge_same_speaker(load_hypothesis(cfg,"fusion",cid),1.0) per clip and
+     asserting equality against the stored segments, then re-run only the clips
+     that fail, and extend settings_key with a segmentation hash so this cannot
+     recur silently.
