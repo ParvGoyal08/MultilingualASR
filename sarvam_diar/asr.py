@@ -94,14 +94,16 @@ def detect_language(cfg: Config, wav: Path, model_size: str = LID_MODEL,
     and detecting from the first window alone then commits the whole clip to the
     wrong language.
     """
+    from faster_whisper.audio import decode_audio
+
     model = _whisper_model(cfg, model_size)
-    try:
-        lang, prob, _ = model.detect_language(
-            audio=str(wav), language_detection_segments=segments)
-        return lang, float(prob)
-    except Exception as exc:  # noqa: BLE001
-        LOG.warning("language detection failed on %s: %s", wav.name, exc)
-        return None, 0.0
+    # detect_language takes a decoded waveform, NOT a path -- passing a string
+    # raises "'str' object has no attribute 'dtype'" deep inside the feature
+    # extractor. decode_audio resamples to the 16 kHz the model expects.
+    audio = decode_audio(str(wav), sampling_rate=16000)
+    lang, prob, _ = model.detect_language(
+        audio=audio, language_detection_segments=segments)
+    return lang, float(prob)
 
 
 def _whisper_model(cfg: Config, model_size: str):
@@ -146,7 +148,17 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
 
     lid_prob = None
     if language is None and lid_model:
+        # Deliberately NOT wrapped in try/except. A failure here silently falls
+        # back to the transcribing model's own language ID, which for turbo is
+        # the exact defect this two-model arrangement exists to avoid -- and the
+        # run would complete, look successful, and produce English translations.
+        # Better to stop.
         language, lid_prob = detect_language(cfg, wav, lid_model)
+        if not language:
+            raise RuntimeError(
+                f"language detection returned nothing for {wav.name}. Refusing "
+                f"to fall back to {model_size}'s own detection, which is what "
+                "produced English translations of Indic audio.")
 
     if batch_size and batch_size > 1:
         # BatchedInferencePipeline refuses to run without either vad_filter=True
