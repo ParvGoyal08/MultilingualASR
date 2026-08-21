@@ -97,6 +97,14 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="local_out")
     ap.add_argument("--corrections", default=str(OUT / "corrections.json"))
+    # pyannote-3.1 is excluded by default. It and community-1 share
+    # pyannote/segmentation-3.0 and differ by 0.44 s of miss+FA over 12.4 h
+    # (obs [18]), so under 2-of-N voting they are effectively one vote counted
+    # twice: any frame both call speech reaches the threshold on its own,
+    # without a second INDEPENDENT system ever agreeing. Consensus is only
+    # meaningful over systems that can disagree.
+    ap.add_argument("--models", default="community-1,reverb-v2,diarizen-large",
+                    help="comma-separated; consensus is only built from these")
     args = ap.parse_args()
 
     cfg = Config.create(root=args.root, work_dir=f"{args.root}/.work")
@@ -105,7 +113,16 @@ def main() -> int:
     clips = data.parse_ground_truth(data.load_segments_csv(cfg))
     inputs, _ = data.split_reference(clips, None, cfg=cfg)
     refs = {c.clip_id: reference.build_reference(c) for c in clips if c.clip_id in inputs}
-    models = [m for m in config.scored_models()]
+    wanted = [m.strip() for m in args.models.split(",") if m.strip()]
+    models = [m for m in wanted if any(diarization.is_done(cfg, m, cid) for cid in refs)]
+    missing = [m for m in wanted if m not in models]
+    if missing:
+        print(f"  requested but absent on disk: {missing}")
+    print(f"  consensus from: {models}")
+    # Scoring still covers every model that ran, including any excluded from the
+    # consensus -- a model that did not vote should still be measured.
+    scored = [m for m in config.scored_models()
+              if any(diarization.is_done(cfg, m, cid) for cid in refs)]
 
     cands, details = [], {}
     for cid, ref in refs.items():
@@ -173,7 +190,9 @@ def main() -> int:
     write = {"version": 1, "grid_sec": gt_qc.ROUND_TO,
              "convention": "offset_sec is SUBTRACTED from every reference timestamp",
              "detector": {"hop_sec": gt_qc.HOP, "max_lag_sec": gt_qc.MAX_LAG,
-                          "min_votes": 2, "models": models,
+                          "min_votes": 2, "consensus_models": models,
+                          "excluded_from_consensus":
+                              [m for m in config.scored_models() if m not in models],
                           "min_flag_lag": gt_qc.MIN_FLAG_LAG,
                           "min_improvement": gt_qc.MIN_IMPROVEMENT,
                           "min_peak_margin": gt_qc.MIN_PEAK_MARGIN},
@@ -185,7 +204,7 @@ def main() -> int:
     # scoring, raw vs QC-adjusted (verified rows only)
     verified = gt_qc.load_corrections(manifest_path)
     out_rows = []
-    for m in models:
+    for m in scored:
         for label, corr in (("raw", {}), ("qc_adjusted", verified)):
             rows_m = []
             for cid, ref in refs.items():
@@ -205,6 +224,10 @@ def main() -> int:
                              "fa": round(p["der_fa_frac"], 4),
                              "confusion": round(p["der_confusion_frac"], 4),
                              "jer_mean": round(p["jer_mean"], 4),
+                             "speaker_count_acc": round(p["speaker_count_accuracy"], 4),
+                             "speaker_count_mae": round(p["speaker_count_mae"], 4),
+                             "speaker_count_bias": round(p["speaker_count_bias"], 4),
+                             "in_consensus": m in models,
                              "n_corrected": len(corr)})
     with open(OUT / "metrics_raw_vs_qc.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(out_rows[0])); w.writeheader()
