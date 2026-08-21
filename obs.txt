@@ -907,3 +907,44 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      the same clip (896 against 239) while scoring worse, because those words
      were fluent English. Word count and WER each hide a different failure, and
      neither alone would have found both.
+
+--------------------------------------------------------------------------
+[38] The best diarization is not the best ASR front-end, and the reason is that
+     DER and cpWER punish false alarm completely differently.
+
+     Saaras was run over reverb-v2's turns rather than the fusion's, which looks
+     wrong: the fusion has the better DER (0.2442 against 0.2521) and wins on
+     five of six diarization metrics. Measured as ASR segmentation sources:
+
+       diarization      merged segs  median s   <1s   ref speech never covered
+       reverb-v2              2,650      7.66s   22%    1 min  (0.2%)
+       FUSION                 6,312      2.50s   29%   21 min  (3.1%)
+       community-1           10,279      1.13s   48%   20 min  (3.0%)
+       diarizen-large        11,013      1.48s   41%   24 min  (3.5%)
+
+     The last column decides it. Reference speech that no diarized turn covers
+     is never sent to the recogniser, so it cannot be transcribed at any
+     quality -- it is a guaranteed cpWER deletion. reverb-v2 leaves 1 minute of
+     the corpus uncovered; the fusion leaves 21.
+
+     The asymmetry is the point. In DER, a second of false alarm and a second of
+     miss cost the same. In per-segment ASR they do not: false alarm means
+     transcribing a little non-speech, which yields a few spurious words and
+     costs some insertions, while miss means audio the recogniser never sees,
+     which costs a full deletion and cannot be recovered downstream. A
+     diarization tuned to minimise DER is therefore NOT tuned for this job.
+
+     reverb-v2 is the model DER likes least among the strong ones -- worst
+     confusion, worst speaker-count accuracy, last place once the reference is
+     aligned -- and the best available ASR front-end, because it over-generates
+     speech. Its 15.5 s turns and 106% coverage of reference speech are exactly
+     the properties that make it look mediocre on DER.
+
+     Secondary but real: 2,650 segments against 6,312 is 2.4x fewer API calls,
+     and a 7.66 s median against 2.50 s gives the recogniser more context per
+     request.
+
+     So the recommendations differ by purpose, and should be reported that way:
+     the FUSION is the diarization result, reverb-v2 is the ASR segmentation
+     source. Choosing one model for both would sacrifice something real in
+     whichever direction it went.
