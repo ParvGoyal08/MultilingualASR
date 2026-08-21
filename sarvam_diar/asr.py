@@ -512,6 +512,73 @@ def speaker_texts_from_words(pairs: Sequence[tuple[str, str]]) -> dict[str, list
 # ------------------------------------------------------------------- runner
 
 
+def segmentation_key(turns: Sequence[Turn]) -> str:
+    """Short signature of the SEGMENTATION a per-segment transcript was cut on.
+
+    settings_key covers decoding and nothing else, which turned out to be half
+    the provenance. The Saaras run consumed a fusion that, for 27 of 99 clips,
+    had been built from two systems rather than three; those checkpoints were
+    indistinguishable from current ones and is_done() skipped every one, so DER
+    described one diarization and cpWER another.
+
+    Rounded to 10 ms -- the resolution everything else scores at -- so float
+    noise cannot make an identical segmentation look different.
+    """
+    import hashlib
+
+    turns = list(turns)
+    body = ";".join(f"{t.speaker}:{t.start:.2f}:{t.end:.2f}"
+                    for t in sorted(turns, key=lambda x: (x.start, x.end, x.speaker)))
+    return f"seg{len(turns)}-{hashlib.sha1(body.encode()).hexdigest()[:10]}"
+
+
+def stored_segmentation(payload: dict) -> list[Turn]:
+    """The segmentation a stored per-segment payload was actually cut on."""
+    return [Turn(speaker=s["speaker"], start=float(s["start"]), end=float(s["end"]))
+            for s in payload.get("segments", [])]
+
+
+def audit_segmentation(cfg: Config, system: str, diar_model: str,
+                       clip_ids: Sequence[str], merge_gap: float = 1.0) -> list[dict]:
+    """Per clip: was the stored transcript cut on the segmentation we would use?
+
+    Works on legacy checkpoints written before segmentation_key existed, by
+    comparing the stored `segments` spans directly against a freshly derived
+    segmentation. No fingerprint required, so it can audit what is already on
+    disk rather than only what is written from now on.
+    """
+    from . import diarization
+
+    out: list[dict] = []
+    for cid in clip_ids:
+        path = asr_path(cfg, system, cid)
+        if not path.exists():
+            out.append({"clip_id": cid, "status": "absent"})
+            continue
+        payload = read_json(path) or {}
+        if payload.get("strategy") != "segment":
+            out.append({"clip_id": cid, "status": "not_segmented"})
+            continue
+        if not diarization.is_done(cfg, diar_model, cid):
+            out.append({"clip_id": cid, "status": "no_diarization"})
+            continue
+        want = merge_same_speaker(
+            diarization.load_hypothesis(cfg, diar_model, cid), merge_gap)
+        have = stored_segmentation(payload)
+        out.append({
+            "clip_id": cid,
+            "status": "ok" if segmentation_key(want) == segmentation_key(have)
+                      else "MISMATCH",
+            "stored_key": payload.get("segmentation_key"),
+            "stored_segments": len(have), "expected_segments": len(want),
+            "stored_sec": round(sum(t.end - t.start for t in have), 1),
+            "expected_sec": round(sum(t.end - t.start for t in want), 1),
+            "longest_stored_sec": round(max((t.end - t.start for t in have), default=0.0), 1),
+            "longest_expected_sec": round(max((t.end - t.start for t in want), default=0.0), 1),
+        })
+    return out
+
+
 def settings_key(meta: dict) -> str:
     """Short signature of the decoding settings that produced a transcript.
 
@@ -606,6 +673,7 @@ def run(cfg: Config, inputs: Sequence[ClipInput], flags: StageFlags | None = Non
                 **meta,
             }
             payload["settings_key"] = settings_key(payload)
+            payload["segmentation_key"] = segmentation_key(turns)
             write_json_atomic(asr_path(cfg, system, clip.clip_id), payload)
             rows.append(payload)
             done += 1
@@ -967,9 +1035,6 @@ def run_segmented(cfg: Config, inputs: Sequence[ClipInput], diar_model: str,
         done = skipped = failed = 0
         for i, clip in enumerate(clips, 1):
             prefix = f"[{tag} {i}/{len(clips)}] {clip.clip_id}"
-            if is_done(cfg, tag, clip.clip_id) and not flags.force_redo:
-                skipped += 1
-                continue
             if not diarization.is_done(cfg, diar_model, clip.clip_id):
                 continue
             wav = Path(clip.wav_path or cfg.wav_path(clip.clip_id))
@@ -978,6 +1043,17 @@ def run_segmented(cfg: Config, inputs: Sequence[ClipInput], diar_model: str,
                 continue
             turns = merge_same_speaker(
                 diarization.load_hypothesis(cfg, diar_model, clip.clip_id), merge_gap)
+            # Skip only when the stored transcript was cut on THIS segmentation.
+            # Testing status-and-words alone is what let 27 clips transcribed
+            # against a two-system fusion pass as current.
+            if is_done(cfg, tag, clip.clip_id) and not flags.force_redo:
+                _stored = read_json(asr_path(cfg, tag, clip.clip_id)) or {}
+                if segmentation_key(stored_segmentation(_stored)) == segmentation_key(turns):
+                    skipped += 1
+                    continue
+                LOG.warning("%s  segmentation CHANGED (stored %d segs vs current "
+                            "%d) -- re-transcribing", prefix,
+                            len(_stored.get("segments", [])), len(turns))
             try:
                 started = time.perf_counter()
                 segs, meta = transcribe_segments(cfg, system, wav, turns, workers=workers)
