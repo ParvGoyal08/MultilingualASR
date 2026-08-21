@@ -1000,3 +1000,59 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      reasoned from one measured quantity to a confident recommendation without
      measuring the quantity that opposed it. The oracle-floor experiment that
      settles it takes seconds and needs no audio. It should have come first.
+
+--------------------------------------------------------------------------
+[40] The Whisper numbers in RESULTS_ASR.md were never a measurement of Whisper.
+     Read back from the checkpoint sidecars rather than from memory, every one
+     of the 99 turbo clips and all 35 large-v3 clips ran with:
+
+       beam_size=1 (greedy), long-form, lid_model=None, batched=False, vad=off
+
+     That is all three diagnosed defects at once -- [36] language, [37] greedy
+     decoding, and the long-form/per-segment gap -- present in the same run. The
+     code has since changed on all three counts and none has been re-run. The
+     numbers record where the diagnosis started, not what Whisper can do.
+
+     The claim in RESULTS_ASR.md that beam size and condition_on_previous_text
+     "were A/B tested and change nothing" rested on tools/whisper_ab.py at
+     --clips 3, whose output was printed and never saved. A run that leaves no
+     artefact is not evidence, and quoting it as one is how a probe becomes a
+     benchmark by accident. whisper_ab.py now writes results/whisper_ab.json.
+
+     Never benchmarked at corpus scale: beam 5, forced language, per-segment,
+     batched, Whisper's VAD, large-v3 beyond 35 clips.
+
+--------------------------------------------------------------------------
+[41] Whisper TRANSLATES rather than transliterates, and it is worth ~0.35 WER.
+     Across all 99 turbo outputs, 92 are in a different script from their
+     ground truth: Devanagari->Latin x19, Telugu->Latin x11, Tamil->Latin x10,
+     Kannada->Latin x9, Gujarati->Latin x9, and one Gurmukhi->Arabic. The Latin
+     output is English prose, not romanised Indic, so no transliteration step
+     can recover it.
+
+     Quality is bimodal, and the distinction matters. Some are accurate
+     translations -- the Gujarati clip renders "હી વોઝ સ્લેટેડ ફોર ટ્વેલ્થ ઓફ મે"
+     as "it was slated for 12th of May" and recovers the names Aditya and
+     Manan; the Tamil clip produces "let's welcome Savenia and Vicky" for
+     "லெட்ஸ் வெல்கம் சவண்யா அண்ட் விக்கி". Others are degenerate: the Kannada
+     clip emits "I have the best opportunity to use my work" five times. So on
+     many clips Whisper HEARD the speech correctly and chose to answer in
+     English. Word count and WER both hide this; only script does not.
+
+     What the language costs, measured on the same 99 outputs:
+
+       script matches GT     7 clips   ratio 0.74   WER 0.693
+       script differs       92 clips   ratio 0.73   WER 1.040
+
+     The best in-script clips reach WER 0.435-0.540. Note the ratio is 0.73 in
+     BOTH groups: the deletion problem is independent of the language problem,
+     so forcing the language fixes at most one of the two.
+
+     Back-translating the English with an LLM does not fix this. The reference
+     carries 19,948 parenthesised English glosses -- code-switched words written
+     phonetically in native script, e.g. Kannada "informeshan" for information.
+     An LLM translating "information" back writes the native word, not the
+     phonetic loan the GT uses, so WER stays high with perfect semantics. It
+     would also report an LLM's translation quality as an ASR result. As a
+     DIAGNOSTIC it is legitimate -- judging semantic adequacy separates "heard
+     it, answered in English" from "hallucinated" -- but never as a headline.

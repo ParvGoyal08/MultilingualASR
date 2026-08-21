@@ -31,8 +31,25 @@ transcript and never reaches any pipeline stage.
 `ratio` is hypothesis words ÷ reference words — a system producing about as many
 words as were spoken sits near 1.0.
 
-**Only Saaras v3 is a usable result.** Both Whisper runs are broken and are shown
-for completeness, not comparison; the diagnosis is below.
+**Configuration behind each row**, read back from the checkpoint sidecars rather
+than from memory:
+
+| system | strategy | beam | language ID | batched | VAD |
+|---|---|---|---|---|---|
+| `sarvam-saaras-v3` | per-segment | — | model-internal | — | — |
+| `whisper-large-v3-turbo` | long-form | **1 (greedy)** | **self-detected** | no | no |
+| `whisper-large-v3` | long-form | **1 (greedy)** | **self-detected** | no | no |
+
+**Only Saaras v3 is a usable result.** The two Whisper rows are not a measurement
+of Whisper. They were produced in a configuration carrying all three defects
+diagnosed below at once — greedy decoding, long-form, and self-detected language
+— and every one of those has since been changed in code but not re-run. They are
+recorded as the starting point of the diagnosis, and must not be quoted as
+Whisper's performance on this corpus.
+
+**Variations not yet benchmarked at corpus scale:** beam 5, forced language via
+`large-v3`, per-segment on the fusion, batched inference, Whisper's own VAD, and
+`large-v3` beyond the 35 clips it reached.
 
 ## Reading the numbers
 
@@ -92,7 +109,9 @@ an encoder-only pass.
 
 **Massive deletion.** Both variants produce roughly half the reference words,
 with ~50% of the error being deletions rather than substitutions. Beam size and
-`condition_on_previous_text` were A/B tested and change nothing. At least part
+`condition_on_previous_text` were compared on **three short clips** by
+`tools/whisper_ab.py` and appeared to change nothing — a probe, not a benchmark,
+and its output was never persisted, so treat it as untested. At least part
 of it is repetition collapse: on `0AEEA8NyVwY__11_609` Whisper transcribes 47 s
 correctly and then repeats one five-word phrase for the remaining 550 s, and on
 `83gP2vLH7UY__255_2005` a single 5-gram occupies 37% of the output.

@@ -10,7 +10,7 @@ the diagnostic here, since the failure is omission rather than mis-recognition.
 """
 from __future__ import annotations
 
-import argparse, sys, time
+import argparse, json, sys, time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -35,7 +35,7 @@ def default_root() -> str:
 
 # Per-segment is a different call path, not a keyword, so it is handled
 # separately in main() rather than as a row of SETTINGS.
-SEGMENTED = ("PER-SEGMENT on reverb-v2 turns",)
+SEGMENTED = ("PER-SEGMENT on {diar} turns",)
 
 SETTINGS = [
     ("greedy, conditioned   (what ran)", dict(beam_size=1, condition_on_previous_text=True)),
@@ -48,6 +48,10 @@ SETTINGS = [
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="large-v3-turbo")
+    ap.add_argument("--diar", default="fusion",
+                    help="diarization model the per-segment row cuts on")
+    ap.add_argument("--out", default=None,
+                    help="where to persist results (default results/whisper_ab.json)")
     ap.add_argument("--lid", default="large-v3", help="'' to let the model detect")
     ap.add_argument("--clips", type=int, default=3)
     ap.add_argument("--root", default=None,
@@ -74,6 +78,10 @@ def main() -> int:
 
     print(f"  model={args.model}  lid={args.lid or 'self'}  root={root}  "
           f"clips={len(picked)}\n")
+    # Collected, not only printed. The last A/B was run, screenshotted and
+    # lost, and its conclusion then got quoted in RESULTS_ASR.md as if it were a
+    # benchmark. A run that leaves no artefact is not evidence.
+    rows: list[dict] = []
     print(f"  {'setting':<36}{'ref w':>7}{'hyp w':>7}{'ratio':>7}{'WER':>8}{'del%':>7}{'sec':>7}")
     for label, kw in SETTINGS:
         ref_w = hyp_w = 0
@@ -92,20 +100,24 @@ def main() -> int:
             dels += cnt.deletions; subs += cnt.substitutions
             ins += cnt.insertions; hits += cnt.hits
         n = hits + subs + dels
+        rows.append(dict(setting=label, ref_words=ref_w, hyp_words=hyp_w,
+                         ratio=hyp_w/max(ref_w,1), wer=(subs+dels+ins)/max(n,1),
+                         del_frac=dels/max(n,1), elapsed_sec=round(time.time()-t0,1),
+                         **{k: v for k, v in kw.items()}))
         print(f"  {label:<36}{ref_w:>7}{hyp_w:>7}{hyp_w/max(ref_w,1):>7.2f}"
               f"{(subs+dels+ins)/max(n,1):>8.4f}{dels/max(n,1):>7.1%}{time.time()-t0:>7.0f}")
     # per-segment: cut at the diarized turns and transcribe each, which is how
     # Sarvam is run and removes Whisper's freedom to skip a window
     from sarvam_diar import diarization
-    label = SEGMENTED[0]
-    ids = [c for c in picked if diarization.is_done(cfg, "reverb-v2", c.clip_id)]
+    label = SEGMENTED[0].format(diar=args.diar)
+    ids = [c for c in picked if diarization.is_done(cfg, args.diar, c.clip_id)]
     if ids:
         ref_w = hyp_w = dels = subs = ins = hits = 0
         t0 = time.time()
         for c in ids:
             ref = reference.build_reference(c)
             turns = asr.merge_same_speaker(
-                diarization.load_hypothesis(cfg, "reverb-v2", c.clip_id), 1.0)
+                diarization.load_hypothesis(cfg, args.diar, c.clip_id), 1.0)
             segs, _m = asr.transcribe_segments(
                 cfg, f"whisper-{args.model}", cfg.wav_path(c.clip_id), turns)
             rw = [t for u in ref.utterances for t in reference.tokenize(u.text_norm)]
@@ -116,10 +128,22 @@ def main() -> int:
             dels += cnt.deletions; subs += cnt.substitutions
             ins += cnt.insertions; hits += cnt.hits
         n = hits + subs + dels
+        rows.append(dict(setting=label, ref_words=ref_w, hyp_words=hyp_w,
+                         ratio=hyp_w/max(ref_w,1), wer=(subs+dels+ins)/max(n,1),
+                         del_frac=dels/max(n,1), elapsed_sec=round(time.time()-t0,1),
+                         strategy="segment", diar=args.diar))
         print(f"  {label:<36}{ref_w:>7}{hyp_w:>7}{hyp_w/max(ref_w,1):>7.2f}"
               f"{(subs+dels+ins)/max(n,1):>8.4f}{dels/max(n,1):>7.1%}{time.time()-t0:>7.0f}")
     else:
         print(f"  {label:<36} skipped: no reverb-v2 turns on these clips")
+
+    out = Path(args.out) if args.out else Path(cfg.root)/"results"/"whisper_ab.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(
+        dict(model=args.model, lid=args.lid or "self", diar=args.diar,
+             n_clips=len(picked), clip_ids=[c.clip_id for c in picked],
+             root=str(root), rows=rows), indent=2))
+    print(f"\n  wrote {out}  ({len(rows)} settings)")
 
     print("\n  ratio near 1.0 means the recogniser is producing about as many words as")
     print("  were spoken. A low ratio with a high del% is truncation, not mis-hearing.")
