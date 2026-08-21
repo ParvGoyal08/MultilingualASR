@@ -1366,3 +1366,48 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      asserting equality against the stored segments, then re-run only the clips
      that fail, and extend settings_key with a segmentation hash so this cannot
      recur silently.
+
+--------------------------------------------------------------------------
+[50] Fixing the fusion->ASR provenance bug was worth more than any refinement
+     stage can hope to be, and it INVERTED the case for deduplication.
+
+     Re-transcribing the 27 stale clips against the correct 3-system fusion,
+     scored on all 99 (the uploaded fusion is byte-identical to the local
+     3-system fusion on 99/99, and the ASR now audits 99/99 ok):
+
+                 ratio      WER    cpWER     WDER      ins
+       before   1.0105   0.3066   0.3381   0.0788    8,959
+       after    0.9786   0.2787   0.3181   0.0628    5,261
+       delta   -0.0319  -0.0279  -0.0200  -0.0161   -3,698
+
+     cpWER -0.0200 (-5.9% relative), WDER -20% relative, and insertions down
+     41%. For comparison the GT-PERFECT deduplication ceiling was -0.023. A
+     provenance fix -- no model, no API, no tuning -- captured almost the whole
+     prize that an LLM dedup layer was being designed to chase.
+
+     And the prize is now gone. Duplicated tokens inside overlapping pairs fell
+     4,264 -> 1,432 (-66%); overlapping seconds 3,102 -> 1,693; duplicate-bearing
+     pairs 604 -> 307. What remains is mostly REAL simultaneous speech, not
+     artefact, and the measurement says so directly. The deterministic control
+     -- delete a shared >=3-token run from the longer segment -- reverses sign:
+
+       baseline          before          after
+       all      -0.0064 (helped)   +0.0027 (HURTS)
+       dev      -0.0074 (helped)   +0.0004 (hurts)
+       test     -0.0056 (helped)   +0.0044 (HURTS)
+
+     So the free rule that was the bar to beat is now a rule that should not be
+     applied at all. Deduplication as a Step 4 strategy is dead on this
+     baseline: what it deletes is now more often correct words than artefact.
+
+     Consequence for the LLM refinement stage: arm B (dedup) should be expected
+     to HARM, and is worth running only to confirm that with evidence. Arm A
+     (word-error correction) is the entire remaining case, and it is aimed at
+     the 91% of cpWER that is word error -- which no amount of overlap reasoning
+     touches.
+
+     Method note: this is also the second time provenance beat modelling on this
+     project. [49] found the defect; this measures what it cost. The lesson is
+     that "is the input what I think it is" outranks "is the model good enough",
+     and settings_key/segmentation_key exist because that question was answered
+     wrongly once already.

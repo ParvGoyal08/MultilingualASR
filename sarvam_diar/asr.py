@@ -672,8 +672,10 @@ def run(cfg: Config, inputs: Sequence[ClipInput], flags: StageFlags | None = Non
                 "transcribed_at_utc": now_utc_iso(),
                 **meta,
             }
+            # No segmentation_key here: long-form transcribes the whole clip and
+            # has no segmentation to fingerprint. It belongs to run_segmented,
+            # where `turns` exists.
             payload["settings_key"] = settings_key(payload)
-            payload["segmentation_key"] = segmentation_key(turns)
             write_json_atomic(asr_path(cfg, system, clip.clip_id), payload)
             rows.append(payload)
             done += 1
