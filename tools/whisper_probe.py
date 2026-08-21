@@ -50,6 +50,34 @@ COLLAPSE_CLIP = "0AEEA8NyVwY__11_609"
 NGRAM = 5
 
 
+# Marathi and Hindi share Devanagari, so the script alone cannot name the
+# language for a quarter of this corpus -- data.SCRIPT_BLOCKS honestly reports
+# "hi_or_mr". These are the highest-frequency function words that differ, and
+# they separate the two cleanly in running text.
+MR_MARKERS = {"आणि", "आहे", "आहेत", "मी", "नाही", "होतं", "काय", "तर", "पण",
+              "त्याच्या", "मला", "तुम्ही", "हे", "का", "म्हणून", "असं"}
+HI_MARKERS = {"और", "है", "हैं", "मैं", "नहीं", "था", "क्या", "तो", "लेकिन",
+              "उसके", "मुझे", "आप", "ये", "क्यों", "इसलिए", "ऐसा"}
+
+
+def oracle_language(ref, stats: dict) -> str:
+    """The clip's language, taken from the REFERENCE. An oracle, not a result.
+
+    Reference-derived and therefore a leak by the brief's rule: it exists to
+    bound what perfect language identification would buy, and belongs in an
+    ablation table rather than a headline one. Devanagari is disambiguated by
+    counting Marathi against Hindi function words in the reference transcript,
+    which is as oracle as the script hint it refines.
+    """
+    hint = stats.get("lang_hint") or ""
+    if hint != "hi_or_mr":
+        return hint or "hi"
+    toks = [t for u in ref.utterances for t in u.text_norm.split()]
+    mr = sum(t in MR_MARKERS for t in toks)
+    hi = sum(t in HI_MARKERS for t in toks)
+    return "mr" if mr > hi else "hi"
+
+
 def max_ngram_coverage(tokens: list[str], n: int = NGRAM) -> float:
     """Fraction of output covered by the single most frequent n-gram.
 
@@ -146,23 +174,35 @@ def probe(cfg: Config, clip_ids: list[str], diar: str = "fusion",
         else:
             print("A skipped: no existing whisper checkpoints on these clips", flush=True)
 
+    # F/G/H pair one-for-one with B/C/E, differing ONLY in where the language
+    # comes from, so each difference prices language identification for that
+    # configuration. The oracle is reference-derived: an ablation, not a result.
     LONGFORM = [
-        ("B", "B beam5 + large-v3 LID, long-form",
+        ("B", "B beam5 + large-v3 LID, long-form", False,
          dict(model_size=model, beam_size=5, lid_model=asr.LID_MODEL)),
-        ("C", "C   + condition_on_previous_text=False",
+        ("C", "C   + condition_on_previous_text=False", False,
          dict(model_size=model, beam_size=5, lid_model=asr.LID_MODEL,
               condition_on_previous_text=False)),
-        ("E", "E large-v3, beam5, own LID, long-form",
+        ("E", "E large-v3, beam5, own LID, long-form", False,
          dict(model_size="large-v3", beam_size=5, lid_model=None)),
+        ("F", "F [oracle lang] beam5, long-form", True,
+         dict(model_size=model, beam_size=5)),
+        ("G", "G [oracle lang]   + cond_prev=False", True,
+         dict(model_size=model, beam_size=5, condition_on_previous_text=False)),
+        ("H", "H [oracle lang] large-v3, beam5", True,
+         dict(model_size="large-v3", beam_size=5)),
     ]
-    for tag, label, kw in LONGFORM:
+    for tag, label, use_oracle, kw in LONGFORM:
         if only and tag not in only:
             continue
         rows = []
         for cid in clip_ids:
             t0 = time.time()
+            _kw = dict(kw)
+            if use_oracle:
+                _kw["language"] = oracle_language(refs[cid], clips[cid].stats)
             words, meta = asr.transcribe_whisper(cfg, cfg.wav_path(cid),
-                                                 word_timestamps=True, **kw)
+                                                 word_timestamps=True, **_kw)
             turns = diarization.load_hypothesis(cfg, diar, cid)
             pairs = [(t, s) for w, s in asr.assign_words(words, turns) for t in _norm(w)]
             rows.append({"clip_id": cid,
@@ -170,20 +210,28 @@ def probe(cfg: Config, clip_ids: list[str], diar: str = "fusion",
                                 meta.get("language"), gt_script[cid], time.time() - t0)})
         emit(label, rows)
 
-    # --- D: per-segment. Speaker attribution is exact by construction.
-    if not only or "D" in only:
+    # --- D/I: per-segment. Speaker attribution is exact by construction.
+    # NOTE the beam: transcribe_segments has always decoded segments greedily
+    # with the carried prompt off, so these rows are beam 1 -- not beam 5 as an
+    # earlier revision of this file labelled D.
+    for tag, label, use_oracle in (
+            ("D", f"D beam1 + large-v3 LID, per-segment/{diar}", False),
+            ("I", f"I [oracle lang] beam1, per-segment/{diar}", True)):
+        if only and tag not in only:
+            continue
         rows = []
         for cid in clip_ids:
             t0 = time.time()
             turns = asr.merge_same_speaker(diarization.load_hypothesis(cfg, diar, cid), 1.0)
-            segs, meta = asr.transcribe_segments(cfg, f"whisper-{model}",
-                                                 cfg.wav_path(cid), turns)
+            segs, meta = asr.transcribe_segments(
+                cfg, f"whisper-{model}", cfg.wav_path(cid), turns,
+                language=oracle_language(refs[cid], clips[cid].stats) if use_oracle else None)
             ordered = sorted(segs, key=lambda s: s["start"])
             pairs = [(t, s["speaker"]) for s in ordered for t in _norm(s["text"])]
             rows.append({"clip_id": cid,
                          **_row(refs[cid], pairs, " ".join(s["text"] for s in ordered),
                                 meta.get("clip_language"), gt_script[cid], time.time() - t0)})
-        emit(f"D beam5 + LID, per-segment on {diar}", rows)
+        emit(label, rows)
 
     return out
 

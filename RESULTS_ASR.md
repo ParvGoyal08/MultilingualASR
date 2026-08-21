@@ -393,7 +393,7 @@ checkpoints on these same ten.
 | **A** old: greedy, self-LID, long-form | 0.65 | 0.9640 | 0.9848 | 0.2816 | 36.1% | 2/10 | 7.3% | 0 |
 | **B** beam 5 + `large-v3` LID, long-form | 0.54 | 0.9463 | 0.9532 | 0.1843 | 47.4% | **9/10** | 11.1% | 206 |
 | **C** B + `condition_on_previous_text=False` | 0.54 | 0.9241 | 0.9272 | **0.1399** | 46.5% | **9/10** | 9.7% | 202 |
-| **D** beam 5 + LID, per-segment on fusion | **0.72** | 0.9362 | 0.9401 | 0.1979 | **29.1%** | **9/10** | **6.8%** | 308 |
+| **D** beam **1** + LID, per-segment on fusion | **0.72** | 0.9362 | 0.9401 | 0.1979 | **29.1%** | **9/10** | **6.8%** | 308 |
 | **E** `large-v3`, beam 5, own LID, long-form | 0.55 | **0.9058** | **0.9144** | 0.1538 | 47.5% | 8/10 | 14.8% | 591 |
 
 Full write-up and per-clip detail: `results/whisper_probe10.md`.

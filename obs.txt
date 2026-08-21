@@ -1108,7 +1108,7 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
        A old: greedy, self-LID, long-form   0.65  0.9640  0.9848  0.2816    2/10
        B beam5 + large-v3 LID, long-form    0.54  0.9463  0.9532  0.1843    9/10
        C   + cond_on_previous_text=False    0.54  0.9241  0.9272  0.1399    9/10
-       D beam5 + LID, per-segment/fusion    0.72  0.9362  0.9401  0.1979    9/10
+       D beam1 + LID, per-segment/fusion    0.72  0.9362  0.9401  0.1979    9/10
        E large-v3, beam5, own LID           0.55  0.9058  0.9144  0.1538    8/10
 
      The language fix works and is worth almost nothing. Script match goes

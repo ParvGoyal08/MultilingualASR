@@ -29,7 +29,7 @@ long-audio failure mode and flatter every configuration equally.
 | **A** old: greedy, self-LID, long-form | 0.65 | 0.9640 | 0.9848 | 0.2816 | 36.1% | 2/10 | 7.3% | 0 |
 | **B** beam 5 + `large-v3` LID, long-form | 0.54 | 0.9463 | 0.9532 | 0.1843 | 47.4% | **9/10** | 11.1% | 206 |
 | **C** B + `condition_on_previous_text=False` | 0.54 | 0.9241 | 0.9272 | **0.1399** | 46.5% | **9/10** | 9.7% | 202 |
-| **D** beam 5 + LID, per-segment on fusion | **0.72** | 0.9362 | 0.9401 | 0.1979 | **29.1%** | **9/10** | **6.8%** | 308 |
+| **D** beam **1** + LID, per-segment on fusion | **0.72** | 0.9362 | 0.9401 | 0.1979 | **29.1%** | **9/10** | **6.8%** | 308 |
 | **E** `large-v3`, beam 5, own LID, long-form | 0.55 | **0.9058** | **0.9144** | 0.1538 | 47.5% | 8/10 | 14.8% | 591 |
 
 `script` = clips whose output is in the reference's script. `rep5` = share of
@@ -91,3 +91,20 @@ Whisper's failure on this corpus is **recognition**, not decoding: it writes the
 right script, in the right language, and still gets the words wrong. That is a
 finding about multilingual ASR on code-switched Indic YouTube audio, and it is
 worth more written up than re-run.
+
+---
+
+## Correction (2026-08-21)
+
+Row **D** is labelled beam 5 above in the original run; it was **beam 1**.
+`asr.transcribe_segments` has always decoded segments greedily with the carried
+prompt off, and the probe did not override that. The row is otherwise as
+measured. `transcribe_segments` now exposes `beam_size`,
+`condition_on_previous_text` and `language`, with its previous values as the
+defaults, so nothing that already called it changed behaviour.
+
+This also means the long-form-vs-per-segment comparison (B vs D) confounded
+strategy with beam width. The conclusion is unaffected — D's WER 0.9362 sits
+inside the 0.906–0.964 band every configuration occupies — but the pairing was
+not clean, and the oracle-language row **I** re-runs the same path so the
+comparison against **F** is like-for-like.

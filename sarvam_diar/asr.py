@@ -839,12 +839,20 @@ def _sarvam_text(cfg: Config, key: str, wav: Path, model: str) -> tuple[str, str
 
 
 def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Turn],
-                        min_dur: float = 0.30, workers: int = 4) -> tuple[list[dict], dict]:
+                        min_dur: float = 0.30, workers: int = 4,
+                        language: str | None = None, beam_size: int = 1,
+                        condition_on_previous_text: bool = False,
+                        ) -> tuple[list[dict], dict]:
     """Transcribe each turn separately. Returns per-segment rows plus meta.
 
     Segments shorter than `min_dur` are skipped rather than sent: they were
     measured to come back empty anyway, and each one still costs a request and a
     spurious language guess. They are counted so the skip is visible.
+
+    `language` overrides detection entirely -- pass a code to run an oracle
+    condition. `beam_size` and `condition_on_previous_text` are exposed with the
+    values this function has always used, so existing callers are unaffected and
+    a probe can vary them without a second implementation of this loop.
     """
     import soundfile as sf
     from concurrent.futures import ThreadPoolExecutor
@@ -866,8 +874,11 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
     # it also multiplies the cost by the segment count. The language of a clip
     # does not change between its turns, so detecting once is both cheaper and
     # more accurate.
-    clip_lang = None
-    if not system.startswith("sarvam"):
+    clip_lang = language
+    if clip_lang is not None:
+        LOG.info("%s: language %s (given) for all %d segments",
+                 wav.stem, clip_lang, len(turns))
+    elif not system.startswith("sarvam"):
         clip_lang, _p = detect_language(cfg, wav)
         LOG.info("%s: language %s (p=%.2f) for all %d segments",
                  wav.stem, clip_lang, _p, len(turns))
@@ -891,8 +902,10 @@ def transcribe_segments(cfg: Config, system: str, wav: Path, turns: Sequence[Tur
             else:
                 size = "large-v3-turbo" if "turbo" in system else "large-v3"
                 words, meta = transcribe_whisper(
-                    cfg, buf, model_size=size, word_timestamps=False, beam_size=1,
-                    condition_on_previous_text=False, language=clip_lang)
+                    cfg, buf, model_size=size, word_timestamps=False,
+                    beam_size=beam_size,
+                    condition_on_previous_text=condition_on_previous_text,
+                    language=clip_lang)
                 text, lang = " ".join(w.text for w in words), meta.get("detected_language")
             return {"i": idx, "start": t.start, "end": t.end, "speaker": t.speaker,
                     "text": text, "skipped": None, "lang": lang}
