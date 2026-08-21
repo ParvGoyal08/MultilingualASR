@@ -41,9 +41,48 @@ LANGS = frozenset({"as", "bn", "brx", "doi", "gu", "hi", "kn", "kok", "ks",
 _CACHE: dict = {}
 
 
+def preflight() -> dict:
+    """What is installed, and is torch intact? Run BEFORE installing anything.
+
+    The IndicConformer card lists `pip install transformers torchaudio
+    onnxruntime-gpu`. On Kaggle that is actively harmful: torch and torchaudio
+    are preinstalled and pinned to the image's CUDA build, and letting pip
+    resolve them upgrades torch underneath a running kernel. The symptom is
+    `AttributeError: module 'torch' has no attribute '_utils'` raised from deep
+    inside an unrelated import -- a corrupted install, not a missing package.
+    """
+    import importlib.util as iu
+
+    out: dict = {}
+    for mod in ("torch", "torchaudio", "transformers", "onnxruntime", "nemo"):
+        spec = iu.find_spec(mod)
+        if spec is None:
+            out[mod] = None
+            continue
+        try:
+            m = __import__(mod)
+            out[mod] = getattr(m, "__version__", "present")
+        except Exception as exc:  # noqa: BLE001
+            out[mod] = f"BROKEN: {type(exc).__name__}: {str(exc)[:80]}"
+    return out
+
+
+def install_hint(state: dict) -> list[str]:
+    """The packages that are genuinely missing -- never torch or torchaudio."""
+    return [m for m in ("transformers", "onnxruntime") if state.get(m) is None]
+
+
 def load(model_id: str = MODEL_ID, device: str | None = None):
     """Load once and cache. Returns (model, device_str)."""
     import torch
+
+    if not hasattr(torch, "_utils"):
+        raise RuntimeError(
+            "torch is corrupted (no torch._utils). Something pip-installed a "
+            "different torch underneath this kernel. A kernel restart is NOT "
+            "enough because the replaced files persist for the session -- use "
+            "Session options > Factory reset, then install nothing that pulls "
+            "torch. See asr_indic.preflight().")
     from transformers import AutoModel
 
     if device is None:
