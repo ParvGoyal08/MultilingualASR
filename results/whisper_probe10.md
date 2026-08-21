@@ -108,3 +108,46 @@ strategy with beam width. The conclusion is unaffected — D's WER 0.9362 sits
 inside the 0.906–0.964 band every configuration occupies — but the pairing was
 not clean, and the oracle-language row **I** re-runs the same path so the
 comparison against **F** is like-for-like.
+
+
+---
+
+## Oracle-language rows (run 2026-08-21 17:31 UTC, Kaggle 2xT4)
+
+Same ten clips. F/G/H pair one-for-one with B/C/E and differ **only** in where
+the language comes from: F/G/H are given the language derived from the
+reference, B/C/E detect it with `large-v3`. `[1 lang subst]` marks the Oriya
+clip, where Whisper has no `or` and `bn` is substituted (obs [45]).
+
+| configuration | ratio | WER | cpWER | WDER | del% | script | rep5 | sec |
+|---|---|---|---|---|---|---|---|---|
+| **F** [oracle] beam 5, long-form | 0.53 | 0.9428 | 0.9453 | **0.1297** | 47.9% | 8/10 | 9.6% | 185 |
+| **G** [oracle] + `cond_prev=False` | 0.54 | 0.9310 | 0.9338 | 0.1699 | 47.6% | 9/10 | 12.8% | 177 |
+| **H** [oracle] `large-v3`, beam 5 | 0.43 | **0.9058** | 0.9158 | 0.1743 | 58.5% | 8/10 | 15.9% | 485 |
+
+**I** (per-segment, oracle language) began but its row was truncated in the
+captured output; it is not recorded here.
+
+### Paired against the language-detected rows
+
+| pair | WER (LID → oracle) | verdict |
+|---|---|---|
+| B → F | 0.9463 → 0.9428 | −0.0035, negligible |
+| C → G | 0.9241 → **0.9310** | **worse by 0.0069** |
+| E → H | 0.9058 → 0.9058 | **identical** |
+
+**Giving Whisper the correct language changes essentially nothing.** Across
+three paired configurations the WER moves by at most 0.007, and in one pair the
+oracle is *worse* than detection. `large-v3` is unchanged to four decimal
+places.
+
+This is the cleanest confirmation available that Whisper's failure on this
+corpus is **recognition, not language identification** — the hypothesis obs [43]
+reached from the LID rows alone, now tested directly by removing language
+identification from the problem entirely. It also retires the last defence of
+the oracle-language ablation: there is no headroom behind perfect LID to
+recover.
+
+One counter-current worth noting: WDER improves markedly in F (0.1843 → 0.1297)
+while WER does not. With WER near 0.94 the WDER denominator (aligned words,
+S + C) is small and unstable, so this is not strong evidence either way.

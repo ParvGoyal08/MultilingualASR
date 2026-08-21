@@ -1255,3 +1255,31 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      Method note: this comparison is only possible because oracle_language
      resolves hi_or_mr from the reference text. It is scoring-side and never
      reaches a model.
+
+--------------------------------------------------------------------------
+[47] Handing Whisper the correct language changes nothing. F/G/H repeat B/C/E
+     on the same ten clips, differing ONLY in whether the language is detected
+     by large-v3 or taken from the reference:
+
+       pair          WER  LID -> oracle      verdict
+       B -> F      0.9463 -> 0.9428          -0.0035, negligible
+       C -> G      0.9241 -> 0.9310          WORSE by 0.0069
+       E -> H      0.9058 -> 0.9058          identical to 4 decimals
+
+     Three paired configurations, largest movement 0.007, and one of the three
+     is worse with the oracle than with detection. large-v3 does not move at
+     all.
+
+     [43] inferred that Whisper's failure was recognition rather than language
+     identification, from the fact that fixing LID moved script match 2/10 ->
+     9/10 while WER moved 0.018. This tests it directly by removing language
+     identification from the problem altogether, and the answer is the same.
+     There is no headroom hiding behind perfect LID.
+
+     That also retires the oracle-language ablation as a line of enquiry: it was
+     built to bound what perfect LID would buy, and the bound is zero.
+
+     One counter-current, recorded but not believed: WDER improves in F
+     (0.1843 -> 0.1297) while WER does not. At WER 0.94 almost nothing aligns,
+     so WDER's denominator (S + C) is small and unstable. Not evidence either
+     way.
