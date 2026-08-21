@@ -944,7 +944,59 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      and a 7.66 s median against 2.50 s gives the recogniser more context per
      request.
 
-     So the recommendations differ by purpose, and should be reported that way:
-     the FUSION is the diarization result, reverb-v2 is the ASR segmentation
-     source. Choosing one model for both would sacrifice something real in
-     whichever direction it went.
+     THAT CONCLUSION IS WRONG, and [39] retracts it. Coverage is only half the
+     trade, and the half I measured. See below.
+
+--------------------------------------------------------------------------
+[39] Retracts [38]. reverb-v2 is the WORST ASR front-end, not the best --
+     coverage is real but attribution dominates it, and I measured only one side.
+
+     [38] argued reverb-v2 was the right ASR segmentation source because it
+     leaves almost no reference speech uncovered, and uncovered speech is an
+     unrecoverable cpWER deletion. That is true and it is not the whole trade.
+     Its 15.5 s turns routinely span several reference speakers, and per-segment
+     ASR gives every word in a turn ONE label, so every word of the minority
+     speaker in an impure turn is misattributed. In cpWER a misattributed word
+     costs twice a missing one -- a deletion from the speaker who said it and an
+     insertion into the one credited.
+
+       diarization    uncovered ref speech    impure turns   ref speech in them
+       reverb-v2            1 min (0.1%)          74%            131 min
+       FUSION              16 min (2.3%)          63%            107 min
+       community-1         15 min (2.2%)          48%            112 min
+       diarizen-large      18 min (2.6%)          54%            106 min
+
+     Settled by holding the recogniser perfect: feed the reference transcript
+     back as if recognised, attribute it through each diarization, and score.
+     The recogniser drops out and what remains is the cpWER floor that
+     diarization imposes, with coverage and misattribution weighted the way
+     cpWER actually weights them rather than by my arithmetic. Costs nothing --
+     no audio, no API calls.
+
+       ALIGNED reference    cpWER   DI-cpWER   attribution    WDER
+       diarizen-large      0.1911     0.0910       0.1002   0.0942
+       FUSION              0.2070     0.0923       0.1147   0.0958
+       community-1         0.2272     0.0905       0.1366   0.1126
+       reverb-v2           0.2825     0.0822       0.2003   0.1357
+
+     reverb-v2 has the BEST DI-cpWER, which is coverage and confirms [38]'s
+     observation exactly -- and the WORST cpWER, because its attribution cost is
+     nearly double the fusion's. The advantage I identified is real and is
+     outweighed roughly two to one by the cost I did not measure.
+
+     Consequence: the Saaras sweep ran over the worst available front-end. Its
+     cpWER of 0.3957 carries a 0.2825 floor from reverb-v2 alone; the same
+     transcripts attributed through diarizen-large would face a 0.1911 floor.
+     Up to ~0.09 cpWER is recoverable by re-cutting on a different diarization,
+     which is far larger than anything else still on the table.
+
+     Cost of re-running: diarizen-large gives 11,013 merged segments against
+     reverb-v2's 2,650, so 4.2x the API calls; the FUSION gives 6,312, so 2.4x.
+     The fusion is within 0.016 cpWER of diarizen-large's floor for 43% fewer
+     calls, and it is already the Step 4 system, so using it keeps one story
+     rather than two.
+
+     The methodological lesson, which is the reason this is written down: [38]
+     reasoned from one measured quantity to a confident recommendation without
+     measuring the quantity that opposed it. The oracle-floor experiment that
+     settles it takes seconds and needs no audio. It should have come first.
