@@ -54,6 +54,12 @@ def preflight() -> dict:
     import importlib.util as iu
 
     out: dict = {}
+    try:
+        from .diarization import resolve_token
+
+        out["hf_token"] = "present" if resolve_token(Config.create()) else "MISSING"
+    except Exception as exc:  # noqa: BLE001
+        out["hf_token"] = f"unresolved: {type(exc).__name__}"
     for mod in ("torch", "torchaudio", "transformers", "onnxruntime", "nemo"):
         spec = iu.find_spec(mod)
         if spec is None:
@@ -72,8 +78,16 @@ def install_hint(state: dict) -> list[str]:
     return [m for m in ("transformers", "onnxruntime") if state.get(m) is None]
 
 
-def load(model_id: str = MODEL_ID, device: str | None = None):
-    """Load once and cache. Returns (model, device_str)."""
+def load(model_id: str = MODEL_ID, device: str | None = None, cfg: Config | None = None):
+    """Load once and cache. Returns (model, device_str).
+
+    The repo is GATED. Two separate things are needed and the 401 does not
+    distinguish them: access must be granted to your account on the model page,
+    AND a token must be presented. The token is resolved the same way the
+    diarization models resolve theirs -- .env, then the process environment,
+    then the host secret store -- never from a notebook cell, because the
+    notebooks go to a public repo.
+    """
     import torch
 
     if not hasattr(torch, "_utils"):
@@ -87,6 +101,9 @@ def load(model_id: str = MODEL_ID, device: str | None = None):
 
     if device is None:
         device = "cuda" if torch.cuda.is_available() else "cpu"
+    from .diarization import resolve_token
+
+    token = resolve_token(cfg) if cfg is not None else resolve_token(Config.create())
     key = (model_id, device)
     if key in _CACHE:
         return _CACHE[key]
@@ -94,7 +111,21 @@ def load(model_id: str = MODEL_ID, device: str | None = None):
     t0 = time.perf_counter()
     LOG.info("loading %s (trust_remote_code) -- first call also downloads ~2.4 GB",
              model_id)
-    model = AutoModel.from_pretrained(model_id, trust_remote_code=True)
+    try:
+        model = AutoModel.from_pretrained(model_id, trust_remote_code=True,
+                                          token=token)
+    except OSError as exc:
+        raise RuntimeError(
+            f"cannot load {model_id}: {str(exc)[:200]}\n"
+            f"  token present: {bool(token)}\n"
+            "  This repo is gated, so BOTH of these must be true:\n"
+            "   1. your HF account has been granted access -- open\n"
+            f"      https://huggingface.co/{model_id} while logged in and\n"
+            "      accept the terms (approval is usually immediate)\n"
+            "   2. that account's token reaches this process -- Kaggle\n"
+            "      Add-ons > Secrets > HF_TOKEN, or .env locally\n"
+            "  A token from an account WITHOUT access still returns 401."
+        ) from exc
     try:
         model = model.to(device)
     except Exception as exc:  # noqa: BLE001
@@ -149,7 +180,7 @@ def smoke(cfg: Config, clip_id: str, lang: str, decoding: str = "rnnt",
     """Prove download, device, 16 kHz input and one transcription end to end."""
     import torch
 
-    model, device = load()
+    model, device = load(cfg=cfg)
     wav_path = cfg.wav_path(clip_id)
     wav = load_wav(wav_path)
     clipped = wav[:, : int(seconds * SAMPLE_RATE)]
@@ -177,7 +208,7 @@ def transcribe_segments(cfg: Config, wav: Path, turns: Sequence[Turn], lang: str
     """
     import math
 
-    model, device = load()
+    model, device = load(cfg=cfg)
     audio = load_wav(Path(wav))
     n = audio.shape[1]
     rows: list[dict] = []
