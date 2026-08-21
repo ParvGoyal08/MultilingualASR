@@ -1563,3 +1563,58 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      was 16.3% of all substitutions and got none, because "substitution" reads
      as "misrecognised" and nobody checked. Read the error decomposition before
      choosing the intervention.
+
+--------------------------------------------------------------------------
+[54] A second convention mismatch, same shape as [53]: numerals. And a map of
+     what the LLM can and cannot fix, from the residual error rather than guesswork.
+
+     The corpus writes numbers as SPOKEN WORDS -- 14 digit-bearing tokens in
+     123,896 reference tokens (0.01%). Saaras writes DIGITS: 892 tokens (0.74%),
+     producing 836 substitutions and 56 insertions.
+
+       ఇరవై -> 20     వంద -> 100    ਦਸ -> 10    पंद्रह -> 15    तीन -> 3
+
+     Same fix as [53]: extract the digit vocabulary from the hypothesis, ask
+     claude-sonnet-4-6 to spell each out in the clip's language, apply as a
+     frozen lookup. 697 tokens converted.
+
+     Stacked result, all 99 clips:
+
+       stage                 ratio      WER    cpWER     WDER
+       baseline             0.9786   0.2787   0.3181   0.0628
+       + transliteration    0.9786   0.2614   0.3045   0.0603
+       + numerals           0.9807   0.2585   0.3017   0.0602
+       TOTAL               +0.0021  -0.0202  -0.0164  -0.0026
+
+     WER -7.2% relative, cpWER -5.2%. Per clip: 72 better, 1 worse, 26 tie;
+     95% CI [-0.0188, -0.0084], excludes zero. dev -0.0094 (34 better, 0 worse),
+     test -0.0216 (38 better, 1 worse).
+
+     Numerals are weaker than transliteration (-0.0028 vs -0.0136 cpWER) and
+     carry the only regression: spelling a number out changes the token count,
+     so a wrong reading adds insertions. Word ratio moves 0.9786 -> 0.9807.
+
+     WHAT ELSE WAS TESTED AND REJECTED, all measured on the residual:
+
+     - Spelling variants. 46.2% of remaining substitutions are within 2
+       characters of the reference, which looks like a huge pool. But only 423
+       (2.2%) vanish under orthographic folding -- nukta (ज़्यादा/ज्यादा, 311)
+       and chandrabindu/anusvara (हूँ/हूं, 112), worth 0.34% of tokens, and that
+       is a SCORING normalisation applied to both sides rather than a system
+       improvement. The rest are genuinely different words: તે/એ is "that" vs
+       "this", हैं/है is a plural marker. An LLM correcting these would have to
+       guess the annotator's choice, which is exactly where [51] introduced
+       cross-script corruption.
+     - Names. Not a distinct failure class -- no proper noun appears in the top
+       near-miss pairs, and deletions are dominated by fillers, not names.
+     - Deduplication. Already measured in [50]: it helped before the provenance
+       fix and HURTS after it (-0.0064 -> +0.0027 cpWER).
+     - Filler recovery. The most-deleted reference tokens are backchannels the
+       recogniser drops: अ(284), हं(102), ఉమ్మ్(85), ହୁଁ(83), હા(60). An LLM
+       cannot restore them without inventing speech.
+
+     The generalisable lesson: the wins came from CONVENTION mismatches, where
+     the reference and the recogniser disagree about how to WRITE a correctly
+     heard word, and where a general model supplies the convention without ever
+     seeing the reference. The failures were all attempts to fix RECOGNITION,
+     which a text-only model cannot do.

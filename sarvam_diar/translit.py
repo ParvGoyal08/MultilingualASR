@@ -62,6 +62,10 @@ def resolve_bedrock_key(cfg: Config | None = None) -> str:
     raise RuntimeError("no Bedrock key: set AWS_BEARER_TOKEN_BEDROCK in .env")
 
 
+def has_digit(tok: str) -> bool:
+    return any(c.isdigit() for c in tok)
+
+
 def is_latin(tok: str) -> bool:
     a = [c for c in tok if c.isalpha()]
     return bool(a) and all(ord(c) < 128 for c in a)
@@ -73,8 +77,9 @@ def clip_script(payload: dict) -> str:
     return dominant_script(text)[0]
 
 
-def vocabulary(payloads: Iterable[dict]) -> dict[str, Counter]:
-    """{script: Counter(latin token)} over the hypotheses."""
+def vocabulary(payloads: Iterable[dict], kind: str = "latin") -> dict[str, Counter]:
+    """{script: Counter(token)} over the hypotheses. kind = latin | digit."""
+    pick = is_latin if kind == "latin" else has_digit
     out: dict[str, Counter] = defaultdict(Counter)
     for p in payloads:
         sc = clip_script(p)
@@ -82,7 +87,7 @@ def vocabulary(payloads: Iterable[dict]) -> dict[str, Counter]:
             continue
         for s in p.get("segments", []):
             for t in normalize_text(s.get("text") or "", strip_gloss=False).split():
-                if is_latin(t):
+                if pick(t):
                     out[sc][t] += 1
     return out
 
@@ -134,11 +139,29 @@ Rules:
 - Return JSON only: an object mapping each input word to its transliteration."""
 
 
+NUMERAL_SYSTEM = """\
+You spell numbers out in words, in {lang}.
+
+You are given numerals that appeared in a {lang} transcript. A human transcriber
+of this material writes numbers as SPOKEN WORDS, never as digits. Write each
+numeral the way it is said aloud in {lang}, in {lang} script.
+
+Rules:
+- Write what a speaker SAYS. 15 becomes the {lang} words for fifteen.
+- Keep any attached text: "15%" becomes the words for fifteen followed by the
+  {lang} word for percent.
+- Years and large numbers are written the way they are spoken.
+- Output every input exactly once as a key. Values may be several words.
+- Return JSON only: an object mapping each input to its spoken form."""
+
+
 def translate_batch(words: Sequence[str], script: str, key: str,
-                    model: str, cfg: Config, use_cache: bool = True) -> dict[str, str]:
+                    model: str, cfg: Config, use_cache: bool = True,
+                    kind: str = "latin") -> dict[str, str]:
     lang = SCRIPT_LANG[script]
-    sysmsg = SYSTEM.format(lang=lang)
-    user = ("Transliterate these into " + lang + " script:\n"
+    sysmsg = (SYSTEM if kind == "latin" else NUMERAL_SYSTEM).format(lang=lang)
+    verb = "Transliterate these into" if kind == "latin" else "Spell these out in"
+    user = (f"{verb} {lang} script:\n"
             + json.dumps(sorted(words), ensure_ascii=False))
     ck = hashlib.sha1(
         "\x00".join([model, PROMPT_VERSION, sysmsg, user]).encode()).hexdigest()[:16]
@@ -158,8 +181,13 @@ def translate_batch(words: Sequence[str], script: str, key: str,
         try:
             raw = json.loads(txt[a:b + 1])
             for k, v in raw.items():
-                if isinstance(v, str) and v.strip() and not is_latin(v.strip()):
-                    mapping[k] = v.strip()
+                if not (isinstance(v, str) and v.strip()):
+                    continue
+                v = v.strip()
+                # never accept an output that is still Latin, or still a digit
+                if is_latin(v) or has_digit(v):
+                    continue
+                mapping[k] = v
         except json.JSONDecodeError:
             LOG.warning("translit: unparseable response for %s batch", script)
     write_json_atomic(path, {"script": script, "model": model, "mapping": mapping,
@@ -169,19 +197,21 @@ def translate_batch(words: Sequence[str], script: str, key: str,
 
 
 def build_table(cfg: Config, payloads: Sequence[dict], model: str = DEFAULT_MODEL,
-                min_count: int = 1, use_cache: bool = True) -> dict[str, dict[str, str]]:
-    """{script: {latin: indic}} -- the frozen lookup this stage applies."""
+                min_count: int = 1, use_cache: bool = True,
+                kind: str = "latin") -> dict[str, dict[str, str]]:
+    """{script: {token: replacement}} -- the frozen lookup this stage applies."""
     key = resolve_bedrock_key(cfg)
-    vocab = vocabulary(payloads)
+    vocab = vocabulary(payloads, kind)
     table: dict[str, dict[str, str]] = {}
     for sc, cnt in sorted(vocab.items(), key=lambda x: -sum(x[1].values())):
         words = [w for w, n in cnt.most_common() if n >= min_count]
         got: dict[str, str] = {}
         for i in range(0, len(words), BATCH):
-            got.update(translate_batch(words[i:i + BATCH], sc, key, model, cfg, use_cache))
+            got.update(translate_batch(words[i:i + BATCH], sc, key, model,
+                                       cfg, use_cache, kind))
         table[sc] = got
-        LOG.info("translit %s: %d types -> %d mapped (%d tokens)",
-                 sc, len(words), len(got), sum(cnt.values()))
+        LOG.info("translit[%s] %s: %d types -> %d mapped (%d tokens)",
+                 kind, sc, len(words), len(got), sum(cnt.values()))
     return table
 
 
@@ -198,7 +228,7 @@ def apply_to_payload(payload: dict, table: dict[str, dict[str, str]]) -> tuple[d
         new = []
         for t in toks:
             core = normalize_text(t, strip_gloss=False).strip()
-            if core and is_latin(core) and core in m:
+            if core and (is_latin(core) or has_digit(core)) and core in m:
                 new.append(m[core]); n += 1
             else:
                 new.append(t)
