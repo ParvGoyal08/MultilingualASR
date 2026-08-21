@@ -1471,3 +1471,45 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      windows (10 calls/arm) instead of the designed 12-segment cores (37/arm).
      At 402 segments and 24 edits the pilot cannot resolve an effect below about
      0.005 cpWER, which is itself a reason not to read anything into the sign.
+
+--------------------------------------------------------------------------
+[52] Source separation over overlapped regions HURTS. Fourth overlap idea
+     measured and rejected.
+
+     100 GT-overlap runs from the 10 clips with the most overlapped words
+     (3,851 overlapped reference words, 862s), each run passed through three
+     conditions and transcribed by Saaras v3:
+
+       A  mixture @16k (baseline)              52.6% of GT words recovered
+       B  mixture 16k -> 8k -> 16k (control)   52.0%   bandwidth penalty -0.6%
+       C  ConvTasNet 2 streams (Libri2Mix)     50.0%   separation effect -2.0%
+
+     Pre-registered gate was >=65%. Delivered 50.0%.
+
+     The control is what makes this conclusive. torchaudio's only built-in
+     separator runs at 8 kHz, so the obvious objection is that the result
+     measures bandwidth loss rather than separation quality. It does not: the
+     round-trip through 8 kHz costs 0.6 points, while separation costs a further
+     2.0. Saaras is nearly indifferent to the 8 kHz band on this material and
+     clearly worse on the separated streams.
+
+     Mechanism, inferred: ConvTasNet-Libri2Mix is trained on clean English read
+     speech, exactly two speakers, fully overlapped, studio channel. This corpus
+     is YouTube conversation with music and laughter, nine Indic languages, 2-8
+     speakers, and PARTIAL overlap of 0.38s median. The separator emits two
+     decorrelated streams (measured corr +0.04, so it is doing something) but
+     the streams carry artefacts that cost more than the interference they
+     remove. Saaras already recovers 52.6% from the raw mixture; that is a
+     strong baseline for an out-of-domain separator to beat.
+
+     The ceiling was real -- overlapped words are deleted at 17.9% against 4.7%
+     for clean speech, and a perfect separator would be worth -0.031 WER
+     (0.2787 -> 0.2479), the largest ceiling measured on this project. The
+     ceiling is not the problem; the available instrument is.
+
+     Together with [50]-[51] and the voting/MSDD/OSD audits, four independent
+     overlap interventions have now been measured and none improves the system:
+     lower voting threshold (+0.056 DER), MSDD-style verifier (candidates 11.5%
+     precise), OSD intersection (23.6% precise, +0.0024 DER), and separation
+     (-2.6 points of word recovery). Overlap remains the dominant weakness and
+     no off-the-shelf component available here addresses it.

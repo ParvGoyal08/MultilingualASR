@@ -633,10 +633,27 @@ Only proposals with measured support are listed.
   departure from the designed 12-segment windows.
 
 **Future work, evidence-backed.**
-1. **Dedicated overlapped-speech detection.** Overlap recall is 21.5% and
-   overlapped regions carry 52.5% of miss and 27.4% of all error. DOVER-Lap can
-   only vote on what its members found; a purpose-built OSD model finds overlap
-   none of them proposed. Largest measured opportunity in the system.
+1. **Overlap remains the largest opportunity and is currently unaddressed.**
+   Overlapped regions carry 52.5% of miss and 27.4% of all DER error, and
+   overlapped words are deleted at 17.9% against 4.7% for clean speech — a
+   perfect separator would be worth **−0.031 WER** (0.2787 → 0.2479), the
+   largest ceiling measured here. **Four interventions were built and measured,
+   and none works:**
+
+   | intervention | result |
+   |---|---|
+   | lower the fusion vote to 1-of-3 in overlap | **+0.0564 DER** (5.8 s FA per 1 s recovered) |
+   | MSDD-style verifier on vote disagreement | candidates 11.5% precise; 77% of overlap miss is upstream |
+   | `segmentation-3.0` OSD ∩ constituent identity | 23.6% precise, **+0.0024 DER** |
+   | ConvTasNet separation of overlap regions | word recovery 52.6% → **50.0%** |
+
+   The separation control matters: an 8 kHz round-trip costs 0.6 points while
+   separation costs a further 2.0, so this is not a bandwidth artefact. What
+   these share is that every available component is either derived from
+   `pyannote/segmentation-3.0` (so its errors correlate with the fusion's) or
+   trained on clean English 2-speaker mixtures. **A genuinely independent,
+   in-domain overlap model — trained on multilingual conversational speech — is
+   the prerequisite, not a smarter way of combining what we have.**
 2. **Per-token script rail for any future LLM stage.** Would have caught all 7
    corrupting edits in §6; two lines.
 3. **IndicConformer at corpus scale, leak-free.** It beat Whisper 2.2× on 10
