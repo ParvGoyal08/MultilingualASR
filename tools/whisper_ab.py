@@ -33,6 +33,10 @@ def default_root() -> str:
     return "local_out"
 
 
+# Per-segment is a different call path, not a keyword, so it is handled
+# separately in main() rather than as a row of SETTINGS.
+SEGMENTED = ("PER-SEGMENT on reverb-v2 turns",)
+
 SETTINGS = [
     ("greedy, conditioned   (what ran)", dict(beam_size=1, condition_on_previous_text=True)),
     ("greedy, unconditioned", dict(beam_size=1, condition_on_previous_text=False)),
