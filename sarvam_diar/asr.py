@@ -352,15 +352,18 @@ BACKENDS: dict[str, Callable[..., tuple[list[Word], dict]]] = {
     # Whisper emits end-of-transcript early without beam search, and the saving
     # is not worth a transcript that is four fifths absent.
     #
-    # condition_on_previous_text is off: it feeds each window's output back as
-    # the next window's prompt, which on long code-switched audio compounds a
-    # bad window into a worse one and is a known cause of repetition collapse.
+    # condition_on_previous_text stays at Whisper's default of True. Turning it
+    # off is a plausible guard against repetition cascades on long code-switched
+    # audio, but that is an argument, not a measurement, and the published WER
+    # numbers for these models are obtained with it on. Deviating from the
+    # reference configuration without evidence is how the turbo substitution
+    # went wrong. tools/whisper_ab.py tests both settings; change this only if
+    # it says to.
     "whisper-large-v3-turbo": lambda cfg, wav: transcribe_whisper(
         cfg, wav, "large-v3-turbo", word_timestamps=True, beam_size=5,
-        condition_on_previous_text=False, lid_model=LID_MODEL),
+        lid_model=LID_MODEL),
     "whisper-large-v3": lambda cfg, wav: transcribe_whisper(
-        cfg, wav, "large-v3", word_timestamps=True, beam_size=5,
-        condition_on_previous_text=False),
+        cfg, wav, "large-v3", word_timestamps=True, beam_size=5),
     "whisper-large-v3-batched": lambda cfg, wav: transcribe_whisper(
         cfg, wav, "large-v3", word_timestamps=True, beam_size=1, batch_size=8),
     "sarvam-saaras-v3": lambda cfg, wav: transcribe_sarvam(cfg, wav, "saaras:v3"),
@@ -372,9 +375,9 @@ BACKENDS: dict[str, Callable[..., tuple[list[Word], dict]]] = {
 # apart from one written under different settings. Kept beside BACKENDS rather
 # than derived from it, because a lambda's keywords are not introspectable.
 BACKEND_SETTINGS: dict[str, dict] = {
-    "whisper-large-v3-turbo": {"beam_size": 5, "condition_on_previous_text": False,
+    "whisper-large-v3-turbo": {"beam_size": 5, "condition_on_previous_text": True,
                                "lid_model": LID_MODEL, "batched": False},
-    "whisper-large-v3": {"beam_size": 5, "condition_on_previous_text": False,
+    "whisper-large-v3": {"beam_size": 5, "condition_on_previous_text": True,
                          "lid_model": None, "batched": False},
     "whisper-large-v3-batched": {"beam_size": 1, "condition_on_previous_text": True,
                                  "lid_model": None, "batched": True},

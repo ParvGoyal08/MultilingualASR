@@ -882,10 +882,21 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      decoding quality would degrade gracefully. It does not degrade gracefully;
      it truncates.
 
-     Defaults changed to beam_size=5 with condition_on_previous_text=False. The
-     second matters independently: conditioning feeds each window's output back
-     as the next window's prompt, so on long code-switched audio one bad window
-     compounds, and it is a known cause of repetition collapse.
+     beam_size is back to 5, which is also faster-whisper's default -- the
+     deviation was mine, taken for speed.
+
+     condition_on_previous_text stays at its default of True. Turning it off is
+     a plausible guard against repetition cascades on long code-switched audio,
+     and it was briefly changed on that reasoning, but that is an argument
+     rather than a measurement and the published WER numbers for these models
+     are obtained with it on. Deviating from the reference configuration without
+     evidence is exactly how the turbo substitution went wrong, so it is left
+     alone until tools/whisper_ab.py says otherwise.
+
+     Worth noting that faster-whisper already carries a mitigation for the
+     failure mode the change was aimed at: prompt_reset_on_temperature=0.5
+     drops the carried prompt whenever temperature fallback triggers, which is
+     precisely when a window has gone wrong.
 
      tools/whisper_ab.py transcribes a few short clips under all four
      combinations and reports words-produced against words-spoken, because the
