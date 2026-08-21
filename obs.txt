@@ -1513,3 +1513,53 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      precise), OSD intersection (23.6% precise, +0.0024 DER), and separation
      (-2.6 points of word recovery). Overlap remains the dominant weakness and
      no off-the-shelf component available here addresses it.
+
+--------------------------------------------------------------------------
+[53] The first Step 4 intervention that WORKS, and it is a lookup table.
+
+     The reference writes code-switched English phonetically in the native
+     script -- the dual-form convention behind the 20,562 parenthesised glosses.
+     Measured: the reference is 99.98% Indic script (27 Latin tokens in
+     123,896); the Saaras hypothesis is 3.0% Latin (3,689 tokens). Of 21,357
+     substitutions, 3,481 (16.3%) are ref-Indic against hyp-Latin:
+
+       ఐ -> i     టు -> to    ఓకే -> okay   సో -> so
+       એમએલ -> ml  एंड -> and  યુ -> you     బోత్ -> both
+
+     These are not recognition errors. Saaras heard the word and wrote it in the
+     wrong script for this corpus's convention. Every one scores as a
+     substitution.
+
+     Fix: transliterate the hypothesis's Latin tokens into the clip's dominant
+     script, using claude-sonnet-4-6 on Bedrock over the VOCABULARY only -- 1,651
+     unique (script, token) pairs, one batch per script, cached, applied as a
+     frozen lookup. No re-run of Saaras. Script comes from
+     data.dominant_script on the HYPOTHESIS; the spellings come from the model's
+     knowledge of the language. Ground truth is never read.
+
+     Result, all 99 clips, 3,520 tokens converted:
+
+                    ratio      WER    cpWER     WDER      sub     del
+       before      0.9786   0.2787   0.3181   0.0628   21,357   7,914
+       after       0.9786   0.2614   0.3045   0.0603   18,927   8,053
+       delta      +0.0000  -0.0174  -0.0137  -0.0024   -2,430    +139
+
+     WER -6.2% relative, cpWER -4.3%, WDER -3.8%. Substitutions fall by 2,430 --
+     69% of the 3,520 conversions landed on the reference's exact spelling.
+
+       split   mean d cpWER   95% CI            better/worse/tie
+       dev        -0.0064     [-0.0104,-0.0032]   26 / 0 / 24
+       test       -0.0137     [-0.0245,-0.0051]   27 / 0 / 22
+
+     BOTH CIs exclude zero, and NOT ONE CLIP GOT WORSE on either split. That is
+     by construction: the stage only rewrites tokens the recogniser emitted in
+     Latin, so a wrong transliteration leaves a substitution that was already a
+     substitution. The downside is bounded at zero. Deletions rise by 139, the
+     only cost, where a converted token fails to align.
+
+     Why this was invisible for so long: four overlap interventions were built
+     and measured before anyone asked what the METRIC was actually penalising.
+     Overlap is 27.4% of DER error and got four experiments; script convention
+     was 16.3% of all substitutions and got none, because "substitution" reads
+     as "misrecognised" and nobody checked. Read the error decomposition before
+     choosing the intervention.
