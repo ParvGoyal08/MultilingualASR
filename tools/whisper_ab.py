@@ -90,6 +90,33 @@ def main() -> int:
         n = hits + subs + dels
         print(f"  {label:<36}{ref_w:>7}{hyp_w:>7}{hyp_w/max(ref_w,1):>7.2f}"
               f"{(subs+dels+ins)/max(n,1):>8.4f}{dels/max(n,1):>7.1%}{time.time()-t0:>7.0f}")
+    # per-segment: cut at the diarized turns and transcribe each, which is how
+    # Sarvam is run and removes Whisper's freedom to skip a window
+    from sarvam_diar import diarization
+    label = SEGMENTED[0]
+    ids = [c for c in picked if diarization.is_done(cfg, "reverb-v2", c.clip_id)]
+    if ids:
+        ref_w = hyp_w = dels = subs = ins = hits = 0
+        t0 = time.time()
+        for c in ids:
+            ref = reference.build_reference(c)
+            turns = asr.merge_same_speaker(
+                diarization.load_hypothesis(cfg, "reverb-v2", c.clip_id), 1.0)
+            segs, _m = asr.transcribe_segments(
+                cfg, f"whisper-{args.model}", cfg.wav_path(c.clip_id), turns)
+            rw = [t for u in ref.utterances for t in reference.tokenize(u.text_norm)]
+            hw = [t for sg in segs
+                  for t in reference.normalize_text(sg["text"], strip_gloss=False).split()]
+            cnt = tm.wer_counts(rw, hw)
+            ref_w += len(rw); hyp_w += len(hw)
+            dels += cnt.deletions; subs += cnt.substitutions
+            ins += cnt.insertions; hits += cnt.hits
+        n = hits + subs + dels
+        print(f"  {label:<36}{ref_w:>7}{hyp_w:>7}{hyp_w/max(ref_w,1):>7.2f}"
+              f"{(subs+dels+ins)/max(n,1):>8.4f}{dels/max(n,1):>7.1%}{time.time()-t0:>7.0f}")
+    else:
+        print(f"  {label:<36} skipped: no reverb-v2 turns on these clips")
+
     print("\n  ratio near 1.0 means the recogniser is producing about as many words as")
     print("  were spoken. A low ratio with a high del% is truncation, not mis-hearing.")
     return 0

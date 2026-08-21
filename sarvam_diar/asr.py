@@ -132,7 +132,9 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
                        word_timestamps: bool = True, beam_size: int = 5,
                        condition_on_previous_text: bool = True,
                        batch_size: int = 0, language: str | None = None,
-                       lid_model: str | None = None) -> tuple[list[Word], dict]:
+                       lid_model: str | None = None,
+                       no_speech_threshold: float | None = 0.6,
+                       ) -> tuple[list[Word], dict]:
     """faster-whisper with word timestamps.
 
     Deliberately not WhisperX: it pins an older pyannote and would fight the
@@ -192,6 +194,13 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
         word_timestamps=word_timestamps,
         vad_filter=vad_filter,
         beam_size=beam_size,
+        # Whisper drops a whole 30 s window when its no-speech probability
+        # exceeds this. On clean English that is a useful guard against
+        # hallucinating over silence; on noisy code-switched Indic audio it is a
+        # candidate cause of the ~50% deletion rate, since a window it is
+        # unsure about is discarded rather than transcribed badly. None
+        # disables the check.
+        no_speech_threshold=no_speech_threshold,
         **({"batch_size": batch_size} if batch_size and batch_size > 1
            else {"condition_on_previous_text": condition_on_previous_text}),
     )
