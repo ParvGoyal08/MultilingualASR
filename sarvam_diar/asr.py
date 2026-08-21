@@ -96,7 +96,7 @@ def detect_language(cfg: Config, wav: Path, model_size: str = LID_MODEL,
     """
     from faster_whisper.audio import decode_audio
 
-    model = _whisper_model(cfg, model_size)
+    model = _whisper_model(cfg, model_size, device_index=_lid_device())
     # detect_language takes a decoded waveform, NOT a path -- passing a string
     # raises "'str' object has no attribute 'dtype'" deep inside the feature
     # extractor. decode_audio resamples to the 16 kHz the model expects.
@@ -106,24 +106,48 @@ def detect_language(cfg: Config, wav: Path, model_size: str = LID_MODEL,
     return lang, float(prob)
 
 
-def _whisper_model(cfg: Config, model_size: str):
-    """Load and cache one faster-whisper model, keyed by size.
+def _lid_device() -> int:
+    """Which GPU language identification should use.
+
+    The second one when there is a second one. Both models otherwise default to
+    cuda:0, so on a 2xT4 Kaggle session ~5 GB of weights plus both models'
+    activation peaks land on one card while the other sits idle -- which is how
+    a 16 GB card runs out of memory here.
+    """
+    try:
+        import torch
+
+        return 1 if torch.cuda.device_count() > 1 else 0
+    except Exception:  # noqa: BLE001
+        return 0
+
+
+def _whisper_model(cfg: Config, model_size: str, device_index: int | None = None):
+    """Load and cache one faster-whisper model, keyed by size AND device.
 
     Cached because the two-model arrangement -- large-v3 for language ID, turbo
     for decoding -- would otherwise reload weights on every clip.
     """
     from faster_whisper import WhisperModel
 
-    key = ("whisper", model_size)
-    if key not in _MODEL_CACHE:
-        import torch
+    import torch
 
-        device = "cuda" if torch.cuda.is_available() else "cpu"
-        compute = "float16" if device == "cuda" else "int8"
+    if torch.cuda.is_available():
+        device, compute = "cuda", "float16"
+        idx = 0 if device_index is None else min(device_index,
+                                                 torch.cuda.device_count() - 1)
+    else:
+        device, compute, idx = "cpu", "int8", 0
+
+    key = ("whisper", model_size, idx)
+    if key not in _MODEL_CACHE:
         t0 = time.perf_counter()
-        LOG.info("loading faster-whisper %s on %s (%s) -- the first call also "
-                 "downloads the weights", model_size, device, compute)
-        _MODEL_CACHE[key] = WhisperModel(model_size, device=device, compute_type=compute)
+        LOG.info("loading faster-whisper %s on %s:%d (%s) -- the first call also "
+                 "downloads the weights", model_size, device, idx, compute)
+        kw = {"device": device, "compute_type": compute}
+        if device == "cuda":
+            kw["device_index"] = idx
+        _MODEL_CACHE[key] = WhisperModel(model_size, **kw)
         LOG.info("model ready in %.0fs", time.perf_counter() - t0)
     return _MODEL_CACHE[key]
 
