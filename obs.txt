@@ -1098,3 +1098,56 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      that, the 7 in-script clips had ratio 0.74 -- the same as the 92 -- which
      the compression story does not predict. Seven clips is thin, and this is
      the open question the configuration probe is built to close.
+
+--------------------------------------------------------------------------
+[43] Whisper is not fixable by configuration, and [41]'s headline was
+     confounded. Five configurations over the same ten clips (nine scripts plus
+     one long clip, 19.4 min), every comparison PAIRED within clip:
+
+       configuration                       ratio     WER   cpWER    WDER  script
+       A old: greedy, self-LID, long-form   0.65  0.9640  0.9848  0.2816    2/10
+       B beam5 + large-v3 LID, long-form    0.54  0.9463  0.9532  0.1843    9/10
+       C   + cond_on_previous_text=False    0.54  0.9241  0.9272  0.1399    9/10
+       D beam5 + LID, per-segment/fusion    0.72  0.9362  0.9401  0.1979    9/10
+       E large-v3, beam5, own LID           0.55  0.9058  0.9144  0.1538    8/10
+
+     The language fix works and is worth almost nothing. Script match goes
+     2/10 -> 9/10 and the detected languages are right -- Marathi as mr,
+     Punjabi as pa, no en fallback -- yet WER moves only 0.9640 -> 0.9463.
+     Correct script buys 0.018 WER.
+
+     That REFUTES [41], which priced script match at ~0.35 WER (0.693 against
+     1.040). Those were 7 in-script clips compared against 92 out-of-script
+     ones: a between-clip comparison, confounded by whichever clips happened to
+     come out in-script. Paired within-clip is the right design and the effect
+     nearly vanishes. I ran the confounded version first and reported it as a
+     measurement.
+
+     Correct-script output is SPARSER. Ratio falls 0.65 -> 0.54 and deletions
+     rise 36.1% -> 47.4% once Whisper stops translating, which also kills the
+     compression hypothesis floated in [42] -- English was more verbose here,
+     not less.
+
+     condition_on_previous_text=False helps, consistently: C beats B on WER
+     (-0.022), cpWER (-0.026), WDER (-0.044) and rep5 (-1.4pp), same direction
+     on all four. [37] reverted that setting for lack of evidence; there is now
+     evidence and it points the other way.
+
+     Per-segment buys coverage, not accuracy: D has the best ratio (0.72) and
+     the lowest deletions (29.1%) and repetition (6.8%), but its WER loses to
+     large-v3 long-form and it costs 1.5x B.
+
+     The decisive number is the SPREAD. Every configuration lands between 0.906
+     and 0.964 WER -- 0.058 across greedy-vs-beam, self-vs-forced LID,
+     turbo-vs-large-v3 and long-form-vs-per-segment combined. Saaras v3 is
+     0.2728 on this corpus. Whisper's best is 3.3x worse and no knob measured
+     here closes it.
+
+     So the failure is RECOGNITION, not decoding: Whisper writes the right
+     script, in the right language, and still gets the words wrong. Decision --
+     do not sweep. The pre-registered gate was ratio ~1.0 and the best
+     configuration reaches 0.72.
+
+     One clip resisted language ID entirely: 7YfsQPYY-W0__351_411 is Oriya and
+     was detected bn (p=0.87) by every configuration. Oriya is the thinnest
+     Indic language in Whisper's training data and it is the single script miss.

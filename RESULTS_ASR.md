@@ -216,7 +216,7 @@ Attribution for the long-form rows uses the **fusion** diarization.
 | system | clips | ratio | WER | cpWER | DI-cpWER | attribution | WDER |
 |---|---|---|---|---|---|---|---|
 | `sarvam-saaras-v3@reverb-v2` | 99 | 0.96 | 0.2728 | **0.3957** | 0.2728 | 0.1229 | 0.1128 |
-| `sarvam-saaras-v3@fusion` | **32 (partial)** | 1.06 | 0.3549 | **0.3811** | — | — | 0.1197 |
+| `sarvam-saaras-v3@fusion` | **81 (partial)** | 1.01 | 0.3179 | **0.3446** | — | — | 0.0846 |
 | `sarvam-saaras-v4@reverb-v2` | 9 | 0.96 | 0.2606 | **0.3485** | 0.2606 | 0.0879 | 0.0718 |
 | `whisper-large-v3-turbo` | 99 | 0.75 | 0.9827 | **0.9957** | 0.9827 | 0.0130 | 0.5471 |
 | `whisper-large-v3` | 35 | 0.31 | 0.9296 | **0.9340** | 0.9296 | 0.0044 | 0.2664 |
@@ -224,10 +224,15 @@ Attribution for the long-form rows uses the **fusion** diarization.
 `ratio` = hypothesis words ÷ reference words; a system producing about as many
 words as were spoken sits near 1.0.
 
-> **The `@fusion` row is not comparable to the `@reverb-v2` row.** 32 clips
-> against 99, and the 32 are whichever the sweep had finished. It is shown
+> **The `@fusion` row is not comparable to the `@reverb-v2` row.** 81 clips
+> against 99, and the 81 are whichever the sweep had finished. It is shown
 > because the sweep is still running, and it will be replaced, not because the
 > comparison is currently valid.
+>
+> The trend across sweep progress is nonetheless consistent: at 32 clips the row
+> read cpWER 0.3811 / WDER 0.1197, at 81 it reads 0.3446 / 0.0846. If it holds to
+> 99, the fusion front-end is worth roughly 13% relative on cpWER and 25% on WDER
+> against `reverb-v2` — which would be the Step 4 result.
 
 The Whisper cpWER/WDER figures differ slightly from earlier revisions of this
 file (1.0082 → 0.9957, 0.5551 → 0.5471) for one reason: attribution moved from
@@ -311,16 +316,14 @@ my work"* five times.
 
 So on many clips Whisper **heard the speech correctly and answered in English**.
 
-What the language costs, measured on those same 99 outputs:
+An earlier revision priced this at ~0.35 WER, from a **between-clip**
+comparison of the 7 clips that came out in-script against the 92 that did not
+(0.693 vs 1.040). That comparison is confounded — which clips land in-script is
+not random — and the paired experiment in §7.3 **refutes it**: forcing the
+language moves script match from 2/10 to 9/10 and WER by 0.018.
 
-| | clips | ratio | WER |
-|---|---|---|---|
-| script matches GT | 7 | 0.74 | **0.693** |
-| script differs | 92 | 0.73 | **1.040** |
-
-The best in-script clips reach WER 0.435–0.540. Note the ratio is **0.73 in both
-groups**: the deletion problem is independent of the language problem, so fixing
-the language fixes at most one of the two.
+The ratio was 0.73 in both of those groups, and that part survives: the deletion
+problem is independent of the language problem.
 
 **Cause.** `large-v3-turbo` returned `en` on 75 of 99 clips. `large-v3` on the
 same audio got 34 of 35 right, so this is specific to the distilled model: turbo
@@ -377,45 +380,68 @@ right and the audio is transcribable. The density deficit remains **unexplained*
 code-switched Indic source), but the 7 in-script clips show the same 0.74 ratio
 as the 92 out-of-script ones, which that story does not predict.
 
-### 7.3 The probe — what has been tested, exactly
+### 7.3 The configuration probe — five configurations, ten clips
 
-Three shortest clips, 405 reference words, **beam 5 and `large-v3` language ID**
-(i.e. the *fixed* configuration, unlike §4):
+Ten clips, 19.4 min, all nine scripts plus one long clip (`0AEEA8NyVwY__11_609`,
+598 s — included deliberately, since a sample of short clips would miss any
+long-audio failure and flatter every configuration equally). **Every comparison
+is paired within clip**: row A costs no GPU because it scores the existing
+checkpoints on these same ten.
 
-| strategy | hyp words | ratio | WER | del% | sec |
-|---|---|---|---|---|---|
-| long-form | 210 | 0.52 | **0.7481** | 49.9% | 45 |
-| long-form, `no_speech_threshold=None` | 210 | 0.52 | **0.7481** | 49.9% | 34 |
-| per-segment on fusion | 313 | 0.77 | **0.8000** | 24.9% | 54 |
+| configuration | ratio | WER | cpWER | WDER | del% | script | rep5 | sec |
+|---|---|---|---|---|---|---|---|---|
+| **A** old: greedy, self-LID, long-form | 0.65 | 0.9640 | 0.9848 | 0.2816 | 36.1% | 2/10 | 7.3% | 0 |
+| **B** beam 5 + `large-v3` LID, long-form | 0.54 | 0.9463 | 0.9532 | 0.1843 | 47.4% | **9/10** | 11.1% | 206 |
+| **C** B + `condition_on_previous_text=False` | 0.54 | 0.9241 | 0.9272 | **0.1399** | 46.5% | **9/10** | 9.7% | 202 |
+| **D** beam 5 + LID, per-segment on fusion | **0.72** | 0.9362 | 0.9401 | 0.1979 | **29.1%** | **9/10** | **6.8%** | 308 |
+| **E** `large-v3`, beam 5, own LID, long-form | 0.55 | **0.9058** | **0.9144** | 0.1538 | 47.5% | 8/10 | 14.8% | 591 |
 
-Three findings:
+Full write-up and per-clip detail: `results/whisper_probe10.md`.
 
-1. **The language fix works.** Detected `mr` (p=0.83), `hi` (p=0.95), `te`
-   (p=0.90) — one detection per clip, propagated to every segment, no `en`
-   fallback.
-2. **`no_speech_threshold` is a genuine null result.** Identical word count and
-   WER to four decimals. The parameter is plumbed through to faster-whisper
-   (`asr.py:227`), so the no-speech discard is *not* the deletion mechanism.
-   Hypothesis eliminated.
-3. **Per-segment trades accuracy for coverage.** Deletions halve (49.9% → 24.9%)
-   and ratio rises 0.52 → 0.77, so forcing output per turn does work as
-   predicted — but **WER gets worse**, 0.7481 → 0.8000. The ~103 recovered words
-   are largely wrong ones. The pre-registered gate was "ratio near 1.0"; 0.77
-   against Saaras's 0.96 does not clear it.
+**The language fix works and is worth almost nothing.** Script match goes
+2/10 → 9/10 with correct languages detected (Marathi as `mr`, Punjabi as `pa`,
+no `en` fallback), yet WER moves only 0.9640 → 0.9463 — **0.018**. This is what
+refutes the §7.1 estimate.
 
-405 words on the three shortest clips is a probe, not a benchmark. It is reported
-as one.
+**Correct-script output is sparser, not denser.** Ratio *falls* 0.65 → 0.54 and
+deletions *rise* 36.1% → 47.4% once Whisper stops translating.
 
-### 7.4 Not yet benchmarked at corpus scale
+**`condition_on_previous_text=False` helps, consistently.** C beats B on WER
+(−0.022), cpWER (−0.026), WDER (−0.044) and rep5 (−1.4 pp) — same direction on
+all four, paired.
 
-beam 5 · forced language · per-segment · batched inference · Whisper's own VAD ·
-`large-v3` beyond the 35 clips it reached.
+**Per-segment buys coverage, not accuracy.** D has the best ratio and the lowest
+deletions and repetition, but its WER loses to `large-v3` long-form at 1.5× the
+cost of B.
 
-An earlier revision of this file claimed beam size and
-`condition_on_previous_text` "were A/B tested and change nothing". That rested on
-`tools/whisper_ab.py --clips 3`, printed to stdout and never saved. **Retracted**:
-treat those two settings as untested. The tool now writes
-`results/whisper_ab.json`.
+**Configuration is not the problem.** Every configuration lands between **0.906
+and 0.964 WER**. The whole spread across greedy-vs-beam, self-vs-forced LID,
+turbo-vs-`large-v3` and long-form-vs-per-segment is **0.058**. Saaras v3 scores
+0.2728 on this corpus, so Whisper's best is **3.3× worse** and no knob measured
+here closes it.
+
+**One language resisted entirely.** `7YfsQPYY-W0__351_411` is Oriya and every
+configuration detected it as `bn` (p = 0.87). Oriya is the thinnest Indic
+language in Whisper's training data and is the single script miss.
+
+### 7.4 Decision, and what remains untested
+
+**Whisper is not swept.** The pre-registered gate was ratio ≈ 1.0; the best
+configuration reaches 0.72. A corpus sweep would cost 2–4 h to produce roughly
+0.91 WER — not a competitive baseline, and not made competitive by any setting
+measured. The failure is **recognition, not decoding**: Whisper writes the right
+script, in the right language, and still gets the words wrong. That is the
+finding worth reporting.
+
+Untested and now unlikely to change the conclusion, given a 0.058 spread across
+everything that was tested: batched inference, Whisper's own VAD, temperature
+fallback settings, and `large-v3` beyond the 35 clips it reached in §5.
+
+An earlier revision claimed beam size and `condition_on_previous_text` "were A/B
+tested and change nothing", on the basis of `tools/whisper_ab.py --clips 3`
+printed to stdout and never saved. **Retracted**: §7.3 measures both, and
+`condition_on_previous_text` does change something.
+
 
 ---
 
