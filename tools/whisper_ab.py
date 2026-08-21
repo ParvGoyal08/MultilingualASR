@@ -18,6 +18,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from sarvam_diar import asr, data, reference, text_metrics as tm  # noqa: E402
 from sarvam_diar.config import Config  # noqa: E402
 
+def default_root() -> str:
+    """Where the pipeline lives on whichever platform this is.
+
+    Config.create() knows about Colab but not Kaggle, and defaulting to
+    "local_out" on Kaggle silently produces an empty run: the segments CSV is
+    downloaded fresh into a new directory, no audio is beside it, and every
+    measurement comes back zero.
+    """
+    for cand in ("/kaggle/working/sarvam_diarization",
+                 "/content/drive/MyDrive/sarvam_diarization"):
+        if Path(cand, "audio_16k").exists():
+            return cand
+    return "local_out"
+
+
 SETTINGS = [
     ("greedy, conditioned   (what ran)", dict(beam_size=1, condition_on_previous_text=True)),
     ("greedy, unconditioned", dict(beam_size=1, condition_on_previous_text=False)),
@@ -31,17 +46,30 @@ def main() -> int:
     ap.add_argument("--model", default="large-v3-turbo")
     ap.add_argument("--lid", default="large-v3", help="'' to let the model detect")
     ap.add_argument("--clips", type=int, default=3)
-    ap.add_argument("--root", default="local_out")
+    ap.add_argument("--root", default=None,
+                    help="pipeline root; auto-detects Kaggle/Colab when omitted")
     args = ap.parse_args()
 
-    cfg = Config.create(root=args.root, work_dir=f"{args.root}/.work")
+    root = args.root or default_root()
+    cfg = Config.create(root=root, work_dir=f"{root}/.work")
     clips = data.parse_ground_truth(data.load_segments_csv(cfg))
     # short clips: the question is words-per-second-of-speech, and a short clip
     # answers it as well as a long one for a fraction of the wall clock
     picked = sorted((c for c in clips if cfg.wav_path(c.clip_id).exists()),
                     key=lambda c: c.end_sec - c.start_sec)[:args.clips]
 
-    print(f"  model={args.model}  lid={args.lid or 'self'}  clips={len(picked)}\n")
+    if not picked:
+        # Without this the loop below runs zero times and prints a table of
+        # zeros, which reads like a result rather than a missing input.
+        raise SystemExit(
+            f"no audio found under {cfg.audio_dir}\n"
+            f"  root resolved to: {root}\n"
+            f"  audio dir exists: {Path(cfg.audio_dir).exists()}\n"
+            f"  pass --root explicitly, e.g. "
+            f"--root /kaggle/working/sarvam_diarization")
+
+    print(f"  model={args.model}  lid={args.lid or 'self'}  root={root}  "
+          f"clips={len(picked)}\n")
     print(f"  {'setting':<36}{'ref w':>7}{'hyp w':>7}{'ratio':>7}{'WER':>8}{'del%':>7}{'sec':>7}")
     for label, kw in SETTINGS:
         ref_w = hyp_w = 0
