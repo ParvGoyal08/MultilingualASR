@@ -382,62 +382,27 @@ def summarize(cfg: Config, df: pd.DataFrame, extra: dict | None = None) -> dict[
 
 
 def estimate_reference_lag(ref, hypotheses: dict, hop: float = 0.01,
-                           max_lag: float = 10.0) -> dict:
-    """Seconds by which this clip's reference appears to lag the audio.
+                           max_lag: float = 5.0) -> dict:
+    """Deprecated shim. Delegates to `gt_qc.assess_clip`.
 
-    Speaker identity is irrelevant to a global time shift, so this works on raw
-    speech activity: rasterise the reference and each hypothesis, cross-correlate,
-    and take the lag that maximises agreement. A POSITIVE lag means the reference
-    is LATER than the speech every model heard.
+    This module once carried its own detector using a mean-centred cross-
+    correlation over +-10 s. `gt_qc` then grew a second one using IoU over
+    +-5 s, and the two disagreed by more than 0.05 s on 6 of 99 clips -- on one,
+    +6.28 s against -4.58 s. None of those clips was ever flagged, so no
+    decision rested on the difference, but two detectors that can disagree is a
+    trap regardless of whether it has sprung yet.
 
-    `hypotheses` maps model name to its turns. The discriminating evidence is
-    agreement ACROSS models: independent segmenters have no reason to be wrong in
-    the same direction by the same amount on the same clip, so a tight spread
-    around a non-zero lag indicts the reference rather than the models.
-
-    Scoring-side only, and NOT a correction: the brief fixes the scoring
-    protocol, so the headline numbers stay as measured. This exists to quantify
-    the limitation, which the brief explicitly asks for when the labels look
-    wrong.
+    IoU is the one kept. A mean-centred correlation rewards pattern similarity
+    and is unbounded, so on a clip with little structure it can peak far from
+    zero on very little evidence; IoU is bounded in [0, 1], says something a
+    human can check ("they agree on 96% of frames either calls speech"), and is
+    what the shipped QC and its thresholds are calibrated against.
     """
-    import numpy as np
+    from . import gt_qc
 
-    n = int(ref.uem[1] / hop)
-    if n < 100 or not hypotheses:
-        return {"lag": 0.0, "spread": 0.0, "n_models": 0, "suspect": False}
-
-    def raster(turns):
-        a = np.zeros(n, dtype=np.float32)
-        for t in turns:
-            i, j = int(max(0.0, t.start) / hop), int(min(n * hop, t.end) / hop)
-            if j > i:
-                a[i:j] = 1.0
-        return a
-
-    r = raster(ref.turns)
-    r = r - r.mean()
-    lim = int(max_lag / hop)
-    out = []
-    for turns in hypotheses.values():
-        h = raster(turns)
-        h = h - h.mean()
-        best, bl = -np.inf, 0
-        for lag in range(-lim, lim + 1):
-            if lag >= 0:
-                if lag >= n:
-                    continue
-                v = float(np.dot(r[lag:], h[:n - lag]))
-            else:
-                v = float(np.dot(r[:lag], h[-lag:]))
-            if v > best:
-                best, bl = v, lag
-        out.append(bl * hop)
-    arr = np.array(out)
-    lag, spread = float(np.median(arr)), float(np.ptp(arr))
-    return {"lag": lag, "spread": spread, "n_models": len(arr),
-            # A tight spread across independent segmenters is what makes this
-            # a statement about the reference rather than about one model.
-            "suspect": bool(abs(lag) > 0.5 and spread < 0.6 and len(arr) >= 2)}
+    cand, _ = gt_qc.assess_clip("", ref.turns, ref.uem[1], hypotheses)
+    return {"lag": cand.best_lag, "spread": cand.model_spread,
+            "n_models": cand.n_models, "suspect": cand.flagged}
 
 
 def shift_turns(turns, delta: float, lo: float, hi: float):
