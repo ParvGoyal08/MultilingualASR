@@ -199,6 +199,7 @@ def transcribe_whisper(cfg: Config, wav: Path, model_size: str = "large-v3",
     meta = {"detected_language": info.language,
             "language_probability": round(float(info.language_probability), 4),
             "lid_model": lid_model, "lid_probability": lid_prob,
+            "condition_on_previous_text": condition_on_previous_text,
             "beam_size": beam_size, "batched": bool(batch_size and batch_size > 1),
             "whisper_vad": vad_filter}
     return words, meta
@@ -367,6 +368,24 @@ BACKENDS: dict[str, Callable[..., tuple[list[Word], dict]]] = {
 }
 
 
+# The settings each backend produces, so run() can tell an existing checkpoint
+# apart from one written under different settings. Kept beside BACKENDS rather
+# than derived from it, because a lambda's keywords are not introspectable.
+BACKEND_SETTINGS: dict[str, dict] = {
+    "whisper-large-v3-turbo": {"beam_size": 5, "condition_on_previous_text": False,
+                               "lid_model": LID_MODEL, "batched": False},
+    "whisper-large-v3": {"beam_size": 5, "condition_on_previous_text": False,
+                         "lid_model": None, "batched": False},
+    "whisper-large-v3-batched": {"beam_size": 1, "condition_on_previous_text": True,
+                                 "lid_model": None, "batched": True},
+}
+
+
+def expected_key(system: str) -> str | None:
+    cfgd = BACKEND_SETTINGS.get(system)
+    return settings_key(cfgd) if cfgd else None
+
+
 def resolve_sarvam_key(cfg: Config) -> str:
     """Same ladder as the HF token: explicit, .env, environment, platform vault."""
     from .utils import load_dotenv
@@ -445,8 +464,29 @@ def speaker_texts_from_words(pairs: Sequence[tuple[str, str]]) -> dict[str, list
 # ------------------------------------------------------------------- runner
 
 
-def is_done(cfg: Config, system: str, clip_id: str) -> bool:
-    """A transcript counts as complete only if its sidecar agrees with it."""
+def settings_key(meta: dict) -> str:
+    """Short signature of the decoding settings that produced a transcript.
+
+    Stored alongside the output so a checkpoint written under different settings
+    is not silently reused. This is not hypothetical: 99 turbo transcripts were
+    produced with greedy decoding and no language ID, both of which turned out
+    to be broken, and every one of them satisfied the old "status ok and words
+    is a list" test. Re-running with the fixes would have skipped all 99 and
+    reported success.
+    """
+    return (f"beam{meta.get('beam_size', '?')}"
+            f"-cond{int(bool(meta.get('condition_on_previous_text', True)))}"
+            f"-lid{meta.get('lid_model') or 'self'}"
+            f"-batch{int(bool(meta.get('batched')))}")
+
+
+def is_done(cfg: Config, system: str, clip_id: str, expect: str | None = None) -> bool:
+    """Complete only if the sidecar agrees AND was produced by these settings.
+
+    `expect` is a settings_key. When given, a transcript written under different
+    settings counts as NOT done, so a re-run regenerates it instead of trusting
+    output whose provenance no longer matches.
+    """
     p = asr_path(cfg, system, clip_id)
     if not p.exists():
         return False
@@ -454,7 +494,11 @@ def is_done(cfg: Config, system: str, clip_id: str) -> bool:
         payload = read_json(p)
     except Exception:  # noqa: BLE001
         return False
-    return payload.get("status") == "ok" and isinstance(payload.get("words"), list)
+    if payload.get("status") != "ok" or not isinstance(payload.get("words"), list):
+        return False
+    if expect is not None and payload.get("settings_key") != expect:
+        return False
+    return True
 
 
 def asr_path(cfg: Config, system: str, clip_id: str) -> Path:
@@ -476,7 +520,8 @@ def run(cfg: Config, inputs: Sequence[ClipInput], flags: StageFlags | None = Non
         done = skipped = failed = 0
         for i, clip in enumerate(clips, 1):
             prefix = f"[{system} {i}/{len(clips)}] {clip.clip_id}"
-            if is_done(cfg, system, clip.clip_id) and not flags.force_redo:
+            if is_done(cfg, system, clip.clip_id, expect=expected_key(system)) \
+                    and not flags.force_redo:
                 skipped += 1
                 rows.append(read_json(asr_path(cfg, system, clip.clip_id)) | {"status": "skipped"})
                 continue
@@ -505,6 +550,7 @@ def run(cfg: Config, inputs: Sequence[ClipInput], flags: StageFlags | None = Non
                 "transcribed_at_utc": now_utc_iso(),
                 **meta,
             }
+            payload["settings_key"] = settings_key(payload)
             write_json_atomic(asr_path(cfg, system, clip.clip_id), payload)
             rows.append(payload)
             done += 1
@@ -846,6 +892,7 @@ def run_segmented(cfg: Config, inputs: Sequence[ClipInput], diar_model: str,
                        "rtf": round(elapsed / clip.duration, 4) if clip.duration else None,
                        "clip_dur_sec": clip.duration,
                        "transcribed_at_utc": now_utc_iso(), **meta}
+            payload["settings_key"] = settings_key(payload)
             write_json_atomic(asr_path(cfg, tag, clip.clip_id), payload)
             rows.append(payload)
             done += 1
