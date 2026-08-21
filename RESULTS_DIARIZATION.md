@@ -88,22 +88,48 @@ detected by cross-model consensus with independent energy-VAD corroboration and
 spot-checked visually against the waveform. Corrections are applied to a copy at
 scoring time; the raw annotations are never modified.
 
-| system | DER raw | DER alignment-adjusted | Δ |
-|---|---|---|---|
-| `FUSION` | 0.2442 | **0.1959** | −19.8% |
-| `diarizen-large` | 0.2625 | **0.2039** | −22.3% |
-| `community-1` | 0.2634 | **0.2166** | −17.8% |
-| `pyannote-3.1` | 0.2637 | **0.2190** | −17.0% |
-| `reverb-v2` | 0.2521 | **0.2396** | −4.9% |
+| system | DER | miss | FA | confusion | JER | spk acc | spk bias |
+|---|---|---|---|---|---|---|---|
+| `FUSION` | **0.1959** | 0.1002 | 0.0369 | 0.0588 | 0.2975 | 81.8% | -0.15 |
+| `diarizen-large` | **0.2039** | 0.0973 | 0.0478 | 0.0588 | 0.2910 | 74.7% | +0.04 |
+| `community-1` | **0.2166** | 0.0934 | 0.0465 | 0.0766 | 0.3193 | 80.8% | -0.15 |
+| `pyannote-3.1` | **0.2190** | 0.0934 | 0.0465 | 0.0790 | 0.3233 | 73.7% | -0.15 |
+| `reverb-v2` | **0.2396** | 0.0712 | 0.0681 | 0.1003 | 0.3625 | 62.6% | -0.33 |
 
-The ranking changes: `reverb-v2` leads on raw ground truth and is **last** once
-aligned. Long loose turns (15.5 s mean against `diarizen-large`'s 2.6 s) still
-overlap a reference displaced by a second or two, so the least temporally precise
-model looked best precisely because the reference was wrong. It gains least from
-the fix (−4.9%) and the most precise gains most (−22.3%).
+### What each component gained
 
-`FUSION` leads under **both** protocols, so its advantage does not depend on
-which reference version you believe.
+| system | DER | miss | FA | confusion | JER |
+|---|---|---|---|---|---|
+| `FUSION` | 0.2442 → **0.1959** | 0.1138 → 0.1002 | 0.0498 → 0.0369 | 0.0806 → 0.0588 | 0.3608 → 0.2975 |
+| `reverb-v2` | 0.2521 → **0.2396** | 0.0719 → 0.0712 | 0.0681 → 0.0681 | 0.1121 → 0.1003 | 0.3834 → 0.3625 |
+| `diarizen-large` | 0.2625 → **0.2039** | 0.1143 → 0.0973 | 0.0640 → 0.0478 | 0.0842 → 0.0588 | 0.3660 → 0.2910 |
+| `community-1` | 0.2634 → **0.2166** | 0.1079 → 0.0934 | 0.0602 → 0.0465 | 0.0954 → 0.0766 | 0.3768 → 0.3193 |
+| `pyannote-3.1` | 0.2637 → **0.2190** | 0.1079 → 0.0934 | 0.0602 → 0.0465 | 0.0957 → 0.0790 | 0.3785 → 0.3233 |
+
+**Every component improves for every system.** That is the signature a global
+time shift should leave: displacing the reference misaligns speech onsets
+(miss), speech offsets (false alarm) and speaker identity (confusion) all at
+once. A correction that improved only one of them would be evidence of
+something other than a shift, and would be a reason to distrust it.
+
+Three details worth reading:
+
+* **`reverb-v2`'s false alarm does not move at all** (0.0681 → 0.0681).
+  Its turns average 15.5 s, long enough that a ±2 s displacement rarely pushes
+  one off the end of real speech. That insensitivity is exactly what made it
+  look best on raw ground truth, and it is why it gains least from the fix.
+* **JER improves most in relative terms** — up to 20% — because it is computed
+  per speaker, and a displaced reference damages every speaker's segments
+  simultaneously rather than concentrating the damage anywhere.
+* **Speaker-count accuracy barely moves**, about one clip per system, and the
+  bias is essentially unchanged. That is a consistency check rather than a null
+  result: how many speakers a model finds should not depend on *when* the
+  reference says they spoke. A correction that changed speaker counts would mean
+  it was doing something other than shifting time.
+
+Overlap figures are unchanged by alignment, since predicted overlap is a
+property of the hypothesis and the reference's total overlapped duration is
+preserved by a shift.
 
 ## By script (DER, raw ground truth)
 
