@@ -60,6 +60,36 @@ HI_MARKERS = {"और", "है", "हैं", "मैं", "नहीं", "थ
               "उसके", "मुझे", "आप", "ये", "क्यों", "इसलिए", "ऐसा"}
 
 
+# Whisper's 99 languages do not include Oriya. Nine of this corpus's 99 clips
+# are Oriya, so for them Whisper cannot emit the right language at all -- which
+# is also why its own LID answers "bn" there. Odia and Bengali are closely
+# related Eastern Indo-Aryan, so bn is the nearest thing Whisper can be asked
+# for; the substitution is recorded per clip so a row can never quietly claim
+# the oracle language was used when it was not.
+WHISPER_SUBSTITUTE = {"or": "bn"}
+
+
+def whisper_languages() -> set[str]:
+    """Ask the installed faster-whisper rather than hardcode a list."""
+    try:
+        from faster_whisper.tokenizer import _LANGUAGE_CODES
+
+        return set(_LANGUAGE_CODES)
+    except Exception:  # noqa: BLE001
+        return set()
+
+
+def to_whisper_language(lang: str) -> tuple[str, bool]:
+    """(code Whisper accepts, whether it is a substitution for the real one)."""
+    known = whisper_languages()
+    if not known or lang in known:
+        return lang, False
+    sub = WHISPER_SUBSTITUTE.get(lang)
+    if sub and sub in known:
+        return sub, True
+    return "hi", True
+
+
 def oracle_language(ref, stats: dict) -> str:
     """The clip's language, taken from the REFERENCE. An oracle, not a result.
 
@@ -199,16 +229,22 @@ def probe(cfg: Config, clip_ids: list[str], diar: str = "fusion",
         for cid in clip_ids:
             t0 = time.time()
             _kw = dict(kw)
+            _sub = False
             if use_oracle:
-                _kw["language"] = oracle_language(refs[cid], clips[cid].stats)
+                _want = oracle_language(refs[cid], clips[cid].stats)
+                _kw["language"], _sub = to_whisper_language(_want)
+                if _sub:
+                    print(f"    {cid}: Whisper has no {_want!r}; "
+                          f"substituting {_kw['language']!r}", flush=True)
             words, meta = asr.transcribe_whisper(cfg, cfg.wav_path(cid),
                                                  word_timestamps=True, **_kw)
             turns = diarization.load_hypothesis(cfg, diar, cid)
             pairs = [(t, s) for w, s in asr.assign_words(words, turns) for t in _norm(w)]
-            rows.append({"clip_id": cid,
+            rows.append({"clip_id": cid, "lang_substituted": _sub,
                          **_row(refs[cid], pairs, " ".join(w.text for w in words),
                                 meta.get("language"), gt_script[cid], time.time() - t0)})
-        emit(label, rows)
+        _n_sub = sum(r.get("lang_substituted") for r in rows)
+        emit(label + (f" [{_n_sub} lang subst]" if _n_sub else ""), rows)
 
     # --- D/I: per-segment. Speaker attribution is exact by construction.
     # NOTE the beam: transcribe_segments has always decoded segments greedily
@@ -223,9 +259,12 @@ def probe(cfg: Config, clip_ids: list[str], diar: str = "fusion",
         for cid in clip_ids:
             t0 = time.time()
             turns = asr.merge_same_speaker(diarization.load_hypothesis(cfg, diar, cid), 1.0)
+            _lang = None
+            if use_oracle:
+                _lang, _s = to_whisper_language(
+                    oracle_language(refs[cid], clips[cid].stats))
             segs, meta = asr.transcribe_segments(
-                cfg, f"whisper-{model}", cfg.wav_path(cid), turns,
-                language=oracle_language(refs[cid], clips[cid].stats) if use_oracle else None)
+                cfg, f"whisper-{model}", cfg.wav_path(cid), turns, language=_lang)
             ordered = sorted(segs, key=lambda s: s["start"])
             pairs = [(t, s["speaker"]) for s in ordered for t in _norm(s["text"])]
             rows.append({"clip_id": cid,

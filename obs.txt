@@ -1188,3 +1188,30 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      Worth noting the metric consequence. Those 9,978 words are 8% of the corpus
      and both clips are long, so the 97-clip figures are not a random subsample
      of the 99-clip ones -- they systematically exclude the hardest material.
+
+--------------------------------------------------------------------------
+[45] Whisper has no Oriya. It is not among the model's 99 languages, and 9 of
+     the 99 clips here (9%) are Oriya -- so for those clips Whisper cannot emit
+     the correct language at all, whatever the configuration.
+
+     This is not a decoding choice or a tuning failure; it is a capability gap.
+     Passing language="or" raises ValueError from faster_whisper's tokenizer
+     before a single frame is decoded. Checked against the installed model
+     rather than a remembered list: every other language this corpus needs --
+     bn, gu, hi, kn, ml, mr, pa, ta, te -- is present. Oriya is the only gap.
+
+     It also explains an observation in [43] that I recorded as a curiosity:
+     the Oriya clip was detected as bn (p=0.87) by every configuration. Whisper
+     was not making a mistake there; bn is the closest thing it is capable of
+     saying. Odia and Bengali are both Eastern Indo-Aryan, so the model is
+     answering as well as its label set permits.
+
+     IndicConformer-600M does have "or", which is a concrete argument for the
+     Indic-specialised model beyond raw accuracy: 9% of this corpus is outside
+     Whisper's label set entirely and inside IndicConformer's.
+
+     Handled by substituting bn for or in the oracle rows and RECORDING the
+     substitution per clip, so a row reports "[N lang subst]" and can never
+     quietly claim the oracle language was used when it was not. The honest
+     reading of those rows is that one script is being scored against a model
+     that cannot target it.
