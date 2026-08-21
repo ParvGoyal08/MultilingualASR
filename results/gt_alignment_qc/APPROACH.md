@@ -82,38 +82,95 @@ the comparison decides nothing. It is also **lexical**, so it shares nothing
 with the acoustic models that proposed the shift — which is precisely the
 independence the objection above demands.
 
-## How much to check
+## Verifying without speaking the language
 
-39 flagged clips carry a total JER gain of 7.68. **The top 24 rows carry 80% of
-it**; the top 15 carry roughly two thirds.
+Reading a transcript in nine Indic scripts is not a reasonable ask, and a
+verification step that is hard to perform is a verification step that gets done
+badly. **Look at the waveform instead.**
 
-A defensible audit is about 28 rows:
+Each diagnostic SVG now draws the actual audio envelope above the annotation
+bands. A misaligned clip is visible as a shape mismatch: `GT raw` claims speech
+where the waveform is flat, and `GT shifted` snaps onto the loud parts. That
+judgement is language-independent and takes seconds — no listening, no reading,
+no comprehension.
 
-* the **top 15 flagged** — settles most of the measurable effect
-* the **5 low-impact flagged** — tests the detector where the stakes are low
-* the **8 controls** — the only way to find misses
+```bash
+open results/gt_alignment_qc/diagnostics/Jc5AVwg2cZM__153_214.svg
+```
 
-That is roughly an hour, and it yields three numbers worth reporting: precision
-on high-impact flags, precision on low-impact flags, and whether any miss was
-found.
+The clips easiest to judge this way, measured as the share of annotated speech
+sitting on audible silence:
+
+| clip | shift | GT-on-silence, raw | shifted | swing |
+|---|---|---|---|---|
+| `Jc5AVwg2cZM__153_214` | −1.5 s | 28.1% | 16.8% | 11.4 pts |
+| `2iMXYxBTwbM__339_401` | −4.5 s | 27.8% | 19.8% | 8.0 pts |
+| `86mMTUeDiR8__181_1079` | −1.0 s | 29.0% | 22.2% | 6.7 pts |
+| `6f6TLzlP8Wk__82_144` | −2.0 s | 31.1% | 25.2% | 5.9 pts |
+| `6ZeRgvDHwcI__6_100` | −3.0 s | 18.9% | 13.3% | 5.6 pts |
+
+Note the residual: even corrected, a fifth of annotated speech still overlaps
+low-energy audio. That is expected — the energy VAD is crude and real speech has
+quiet moments — which is why the *swing* matters rather than the absolute level.
+
+Listening is still the stronger evidence where it is practical, and the
+transcript links remain in the sheet for that. But the visual check is what
+makes a spot audit realistic, and a spot audit that actually happens beats a
+thorough one that does not.
+
+## How much to check — and the lighter option
+
+The full audit is ~28 rows. **It is not required, and given how the results are
+reported it may not be worth it.**
+
+Consider what the corrections are actually for. They never touch the headline,
+which is scored against raw ground truth. They never touch Step 3: cpWER and
+WDER compare TEXT grouped by speaker and never compare a reference timestamp to
+a hypothesis one, so a shift is invisible to them — and shifting earlier can
+only push utterances below t=0 and *lose* reference text, which changed 7 of 20
+clips in a test. **Alignment corrections are a DER/JER diagnostic and nothing
+else.**
+
+So the question a reviewer will actually ask is not "is each of your 39 shifts
+exactly right" but "is this dataset defect real, and how big is it". That needs
+a handful of confirmations, not an exhaustive audit.
+
+**The proportionate version — 5 clips, ten minutes:**
+
+1. Open the five SVGs in the table above. Confirm `GT raw` sits on flat audio
+   and `GT shifted` sits on loud audio.
+2. Record the verdicts in `hand_labels.csv`.
+3. Report the limitation with the audited count stated honestly.
+
+That establishes the phenomenon beyond argument. The remaining flagged clips are
+then described as *detected by the same procedure*, with the spot-check as
+evidence the procedure works — rather than each being claimed as individually
+verified.
+
+**Do the full 28-row audit only if** you intend to publish the QC-adjusted
+numbers as a headline result. Nothing in the plan requires that, and the
+argument for it is weaker than the argument for reporting the defect and moving
+on.
 
 ## What gets reported
 
 * **Headline: raw ground truth, uncorrected.** The brief fixes the scoring
   protocol, so the benchmark result is scored against the labels as given.
-* **Diagnostic: hand-corrected ground truth**, applying only `CONFIRM` rows,
-  labelled as such, reported beside the headline.
-* **The limitation, stated plainly:** *N of 99 clips were hand-verified as
-  having annotations displaced by 1.0–5.0 s. Correcting only those moves
-  corpus DER by X and JER by Y. The detector that shortlisted them had
-  precision P on the audited sample, so the unaudited remainder carries a
-  corresponding uncertainty.*
-
-The last sentence is what makes the unaudited clips honest rather than assumed.
+* **Step 3 (ASR): raw ground truth, always.** Shifts cannot help cpWER or WDER
+  and can only lose reference text at the clip boundary.
+* **Diagnostic: alignment-adjusted DER/JER**, labelled as such, beside the
+  headline — showing how much of the measured diarization error is annotation
+  rather than model.
+* **The limitation, stated plainly:** *"K clips were spot-checked against the
+  waveform and confirmed to have annotations displaced by 1.0–5.0 s. The same
+  procedure flags N of 99 clips. Correcting only those moves corpus DER from A
+  to B — reported as a diagnostic, not as a result."*
 
 ## What stays true regardless
 
 * the raw annotations are never modified — a label is a row in a manifest,
   applied to a copy at scoring time
-* nothing here reaches the diarization or fusion pipeline
+* nothing here reaches the diarization, fusion or ASR pipeline
 * corrections are never used to select or tune a model
+* Step 3 metrics are computed against raw ground truth only
+

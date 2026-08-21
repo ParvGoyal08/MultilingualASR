@@ -33,13 +33,37 @@ from sarvam_diar.config import Config  # noqa: E402
 OUT = Path("results/gt_alignment_qc")
 
 
-def svg_diagnostic(path: Path, clip_id: str, cand, detail, vad, corrected_act):
+def waveform_envelope(wav_path, n_frames):
+    """Per-frame RMS, normalised. The point of drawing this is that a person can
+    SEE a misalignment without understanding a word of the language -- speech
+    against silence is visible, and nine Indic languages are not something a
+    reviewer can be assumed to speak."""
+    try:
+        import soundfile as sf
+    except ImportError:
+        return None
+    if wav_path is None or not Path(wav_path).exists():
+        return None
+    a, sr = sf.read(str(wav_path), dtype="float32", always_2d=False)
+    if a.ndim > 1:
+        a = a.mean(axis=1)
+    step = int(0.01 * sr)
+    usable = min(n_frames, len(a) // step)
+    if usable < 50:
+        return None
+    rms = np.sqrt((a[:usable * step].reshape(usable, step) ** 2).mean(axis=1) + 1e-12)
+    out = np.zeros(n_frames, dtype=np.float32)
+    out[:usable] = rms / (np.percentile(rms, 99) + 1e-9)
+    return np.clip(out, 0, 1)
+
+
+def svg_diagnostic(path: Path, clip_id: str, cand, detail, vad, corrected_act, wave=None):
     """One self-contained SVG per flagged clip.
 
     Deliberately not matplotlib: this has to be readable from a repo checkout
     with no plotting stack, and an SVG opens in any browser.
     """
-    W, H, pad = 1100, 340, 60
+    W, H, pad = 1100, 380, 60
     n = len(detail["ref_act"])
     dur = n * gt_qc.HOP
     x = lambda f: pad + f / max(n, 1) * (W - 2 * pad)
@@ -56,14 +80,28 @@ def svg_diagnostic(path: Path, clip_id: str, cand, detail, vad, corrected_act):
                          f'height="{h}" fill="{colour}"/>')
         return "".join(parts)
 
+    # The waveform is drawn FIRST and largest: it is the ground truth about the
+    # audio, and every band below is a claim about it.
+    if wave is None:
+        wavepath = ('<text x="4" y="80" font-size="11" fill="#999">'
+                    'waveform unavailable</text>')
+    else:
+        stepf = max(1, len(wave) // 1400)
+        pts = []
+        for i in range(0, len(wave), stepf):
+            pts.append(f"{x(i):.1f},{80 - float(wave[i]) * 38:.1f}")
+        pts += [f"{x(len(wave) - 1):.1f},80", f"{x(0):.1f},80"]
+        wavepath = (f'<text x="4" y="48" font-size="11" fill="#555">waveform</text>'
+                    f'<polygon points="{" ".join(pts)}" fill="#cfd8e3" stroke="none"/>')
+
     lags, prof = np.array(detail["lags"]), np.array(detail["profile"])
     px = lambda l: pad + (l - lags[0]) / (lags[-1] - lags[0]) * (W - 2 * pad)
-    py = lambda v: 300 - v / max(prof.max(), 1e-6) * 60
+    py = lambda v: 340 - v / max(prof.max(), 1e-6) * 60
     poly = " ".join(f"{px(l):.1f},{py(v):.1f}" for l, v in zip(lags, prof))
 
     ticks = "".join(
         f'<line x1="{x(int(t / gt_qc.HOP)):.1f}" y1="30" x2="{x(int(t / gt_qc.HOP)):.1f}" '
-        f'y2="200" stroke="#eee"/><text x="{x(int(t / gt_qc.HOP)):.1f}" y="215" '
+        f'y2="186" stroke="#eee"/><text x="{x(int(t / gt_qc.HOP)):.1f}" y="200" '
         f'font-size="10" fill="#999" text-anchor="middle">{t:.0f}s</text>'
         for t in np.linspace(0, dur, 9))
 
@@ -76,18 +114,19 @@ def svg_diagnostic(path: Path, clip_id: str, cand, detail, vad, corrected_act):
  · {cand.n_models} models, spread {cand.model_spread:.2f}s
  · VAD {"agrees" if cand.vad_agrees else "differs"}{f" ({cand.vad_lag:+.2f}s)" if cand.vad_lag is not None else ""}</text>
 {ticks}
-{band(detail["ref_act"], 46, 20, "#c0392b", "GT raw")}
-{band(corrected_act, 74, 20, "#e67e22", "GT shifted")}
-{band(detail["consensus"], 102, 20, "#2c6fbb", "consensus")}
-{band(vad, 130, 20, "#7f8c8d", "energy VAD")}
-<text x="8" y="248" font-size="11" fill="#555">IoU vs lag</text>
-<line x1="{pad}" y1="300" x2="{W - pad}" y2="300" stroke="#ddd"/>
-<line x1="{px(0):.1f}" y1="240" x2="{px(0):.1f}" y2="300" stroke="#bbb" stroke-dasharray="3,3"/>
-<text x="{px(0):.1f}" y="315" font-size="10" fill="#999" text-anchor="middle">0</text>
+{wavepath}
+{band(detail["ref_act"], 92, 18, "#c0392b", "GT raw")}
+{band(corrected_act, 116, 18, "#e67e22", "GT shifted")}
+{band(detail["consensus"], 140, 18, "#2c6fbb", "consensus")}
+{band(vad, 164, 18, "#7f8c8d", "energy VAD")}
+<text x="8" y="230" font-size="11" fill="#555">IoU vs lag</text>
+<line x1="{pad}" y1="340" x2="{W - pad}" y2="340" stroke="#ddd"/>
+<line x1="{px(0):.1f}" y1="280" x2="{px(0):.1f}" y2="340" stroke="#bbb" stroke-dasharray="3,3"/>
+<text x="{px(0):.1f}" y="355" font-size="10" fill="#999" text-anchor="middle">0</text>
 <polyline points="{poly}" fill="none" stroke="#2c6fbb" stroke-width="1.5"/>
-<line x1="{px(cand.best_lag):.1f}" y1="240" x2="{px(cand.best_lag):.1f}" y2="300"
+<line x1="{px(cand.best_lag):.1f}" y1="280" x2="{px(cand.best_lag):.1f}" y2="340"
       stroke="#c0392b" stroke-width="1.5"/>
-<text x="{px(cand.best_lag):.1f}" y="332" font-size="10" fill="#c0392b"
+<text x="{px(cand.best_lag):.1f}" y="372" font-size="10" fill="#c0392b"
       text-anchor="middle">{cand.best_lag:+.2f}s</text>
 </svg>'''
     path.write_text(svg, encoding="utf-8")
@@ -161,8 +200,9 @@ def main() -> int:
                                    ref.uem[0], ref.uem[1]), n)
         wav = cfg.wav_path(c.clip_id)
         vad = gt_qc.energy_vad(wav, n) if wav.exists() else None
+        wave = waveform_envelope(wav if wav.exists() else None, n)
         svg_diagnostic(OUT / "diagnostics" / f"{c.clip_id}.svg",
-                       c.clip_id, c, d, vad, corrected)
+                       c.clip_id, c, d, vad, corrected, wave)
 
     # manifest: pre-populated as UNVERIFIED, except where two independent
     # signals agree, which is recorded as auto-corroborated but still flagged
