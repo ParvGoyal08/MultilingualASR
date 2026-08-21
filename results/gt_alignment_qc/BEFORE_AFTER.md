@@ -1,3 +1,7 @@
+> **SUPERSEDED.** This describes an earlier 27-detected / 18-applied detector run.
+> The current run is 39 detected / 23 applied; see `corrections.json` and
+> `metrics_raw_vs_qc.csv`, and RESULTS_DIARIZATION.md / WRITEUP.md for the numbers.
+
 # Alignment QC — before and after
 
 Corpus of 99 clips. `pyannote-3.1` is **excluded throughout**: it and

@@ -1,3 +1,7 @@
+> **SUPERSEDED.** This describes an earlier 27-detected / 18-applied detector run.
+> The current run is 39 detected / 23 applied; see `corrections.json` and
+> `metrics_raw_vs_qc.csv`, and RESULTS_DIARIZATION.md / WRITEUP.md for the numbers.
+
 # Ground-truth alignment QC
 
 Some clips' annotations sit later in time than the speech they describe. This
