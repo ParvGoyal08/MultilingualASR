@@ -400,6 +400,8 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      diarizer (asr.oracle_ceiling(), scoring-side only):
 
        cpWER                          0.1240   <- the floor
+     [CORRECTED: recomputed over the 99 extracted clips the floor is 0.1242
+      cpWER / 0.0349 WDER. Conclusion unchanged.]
        DI-cpWER (words only)          0.0817
        cpWER - DI-cpWER (attribution) 0.0423
        WDER                           0.0348
@@ -1052,7 +1054,7 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      so forcing the language fixes at most one of the two.
 
      Back-translating the English with an LLM does not fix this. The reference
-     carries 19,948 parenthesised English glosses -- code-switched words written
+     carries 19,948 parenthesised English glosses [CORRECTED: 20,599] -- code-switched words written
      phonetically in native script, e.g. Kannada "informeshan" for information.
      An LLM translating "information" back writes the native word, not the
      phonetic loan the GT uses, so WER stays high with perfect semantics. It
@@ -1522,6 +1524,8 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
 
      The reference writes code-switched English phonetically in the native
      script -- the dual-form convention behind the 20,562 parenthesised glosses.
+     [CORRECTED: 20,599 Latin-alphabetic of 22,022 parenthesised, over the 99
+      extracted clips. Conclusion unchanged.]
      Measured: the reference is 99.98% Indic script (27 Latin tokens in
      123,896); the Saaras hypothesis is 3.0% Latin (3,689 tokens). Of 21,357
      substitutions, 3,481 (16.3%) are ref-Indic against hyp-Latin:
@@ -1703,7 +1707,7 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
        split   baseline   corrected     delta   95% CI            W / L / tie
        dev       0.2676      0.2619   -0.0056   [-0.0108,-0.0034]  26 / 0 / 24
        test      0.3552      0.3364   -0.0189   [-0.0241,-0.0051]  29 / 0 / 20
-       all       0.3181      0.3049   -0.0133                      54 / 0 / 45
+       all       0.3181      0.3049   -0.0133                      55 / 0 / 44
 
      3,249 of 121,243 tokens changed (2.68%). 2,232 helpful, 0 HARMFUL, 1,017
      neutral. 0 cross-script corruptions. Zero harmful is structural, not luck:

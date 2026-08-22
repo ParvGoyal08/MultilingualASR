@@ -7,7 +7,7 @@ from `data/youtube_segments.csv`.
 | directory | contents | what it removes the need for |
 |---|---|---|
 | `hypotheses/` | RTTM + sidecar for `community-1`, `pyannote-3.1`, `reverb-v2`, `diarizen-large`, `fusion` | a GPU, HF-gated model access, and **DiariZen's separate environment** |
-| `asr/` | per-clip transcripts for 7 systems incl. the final `…@fusion+xlit+num` | a Sarvam API key and a Bedrock key |
+| `asr/` | per-clip transcripts for 8 systems, including the shipped final `…@fusion+xlitpc` (§6.2) and the corpus-vocabulary variant `…@fusion+xlit+num` (§6.1) | a Sarvam API key and a Bedrock key |
 | `results/` | `translit_table.json`, `numeral_table.json`, `split.json`, `fusion_config.json`, the two per-video metric tables | rebuilding the Step 4b lookup tables (the only LLM calls in the pipeline) |
 
 ## Reproducing the headline numbers
@@ -19,8 +19,12 @@ check, `0` for the full corpus.
 To run the stages directly, pass `--root checkpoints` so the tools read what is
 committed here. These commands were verified from a clean clone:
 
+The **shipped** Step 4b system, `…@fusion+xlitpc`, is committed as finished
+transcripts. Re-running it needs a Bedrock key and
+`tools/xlit_perclip_experiment.py`; reading it needs nothing.
+
 ```bash
-# Step 4b: applies the committed lookup tables, no API key needed.
+# Step 4b (§6.1 corpus variant): applies the committed lookup tables, no key needed.
 # Prints "3,520 Latin tokens -> native script" and "697 numerals spelled out".
 python3 tools/run_translit.py --root checkpoints
 
@@ -41,7 +45,7 @@ modified files, and the check that matters is that the diff touches only
 `transcribed_at_utc` — any change to `segments` means something has drifted.
 
 `results/step2_metrics.csv` (495 rows, model × clip) and
-`results/step3_metrics.csv` (539 rows, system × clip) are the per-video tables;
+`results/step3_metrics.csv` (638 rows, system × clip) are the per-video tables;
 pooling them reproduces every corpus figure in `WRITEUP.md`.
 
 ## Note on the ASR root
