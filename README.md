@@ -53,7 +53,13 @@ because the middle term is easy to hide inside the first:
 
 1. **DOVER-Lap fusion** (Step 4a), with each speaker thresholded independently so
    overlap survives — an argmax vote cannot emit two simultaneous speakers, and
-   7.1% of this corpus is overlapped. The largest single gain.
+   7.1% of this corpus is overlapped. The largest single gain. **GT-free at
+   inference**: it reads only the three constituent RTTMs and the clip duration,
+   which comes from the CSV manifest rather than from any annotation. The
+   configuration was selected on **dev** and frozen in
+   `results/fusion_config.json` before test was scored — the operator is GT-free,
+   the selection used dev DER, and `WRITEUP.md` §3 keeps those two apart rather
+   than conflating them.
 2. **A provenance bug.** 27 clips had been transcribed against a stale 2-system
    fusion, so the measured "fusion" result was partly not the fusion. Catching it
    needed a `segmentation_key` — a hash of the turn boundaries, re-derived from
@@ -124,7 +130,16 @@ pip install -r requirements.txt
 jupyter notebook main.ipynb          # SUBSET = 10 first, then 0
 ```
 
-Re-running a model instead of reading its checkpoint needs the corresponding
-credential in `.env` (`SARVAM_API_KEY`, `HF_TOKEN`, `AWS_BEARER_TOKEN_BEDROCK`);
-`.env` is gitignored. DiariZen needs its own environment — its RTTMs are
-committed so it is never required.
+**Nothing to configure for the default path** — every model output is committed,
+so the notebook re-scores rather than re-runs. No GPU, no API key, no gated
+model access.
+
+Running a stage **from scratch** instead needs its credential in a `.env` at the
+repo root: `HF_TOKEN` for the pyannote/Reverb diarizers (plus accepting their
+licences), `SARVAM_API_KEY` for Step 3, `AWS_BEARER_TOKEN_BEDROCK` for Step 4b.
+`.env` is gitignored, Colab/Kaggle Secrets are read under the same names, and no
+key value is ever logged. **DiariZen is the one stage that cannot run in the same
+environment** — its dependencies conflict with pyannote's, so it has its own
+runner (`notebooks/diarizen_runner.ipynb`) and its RTTMs are committed, which is
+why it is never required. `main.ipynb`'s second cell and `RUNBOOK.md` have the
+full per-stage table.
