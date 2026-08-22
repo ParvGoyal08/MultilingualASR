@@ -42,8 +42,9 @@ from sarvam_diar.utils import read_json, write_json_atomic  # noqa: E402
 # ------------------------------------------------------------------ frozen config
 MODEL = "us.anthropic.claude-sonnet-4-6"
 TEMPERATURE = 0
-MAX_TOKENS = 4000
-PROMPT_VERSION = "xlit-perclip-v1"
+MAX_TOKENS = 8000
+BATCH = 60          # v2: cap words per request so the reply cannot be truncated
+PROMPT_VERSION = "xlit-perclip-v1"   # prompt text UNCHANGED from v1
 SOURCE = "sarvam-saaras-v3@fusion"
 OUT_DIR = Path("local_out/experiments/xlit_perclip")
 
@@ -125,6 +126,14 @@ def ask(cfg: Config, words: list[str], script: str, key: str,
                 "temperature": TEMPERATURE, "system": sysmsg,
                 "messages": [{"role": "user", "content": user}]}
         resp = translit._post(body, key, MODEL)
+        # A truncated reply is a HARD FAILURE, not an abstention. v1 silently
+        # turned one 431-word request into 431 "abstentions" because the JSON
+        # never closed. stop_reason is visible at inference time and needs no
+        # reference, so this is caught before anything is scored.
+        if resp.get("stop_reason") not in (None, "end_turn", "stop_sequence"):
+            raise RuntimeError(
+                f"truncated response: stop_reason={resp.get('stop_reason')} "
+                f"on {len(words)} words -- lower BATCH")
         txt = "".join(c.get("text", "") for c in resp.get("content", []))
         a, b = txt.find("{"), txt.rfind("}")
         raw = {}
@@ -213,7 +222,17 @@ def main() -> int:
                            else f"script {script} unsupported"}
             out, n, log = src, 0, []
         else:
-            m, aud = ask(cfg, list(vocab), script, key, use_cache=not a.no_cache)
+            words = list(vocab)
+            m, aud = {}, {"n_offered": 0, "n_accepted": 0, "rejections": {}, "cache_key": []}
+            for k in range(0, len(words), BATCH):
+                mk, ak = ask(cfg, words[k:k + BATCH], script, key,
+                             use_cache=not a.no_cache)
+                m.update(mk)
+                aud["n_offered"] += ak["n_offered"]
+                aud["n_accepted"] += ak["n_accepted"]
+                aud["cache_key"].append(ak["cache_key"])
+                for kk, vv in ak["rejections"].items():
+                    aud["rejections"][kk] = aud["rejections"].get(kk, 0) + vv
             out, n, log = apply_map(src, m)
             aud.update(script=script, n_latin_types=len(vocab),
                        n_latin_tokens=sum(vocab.values()), n_applied=n)

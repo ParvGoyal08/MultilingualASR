@@ -1,0 +1,524 @@
+{
+  "split": "test",
+  "model": "us.anthropic.claude-sonnet-4-6",
+  "prompt_version": "xlit-perclip-v1",
+  "temperature": 0,
+  "source": "sarvam-saaras-v3@fusion",
+  "n_clips": 49,
+  "totals": {
+    "applied": 2705,
+    "abstained_or_null": 160,
+    "offered": 1480,
+    "accepted": 1320
+  },
+  "per_clip": {
+    "0SoItGfM_sY__7_88": {
+      "skipped": "no latin vocabulary"
+    },
+    "0VEwL9XZ0LY__261_557": {
+      "n_offered": 62,
+      "n_accepted": 58,
+      "rejections": {
+        "abstained_or_null": 4
+      },
+      "cache_key": [
+        "1a894b7b8ec7d072",
+        "35051b276d6c1051"
+      ],
+      "script": "Devanagari",
+      "n_latin_types": 62,
+      "n_latin_tokens": 93,
+      "n_applied": 85
+    },
+    "0esIFSOAcFs__0_913": {
+      "n_offered": 2,
+      "n_accepted": 1,
+      "rejections": {
+        "abstained_or_null": 1
+      },
+      "cache_key": [
+        "fb1eb7ca2b279d81"
+      ],
+      "script": "Gujarati",
+      "n_latin_types": 2,
+      "n_latin_tokens": 9,
+      "n_applied": 1
+    },
+    "13VBh0Z6QmE__0_904": {
+      "n_offered": 9,
+      "n_accepted": 8,
+      "rejections": {
+        "abstained_or_null": 1
+      },
+      "cache_key": [
+        "82275a55a0053ed0"
+      ],
+      "script": "Tamil",
+      "n_latin_types": 9,
+      "n_latin_tokens": 10,
+      "n_applied": 9
+    },
+    "2LN6vb7EBn0__98_394": {
+      "n_offered": 9,
+      "n_accepted": 7,
+      "rejections": {
+        "abstained_or_null": 2
+      },
+      "cache_key": [
+        "23bdc0b10193ea87"
+      ],
+      "script": "Tamil",
+      "n_latin_types": 9,
+      "n_latin_tokens": 9,
+      "n_applied": 7
+    },
+    "2T4pjueLrsk__677_1290": {
+      "n_offered": 31,
+      "n_accepted": 25,
+      "rejections": {
+        "abstained_or_null": 6
+      },
+      "cache_key": [
+        "e42fe026f3298e4f"
+      ],
+      "script": "Gujarati",
+      "n_latin_types": 31,
+      "n_latin_tokens": 37,
+      "n_applied": 30
+    },
+    "37dND_0r6S8__60_222": {
+      "n_offered": 23,
+      "n_accepted": 23,
+      "rejections": {},
+      "cache_key": [
+        "ed58e2ba8bcc0eae"
+      ],
+      "script": "Tamil",
+      "n_latin_types": 23,
+      "n_latin_tokens": 28,
+      "n_applied": 25
+    },
+    "6f6TLzlP8Wk__82_144": {
+      "n_offered": 2,
+      "n_accepted": 2,
+      "rejections": {},
+      "cache_key": [
+        "c39e0ccdb0a4cefc"
+      ],
+      "script": "Gurmukhi",
+      "n_latin_types": 2,
+      "n_latin_tokens": 2,
+      "n_applied": 2
+    },
+    "7YfsQPYY-W0__351_411": {
+      "n_offered": 1,
+      "n_accepted": 1,
+      "rejections": {},
+      "cache_key": [
+        "d97c5a71f5346485"
+      ],
+      "script": "Oriya",
+      "n_latin_types": 1,
+      "n_latin_tokens": 1,
+      "n_applied": 1
+    },
+    "83gP2vLH7UY__255_2005": {
+      "n_offered": 9,
+      "n_accepted": 6,
+      "rejections": {
+        "abstained_or_null": 3
+      },
+      "cache_key": [
+        "f0b8b111e7853d8e"
+      ],
+      "script": "Devanagari",
+      "n_latin_types": 9,
+      "n_latin_tokens": 10,
+      "n_applied": 6
+    },
+    "86mMTUeDiR8__181_1079": {
+      "n_offered": 81,
+      "n_accepted": 68,
+      "rejections": {
+        "abstained_or_null": 13
+      },
+      "cache_key": [
+        "33e965a8144a0462",
+        "68fb39d77ecd995c"
+      ],
+      "script": "Bengali",
+      "n_latin_types": 81,
+      "n_latin_tokens": 110,
+      "n_applied": 94
+    },
+    "8Ve4SWhlrrA__0_70": {
+      "skipped": "no latin vocabulary"
+    },
+    "8mvORuRHw2U__0_1197": {
+      "n_offered": 11,
+      "n_accepted": 7,
+      "rejections": {
+        "abstained_or_null": 4
+      },
+      "cache_key": [
+        "080bd40d18bca153"
+      ],
+      "script": "Gujarati",
+      "n_latin_types": 11,
+      "n_latin_tokens": 16,
+      "n_applied": 11
+    },
+    "8r2Nltl0W4o__259_320": {
+      "skipped": "no latin vocabulary"
+    },
+    "90uAd6xpTPo__16_408": {
+      "skipped": "no latin vocabulary"
+    },
+    "BGAAfht5dYw__0_612": {
+      "n_offered": 58,
+      "n_accepted": 40,
+      "rejections": {
+        "abstained_or_null": 18
+      },
+      "cache_key": [
+        "664c1743221bf2e4"
+      ],
+      "script": "Gujarati",
+      "n_latin_types": 58,
+      "n_latin_tokens": 80,
+      "n_applied": 58
+    },
+    "BYLcUGNB_zM__20_1387": {
+      "n_offered": 166,
+      "n_accepted": 137,
+      "rejections": {
+        "abstained_or_null": 29
+      },
+      "cache_key": [
+        "9cd6d385d7ae22a9",
+        "1ec96822317e1729",
+        "bf191931af9ec058"
+      ],
+      "script": "Kannada",
+      "n_latin_types": 166,
+      "n_latin_tokens": 368,
+      "n_applied": 293
+    },
+    "Bngfppo1QtA__28_927": {
+      "n_offered": 76,
+      "n_accepted": 73,
+      "rejections": {
+        "abstained_or_null": 3
+      },
+      "cache_key": [
+        "32bf86779285e71d",
+        "3a57df3df00f226e"
+      ],
+      "script": "Telugu",
+      "n_latin_types": 76,
+      "n_latin_tokens": 103,
+      "n_applied": 95
+    },
+    "CO_8ppdzq9U__0_695": {
+      "skipped": "no latin vocabulary"
+    },
+    "Cku_X_SL7qU__60_660": {
+      "n_offered": 304,
+      "n_accepted": 278,
+      "rejections": {
+        "abstained_or_null": 26
+      },
+      "cache_key": [
+        "278a71aa93f0d3c8",
+        "cd60e5a3b69b10eb",
+        "83b3b955218f8ad3",
+        "e37932e95109ae8b",
+        "97e37d2bf03592dd",
+        "f79fef24f81c269f"
+      ],
+      "script": "Gujarati",
+      "n_latin_types": 304,
+      "n_latin_tokens": 745,
+      "n_applied": 622
+    },
+    "EmsKkNN2Me4__35_95": {
+      "n_offered": 2,
+      "n_accepted": 1,
+      "rejections": {
+        "abstained_or_null": 1
+      },
+      "cache_key": [
+        "20cc2c7faff6a039"
+      ],
+      "script": "Malayalam",
+      "n_latin_types": 2,
+      "n_latin_tokens": 2,
+      "n_applied": 1
+    },
+    "ExGJodnzocM__212_527": {
+      "n_offered": 45,
+      "n_accepted": 36,
+      "rejections": {
+        "abstained_or_null": 9
+      },
+      "cache_key": [
+        "f900a07a58658fdf"
+      ],
+      "script": "Devanagari",
+      "n_latin_types": 45,
+      "n_latin_tokens": 53,
+      "n_applied": 42
+    },
+    "G6qzg93FxwE__21_116": {
+      "skipped": "no latin vocabulary"
+    },
+    "GfFLEIAAumk__90_163": {
+      "skipped": "no latin vocabulary"
+    },
+    "Gq45evw6ytY__597_1464": {
+      "n_offered": 15,
+      "n_accepted": 15,
+      "rejections": {},
+      "cache_key": [
+        "d45eab389e3aed1b"
+      ],
+      "script": "Oriya",
+      "n_latin_types": 15,
+      "n_latin_tokens": 17,
+      "n_applied": 17
+    },
+    "IAm1rt-MYcA__4_558": {
+      "n_offered": 8,
+      "n_accepted": 8,
+      "rejections": {},
+      "cache_key": [
+        "d9990aa97a365340"
+      ],
+      "script": "Bengali",
+      "n_latin_types": 8,
+      "n_latin_tokens": 9,
+      "n_applied": 9
+    },
+    "IfTL8SSN270__62_671": {
+      "n_offered": 9,
+      "n_accepted": 9,
+      "rejections": {},
+      "cache_key": [
+        "cbbb4445b3b5be72"
+      ],
+      "script": "Devanagari",
+      "n_latin_types": 9,
+      "n_latin_tokens": 11,
+      "n_applied": 11
+    },
+    "JSB1CeS4pP8__0_632": {
+      "n_offered": 10,
+      "n_accepted": 10,
+      "rejections": {},
+      "cache_key": [
+        "016dd4e1a11f999a"
+      ],
+      "script": "Gurmukhi",
+      "n_latin_types": 10,
+      "n_latin_tokens": 12,
+      "n_applied": 12
+    },
+    "KAtdcDieQMw__57_599": {
+      "n_offered": 2,
+      "n_accepted": 2,
+      "rejections": {},
+      "cache_key": [
+        "29b8b10bf9860da5"
+      ],
+      "script": "Oriya",
+      "n_latin_types": 2,
+      "n_latin_tokens": 2,
+      "n_applied": 2
+    },
+    "Kdi-ECuOaKg__2_78": {
+      "skipped": "no latin vocabulary"
+    },
+    "LBIWBxQ5H1s__90_1020": {
+      "n_offered": 5,
+      "n_accepted": 5,
+      "rejections": {},
+      "cache_key": [
+        "41792a5f310ee88a"
+      ],
+      "script": "Malayalam",
+      "n_latin_types": 5,
+      "n_latin_tokens": 5,
+      "n_applied": 5
+    },
+    "LctYmmr9-Vg__0_61": {
+      "n_offered": 3,
+      "n_accepted": 3,
+      "rejections": {},
+      "cache_key": [
+        "bc998fc2de509844"
+      ],
+      "script": "Devanagari",
+      "n_latin_types": 3,
+      "n_latin_tokens": 3,
+      "n_applied": 3
+    },
+    "MmtWBUK2DKE__0_310": {
+      "n_offered": 5,
+      "n_accepted": 5,
+      "rejections": {},
+      "cache_key": [
+        "3670c03a2fad1872"
+      ],
+      "script": "Devanagari",
+      "n_latin_types": 5,
+      "n_latin_tokens": 5,
+      "n_applied": 5
+    },
+    "NLgHpYyf5bY__313_383": {
+      "skipped": "no latin vocabulary"
+    },
+    "OxYCBQKZ3iY__0_1822": {
+      "n_offered": 7,
+      "n_accepted": 7,
+      "rejections": {},
+      "cache_key": [
+        "8e135a4721a82f85"
+      ],
+      "script": "Gurmukhi",
+      "n_latin_types": 7,
+      "n_latin_tokens": 7,
+      "n_applied": 7
+    },
+    "PCUA2q2C-2A__45_107": {
+      "skipped": "no latin vocabulary"
+    },
+    "PEDfT9-Yf2o__0_469": {
+      "skipped": "no latin vocabulary"
+    },
+    "PQB3-4sZUeY__0_1132": {
+      "n_offered": 431,
+      "n_accepted": 399,
+      "rejections": {
+        "abstained_or_null": 32
+      },
+      "cache_key": [
+        "4ab1fac4e659022d",
+        "4edfe5d5d62828f5",
+        "97b2511620dada56",
+        "c9c77287f0e212d2",
+        "4b609359846de418",
+        "2c14137058405b6f",
+        "31ce0a109f78a754",
+        "555841d24dec5b3d"
+      ],
+      "script": "Telugu",
+      "n_latin_types": 431,
+      "n_latin_tokens": 1227,
+      "n_applied": 1143
+    },
+    "PSIzXy5-y2E__2_918": {
+      "n_offered": 13,
+      "n_accepted": 13,
+      "rejections": {},
+      "cache_key": [
+        "d6f0ca4d32ea59ef"
+      ],
+      "script": "Devanagari",
+      "n_latin_types": 13,
+      "n_latin_tokens": 25,
+      "n_applied": 25
+    },
+    "PVDfS7lcJHY__0_360": {
+      "skipped": "no latin vocabulary"
+    },
+    "QhpjuNTZoA8__0_586": {
+      "n_offered": 3,
+      "n_accepted": 3,
+      "rejections": {},
+      "cache_key": [
+        "6554421db9ec5a62"
+      ],
+      "script": "Kannada",
+      "n_latin_types": 3,
+      "n_latin_tokens": 3,
+      "n_applied": 3
+    },
+    "RL2fhIEEbZg__0_65": {
+      "skipped": "no latin vocabulary"
+    },
+    "RL2fhIEEbZg__66_1034": {
+      "n_offered": 25,
+      "n_accepted": 24,
+      "rejections": {
+        "abstained_or_null": 1
+      },
+      "cache_key": [
+        "acf5b6b288bbd44e"
+      ],
+      "script": "Telugu",
+      "n_latin_types": 25,
+      "n_latin_tokens": 32,
+      "n_applied": 30
+    },
+    "RWTmftezCwI__0_60": {
+      "n_offered": 1,
+      "n_accepted": 1,
+      "rejections": {},
+      "cache_key": [
+        "1095f8d9d32bd9f9"
+      ],
+      "script": "Malayalam",
+      "n_latin_types": 1,
+      "n_latin_tokens": 1,
+      "n_applied": 1
+    },
+    "SZ7ay4OjfAE__0_897": {
+      "n_offered": 23,
+      "n_accepted": 20,
+      "rejections": {
+        "abstained_or_null": 3
+      },
+      "cache_key": [
+        "ce1e2bc5ff681f8a"
+      ],
+      "script": "Telugu",
+      "n_latin_types": 23,
+      "n_latin_tokens": 29,
+      "n_applied": 22
+    },
+    "T3I2T-cfhG4__160_210": {
+      "skipped": "no latin vocabulary"
+    },
+    "TU3M6wSQV_g__99_171": {
+      "n_offered": 3,
+      "n_accepted": 2,
+      "rejections": {
+        "abstained_or_null": 1
+      },
+      "cache_key": [
+        "d2e6e9bea09a1bb5"
+      ],
+      "script": "Telugu",
+      "n_latin_types": 3,
+      "n_latin_tokens": 4,
+      "n_applied": 3
+    },
+    "Tlha36rSd5o__240_374": {
+      "skipped": "no latin vocabulary"
+    },
+    "VKY0uuZ6Om8__575_935": {
+      "n_offered": 26,
+      "n_accepted": 23,
+      "rejections": {
+        "abstained_or_null": 3
+      },
+      "cache_key": [
+        "57e793d5cdd351c3"
+      ],
+      "script": "Devanagari",
+      "n_latin_types": 26,
+      "n_latin_tokens": 29,
+      "n_applied": 25
+    }
+  }
+}

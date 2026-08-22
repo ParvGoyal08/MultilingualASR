@@ -1,0 +1,13 @@
+{
+  "frozen_before_scoring_test": true,
+  "model": "us.anthropic.claude-sonnet-4-6",
+  "temperature": 0,
+  "max_tokens": 4000,
+  "prompt_version": "xlit-perclip-v1",
+  "source_system": "sarvam-saaras-v3@fusion",
+  "scope": "per-clip; vocabulary from that clip's own hypothesis only",
+  "numerals": "excluded by design (would change token count)",
+  "guards": ["abstain_on_null", "single_token_no_whitespace", "no_digits",
+             "reject_still_latin", "reject_wrong_script", "reject_identity"],
+  "gt_used_for": "post-hoc scoring only, never inference/prompt/vocab/tuning"
+}
