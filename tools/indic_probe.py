@@ -86,7 +86,9 @@ def main() -> int:
     ap.add_argument("--root", default=None)
     ap.add_argument("--diar", default="fusion")
     ap.add_argument("--clips", type=int, default=10)
-    ap.add_argument("--lang", default="oracle", choices=("oracle", "lid"))
+    # Default to lid: "oracle" feeds reference-derived language into the
+    # recogniser, which is a diagnostic, not a pipeline configuration.
+    ap.add_argument("--lang", default="lid", choices=("oracle", "lid"))
     ap.add_argument("--decoding", default="rnnt,ctc")
     ap.add_argument("--smoke", action="store_true", help="one clip, then stop")
     ap.add_argument("--out", default=None)

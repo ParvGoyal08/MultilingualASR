@@ -830,10 +830,11 @@ def oracle_ceiling(cfg: Config, references: dict, clip_ids: Sequence[str] | None
 # makes attribution exact by construction: every word of a request belongs to
 # that turn's speaker.
 #
-# The cost is context. On this corpus 46% of community-1's turns are under a
-# second, which is close to useless to a recogniser, so adjacent same-speaker
-# turns are merged first. reverb-v2 needs it least -- 2,833 segments at a median
-# of 6.46 s against community-1's 14,380 at 1.21 s.
+# The cost is context. Short turns are close to useless to a recogniser, so
+# adjacent same-speaker turns within `merge_gap` are merged first. reverb-v2
+# needs it least: 2,833 raw turns become 2,650 at a median of 7.66 s, against
+# community-1's 14,380 becoming 10,279 at 1.13 s. Even after merging, 48.1% of
+# community-1's segments are still under a second against reverb-v2's 21.6%.
 
 
 def sarvam_model_for(system: str) -> str:
