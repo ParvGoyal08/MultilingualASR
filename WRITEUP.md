@@ -588,7 +588,8 @@ and some words appear twice — and 4b more than recovers it.
 | test | 49 | 0.975 | 0.2854 | 0.3337 | 0.0736 |
 | all | 99 | 0.981 | 0.2585 | 0.3017 | 0.0602 |
 
-**Dev and test are not equally hard** (cpWER 0.2676 vs 0.3552). Only deltas
+**Dev and test are not equally hard** (final-system cpWER 0.2582 vs 0.3337; the
+gap is the same before Step 4b, 0.2676 vs 0.3552). Only deltas
 transfer across the split; a dev absolute is not a prediction for test. The split
 was frozen before any Step 4 tuning (`results/split.json`), stratified by script
 and speaker-count band — both reference-derived, so the dev/test *boundary* is
@@ -608,8 +609,19 @@ approximating reference word times by even spread within a turn. The second
 component would shrink with real word alignments, so the floor is an upper bound
 on what is unreachable and it flatters the final system slightly.
 
-**12.4% of remaining cpWER is attribution** (0.0394 of 0.3181); the other 87.6%
+**14.3% of remaining cpWER is attribution** (0.0432 of 0.3017); the other 85.7%
 is word error.
+
+That gap *widened* after Step 4b, from 0.0394 to 0.0432, and the reason is worth
+stating because it looks like a regression and is not one. Step 4b cut DI-cpWER
+by 0.0202 but cpWER by only 0.0164, and `cpWER − DI-cpWER` is the cost that
+speaker-attributed scoring adds over speaker-agnostic scoring — not a measure of
+attribution quality on its own. A word that was both misrecognised and
+misattributed used to score wrong under both metrics. Once the word is fixed it
+scores right under DI-cpWER and still wrong under cpWER, so correcting words
+**unmasks** attribution errors that word errors had been hiding. The direct
+attribution metric moved the other way over the same change: WDER 0.0628 →
+0.0602. Both readings are in `results/step3_metrics.csv`.
 
 **Per-video tables.** `results/step3_metrics.csv` — **539 rows**, `system × clip`,
 seven ASR systems including the final one (pooling reproduces cpWER 0.3017).
@@ -619,7 +631,17 @@ systems **including the fusion** (pooling reproduces DER 0.2442, JER 0.3608).
 Both tables are committed and pool exactly to the corpus figures above.
 `checkpoints/` additionally carries every diarization RTTM and ASR transcript, so
 a reviewer can re-derive every number in this report **without a GPU, without
-HF-gated model access, and without either API key** — see `checkpoints/README.md`.
+HF-gated model access, and without any API key** — see `checkpoints/README.md`.
+
+**How to re-derive them.** `main.ipynb` runs the whole pipeline from those
+checkpoints and prints the tables in this section. It has a `SUBSET = 10` toggle
+so the pipeline can be checked end to end in a few minutes before the full
+corpus. It was verified from a clean clone against a virtualenv holding only
+pandas, numpy, scipy, rapidfuzz, pyannote.metrics and jinja2, in both modes; the
+full run reproduces every figure above, and the fusion regenerates bit-for-bit
+from its three constituents on 99/99 clips. The one network call is a first-run
+fetch of the assignment's `youtube_segments.csv`, which is not redistributed
+here.
 
 ---
 
