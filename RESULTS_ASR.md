@@ -251,7 +251,7 @@ achievable floor**, not 0.3957 above zero.
 
 **31% of the cpWER is attribution, not words.** DI-cpWER discards attribution and
 lands at 0.2728, so `cpWER − DI-cpWER = 0.1229` is what getting speakers wrong
-costs. The oracle's equivalent is 0.0423, so about **0.0806 is avoidable** and
+costs. The oracle's equivalent is 0.0424, so about **0.0806 is avoidable** and
 belongs to the diarization rather than the recogniser.
 
 **WDER 0.1128** — of reference words aligned to a hypothesis word, 11.3% carry

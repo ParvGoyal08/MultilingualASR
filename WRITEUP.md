@@ -81,7 +81,7 @@ Four systems, all 99 clips, raw ground truth:
 25–26% DER is unsurprising here: nine-language code-switched YouTube audio, no
 collar, full overlap scored, and 20% of reference segments under 0.5 s.
 
-The three single systems sit within **0.011 DER of each other** — inside the
+The four single systems sit within **0.0116 DER of each other** — inside the
 noise of a 99-clip corpus. The models differ far more in *character* than in
 aggregate: `reverb-v2` has the lowest miss (0.0719) but the worst confusion
 (0.1121) and worst speaker counting (60.6%), because it emits long loose turns
@@ -317,7 +317,8 @@ segmentation it would use, so drift self-heals. (New payloads written by
 `run_segmented` do not yet persist the key — the audit does not need them to.)
 `audit_segmentation()` reports the re-run set without transcribing. Per-segment
 failures are isolated so one bad segment cannot discard a clip, and clip failures
-persist to `logs/step3_failures.jsonl`.
+persist to `logs/step3_failures.jsonl` (in the working tree; not committed —
+the run completed with no failures, so the file is empty).
 
 **Effect of re-transcribing the 27 clips against the correct fusion:**
 
@@ -368,7 +369,14 @@ text — the brief's suggested direction.
   `max(1, ⌈0.25·len⌉)` — where "licensed" means inside a ≥3-token run verifiably
   shared with an overlapping segment. Revert both members of a pair that both
   deleted the same shared run. Drop a window if >25% of its segments trip a guard.
-- Every edit and revert is logged to `logs/step5_edits.jsonl`.
+- Every edit and revert was logged to `logs/step5_edits.jsonl`. **That file is
+  not committed**: it lives in the gitignored working tree, and the Gemini
+  pilot's records were later overwritten in place by the Sonnet re-run of §6.4.
+  The surviving record of this run is the aggregate in
+  `results/step5_llm_refine.md`; the qualitative examples below were taken from
+  the log while it existed and cannot now be re-derived. That is a provenance
+  failure of exactly the kind §5 is about, and it is the reason the Step 4b
+  tables are committed rather than left in a working directory.
 
 **Ground truth never enters refinement or the prompt.** The only `reference`
 function imported is `normalize_text`, a pure string function applied identically
@@ -384,9 +392,9 @@ spans, predicted duplication from hypothesis-vs-hypothesis n-gram matching,
 speaker count — stratified by script with a fixed seed. No WER, cpWER, WDER or
 reference overlap was used, because selecting clips by measured error is ground
 truth leaking into experimental design. The set is drawn from the **dev half
-only**: 9 scripts, 41.9 min, 402 segments, predicted overlap 0.0%–12.9%, four
-zero-overlap control clips arising by construction (`6ZeRgvDHwcI`,
-`7L4gi7Ncc0s`, `Iare1Emeueg`).
+only**: 9 scripts, 41.9 min, 402 segments, predicted overlap 0.0%–12.9%, three
+zero-overlap control clips arising by construction (`6ZeRgvDHwcI__6_100`,
+`7L4gi7Ncc0s__90_148`, `Iare1Emeueg__16_69`).
 
 **Result** (`gemini-3.5-flash`, temperature 0):
 
@@ -765,7 +773,8 @@ as indicative.
 **Ground-truth quality is a measurement floor.** 39 of 99 clips have reference
 timestamps displaced 1–5 s. **11 of the 15 worst-DER clips (fusion) are in the
 39-clip flag set**, and the tail skews short — 9 of the 15 are under 90 s, where a
-4 s shift is catastrophic — though the range runs 53 s to 898 s. Unannotated GT gaps account for 218 s = 10% of all false alarm.
+4 s shift is catastrophic — though the range runs 53 s to 898 s. Unannotated GT gaps account for 218 s, which is 8.1% of `community-1`'s false
+alarm (2,683 s) — the system those gaps were measured on.
 
 ### Engineering lessons
 

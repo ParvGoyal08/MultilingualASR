@@ -3,8 +3,14 @@
 Run 2026-08-22, `gemini-3.5-flash`, temperature 0, prompt `v1`.
 Pilot: 10 clips, **GT-blind selection**, dev split only, 41.9 min, 402 segments.
 Code: `sarvam_diar/llm_refine.py`, `tools/llm_refine_probe.py`,
-`tools/llm_refine_report.py`. Raw: `results/step5_llm_refine.json`,
-`logs/step5_edits.jsonl`.
+`tools/llm_refine_report.py`.
+
+**The raw artifacts for this run no longer exist.** `results/step5_llm_refine.json`
+and `logs/step5_edits.jsonl` were written into the gitignored working tree, and a
+later Sonnet re-run of the same probe overwrote both in place — the driver writes
+to a fixed path that does not carry the model in its name. This document and the
+quoted examples are the surviving record. It is a provenance failure of the same
+shape as the one in `WRITEUP.md` §5, on a stage that was not shipped.
 
 **Verdict: do not ship.** Every pre-registered abandon criterion fired.
 
@@ -44,7 +50,9 @@ forbidden, and the pre-write assertion never fired.
 segments. Every zero-overlap control clip came back untouched, which is the
 correct behaviour and confirms the "when unsure, preserve" clause landed.
 
-**The script guard caught real damage** — 4 reverts per arm, all `script_change`.
+**The script guard caught real damage** — 9 reverts in total, 4 in arm A and 5 in
+arm B (see the table above), predominantly `script_change`; one
+`unlicensed_budget` revert is shown further down.
 For example a Malayalam segment rewritten into Kannada:
 
 ```
