@@ -1,5 +1,7 @@
 # Multilingual Speaker Diarization + ASR on Indic YouTube
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ParvGoyal08/MultilingualASR/blob/main/main.ipynb)
+
 Speaker diarization and speaker-attributed transcription over **99 YouTube clips,
 12.26 h, nine Indic scripts, 2–8 speakers per clip, 7.1% overlapped speech**.
 
