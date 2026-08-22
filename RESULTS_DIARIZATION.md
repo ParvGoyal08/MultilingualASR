@@ -13,11 +13,20 @@ included**, per the brief. `FUSION` is the Step 4 system.
 | `community-1` | **0.2634** | 0.1079 | 0.0602 | 0.0954 | 0.3768 | 78.8% | 0.23 |
 | `pyannote-3.1` | **0.2637** | 0.1079 | 0.0602 | 0.0957 | 0.3785 | 71.7% | 0.35 |
 
-**Step 4 result: 3.1% relative DER reduction** over the best single system
-(`reverb-v2`, 0.2521 → 0.2442), and the fusion is best on
-DER, false alarm, confusion, JER and speaker-count accuracy simultaneously. It is
-beaten only on **miss**, where `reverb-v2` leads — voting cannot recover speech
-that a majority never found.
+**Step 4 result.** The fusion reaches DER 0.2442 against `reverb-v2`'s 0.2521,
+and is simultaneously best on false alarm, confusion, JER and speaker-count
+accuracy. It is beaten only on **miss**, where `reverb-v2` leads — voting cannot
+recover speech that a majority never found.
+
+**That DER gap is not statistically significant, and is not claimed.** Paired
+bootstrap over clips: Δ −0.0079, 95% CI [−0.0353, +0.0161], and `reverb-v2` wins
+57 of 99 clips head-to-head. An earlier draft of this file reported it as "3.1%
+relative DER reduction"; that figure is a point estimate whose interval spans
+zero and it is **withdrawn** — see `WRITEUP.md` §3. Against the other three
+constituents the fusion wins decisively (Δ −0.0193 / −0.0195 / −0.0184, all CIs
+excluding zero, 83/16 and 80/19 per clip). The defensible claims here are the
+JER, confusion and speaker-count wins, the variance reduction below, and the
+downstream ASR result — cpWER 0.3957 → 0.3181, which is significant.
 
 ## The four models are not four versions of the same thing
 
@@ -78,7 +87,7 @@ With ~50 clips a half and a duration-pooled DER dominated by a handful of long
 clips, **a 0.02–0.04 DER gap is inside split noise.**
 
 The fusion is the only entry that is 1st or 2nd on both halves. Its value is
-less that it is 3% better on average and more that it removes the variance —
+less that it edges the average and more that it removes the variance —
 picking any single model amounts to betting on which half of the corpus you drew.
 
 ## Ground-truth alignment (diagnostic, not the headline)

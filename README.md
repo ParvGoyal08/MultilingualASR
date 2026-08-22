@@ -30,9 +30,9 @@ sarvam-saaras-v3 @ DOVER-Lap(community-1, reverb-v2, diarizen-large)
                  + script/numeral normalisation
 ```
 
-Improvement holds on the held-out half (test cpWER −0.0216) and on 72 of 99 clips
-individually, with 1 regression. DER is scored at **collar 0.0 with overlap
-included**, as the brief requires.
+Improvement holds on the held-out half — test cpWER 0.4463 → 0.3337 (−0.1127) —
+and on **92 of 99 clips individually**, with 5 regressions. DER is scored at
+**collar 0.0 with overlap included**, as the brief requires.
 
 For scale: feeding the reference transcript back as if perfectly recognised, on
 the reference diarization, still scores cpWER **0.1242** — one transcript cannot
@@ -41,26 +41,38 @@ not 0.3017 above zero.
 
 ## What produced the gain
 
-Three changes produced it, and the largest was not a modelling change at all:
+Three changes produced it. They decompose cleanly, and the decomposition matters
+because the middle term is easy to hide inside the first:
 
-1. **A provenance bug.** 27 clips had been transcribed against a stale 2-system
-   fusion. Detecting it needed a `segmentation_key` — a hash of the turn
-   boundaries stored beside each transcript — so stale work is *visibly* stale
-   rather than silently mixed. Fixing it: −0.0200 cpWER, −41% insertions. Larger
-   than any model swap in this repo.
-2. **DOVER-Lap fusion** (Step 4a), with each speaker thresholded independently so
-   overlap survives an argmax vote. −0.0776 cpWER, −0.0500 WDER.
+| step | cpWER | Δ |
+|---|---|---|
+| baseline, Saaras v3 @ `reverb-v2` | 0.3957 | |
+| 1. swap the diarizer for the DOVER-Lap fusion | 0.3381 | **−0.0576** |
+| 2. fix the provenance bug | 0.3181 | **−0.0200** |
+| 3. script + numeral normalisation | **0.3017** | **−0.0164** |
+
+1. **DOVER-Lap fusion** (Step 4a), with each speaker thresholded independently so
+   overlap survives — an argmax vote cannot emit two simultaneous speakers, and
+   7.1% of this corpus is overlapped. The largest single gain.
+2. **A provenance bug.** 27 clips had been transcribed against a stale 2-system
+   fusion, so the measured "fusion" result was partly not the fusion. Catching it
+   needed a `segmentation_key` — a hash of the turn boundaries, re-derived from
+   each transcript's stored segment spans at audit time and compared against the
+   diarization on disk. −0.0200 cpWER and −41% insertions, from no modelling
+   change at all.
 3. **Script and numeral normalisation** (Step 4b) — the reference writes
    code-switched English phonetically in the native script and numbers as spoken
    words; Saaras writes Latin and digits. 3,481 of 21,357 substitutions were
    *correctly recognised words scored wrong for their spelling convention*.
    −0.0164 cpWER, 72 clips better / 1 worse, 0 dev regressions.
 
-Five interventions were built, measured and **rejected**: a 1-of-3 overlap vote,
-an MSDD verifier over constituent disagreement, an OSD∩constituent intersection,
-ConvTasNet source separation, and LLM contextual refinement (null across three
-models). They are written up as negative results because they were well-posed
-experiments, not because they worked.
+Three interventions were built, measured end-to-end and **rejected**: a 1-of-3
+overlap vote, ConvTasNet source separation, and LLM contextual refinement. Each
+had a stated hypothesis, a control and a pre-committed abandon criterion, and
+each is written up as a negative result. Two further ideas — an MSDD-style
+verifier and an OSD∩constituent intersection — got only as far as *audits* of
+how precise their candidate sets would be (11.5% and 23.6%); they were dropped
+before implementation and are reported as such, not as experiments.
 
 ## Ground truth is never a pipeline input
 
@@ -80,7 +92,7 @@ dev; test was scored once.
 |---|---|
 | [`main.ipynb`](main.ipynb) | **the deliverable** — Steps 1–5 end to end, `SUBSET` toggle |
 | [`WRITEUP.md`](WRITEUP.md) | full method, results, failure analysis, limitations |
-| [`obs.txt`](obs.txt) | lab notebook — 55 dated observations, including the wrong turns |
+| [`obs.txt`](obs.txt) | lab notebook — 55 numbered observations, including the wrong turns |
 | `sarvam_diar/` | library: data, reference, diarization, refinement, asr, translit, metrics |
 | `tools/` | probes and drivers; nothing here writes under `asr/` |
 | `checkpoints/` | committed model outputs (26 MB) so nothing needs re-running |

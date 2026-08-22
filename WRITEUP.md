@@ -45,7 +45,7 @@ means surface form, not just meaning, is what gets scored.
 speaker-count accuracy and MAE; **cpWER** (concatenated minimum-permutation WER,
 Watanabe et al. 2020), **WDER** = (S_IS + C_IS)/(S + C) (El Shafey et al. 2019),
 and **DI-cpWER**, computed on flat speaker-agnostic streams. On this corpus
-DI-cpWER equals WER in all 341 per-clip rows, so `cpWER − DI-cpWER` is simply
+DI-cpWER equals WER in all 539 per-clip rows, so `cpWER − DI-cpWER` is simply
 `cpWER − WER`; it is reported because that difference is the share of cpWER
 attributable to attribution rather than words. It is not a clean zero-floor
 quantity — the oracle's own DI-cpWER is 0.0818, from cross-speaker word ordering
@@ -774,8 +774,7 @@ Only proposals with measured support are listed.
    Overlapped regions carry 52.5% of miss and 27.4% of all DER error, and
    overlapped words are deleted at 17.9% against 4.7% for clean speech — a
    perfect separator would be worth **−0.031 WER** (0.2787 → 0.2479), the
-   largest ceiling measured here. **Four interventions were built and measured,
-   and none works:**
+   largest ceiling measured here.
 
    One intervention was built and measured end-to-end: **source separation of
    overlapped regions**. On 100 GT-located overlap runs from the 10
