@@ -1,0 +1,37 @@
+{
+  "clip_id": "T3I2T-cfhG4__160_210",
+  "system": "whisper-large-v3-turbo",
+  "status": "ok",
+  "words": [
+    {
+      "t": "foreign",
+      "s": 2.84,
+      "e": 4.24
+    },
+    {
+      "t": "foreign",
+      "s": 17.16,
+      "e": 18.56
+    },
+    {
+      "t": "Thank",
+      "s": 31.1,
+      "e": 31.42
+    },
+    {
+      "t": "you.",
+      "s": 31.42,
+      "e": 31.58
+    }
+  ],
+  "n_words": 4,
+  "elapsed_sec": 2.03,
+  "rtf": 0.0406,
+  "clip_dur_sec": 50.0,
+  "transcribed_at_utc": "2026-08-21T10:03:47+00:00",
+  "detected_language": "en",
+  "language_probability": 0.7104,
+  "beam_size": 1,
+  "batched": false,
+  "whisper_vad": false
+}

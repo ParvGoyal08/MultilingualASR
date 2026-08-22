@@ -1,0 +1,10 @@
+{
+  "model": "community-1",
+  "clip_id": "VY_4x1scS-Y__13_121",
+  "status": "ok",
+  "oracle": false,
+  "n_turns": 38,
+  "n_speakers_hyp": 4,
+  "clip_dur_sec": 108.0,
+  "imported_from": "error_explorer export"
+}

@@ -1,0 +1,103 @@
+{
+  "clip_id": "LctYmmr9-Vg__0_61",
+  "system": "sarvam-saaras-v3@reverb-v2",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "reverb-v2",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.013,
+      "end": 4.413,
+      "speaker": "SPEAKER_00",
+      "text": "म्हणून म्हणालो काय ग इज एव्हरीथिंग ऑल राईट?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 1,
+      "start": 4.913,
+      "end": 7.573,
+      "speaker": "SPEAKER_01",
+      "text": "अहो का असं का विचारतोयस?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 2,
+      "start": 7.753,
+      "end": 9.333,
+      "speaker": "SPEAKER_00",
+      "text": "तुझा चेहरा पडलाय म्हणून विचारलं.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 3,
+      "start": 10.832,
+      "end": 16.992,
+      "speaker": "SPEAKER_01",
+      "text": "काय नाही, ते एका ऑडिशनसाठी गेले होते ना, सिलेक्शन नाही झालं.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 4,
+      "start": 16.933,
+      "end": 26.093,
+      "speaker": "SPEAKER_00",
+      "text": "हो. इट्स ओके अंजली. तू ट्राय करतीयेस ना. आज नाही तर उद्या तुला 100% सक्सेस मिळेल.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 5,
+      "start": 25.973,
+      "end": 41.913,
+      "speaker": "SPEAKER_01",
+      "text": "पण आता ना मेजर बोर झालाय रे मला. रोज उठा ऑडिशनला जा. रिजेक्शन्स त्या लाईन्समध्ये उभे रहा. आणि तुला माहिती आहे ज्यांची ओळख असते ना त्यांचंच सिलेक्शन होतं. आमच्यासारखे लोक तर नुसते चक्कर मारत असतात ऑफिसचे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 6,
+      "start": 42.052,
+      "end": 50.132,
+      "speaker": "SPEAKER_00",
+      "text": "आता कम ऑन अंजली, इतक्या लवकर गिव्ह अप करू नकोस आणि तुला इतकाच कंटाळा आलाय ना स्ट्रगलचा, लग्न करून टाक ना.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 7,
+      "start": 50.793,
+      "end": 51.913,
+      "speaker": "SPEAKER_01",
+      "text": "आणि त्याने काय होणार आहे?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 8,
+      "start": 52.252,
+      "end": 60.992,
+      "speaker": "SPEAKER_00",
+      "text": "अगं लग्नानंतर तुझं स्ट्रगल संपेल ना, नवर तुझं हट्ट पण पूर्ण करणार आणि तुला पॅम्पर पण करणार. आता आमच्याकडेच बघ ना, दादा आणि वहिनी मस्त हनीमूनला जाणार.",
+      "skipped": null,
+      "lang": "mr-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 134,
+  "elapsed_sec": 7.17,
+  "rtf": 0.1176,
+  "clip_dur_sec": 61.0,
+  "transcribed_at_utc": "2026-08-21T11:12:05+00:00",
+  "n_segments": 9,
+  "n_skipped_short": 0,
+  "detected_language": "mr-IN",
+  "languages_seen": [
+    "mr-IN"
+  ]
+}

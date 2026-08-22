@@ -1,0 +1,576 @@
+{
+  "clip_id": "Cku_X_SL7qU__60_660",
+  "system": "sarvam-saaras-v3@reverb-v2",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "reverb-v2",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.013,
+      "end": 13.453,
+      "speaker": "SPEAKER_01",
+      "text": "ઓકે સો તમે લોકો કહો લાઈક વેન ડીડ યુ ગાઈસ હેડ યોર ફર્સ્ટ કમ્પ્યુટર કઝ ફોન બધાને પછી આવ્યો હશે કમ્પ્યુટર પહેલા આવ્યો હશે આપણી જનરેશન માટે સો",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 1,
+      "start": 13.473,
+      "end": 14.273,
+      "speaker": "SPEAKER_00",
+      "text": "Yes",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 2,
+      "start": 13.992,
+      "end": 16.552,
+      "speaker": "SPEAKER_01",
+      "text": "So who wants to say?",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 3,
+      "start": 16.473,
+      "end": 53.993,
+      "speaker": "SPEAKER_00",
+      "text": "આઈ ડોન્ટ રીલી રીમેમ્બર ક્યારે આવ્યું હતું પણ આઈ થિંક ઈટ વોઝ 2004 ઓર સમથિંગ લાઈક મારા પપ્પાને છે હી લવ્સ ટેકનોલોજી મોર ધેન એનીથિંગ એલ્સ તો કઈ બી નવું આવે એટલે હી નીડ્સ ટુ ગાઈટ તો હી ઇઝ વન ઓફ અસ નાઇસ યસ નાઇસ યા સો આઈ થિંક વી હેડ અ ફોન હી હેડ અ ફોન જ્યારે ફોન ઇન્ડિયામાં રિલીઝ થયા હતા હી હેડ અ કમ્પ્યુટર જ્યારે કોમ્પ્યુટર્સ ઇન્ડિયામાં રિલીઝ થયા હતા એન્ડ જ્યારે ઇન્ટરનેટ આવ્યું હતું ઇન્ટરનેટ",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 4,
+      "start": 53.052,
+      "end": 83.052,
+      "speaker": "SPEAKER_01",
+      "text": "In 2006 mein aayi the right? Yes. I I think way before that in 90s. Yes. Ya. I remember we had a room just for computer. Oh okay. How how selfish of her matlab uske ghar pe nahi aaya to duniya mein hi nahi aaya. Come on. Computer na aave to. Nahi nahi computer nahi computer nahi I thought I thought I thought we were talking about internet. Never mind. Come on, go on.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 5,
+      "start": 60.272,
+      "end": 60.752,
+      "speaker": "SPEAKER_00",
+      "text": "ಯಾವುದು?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 6,
+      "start": 74.053,
+      "end": 75.932,
+      "speaker": "SPEAKER_00",
+      "text": "Come on",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 7,
+      "start": 84.193,
+      "end": 86.273,
+      "speaker": "SPEAKER_00",
+      "text": "પણ ઇન્ટરનેટ આ ઘરમાં તો હજી નથી આવતો.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 8,
+      "start": 86.953,
+      "end": 87.593,
+      "speaker": "SPEAKER_01",
+      "text": "के।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 9,
+      "start": 87.892,
+      "end": 95.013,
+      "speaker": "SPEAKER_00",
+      "text": "Seriously? Okay, yeah. Yeah, the fiber cable does not reach here.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 10,
+      "start": 95.013,
+      "end": 112.373,
+      "speaker": "SPEAKER_01",
+      "text": "ઓહો, હાઉ સેડ. મારા ત્યાં મારા ઘરે અમદાવાદમાં ડીએસએલ મહાણા આવે છે. જીટીએલ વાળાએ એક્સટેન્ડ કર્યું સો વી વર હેપ્પી. સેલિબ્રેટ કર્યું હતું મેં એ દિવસે. યુ આર ક્રાઈંગ અબાઉટ ફાઇબર. હુ ફ્રીકિંગ હુ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 11,
+      "start": 112.373,
+      "end": 116.393,
+      "speaker": "SPEAKER_00",
+      "text": "Primary is so sweet, you have any idea? And it's so fast.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 12,
+      "start": 115.853,
+      "end": 130.413,
+      "speaker": "SPEAKER_01",
+      "text": "આઈ નો બટ નથી એક્સેસિબલ ઘણા એરિયાઝમાં એ લોકો કરતા જ નથી. લાઈક મારા એરિયામાં એરટેલ વાળા નથી આવતા. રિલાયન્સ રોડની પેલી તરફ છે આ તરફ નહીં. ધે જસ્ટ ડોન્ટ વોન્ટ ટુ ઇન્વેસ્ટ. યા આઈ હેવ ધ સેમ ઇચ્યુ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 13,
+      "start": 129.873,
+      "end": 132.373,
+      "speaker": "SPEAKER_00",
+      "text": "રોડની પેલી તરફ છે આ તરફ નથી.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 14,
+      "start": 130.993,
+      "end": 162.173,
+      "speaker": "SPEAKER_01",
+      "text": "Tarup se aa tarup nathi. Chalo tu bol raho. Tu start actually ahiya lo. But I'm I'm super happy here because ahiya internet like full full speed. Sorry sorry. 2 GBPS I don't know I don't even know itna. I stop checking that good. Anyway. 2 GBPS is exaggerate. 200 2 MBPS ni download speed. 2 MB ke 6 MBPS ni download speed aave che to that's. That's I don't know. That's still",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 15,
+      "start": 161.993,
+      "end": 163.053,
+      "speaker": "SPEAKER_00",
+      "text": "It's gone.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 16,
+      "start": 162.733,
+      "end": 168.233,
+      "speaker": "SPEAKER_01",
+      "text": "Come on. I think you are counting 100 accounts. Okay.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 17,
+      "start": 168.233,
+      "end": 168.813,
+      "speaker": "SPEAKER_00",
+      "text": "Exactly",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 18,
+      "start": 168.812,
+      "end": 176.192,
+      "speaker": "SPEAKER_01",
+      "text": "Right Right Right Right. Sorry. Vadhare jaashe. Exactly. 100 Mbps upar chhe. I haven't checked. That's it. I hope so.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 19,
+      "start": 176.192,
+      "end": 184.193,
+      "speaker": "SPEAKER_00",
+      "text": "I hope so like you are in Canada come on. Ya ya. Because Netherlands ma mane 100 Mbps aavi jati ti aaramthi.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 20,
+      "start": 184.613,
+      "end": 199.813,
+      "speaker": "SPEAKER_01",
+      "text": "યા, આઈ ગેસ, આઈ ગેસ પેલી સેલ્ફ ફુલફિલિંગ પ્રોફેસી પ્રૂવ થાય છે. કઝ મારા જોડે મેક છે અને મેક ઇસ સેડ કે જે ઇડિયટ્સ હોય ને એમના માટે મેક બનેલું છે. સો નાઉ ધેટ આઈ હેવ અ મેક, આઈ એમ ટર્નિંગ ઇન ટુ અ ટેક ઇડિયટ ફોર સમ રીઝન.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 21,
+      "start": 200.033,
+      "end": 201.913,
+      "speaker": "SPEAKER_00",
+      "text": "Yeah, it's it's paralyzing.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 22,
+      "start": 201.913,
+      "end": 204.693,
+      "speaker": "SPEAKER_01",
+      "text": "Just just just stop. Journal.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 23,
+      "start": 202.012,
+      "end": 202.132,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 24,
+      "start": 203.993,
+      "end": 211.573,
+      "speaker": "SPEAKER_02",
+      "text": "Okay. So, topic was like paach ka ye. Okay. First computer. Haan haan, sorry to take the light.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 25,
+      "start": 211.593,
+      "end": 212.333,
+      "speaker": "SPEAKER_00",
+      "text": "हम्म।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 26,
+      "start": 212.332,
+      "end": 245.272,
+      "speaker": "SPEAKER_02",
+      "text": "રાઇટ સો ઇફ્ટ સ્ટાન્ડર્ડ 2005 એર 2006 માં પીસી આવ્યું હતું ઘરમાં 2005 એર 6 માં અને જેમાં હું કોન્ટેસ્ટ રાખતો હતો એન્ડ અને વિન્ડોઝ મીડિયા પ્લેયરમાં જે એની અંદર ખબર છે ઓલા જે આવતા હતા સોંગની પાછળના જે બેકગ્રાઉન્ડ ઓલા ઇલેક્ટ્રિસિટી હા એ હું સાંભળતો હતો પ્લસ વિન ધેન કે વિન ઝિપ જે Music je music pure hotu ema be ola sounds na level la mukal nahi",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 27,
+      "start": 245.173,
+      "end": 249.013,
+      "speaker": "SPEAKER_01",
+      "text": "Winrar. No no no no no. Winamp. Winamp.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 28,
+      "start": 247.033,
+      "end": 248.173,
+      "speaker": "SPEAKER_02",
+      "text": "Vinam",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 29,
+      "start": 249.233,
+      "end": 250.293,
+      "speaker": "SPEAKER_02",
+      "text": "मी नाही, मी नाही.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 30,
+      "start": 250.713,
+      "end": 251.053,
+      "speaker": "SPEAKER_00",
+      "text": "പിന്നെ",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 31,
+      "start": 250.773,
+      "end": 251.013,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 32,
+      "start": 251.053,
+      "end": 264.773,
+      "speaker": "SPEAKER_02",
+      "text": "સો હા બેઝિકલી 2005 અને 6 માં આવ્યું અને ઇન્ટરનેટનું ડોંગલ આવ્યું હતું 2008 માં કારણ કે પપ્પાને ઘરેથી ઓફિસનું સહેજ કામ કરવું હોય ત્યારે લેપટોપ બી આવી ગયું 2008 માં લેપટોપ અને ડોંગલ આવ્યું.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 33,
+      "start": 264.772,
+      "end": 341.992,
+      "speaker": "SPEAKER_01",
+      "text": "નાઇસ. યા. મેરા ભી સેમ હી થા લાઇક આઈ રિમેમ્બર મેં ફોર્થ યા થર્ડ સ્ટેન્ડ મેં થા જબ પીસી લિયા થા ઘર પે બીકોઝ આઈ ફાઇનલી કન્વિન્સ માય પેરેન્ટ્સ કે હવે કમ્પ્યુટર આઈ ગ્યું જે કોર્સ આવે જે ભણવામાં આવશે એ ખરીદી લઈએ. મારે ગેમ્સ રમવી તી બટ ધે સ્ટીલ ગોટ ઈટ એન્ડ મારા ટાઈમે બહુ ગેમ્સ નો હતી આઈ કુડ પ્લે આઈજીઆઈ ઓર ક્રિકેટ 97 ઓર આ તો ભૂલ જાવ હા રોડ રેશ ઓર ફેર બાદ મેં સ્ક્રીન સેવર્સ દેખ કે એન્જોય કરતો હતો. કરતા હતા. આઈ રીમેમ્બર કોઈ નેબર ને કમ્પ્યુટર પે નયા લાઈક એક્વેરિયમ વાળા ઇન્સ્ટોલ કરકે દિયા તા. વી ડાઉનલોડેડ ધેટ ફ્રોમ સમવેર. એન્ડ આઈ વોઝ એક્સાઇટેડ. આઈ વોઝ લાઈક ઓ આ નવી વસ્તુ છે ફિશ ઇસ બ્લા બ્લા બ્લા બહુ ઇનિશિયલ લેવલનું હતું. બાય ધ વે સે આના પરથી યાદ આવ્યું કે લાઈક તમે લોકોએ ફર્સ્ટ ફોન કયો જોયો તો કઝ આઈ રીમેમ્બર મારા પપ્પા જોડે બ્લેક એન્ડ વ્હાઇટ ફોન હતો. ઈટ વોઝ અ નોકિયા બટ સમ વોટ ધી અધર બ્લેક એન્ડ વ્હાઇટ આઈ વોઝ આઈ વોઝ લાઈક પપ્પા જોડે ક્યાંથી આઈ ગયો ફોન એન્ડ આર વી અલાઉડ ટુ ડુ ધેટ કોઝ ધેટ વોઝ સો ફ્યુચરિસ્ટિક ઓર વેરી લાઈક અનઅચીવેબલ રાઈટ એન્ડ આખી લાઈફ મને એવું હતું કે આપણે કોઈ એટલી રિચ ફેમિલીમાં નથી અને સડનલી માય ડેડ હેઝ અ ફોન આઈ એમ લાઈક ક્યાંથી આયો હા અને ત્યારે ફોન લીલી",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 34,
+      "start": 340.173,
+      "end": 340.933,
+      "speaker": "SPEAKER_02",
+      "text": "हां।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 35,
+      "start": 341.993,
+      "end": 347.293,
+      "speaker": "SPEAKER_02",
+      "text": "લાઈક લિટરલી જે ડબ્બા મીન ડબ્બા એટલે જે જે ફોન આવતા તો બ્લેક એન્ડ વ્હાઇટ એ બી આઠ નવ હજારમાં આવતા.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 36,
+      "start": 347.293,
+      "end": 379.013,
+      "speaker": "SPEAKER_01",
+      "text": "या, एग्जैक्टली। ये टाइम आर्ट रूम है। एग्जैक्टली। मैं साराभाई वर्सेस साराभाई देख रहा था उन लोगों के पास वो Nokia वाला फोन था जिसके ऊपर एक 1.5 इंच की कलर स्क्रीन थी। आई डोंट नो एक ब्लैक मैं पिक्चर ढूंढ के डाल दूंगा रोल कर दूंगा यू गाइज विल लर्न। वो फोन उस टाइम पे आई रिमेंबर के मैंने ऐड देखी थी इट वाज फॉर 10000 बक्स एंड दे वर यूजिंग दैट ऑन द शूट एंड आई वाज लाइक हाउ रिच आर दीस पीपल 10000 बक्स। रिच या इट्स देयर कैरेक्टर ना। आजकल तो આજકાલ તો ₹10,000 માં",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 37,
+      "start": 373.592,
+      "end": 375.232,
+      "speaker": "SPEAKER_00",
+      "text": "Yeah, that's their character.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 38,
+      "start": 378.772,
+      "end": 394.432,
+      "speaker": "SPEAKER_00",
+      "text": "આવે છે એમઆઈના ફોન આવે છે ₹10,000માં. આવે છે એક્ચ્યુલી અને સારા સારા એટલે પહેલા સારા આવે છે અને મોટોના બી કેટલા સારા આવે. લેટ્સ બી ઓનેસ્ટ મોટો ફોન્સ આર રીયલી નાઈસ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 39,
+      "start": 394.012,
+      "end": 405.992,
+      "speaker": "SPEAKER_01",
+      "text": "યા મોટોરોલાના ઓકે છે આપણે ત્યાં ખાલી સોસાયટીમાં પેલી પર્સેપ્શન છે ને કે તમારો ફોન મોંઘો ના હોય ને તો યુ નો તમારી ઇજ્જત નહીં યા ફિર લાઈક એસે દેખતે હૈ",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 40,
+      "start": 402.652,
+      "end": 403.272,
+      "speaker": "SPEAKER_02",
+      "text": "તમારી",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 41,
+      "start": 403.032,
+      "end": 403.072,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 42,
+      "start": 405.993,
+      "end": 411.993,
+      "speaker": "SPEAKER_00",
+      "text": "Like I don't judge people based on that, but then yeah.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 43,
+      "start": 411.993,
+      "end": 419.853,
+      "speaker": "SPEAKER_01",
+      "text": "It's just me. Nahi nahi, overall, overallni vaat karu chhu. Obviously you should not judge. That's okay.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 44,
+      "start": 419.733,
+      "end": 442.013,
+      "speaker": "SPEAKER_02",
+      "text": "Uh, that's interestingly what I, I judge like people on uh phone upar nahi ke tari jode kayo phone chhe, but I kind of judge like how do you use it. If you have like iPhone and you still like uh like treat it like. Mere paas perfect example hai if you want me to say. Ha, so basically I don't want to point out anyone but iPhone chhe tar you you should at least aware of the features.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 45,
+      "start": 442.012,
+      "end": 447.492,
+      "speaker": "SPEAKER_01",
+      "text": "और और आईफोन के ऊपर खुद की ये सेल्फी वॉलपेपर मत रखो।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 46,
+      "start": 442.952,
+      "end": 442.992,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 47,
+      "start": 449.272,
+      "end": 451.452,
+      "speaker": "SPEAKER_00",
+      "text": "पर आईफोन में सेल्फीज़ भी अच्छी आती है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 48,
+      "start": 451.452,
+      "end": 473.012,
+      "speaker": "SPEAKER_01",
+      "text": "બટ લોકો એને વોલપેપરની જેમ રાખે છે. સો ધેટ જસ્ટ ડઝન્ટ હા મારા આઈફોનમાં મારો ફોટો જ છે વોલપેપર પર. મારો ફોટો છે બટ સેલ્ફી નથી. સેલ્ફી નથી બટ મારો ફોટો છે. ઓકે ફાઈન મેબી આઈ એમ ધી ઓડ વન આઉટ. પણ મારો આઈફોન મારા રૂમની બહાર નથી નીકળતો સો ધેટ્સ ગુડ. ઓકે ફાઈન વટરએવર. આઈ એમ ધી ઓડ વન આઉટ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 49,
+      "start": 465.993,
+      "end": 466.093,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 50,
+      "start": 473.032,
+      "end": 477.872,
+      "speaker": "SPEAKER_02",
+      "text": "નોર્મલ વોલપેપર્સ કરતા ખુદનો ફોટો જો વધારે સારો.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 51,
+      "start": 477.873,
+      "end": 489.153,
+      "speaker": "SPEAKER_00",
+      "text": "ane iPhone ma selfies j sara aave chhe so like you put use on them. That's not true. I don't know iPhone camera. I absolutely love it.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 52,
+      "start": 488.873,
+      "end": 509.533,
+      "speaker": "SPEAKER_01",
+      "text": "આઈડિયા બાય ધ વે આઈફોનના કેમેરાથી મને લાઈક આઈડિયા આયો કે લાઈક પહેલા ખબર છે આપણને મેગાપિક્સલનું ગાજર પકડતા હતા એન્ડ ધેન વી વર સુપર હેપી કારણ એ ટાઈમે 1.3 વોઝ અ લોટ એન્ડ પછી કોઈ ફોન કંપની આવીને કે વી વિલ ગીવ યુ 42 મેગાપિક્સલ વર લાઈક લોન ધેર વોઝ નોકિયા હા નોકિયા નોકિયા નોકિયા",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 53,
+      "start": 509.533,
+      "end": 513.213,
+      "speaker": "SPEAKER_00",
+      "text": "They only gave that, they didn't give anything else.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 54,
+      "start": 513.213,
+      "end": 543.013,
+      "speaker": "SPEAKER_01",
+      "text": "યા અત્યારે જઈને અત્યારે જઈને ખબર પડે કે પ્રોસેસરનું કેટલું કામ હોય છે બેકગ્રાઉન્ડમાં લાઈક આ લોકો કમ્પ્યુટર લેવલના પ્રોસેસર્સ ફોનમાં નાખે છે ફોર એક્ઝામ્પલ એપલનો એ 13 છે એ 12 હતો સો ધેટ વોઝ પરફોર્મિંગ બેટર ધેન ધ મેકબુક સો એક ફોન તમારા હાથમાં છે વિચ ઇસ પરફોર્મિંગ બેટર ધેન અ પ્રોફેશનલ લેપટોપ સો એનું કેટલું બધું કામ છે યા બટ વિચ ઇસ ઓલસો ઓવરહીટિંગ વિચ ઇસ ઓલસો હીટિંગ યોર બેટરી વિચ ઇસ ઓલસો also like",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 55,
+      "start": 537.912,
+      "end": 539.133,
+      "speaker": "SPEAKER_00",
+      "text": "but which is also",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 56,
+      "start": 543.013,
+      "end": 552.993,
+      "speaker": "SPEAKER_00",
+      "text": "ચાલે આઈફોનની કે મેકબુકની? ફોનની વાત કરું છું. યુ કાન્ટ પુટ અ લેપટોપ લાઈક યુ કેન ઓબ્વિયસલી ધે ડીડ ઈટ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 57,
+      "start": 543.993,
+      "end": 544.993,
+      "speaker": "SPEAKER_01",
+      "text": "के MacBook में",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 58,
+      "start": 552.993,
+      "end": 567.993,
+      "speaker": "SPEAKER_01",
+      "text": "They obviously know more than me. There's there's always this give and take, right? But by the way for the fact ke maro tennis che, ema A12 chip che ne seldomly heat up thay che. Same, I have tennis so it's",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 59,
+      "start": 567.993,
+      "end": 587.893,
+      "speaker": "SPEAKER_02",
+      "text": "Not that hitting up unless I play like game lots of game or do heavy using. Na, gaming sivaay I don't think so it's hitting up or else like I just do hu badhi applications saathe use karu. I turn on my location 4G plus Bluetooth and screen on full time with full brightness. So hit up thashe.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 60,
+      "start": 587.013,
+      "end": 599.993,
+      "speaker": "SPEAKER_01",
+      "text": "सो हिट अप था सर लिटरली। ओके मतलब तो फुल लैग वाला पुश कर रहा है। हां लैग नहीं होता कज़ उन लोगों ने पता नहीं ओएस कैसे डिज़ाइन किया है। आई मीन आई एम नॉट दैट टेक्निकल टू गेट इनटू दैट। बट इससे इससे आईडिया आया। लाइक।",
+      "skipped": null,
+      "lang": "hi-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 1578,
+  "elapsed_sec": 71.81,
+  "rtf": 0.1197,
+  "clip_dur_sec": 600.0,
+  "transcribed_at_utc": "2026-08-21T10:58:52+00:00",
+  "n_segments": 61,
+  "n_skipped_short": 5,
+  "detected_language": "en-IN",
+  "languages_seen": [
+    "en-IN",
+    "gu-IN",
+    "hi-IN",
+    "kn-IN",
+    "ml-IN",
+    "mr-IN"
+  ]
+}

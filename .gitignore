@@ -31,3 +31,6 @@ sarvam_diar.zip
 sarvam_diar/explorer_assets/data/
 sarvam_diar/explorer_assets/audio/*.wav
 error_explorer/
+
+# committed model outputs -- see checkpoints/README.md
+!checkpoints/

@@ -1,0 +1,82 @@
+{
+  "clip_id": "Kdi-ECuOaKg__2_78",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 25.42,
+      "end": 31.6,
+      "speaker": "SPEAKER_02",
+      "text": "നിങ്ങൾ രണ്ടാളും ഒരുപാട് ആശിച്ചതല്ലേ? നീ അവനെ ശിക്ഷിക്കരുത്. വേണമെങ്കിൽ നിന്റെയും അപ്പുവിന്റെയും കല്യാണം.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 1,
+      "start": 36.99,
+      "end": 38.26,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 2,
+      "start": 39.87,
+      "end": 43.01,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 3,
+      "start": 50.43,
+      "end": 52.73,
+      "speaker": "spk5",
+      "text": "ആ അമ്മ എന്നെ ചതിച്ചതാ, അമ്മയെങ്കിലും എന്നെ വിശ്വസിക്കണം.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 4,
+      "start": 53.15,
+      "end": 68.67,
+      "speaker": "SPEAKER_03",
+      "text": "അപ്പോ നീ തെറ്റൊന്നും ചെയ്തിട്ടില്ലെന്ന് എനിക്കറിയാം. എനിക്ക് നിന്നെ വിശ്വാസമാണ്. അത് ഞാൻ നിന്റെ അമ്മയായതുകൊണ്ടാ. അതേസമയം ഞാൻ മായയുടെ സ്ഥാനത്തായിരുന്നെങ്കിൽ ഒരിക്കലും നിന്നെ ഞാൻ വിശ്വസിക്കില്ല അപ്പോ. ആ ബന്ധം നമുക്ക് വേണ്ട മോനെ. നീ അങ്ങ് മറന്നേക്ക്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 5,
+      "start": 69.97,
+      "end": 75.99,
+      "speaker": "SPEAKER_01",
+      "text": "എത്ര വർഷമായി ഞാൻ ഈ നെഞ്ചിൽ കൊണ്ടു നടക്കുന്നത്? അപ്പോ മായേനെ എല്ലാവരും ചേർന്ന് സമ്മതിപ്പിച്ചതാ അവളെ കൊട്ടാരത്തിൽ കൊണ്ടു പോകുവാണ്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 63,
+  "elapsed_sec": 4.21,
+  "rtf": 0.0553,
+  "clip_dur_sec": 76.0,
+  "transcribed_at_utc": "2026-08-22T06:33:21+00:00",
+  "clip_language": null,
+  "n_segments": 6,
+  "n_skipped_short": 0,
+  "detected_language": "ml-IN",
+  "languages_seen": [
+    "en-IN",
+    "hi-IN",
+    "ml-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 0
+}

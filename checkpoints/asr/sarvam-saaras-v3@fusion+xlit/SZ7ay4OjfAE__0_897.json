@@ -1,0 +1,2634 @@
+{
+  "clip_id": "SZ7ay4OjfAE__0_897",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.6,
+      "end": 1.65,
+      "speaker": "SPEAKER_01",
+      "text": "టేబుల్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 1,
+      "start": 1.15,
+      "end": 2.01,
+      "speaker": "SPEAKER_00",
+      "text": "టేబుల్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 2,
+      "start": 2.27,
+      "end": 8.95,
+      "speaker": "SPEAKER_01",
+      "text": "మొత్తం మ్యాచింగ్ మా ఇంట్లో మ్యాచింగ్ మే దడదడ అంతా చెక్కతోనే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 3,
+      "start": 6.83,
+      "end": 26.94,
+      "speaker": "SPEAKER_00",
+      "text": "హాయ్ అండి అందరికీ నమస్కారం. నా పేరు నాగలక్ష్మి తన పేరు కవిత ఇప్పుడు చెప్పు. ఈరోజు అయితే మనం ఇంతకుముందు రోటి పచ్చడి అని చెప్పి బెండకాయ పచ్చడి చేశాం కదా దాంట్లో చింతకాయ ఊరగాయ వేశాము. అది చాలా మందికి తెలియక అది ఎలా చేస్తారు అక్క ఎలా చేస్తారు కవిత అని అడుగుతా ఉన్నారు కామెంట్స్ లో. సో అది ఊరగాయ ఎలా పెట్టాలి అనేది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 4,
+      "start": 9.11,
+      "end": 9.43,
+      "speaker": "SPEAKER_01",
+      "text": "നാ",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 5,
+      "start": 27.8,
+      "end": 42.94,
+      "speaker": "SPEAKER_00",
+      "text": "కాన్సెప్ట్ ఇప్పుడు మనం చేయబోయేది ఆ ఊరగాయకి ఏమేం కావాలి ఎలా పెట్టుకోవాలి ఎలా చేస్తే ఎక్కువ రోజులు ఉంటుంది పాడవకుండా కొంతమందిది పాడవుతుంటది కొంతమందిది బాగానే ఉండొచ్చు అంటే దానికి ఇంగ్రిడియంట్స్ ఎంత ఎంత క్వాంటిటీ వేసుకోవాలి అనేది",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 6,
+      "start": 42.81,
+      "end": 44.32,
+      "speaker": "SPEAKER_04",
+      "text": "అది ఓన్లీ పల్లెటూర్ వాళ్ళకి ఎక్కువ తెలుస్తుంది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 7,
+      "start": 44.09,
+      "end": 61.93,
+      "speaker": "SPEAKER_00",
+      "text": "అబ్బా ఎక్కువ పల్లెటూర్లో అంటే ఎక్కువ పెడతారు టౌన్లో అంటే కొనక్కుంటారు కాబట్టి సో అందుకని ఈ చింతకాయలు ఎలా దొరుకుతాయి అంటే చెట్లకే దొరుకుతాయి కానీ మార్కెట్లో కూడా దొరుకుతాయి. మార్కెట్లో కూడా అమ్ముతా ఉంటారు ఇది సీజన్ ఇది ఏంది జనవరి నుంచి మార్చి దాకా ఉంటాయి మార్చి దాకా ఉంటాయి మాఘమాసం వరకు మాఘమాసం",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 8,
+      "start": 58.49,
+      "end": 58.95,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 9,
+      "start": 61.79,
+      "end": 62.21,
+      "speaker": "SPEAKER_03",
+      "text": "ആകെ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 10,
+      "start": 61.96,
+      "end": 63.23,
+      "speaker": "SPEAKER_04",
+      "text": "మా అసలు పెళ్లి కదా జరిగేది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 11,
+      "start": 62.31,
+      "end": 65.87,
+      "speaker": "SPEAKER_03",
+      "text": "పెళ్లి జరిగేది అంటే జరిగేది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 12,
+      "start": 66.11,
+      "end": 67.69,
+      "speaker": "SPEAKER_04",
+      "text": "మాఘమాసం ఉన్న పెళ్లి కదా దగ్గరికి వెళ్లి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 13,
+      "start": 67.37,
+      "end": 69.33,
+      "speaker": "SPEAKER_03",
+      "text": "వీళ్ళు కూడా దొరికేది కూడా అప్పుడే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 14,
+      "start": 69.37,
+      "end": 79.96,
+      "speaker": "SPEAKER_01",
+      "text": "నీకు సంగతి తెలుసా? కావలలో 100కు 3 కిలోలు అంట. సోడారంలో 4 కేజీలు అంట. ఇంకా అక్క చెప్పింది సోడాన్ ఇరుపళ్ళు 7 కేజీలు. ఇరుపళ్ళు 7 కేజీలు అంట మా ఊర్లో అయితే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 15,
+      "start": 79.96,
+      "end": 81.09,
+      "speaker": "SPEAKER_02",
+      "text": "ఇంకా ఓరి న దొరుకుతుందా?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 16,
+      "start": 81.11,
+      "end": 82.95,
+      "speaker": "SPEAKER_01",
+      "text": "మన ఊర్లో అయితే ఇంకా ఊరు నది లేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 17,
+      "start": 82.47,
+      "end": 85.81,
+      "speaker": "SPEAKER_00",
+      "text": "అల్లిప్పల్లు కూడా చెట్టుకు వదిలేసిండంట కాయలన్నీ అక్కోళ్ళు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 18,
+      "start": 82.95,
+      "end": 83.85,
+      "speaker": "SPEAKER_02",
+      "text": "కూడా చెట్టు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 19,
+      "start": 85.84,
+      "end": 89.03,
+      "speaker": "SPEAKER_02",
+      "text": "రాఘవరెడ్డి బాబాయ్ ఊరుకునే వస్తున్నాయి అని తెచ్చిస్తానని కూడా చెప్పిండు నాకు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 20,
+      "start": 89.53,
+      "end": 92.3,
+      "speaker": "SPEAKER_04",
+      "text": "అంటే ఇప్పుడు ఏంది లిస్ట్ చెప్తాననేది ఏ ఊర్లో ఎంత మార్కెట్ లేవు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 21,
+      "start": 92.48,
+      "end": 94.13,
+      "speaker": "SPEAKER_01",
+      "text": "మార్కెట్ రేపు చదువుతున్నాం లే అన్న.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 22,
+      "start": 92.75,
+      "end": 108.72,
+      "speaker": "SPEAKER_00",
+      "text": "తొక్కేసుకున్నాం లే అన్న. ఆ సపోజ్ ఇవన్నీ ముందేసుకొని ఎందుకు కూర్చున్నాం అంటే నేను మంచిది పడేసిన దీంట్లో. అంటే కొంచెం పుచ్చులు అవి ఉంటాయి కదా లోపల సో ఇట్లా ఇరగదీస్తే ఇట్లా ఉంటది. సో అందుకోసం అని చెప్పి ఇరగదీసింది కొన్ని పీచులు కూడా ఎందుకంటే మనం తొక్కేసుకున్న ఊరగాయ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 23,
+      "start": 94.79,
+      "end": 95.74,
+      "speaker": "SPEAKER_01",
+      "text": "యాండ్ సపోర్ట్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 24,
+      "start": 109.04,
+      "end": 117.49,
+      "speaker": "SPEAKER_00",
+      "text": "ఏ పచ్చడిలో కానీ పప్పులో వేసుకున్నప్పుడు తొక్కులు కనిపించకుండా అదొకటి ఇప్పుడిప్పుడే పండు పడనతనే పండు అంటే దోరని దోరగా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 25,
+      "start": 116.68,
+      "end": 117.43,
+      "speaker": "SPEAKER_01",
+      "text": "దోరని దోరగా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 26,
+      "start": 118.0,
+      "end": 129.19,
+      "speaker": "SPEAKER_00",
+      "text": "ఒక్క ఒక్కొక్కటి పండు కూడా పండింది. ఇంక ఇదే చింతపండు అవుతది. ఇట్లా దోరగా వచ్చేసింది. సో ఇది ఇది ఎలా పెట్టాలనేది మా వదిన మాకు నేర్పిస్తుంది. సో మేము నేర్చుకుంటాం మీకు చూపిస్తాం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 27,
+      "start": 129.87,
+      "end": 130.19,
+      "speaker": "SPEAKER_01",
+      "text": "అది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 28,
+      "start": 130.27,
+      "end": 131.03,
+      "speaker": "SPEAKER_04",
+      "text": "లక్ష్మి",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 29,
+      "start": 131.23,
+      "end": 139.68,
+      "speaker": "SPEAKER_01",
+      "text": "నిన్నైతే ముందు కడిగి బాగా ఆరబెట్టినాము, ఫ్యాన్ కలిపి పెట్టుకోండి అబ్బా. మళ్ళీ బయట ఎండలో పెట్టుకున్నారంటే ఇవి ఉడికిపోతాయి. ఉడికి కూర అవుతాయే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 30,
+      "start": 139.77,
+      "end": 140.46,
+      "speaker": "SPEAKER_00",
+      "text": "హలో",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 31,
+      "start": 140.65,
+      "end": 149.35,
+      "speaker": "SPEAKER_01",
+      "text": "ఎండ కుడుక్కుండా ఉంటే రుచిగా ఉంటది, పచ్చడి లేకపోతే బూజు పడుతుంది. కొంచెం జాగ్రత్తగా చేసుకోండి, తడి చేతులు పెట్టడాలు ఇలాంటివి చేయబాకండి పచ్చడిలో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 32,
+      "start": 149.35,
+      "end": 150.95,
+      "speaker": "SPEAKER_00",
+      "text": "ఏమేమి వేయాలో అది కూడా చెప్పు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 33,
+      "start": 151.07,
+      "end": 161.13,
+      "speaker": "SPEAKER_01",
+      "text": "ఉప్పు కేజీకి పావు కేజీ ఉప్పు వేస్తారంట. కేజీ చింతకాయలకి పసుపు అయితే నాకు తెలీదు అక్క ఆ పసుపు ఎంత వేయాలో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 34,
+      "start": 160.31,
+      "end": 162.94,
+      "speaker": "SPEAKER_02",
+      "text": "ఎంత వేస్తావ్ నాలుగు కేజీలకి ఒక 100 గ్రాములు వేద్దాం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 35,
+      "start": 162.53,
+      "end": 162.75,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 36,
+      "start": 163.61,
+      "end": 171.85,
+      "speaker": "SPEAKER_00",
+      "text": "నాలుగు కేజీలకి ఒక్కోసారి సరిపోద్ది సరిపోకపోవచ్చు కూడా. మొన్న ఆంటీ దంచినప్పుడు సరిపోలేదని మళ్ళీ రోజు తిరగ తొక్కేటప్పుడు వేసింది. ఆ టైం వేసుకోవచ్చు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 37,
+      "start": 163.68,
+      "end": 163.97,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 38,
+      "start": 166.03,
+      "end": 168.27,
+      "speaker": "SPEAKER_02",
+      "text": "మొన్న ఆంటీ దంచినప్పుడు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 39,
+      "start": 171.85,
+      "end": 174.48,
+      "speaker": "SPEAKER_02",
+      "text": "ఇప్పేసుకుంటే కరెక్ట్ గా పోస్ట్ తక్కువైనా తిరగదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 40,
+      "start": 171.86,
+      "end": 172.53,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 41,
+      "start": 174.6,
+      "end": 175.25,
+      "speaker": "SPEAKER_02",
+      "text": "అప్పుడే స్కూల్",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 42,
+      "start": 175.03,
+      "end": 180.01,
+      "speaker": "SPEAKER_00",
+      "text": "ఇప్పుడు ఇది ఒకసారి చెక్కా మొగ్గగా దంచి పెడుతది కదా. చెక్కా మొగ్గ ఏమంటారు అక్క.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 43,
+      "start": 179.54,
+      "end": 179.83,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 44,
+      "start": 180.18,
+      "end": 191.12,
+      "speaker": "SPEAKER_00",
+      "text": "ఒక్క ముక్క అదే తొక్కు తొక్కుగా దంచి పెడతారు కదా దంచి పెట్టిన తర్వాత పసుపు చాలా అవుతే తర్వాత కూడా దంచుకోవచ్చు మళ్ళీ తిరగ తొక్కుతాం కదా అప్పుడు పసుపు వేసుకోవచ్చు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 45,
+      "start": 190.97,
+      "end": 193.35,
+      "speaker": "SPEAKER_04",
+      "text": "అక్కడ అంటే మీకు తెలుసు వాళ్ళకి తెలీదు కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 46,
+      "start": 193.29,
+      "end": 196.2,
+      "speaker": "SPEAKER_02",
+      "text": "అదే ప్రాసెస్ తర్వాత మళ్ళీ మెత్తగా దంచుకోవటం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 47,
+      "start": 193.33,
+      "end": 194.53,
+      "speaker": "SPEAKER_00",
+      "text": "అదే ప్రాసెస్ లో",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 48,
+      "start": 196.28,
+      "end": 197.37,
+      "speaker": "SPEAKER_04",
+      "text": "ఎందుకు దంచుతారు అట్లా అని.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 49,
+      "start": 197.33,
+      "end": 197.81,
+      "speaker": "SPEAKER_01",
+      "text": "ఇప్పుడు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 50,
+      "start": 197.35,
+      "end": 199.22,
+      "speaker": "SPEAKER_02",
+      "text": "ఇప్పుడు మొత్తం మెత్తగా మెదగదు ఇప్పుడు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 51,
+      "start": 199.93,
+      "end": 200.43,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 52,
+      "start": 200.05,
+      "end": 201.63,
+      "speaker": "SPEAKER_04",
+      "text": "చెప్పాలి కదా క్లియర్ గా చెప్పాలి కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 53,
+      "start": 201.35,
+      "end": 202.33,
+      "speaker": "SPEAKER_01",
+      "text": "చెప్తున్నా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 54,
+      "start": 201.73,
+      "end": 203.65,
+      "speaker": "SPEAKER_02",
+      "text": "ఇంకా దంచలేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 55,
+      "start": 202.9,
+      "end": 205.59,
+      "speaker": "SPEAKER_01",
+      "text": "దంచలేదుగా రోట్లో వేసి దంచేటప్పుడు జోకరం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 56,
+      "start": 205.11,
+      "end": 212.03,
+      "speaker": "SPEAKER_02",
+      "text": "అప్పుడు ఏందంటే మెదగదు కాబట్టి ఒక 20 రోజులు ఆగి మళ్ళీ సాదకపోతే పసుపు వేసుకో ఉప్పు మాత్రం కరెక్ట్ గా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 57,
+      "start": 212.03,
+      "end": 214.01,
+      "speaker": "SPEAKER_01",
+      "text": "వేసుకోవాలి ఇప్పుడే. మెంతులు కూడా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 58,
+      "start": 213.19,
+      "end": 215.17,
+      "speaker": "SPEAKER_02",
+      "text": "రేపు రోజు వచ్చేస్తది 20 రోజులకి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 59,
+      "start": 216.16,
+      "end": 220.25,
+      "speaker": "SPEAKER_01",
+      "text": "మెంతులు మెంతులు కూడా మెంతులు మర్చిపోబాకండి నేను చెప్పలేదు అనుకోబాకండి ఇప్పుడే చెప్పాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 60,
+      "start": 216.25,
+      "end": 216.46,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 61,
+      "start": 220.18,
+      "end": 225.11,
+      "speaker": "SPEAKER_00",
+      "text": "ఉంది చింతకాయలు పచ్చి, ఉప్పు, పసుపు, మెంతులు అక్క.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 62,
+      "start": 224.82,
+      "end": 225.09,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 63,
+      "start": 226.19,
+      "end": 227.35,
+      "speaker": "SPEAKER_00",
+      "text": "10 డేస్ పాయింట్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 64,
+      "start": 226.57,
+      "end": 227.38,
+      "speaker": "SPEAKER_02",
+      "text": "పొండి మేడం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 65,
+      "start": 228.49,
+      "end": 236.41,
+      "speaker": "SPEAKER_00",
+      "text": "పచ్చడి చేదు వస్తది. వీటిని పప్పులో కూడా వేసుకోవచ్చు. చాలామంది చింతపండు వేసుకుంటారు కదా, పప్పులో కూడా వేసేయొచ్చు, భలే ఉంటుంది. దీన్ని కాల్చుకొని తింటే ఇంకా భలే ఉంటుంది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 66,
+      "start": 237.41,
+      "end": 238.07,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 67,
+      "start": 237.49,
+      "end": 238.0,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 68,
+      "start": 238.07,
+      "end": 238.61,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 69,
+      "start": 238.71,
+      "end": 239.47,
+      "speaker": "SPEAKER_04",
+      "text": "ఇప్పుడు ఏం చేయాలి?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 70,
+      "start": 239.65,
+      "end": 244.73,
+      "speaker": "SPEAKER_00",
+      "text": "నోట్లో దంచుకోడు ఇప్పుడు ఇవన్నీ కట్టి పెట్టింది కదా మొత్తం క్లీన్ చేశారు కదా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 71,
+      "start": 239.75,
+      "end": 240.09,
+      "speaker": "SPEAKER_02",
+      "text": "ನೋಡಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 72,
+      "start": 240.09,
+      "end": 240.97,
+      "speaker": "SPEAKER_01",
+      "text": "దంచుకో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 73,
+      "start": 245.63,
+      "end": 246.99,
+      "speaker": "SPEAKER_00",
+      "text": "ఇప్పుడు రోట్లు వేసి దంటడమే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 74,
+      "start": 247.51,
+      "end": 264.57,
+      "speaker": "SPEAKER_01",
+      "text": "దంచి పసుపు ఉప్పు అన్నీ వేస్తాం. ఇప్పుడైతే మేము చింతకాయలు వేసినాం రోట్లో. మరి రోలు కూడా చూడండి చిన్నదే. సిటీలో చిన్నవి కా పెద్దవి ఆడ నుంచి వస్తాయి అనుకుంటారేమో. శుద్ధంగా రోలు కడుక్కోవాలా ఆరబెట్టుకోవాలా రోలు కూడా కాయలాలే. కాయలు ఎట్లా ఆరబెట్టుకుంటారో రోలు కడిగి రోలు ఎండలో పెట్టుకోవచ్చు ఇబ్బంది లేదులే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 75,
+      "start": 265.97,
+      "end": 268.25,
+      "speaker": "SPEAKER_01",
+      "text": "టైన్ లాండ్ లో పెట్టమాకండి ఇది మాత్రం మర్చిపోవద్దు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 76,
+      "start": 269.65,
+      "end": 272.0,
+      "speaker": "SPEAKER_02",
+      "text": "మెంతులు కొద్దిగా మెదిగినాక మెంతులు పసుపు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 77,
+      "start": 272.43,
+      "end": 276.71,
+      "speaker": "SPEAKER_04",
+      "text": "ఇప్పుడు అట్టకాదక్క అది చిన్న రోల్ అయిపోయా కొంచెం కొంచెం తీసుకో కొంచెం కొంచెం ఇంట్లో దాని తగ్గట్టు ఉప్పు వేసుకోరా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 78,
+      "start": 276.73,
+      "end": 280.23,
+      "speaker": "SPEAKER_02",
+      "text": "ఆహా అదేం లేదు వేసుకొని పచ్చడి అంతా ఒక దాంట్లోకి తోడుకొని అంతా కలుపుకోవచ్చు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 79,
+      "start": 276.81,
+      "end": 277.79,
+      "speaker": "SPEAKER_01",
+      "text": "ఆహా అదేం లేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 80,
+      "start": 280.83,
+      "end": 281.59,
+      "speaker": "SPEAKER_04",
+      "text": "బాయ్ స్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 81,
+      "start": 281.47,
+      "end": 285.89,
+      "speaker": "SPEAKER_02",
+      "text": "ఓ దీంట్లో రోంత అంతా ఎక్కిన ఊ వేసి దీంట్లో పడింది అనుకో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 82,
+      "start": 281.65,
+      "end": 282.21,
+      "speaker": "SPEAKER_01",
+      "text": "ஆ.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 83,
+      "start": 285.97,
+      "end": 291.04,
+      "speaker": "SPEAKER_02",
+      "text": "ఈసారి వాయిలో కొంచెం ఎక్కువ వేసుకునేది. పచ్చడి మొత్తం మిక్సింగ్ చేసుకొని డబ్బాలో వేసేసుకున్నాం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 84,
+      "start": 291.04,
+      "end": 296.95,
+      "speaker": "SPEAKER_01",
+      "text": "ఇదిగో ఇప్పుడు మేము 4 కేజీ లు తీసుకున్నాం చింతకాయలు. 4 కేజీ లు. ఇది కేజీ ఉప్పు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 85,
+      "start": 296.77,
+      "end": 300.91,
+      "speaker": "SPEAKER_03",
+      "text": "ఆ రోజు ఆగిన తర్వాత మళ్ళా పెరగదని చాల పెరగదని చాల పెరగదని చాల మళ్ళీ ఇదాక.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 86,
+      "start": 301.45,
+      "end": 303.81,
+      "speaker": "SPEAKER_04",
+      "text": "వీళ్ళకి అది చెప్పని చేత కాదు నువ్వు మొగుడివే బాగా చెప్తున్నావ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 87,
+      "start": 302.83,
+      "end": 303.61,
+      "speaker": "SPEAKER_03",
+      "text": "ನೋಡಿ ಬಾರಿ ಬಾರಿ ಇಲ್ಲಿ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 88,
+      "start": 304.05,
+      "end": 304.79,
+      "speaker": "SPEAKER_00",
+      "text": "യാടാ",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 89,
+      "start": 304.06,
+      "end": 304.72,
+      "speaker": "SPEAKER_01",
+      "text": "ഞാനാ",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 90,
+      "start": 305.01,
+      "end": 307.83,
+      "speaker": "SPEAKER_00",
+      "text": "నా చెప్పది ఆ యోరకాయ పెట్టిండు నేను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 91,
+      "start": 308.41,
+      "end": 312.91,
+      "speaker": "SPEAKER_03",
+      "text": "అంటే మన లజ్మాన్ ఊరికాయ నేను పెట్టింది రెండు ఏళ్ళు ఉంటది మీకు కూడా పంపించాను ఆట.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 92,
+      "start": 312.77,
+      "end": 313.43,
+      "speaker": "SPEAKER_00",
+      "text": "అవును.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 93,
+      "start": 312.97,
+      "end": 314.2,
+      "speaker": "SPEAKER_03",
+      "text": "మా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 94,
+      "start": 313.61,
+      "end": 315.81,
+      "speaker": "SPEAKER_00",
+      "text": "మామిడికాయలు కూడా వేసేది అత్త.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 95,
+      "start": 315.73,
+      "end": 316.58,
+      "speaker": "SPEAKER_03",
+      "text": "అవును",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 96,
+      "start": 316.33,
+      "end": 317.03,
+      "speaker": "SPEAKER_01",
+      "text": "మా ఆవిడకి",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 97,
+      "start": 317.13,
+      "end": 317.39,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 98,
+      "start": 317.68,
+      "end": 331.55,
+      "speaker": "SPEAKER_01",
+      "text": "తిరిగి దంచేటప్పుడు నేను చెప్తా ఇది. తిరిగి దంచేటప్పుడు మామిడికాయలు కొన్నేసుకొని బాగా దంచుకుంటే భలే ఉంటది టేస్ట్. చాలా బాగుంటది పప్పులు ఒకటి వేసుకోవచ్చు అప్పుడు. దాంట్లో గుజ్జు వస్తుల్లా ఊరినాక గుజ్జు వస్తుల్లా కదా మామిడికాయ ముక్క లాగా ఉండాలా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 99,
+      "start": 325.21,
+      "end": 327.73,
+      "speaker": "SPEAKER_00",
+      "text": "చాలా బాగుంటది పప్పులో కూడా వేసుకోవచ్చు అప్పుడు దాంట్లో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 100,
+      "start": 330.51,
+      "end": 330.96,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 101,
+      "start": 331.74,
+      "end": 335.45,
+      "speaker": "SPEAKER_01",
+      "text": "ఆ తేనెలాగా ఉంటలా స్పూన్ తో తీసుకుని గిన్నెలో పోసుకుని తినేవాళ్ళం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 102,
+      "start": 335.37,
+      "end": 337.85,
+      "speaker": "SPEAKER_02",
+      "text": "ఈసారి మామిడికాయలు తెచ్చి కొద్దిగా పచ్చట్లో దంచి చూపిస్తాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 103,
+      "start": 337.85,
+      "end": 339.97,
+      "speaker": "SPEAKER_04",
+      "text": "అది కూడా చూపియాల బాగుంటది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 104,
+      "start": 338.07,
+      "end": 338.64,
+      "speaker": "SPEAKER_01",
+      "text": "ಅದು ಕೂಡ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 105,
+      "start": 339.65,
+      "end": 347.8,
+      "speaker": "SPEAKER_01",
+      "text": "చూపిద్దాంలే అది సంగతి అయితే ఇప్పుడు పసుపు ఉప్పు వేద్దాం అక్క ఉప్పు వేయి ఉప్పు నేను వేస్తా తర్వాత వేయాలమ్మ కళ్ళల్లో పడద్ది",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 106,
+      "start": 347.01,
+      "end": 347.63,
+      "speaker": "SPEAKER_02",
+      "text": "పడ్డే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 107,
+      "start": 348.03,
+      "end": 348.65,
+      "speaker": "SPEAKER_01",
+      "text": "ಓಕೆ ಓಕೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 108,
+      "start": 348.41,
+      "end": 349.79,
+      "speaker": "SPEAKER_04",
+      "text": "ఏం ఉప్పు వేస్తే ఏమొద్దు అక్క?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 109,
+      "start": 348.95,
+      "end": 349.45,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 110,
+      "start": 349.74,
+      "end": 350.39,
+      "speaker": "SPEAKER_01",
+      "text": "కలవల పడదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 111,
+      "start": 349.96,
+      "end": 351.58,
+      "speaker": "SPEAKER_02",
+      "text": "నీళ్లు కూరి",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 112,
+      "start": 352.12,
+      "end": 355.95,
+      "speaker": "SPEAKER_00",
+      "text": "చింతకాయలో వాటర్ ఎక్కువ ఉంటదేమో అందుకని ఉప్పు నీరే కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 113,
+      "start": 352.17,
+      "end": 354.41,
+      "speaker": "SPEAKER_02",
+      "text": "చింతకాయలో వాటర్ ఎక్కువ ఉంటదేమో అందుకే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 114,
+      "start": 356.34,
+      "end": 362.84,
+      "speaker": "SPEAKER_00",
+      "text": "అందుకని కళ్ళల్లో పడకుండా నాకు ఇందాక వలిసేటప్పుడు ఇట్లా కంట్లో వచ్చి పడింది జాగ్రత్తగా వలుసుకోండి నేనేమంటే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 115,
+      "start": 362.11,
+      "end": 377.13,
+      "speaker": "SPEAKER_01",
+      "text": "నేనేమంటే చిటికి మాటికి నవ్వితే ఒకనే ఉంగుల చిటికి మాటికి ఒకసారి నవ్వితే మా అన్నతో ఒక తంట నవ్వకుండా మొహం పెట్టుకుంటే ఊ అని పెట్టుకున్నావేంది నవ్వురాదా కొంచెం కళాకాంతి నేర్చుకో మేమేం కూడు పెట్టనోల్లాగా అనిపిస్తుంది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 116,
+      "start": 376.41,
+      "end": 381.45,
+      "speaker": "SPEAKER_00",
+      "text": "ఏమో కానీ ఇడ కూర్చొని మాట్లాడేంతసేపు నోట్లో నీళ్ళు ఊరుతా ఉన్నాయి బయటకి వస్తా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 117,
+      "start": 381.45,
+      "end": 383.48,
+      "speaker": "SPEAKER_03",
+      "text": "ಅಲ್ಲಾಡ್ಕೊಂಡು ಹೋಗ್ತೀನಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 118,
+      "start": 384.56,
+      "end": 385.35,
+      "speaker": "SPEAKER_03",
+      "text": "तेल लगा।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 119,
+      "start": 385.65,
+      "end": 386.53,
+      "speaker": "SPEAKER_00",
+      "text": "हे होता?",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 120,
+      "start": 386.53,
+      "end": 386.97,
+      "speaker": "SPEAKER_03",
+      "text": "ಇದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 121,
+      "start": 386.6,
+      "end": 386.99,
+      "speaker": "SPEAKER_00",
+      "text": "ಇದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 122,
+      "start": 386.65,
+      "end": 388.02,
+      "speaker": "SPEAKER_01",
+      "text": "ఇదిగో కొంచెం కలిపి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 123,
+      "start": 387.38,
+      "end": 387.83,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 124,
+      "start": 388.98,
+      "end": 390.95,
+      "speaker": "SPEAKER_01",
+      "text": "ఇంకొంచెం పసుపు వెయ్యి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 125,
+      "start": 391.48,
+      "end": 391.78,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 126,
+      "start": 392.32,
+      "end": 396.76,
+      "speaker": "SPEAKER_01",
+      "text": "చెప్పాంగా నాలుగు కేజీలకి 100 గ్రాములు అని. నాలుగు కేజీలకి 100 గ్రాములు పసుపు అని చెప్పమే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 127,
+      "start": 396.4,
+      "end": 401.71,
+      "speaker": "SPEAKER_02",
+      "text": "ఒక దాంట్లో ఎక్కువ పడ్డా ఒక దాంట్లో తక్కువ పడ్డా మొత్తం కలపు తల్లా డీస్ లో వేయొచ్చు పచ్చడంతా బాగుంటది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 128,
+      "start": 402.6,
+      "end": 406.43,
+      "speaker": "SPEAKER_00",
+      "text": "అంత సేదు రాదులే మావయ్య బాగానే ఉంటది. పసుపు ఎక్కువ వేస్తే కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 129,
+      "start": 406.02,
+      "end": 409.33,
+      "speaker": "SPEAKER_04",
+      "text": "అంటే అతనికి మొత్తం మీద క్లారిటీ ఏంటంటే విడివిడిగా దంచుకొని",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 130,
+      "start": 410.73,
+      "end": 412.75,
+      "speaker": "SPEAKER_04",
+      "text": "తక్కువ ఎక్కువైనా లాస్ట్ అయినా పలుచుకోవచ్చు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 131,
+      "start": 412.87,
+      "end": 415.83,
+      "speaker": "SPEAKER_00",
+      "text": "అంతే ఇప్పుడు ఇలా ఉంది కదా ఇట్లా ఇత్తులన్నీ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 132,
+      "start": 415.39,
+      "end": 416.26,
+      "speaker": "SPEAKER_04",
+      "text": "ఆ ఆ అవునండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 133,
+      "start": 416.27,
+      "end": 420.97,
+      "speaker": "SPEAKER_00",
+      "text": "ఇవి ఇప్పుడు మెదగవు. సో తిరగ తొక్కేది అంటే ఇప్పుడు నాలుగు రోజులు ఇది మెత్తగా ఉంటుంది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 134,
+      "start": 422.0,
+      "end": 424.09,
+      "speaker": "SPEAKER_00",
+      "text": "ఉప్పులో ఊరి ఊరి నీళ్లు వస్తాయి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 135,
+      "start": 423.03,
+      "end": 423.52,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 136,
+      "start": 424.25,
+      "end": 431.64,
+      "speaker": "SPEAKER_00",
+      "text": "సో ఇది బకెట్లోకి ఎత్తి ఏదన్నా ప్లాస్టిక్ దాంట్లో ఎత్తి పెట్టుకోవాలి స్టీల్ దాంట్లో పెడితే బొక్కలు వచ్చేసి నల్లగా అయిపోద్ది అంతే కదా సిల్వర్ దాంట్లో కూడా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 137,
+      "start": 424.43,
+      "end": 424.97,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 138,
+      "start": 430.77,
+      "end": 431.96,
+      "speaker": "SPEAKER_01",
+      "text": "సిల్వర్ దాంట్లో కూడా పెట్టుకో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 139,
+      "start": 432.43,
+      "end": 433.99,
+      "speaker": "SPEAKER_00",
+      "text": "ఓన్లీ ప్లాస్టికే ఇది ఇట్లా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 140,
+      "start": 432.5,
+      "end": 433.49,
+      "speaker": "SPEAKER_01",
+      "text": "ఓన్లీ ప్లాస్టిక్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 141,
+      "start": 434.15,
+      "end": 434.68,
+      "speaker": "SPEAKER_00",
+      "text": "కాకుండా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 142,
+      "start": 434.41,
+      "end": 439.37,
+      "speaker": "SPEAKER_02",
+      "text": "జాడీ అయినా పెట్టుకోవచ్చు. ఆ జాడీలు జాడీలు. మన ఇంట్లో జాడీ లేదులే. జాడీ ఉన్నోళ్ళకి జాడీ లేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 143,
+      "start": 436.73,
+      "end": 437.09,
+      "speaker": "SPEAKER_01",
+      "text": "మన ఇంట్లో",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 144,
+      "start": 438.73,
+      "end": 439.43,
+      "speaker": "SPEAKER_01",
+      "text": "జాడీలు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 145,
+      "start": 439.93,
+      "end": 441.59,
+      "speaker": "SPEAKER_02",
+      "text": "అమ్మ కట్ చేయలేదైతే అదే అదే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 146,
+      "start": 439.94,
+      "end": 440.97,
+      "speaker": "SPEAKER_01",
+      "text": "అమ్మ కట్ చేయలేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 147,
+      "start": 442.02,
+      "end": 445.19,
+      "speaker": "SPEAKER_01",
+      "text": "సిజర్ వేయాలా కచ్చి వేయడం ఎందుకు? వద్దు ఏం వద్దు కచ్చి వేయ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 148,
+      "start": 444.69,
+      "end": 446.03,
+      "speaker": "SPEAKER_02",
+      "text": "കട്ടി കട്ടി",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 149,
+      "start": 446.03,
+      "end": 447.32,
+      "speaker": "SPEAKER_01",
+      "text": "మట్టి పెడతా పోస్కొండ్రా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 150,
+      "start": 447.43,
+      "end": 447.99,
+      "speaker": "SPEAKER_04",
+      "text": "ಆಗನೇ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 151,
+      "start": 447.99,
+      "end": 448.59,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 152,
+      "start": 448.59,
+      "end": 453.65,
+      "speaker": "SPEAKER_01",
+      "text": "ఏమో తప్పే ఉంది, మన ఇంట్లో వస్తువు అది సంవత్సరం క్రితం తెచ్చింది, దానికి కరోనా కూడా ఉండదు ఇబ్బంది లేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 153,
+      "start": 454.44,
+      "end": 456.71,
+      "speaker": "SPEAKER_03",
+      "text": "ఉంటే ఏమో ఇంకా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 154,
+      "start": 456.44,
+      "end": 459.07,
+      "speaker": "SPEAKER_01",
+      "text": "సంవత్సరం వాళ్ళ పెళ్ళప్పుడు తెచ్చిన ఉప్పు నాన్న అది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 155,
+      "start": 460.09,
+      "end": 463.13,
+      "speaker": "SPEAKER_01",
+      "text": "స్టాక్ ఇంకా ఉందా? ఇదే లాస్ట్ ప్యాకెట్లే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 156,
+      "start": 463.25,
+      "end": 464.17,
+      "speaker": "SPEAKER_03",
+      "text": "ಎಲ್ಲಾ ಬುಡ್ ಇದೆ ಇಲ್ಲಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 157,
+      "start": 464.06,
+      "end": 469.05,
+      "speaker": "SPEAKER_01",
+      "text": "ఆ ఉప్పు తెచ్చిర్లా పెళ్ళప్పడా బస్తా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 158,
+      "start": 468.91,
+      "end": 469.87,
+      "speaker": "SPEAKER_03",
+      "text": "అక్క మేము ఇంకా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 159,
+      "start": 470.13,
+      "end": 472.31,
+      "speaker": "SPEAKER_01",
+      "text": "మనకే మనకే అయితే నీకక్క.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 160,
+      "start": 472.49,
+      "end": 475.81,
+      "speaker": "SPEAKER_02",
+      "text": "నాకు రాఘవరెడ్డి బాబాయ్ తెచ్చిస్తానులే దంచుకుంటాను నేను నాలుగు రోజులు లేచి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 161,
+      "start": 475.09,
+      "end": 479.71,
+      "speaker": "SPEAKER_01",
+      "text": "అది ఇబ్బంది లేదులే, 4 కేజీల పచ్చడి మాకు సరిపోద్దిలే చాలు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 162,
+      "start": 480.12,
+      "end": 483.05,
+      "speaker": "SPEAKER_03",
+      "text": "సాల్ట్ గంగ థాయ్ నోయిడా గచ్న",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 163,
+      "start": 483.23,
+      "end": 485.69,
+      "speaker": "SPEAKER_02",
+      "text": "నేనెందుకు తెస్తాను అన్న మీ ఇంట్లో లేకుండా ఉండి ఆ?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 164,
+      "start": 485.65,
+      "end": 487.46,
+      "speaker": "SPEAKER_03",
+      "text": "ఫస్ట్ పాకెట్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 165,
+      "start": 487.47,
+      "end": 488.65,
+      "speaker": "SPEAKER_02",
+      "text": "అన్నీ మీయేనయ్యా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 166,
+      "start": 489.25,
+      "end": 490.67,
+      "speaker": "SPEAKER_01",
+      "text": "చితికెను మాత్రమే ఇవ్వాలి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 167,
+      "start": 489.39,
+      "end": 490.21,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 168,
+      "start": 490.82,
+      "end": 491.16,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 169,
+      "start": 491.16,
+      "end": 491.46,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 170,
+      "start": 491.71,
+      "end": 496.89,
+      "speaker": "SPEAKER_03",
+      "text": "ఈ బింతలు అలా వేసుకోకుండా ఉండండి అమ్మ నేను. అందుకేనా బంతి చెట్లు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 171,
+      "start": 494.43,
+      "end": 496.83,
+      "speaker": "SPEAKER_01",
+      "text": "బచ్చ బచ్చ చెట్లు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 172,
+      "start": 496.93,
+      "end": 501.57,
+      "speaker": "SPEAKER_03",
+      "text": "ఈ పింటలు అంటే ఇప్పుడు మనం అక్కకి వేయకూడదు కదా ఉప్పు అది. ఆ ఆ ఓ తెలీదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 173,
+      "start": 501.05,
+      "end": 502.97,
+      "speaker": "SPEAKER_00",
+      "text": "ఓ తెలీ కలవాడి అమ్మాయి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 174,
+      "start": 502.07,
+      "end": 505.55,
+      "speaker": "SPEAKER_02",
+      "text": "మళ్ళీ బాగానే పని చేస్తుంది అక్కడైతే కా వాక్ కిచ్చేది మాత్రం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 175,
+      "start": 502.55,
+      "end": 503.89,
+      "speaker": "SPEAKER_01",
+      "text": "బాగానే పని చేస్తుంది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 176,
+      "start": 505.55,
+      "end": 506.26,
+      "speaker": "SPEAKER_03",
+      "text": "పడు పడు పడు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 177,
+      "start": 507.04,
+      "end": 516.92,
+      "speaker": "SPEAKER_01",
+      "text": "ఏదన్నా దేమ్మ తోడేది నిన్న మా మరుము ఎత్తుకొని పోండి అని మా అక్కని మరుము ఎత్తుకొని పోమంటే ఆదివారం పూట మరుము ఎందుకు ఎత్తుకొని పోయేది నువ్వు ఆడపిల్లవే అని మాట్లాడిండు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 178,
+      "start": 508.13,
+      "end": 508.55,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 179,
+      "start": 512.4,
+      "end": 513.21,
+      "speaker": "SPEAKER_02",
+      "text": "అమ్మో",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 180,
+      "start": 516.55,
+      "end": 519.71,
+      "speaker": "SPEAKER_02",
+      "text": "మా ఇంట్లో నుంచి అయితే ఆదివారం మంగళవారం ఎత్తుకొని వస్తా చల్లగా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 181,
+      "start": 519.3,
+      "end": 524.13,
+      "speaker": "SPEAKER_01",
+      "text": "అక్క ఇది తెచ్చానా? తడిగా ఉంది కొంచెం. తెస్తాలే నేను గిన్నె తెస్తా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 182,
+      "start": 524.57,
+      "end": 526.49,
+      "speaker": "SPEAKER_04",
+      "text": "ఆ లక్ష్మి మైకు మామ రా కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 183,
+      "start": 527.51,
+      "end": 531.83,
+      "speaker": "SPEAKER_00",
+      "text": "తడిగా ఉందక్కా. తడిగా ఉందా? ఉమ్. అంటే ఏదన్నది? నాలెస్ గుడ్డదా?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 184,
+      "start": 531.87,
+      "end": 533.73,
+      "speaker": "SPEAKER_04",
+      "text": "దేనికి అవుతది ఇది తోట",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 185,
+      "start": 533.19,
+      "end": 534.41,
+      "speaker": "SPEAKER_00",
+      "text": "ఇది తోడు పెట్టడానికి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 186,
+      "start": 534.19,
+      "end": 535.32,
+      "speaker": "SPEAKER_04",
+      "text": "ఒకటి బకెట్లో పెడుతున్నారా?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 187,
+      "start": 534.83,
+      "end": 539.97,
+      "speaker": "SPEAKER_00",
+      "text": "ఇది పెళ్లి తెచ్చిన పెరుగు బకెట్ మళ్ళీ మీరు ఏదో బకెట్ అనుకునేవాళ్ళు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 188,
+      "start": 540.15,
+      "end": 541.01,
+      "speaker": "SPEAKER_04",
+      "text": "ஆசி பத்தல",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 189,
+      "start": 540.78,
+      "end": 541.97,
+      "speaker": "SPEAKER_00",
+      "text": "కొత్త వాకెట్",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 190,
+      "start": 543.11,
+      "end": 543.47,
+      "speaker": "SPEAKER_00",
+      "text": "ಅಲ್ಲ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 191,
+      "start": 543.57,
+      "end": 545.47,
+      "speaker": "SPEAKER_04",
+      "text": "కోడి అంతా దాంట్లో వేసి పెట్టడానికి కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 192,
+      "start": 545.27,
+      "end": 545.79,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 193,
+      "start": 546.34,
+      "end": 549.99,
+      "speaker": "SPEAKER_03",
+      "text": "అది పెట్టాలా? అది పెడితే లోపల పోతది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 194,
+      "start": 550.27,
+      "end": 550.63,
+      "speaker": "SPEAKER_00",
+      "text": "ம்.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 195,
+      "start": 552.05,
+      "end": 555.47,
+      "speaker": "SPEAKER_00",
+      "text": "మొత్తం కత్తి ఏముంది దీంట్లో పెట్టుకోబాకండి ఆ బకెట్లో పెట్టాలి మళ్ళీ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 196,
+      "start": 555.47,
+      "end": 555.91,
+      "speaker": "SPEAKER_04",
+      "text": "ఏమి?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 197,
+      "start": 556.5,
+      "end": 560.07,
+      "speaker": "SPEAKER_00",
+      "text": "ఇది ఇంట్లో పెడితే చిల్లులో రెడ్ నల్లగా వచ్చేస్తది, పాడైపోద్ది స్టీల్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 198,
+      "start": 559.62,
+      "end": 562.65,
+      "speaker": "SPEAKER_02",
+      "text": "ప్లాస్టిక్ దాంట్లో అన్నా జాడీలో అయినా పెట్టుకోవచ్చు జాడీలు ఇంకా బాగా ఉంటాయి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 199,
+      "start": 562.07,
+      "end": 563.49,
+      "speaker": "SPEAKER_04",
+      "text": "ప్లాస్టిక్ గానీ, పింగాణి గానీ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 200,
+      "start": 563.52,
+      "end": 565.22,
+      "speaker": "SPEAKER_02",
+      "text": "గాజు దాంట్లో",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 201,
+      "start": 565.99,
+      "end": 566.5,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 202,
+      "start": 567.03,
+      "end": 567.52,
+      "speaker": "SPEAKER_00",
+      "text": "ಜಾನ ಅವ್ಲ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 203,
+      "start": 568.17,
+      "end": 569.63,
+      "speaker": "SPEAKER_03",
+      "text": "ఎందుకు బొక్క పడతాయి అంటే",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 204,
+      "start": 569.99,
+      "end": 572.53,
+      "speaker": "SPEAKER_00",
+      "text": "గిన్నె తెస్తున్నాను నేను నీళ్లు ఎందుకు బొక్క పడతాయి అని అడుగుతున్నాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 205,
+      "start": 572.13,
+      "end": 581.2,
+      "speaker": "SPEAKER_03",
+      "text": "సాల్ట్ వల్ల సాల్ట్ వల్ల సాల్ట్ వల్ల బొక్కలు వచ్చేస్తాయి. ఓకే. అందువల్ల ఏదైనా జాడీ జాడీలో గాని ఏదైనా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 206,
+      "start": 580.85,
+      "end": 582.82,
+      "speaker": "SPEAKER_02",
+      "text": "నేను క్లారిటీకి బాగా చెప్తున్నాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 207,
+      "start": 582.23,
+      "end": 584.79,
+      "speaker": "SPEAKER_03",
+      "text": "ఆ బకెట్లో గాని",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 208,
+      "start": 586.53,
+      "end": 591.09,
+      "speaker": "SPEAKER_03",
+      "text": "నీ వంట మాస్టర్ వా? మేము జంచుకుంటున్నాం లా మాకు ఎవరు ఉండరు మేము.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 209,
+      "start": 590.53,
+      "end": 596.57,
+      "speaker": "SPEAKER_00",
+      "text": "మామయ్య బాండాలు బజ్జీలు బజ్జీలు పకోడీ వేశాడు ఒకరోజు భలే వేస్తాడు మీకు కూడా చూపిస్తా ఒకరోజు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 210,
+      "start": 596.96,
+      "end": 605.16,
+      "speaker": "SPEAKER_01",
+      "text": "మా నాన్న హైలైట్ గా వేస్తుండు. దోసలు కూడా బానే పోసేవాడు. మా నాన్న నేను బాగా వాడుకునేదాన్ని దోసలు వేయడానికి. ఇట్లాంటి వాటికి నాకు చేత కాదని అప్పుడు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 211,
+      "start": 605.32,
+      "end": 609.87,
+      "speaker": "SPEAKER_00",
+      "text": "సో మామయ్యతో వంట కూడా రెడీగా ఉండండి చూడడానికి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 212,
+      "start": 609.04,
+      "end": 612.99,
+      "speaker": "SPEAKER_03",
+      "text": "చూడడానికి ఊరు మీద అంతే ఇంతో లేదు రే మీ వాళ్ళకి ఆ అంత",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 213,
+      "start": 612.79,
+      "end": 615.17,
+      "speaker": "SPEAKER_02",
+      "text": "అంతా నాన్న కష్టమే కదా మనం పెద్దోళ్ళం అయినాం అంటే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 214,
+      "start": 615.95,
+      "end": 620.99,
+      "speaker": "SPEAKER_03",
+      "text": "అమ్మ ఒక్కటే చేసుకోలేదు కదా కూర్చున్నది భయమ వేసేది దంశనం వేసేది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 215,
+      "start": 620.83,
+      "end": 623.01,
+      "speaker": "SPEAKER_01",
+      "text": "ए मैं एक दसे उड़ू ना ना पोई एक दसे उड़ू ना।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 216,
+      "start": 621.99,
+      "end": 624.89,
+      "speaker": "SPEAKER_03",
+      "text": "పోయాక దోసే ఎవడు నా అక్క నిజంగా ఇది అపతి వేక నా అక్క.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 217,
+      "start": 624.87,
+      "end": 627.62,
+      "speaker": "SPEAKER_02",
+      "text": "చింతకాయ పచ్చడి దంచేటప్పుడు మాత్రం దంచేసుకోవాలి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 218,
+      "start": 626.8,
+      "end": 627.57,
+      "speaker": "SPEAKER_01",
+      "text": "దంచర్లే",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 219,
+      "start": 628.55,
+      "end": 629.94,
+      "speaker": "SPEAKER_03",
+      "text": "ఎప్పుడైనా దానికి పెద్ద రాగలుగులు ఉన్నాయి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 220,
+      "start": 629.89,
+      "end": 630.47,
+      "speaker": "SPEAKER_01",
+      "text": "എന്നും സത്യം.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 221,
+      "start": 630.63,
+      "end": 636.77,
+      "speaker": "SPEAKER_03",
+      "text": "ఇది మంచి రోల్ కూడా పెద్దదే. ఆ మన రోల్ ఇది ఇది అంటే ఫస్ట్ ఛాంపియన్ అబ్బాయి అది ఆ రోల్ ఇది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 222,
+      "start": 636.19,
+      "end": 638.37,
+      "speaker": "SPEAKER_01",
+      "text": "పోసి పోయమ్మా ఆడు ఉంది అది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 223,
+      "start": 636.97,
+      "end": 638.31,
+      "speaker": "SPEAKER_03",
+      "text": "ఆడు ఉంది అక్కడ అది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 224,
+      "start": 638.76,
+      "end": 648.33,
+      "speaker": "SPEAKER_01",
+      "text": "అందుకా అందుకా నన్ను అసలు దంచునే లేదు వీళ్ళు. అక్క ఒకరోజు ఎవరో ఒకరోజు ఎవరో అన్నారంట వీడియోలో నాగలక్ష్మి దంచుతుంది మీరేం చేస్తారని.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 225,
+      "start": 647.91,
+      "end": 648.84,
+      "speaker": "SPEAKER_02",
+      "text": "అమ్మ మేము లే",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 226,
+      "start": 648.97,
+      "end": 653.09,
+      "speaker": "SPEAKER_01",
+      "text": "అప్పటినుంచి నా చేత దంచి ఇయ్యడంలే ఇల్లు, నన్ను కూడా ఏం చేస్తావ్?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 227,
+      "start": 654.17,
+      "end": 656.51,
+      "speaker": "SPEAKER_01",
+      "text": "సబ్స్క్రైబర్లు మాట వింటున్నారు వీళ్ళందరూ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 228,
+      "start": 657.83,
+      "end": 661.02,
+      "speaker": "SPEAKER_04",
+      "text": "ఎంత పెట్టమంటే అంత పెడతారంట ఒక్కడు కూడా సబ్స్క్రైబ్ అవ్వడం అంటే పెట్టేది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 229,
+      "start": 661.86,
+      "end": 665.59,
+      "speaker": "SPEAKER_01",
+      "text": "ఆ సబ్స్క్రైబర్లు పెట్టమంటే పెట్టేవాళ్ళు కాదులే అన్న మంచి ఇల్లు అన్న ఇలా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 230,
+      "start": 665.59,
+      "end": 665.88,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 231,
+      "start": 665.98,
+      "end": 667.55,
+      "speaker": "SPEAKER_01",
+      "text": "Manchurianలో",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 232,
+      "start": 667.4,
+      "end": 668.26,
+      "speaker": "SPEAKER_04",
+      "text": "వడాలు కాదంటావ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 233,
+      "start": 668.75,
+      "end": 673.96,
+      "speaker": "SPEAKER_01",
+      "text": "మంచెల్లు వీళ్ళిద్దరూ వడాలమ్మలు వీళ్ళిద్దరూ పిల్లర్స్ పిల్లర్స్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 234,
+      "start": 674.64,
+      "end": 675.51,
+      "speaker": "SPEAKER_04",
+      "text": "ಎಲ್ಲಾ ಸರಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 235,
+      "start": 674.93,
+      "end": 680.39,
+      "speaker": "SPEAKER_01",
+      "text": "ఏమి స్లాబు మేము పిలవద్దు. పిలవద్దు లేకపోతే నేనే నిలబడతానన్నా. అంతే కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 236,
+      "start": 681.15,
+      "end": 683.95,
+      "speaker": "SPEAKER_04",
+      "text": "ఇంకేం ఇంకా చెప్పాల్సింది ఉన్నాయా వీడియో కంప్లీట్ చేయాలి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 237,
+      "start": 683.75,
+      "end": 686.57,
+      "speaker": "SPEAKER_00",
+      "text": "ఇది మొత్తం తోడి కలిపిన తర్వాత ఎలా పెట్టాలి?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 238,
+      "start": 685.71,
+      "end": 687.26,
+      "speaker": "SPEAKER_02",
+      "text": "ఎలా పెట్టాలి కవిత",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 239,
+      "start": 687.43,
+      "end": 688.99,
+      "speaker": "SPEAKER_00",
+      "text": "లాస్ట్ ఫైనల్ టచ్ మెంథాల్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 240,
+      "start": 688.99,
+      "end": 689.33,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 241,
+      "start": 690.92,
+      "end": 691.67,
+      "speaker": "SPEAKER_01",
+      "text": "కొంచెం వేయి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 242,
+      "start": 692.69,
+      "end": 693.99,
+      "speaker": "SPEAKER_04",
+      "text": "సో డైనింగ్ టేబుల్ చూపించకపోతే",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 243,
+      "start": 694.31,
+      "end": 694.74,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 244,
+      "start": 695.59,
+      "end": 699.44,
+      "speaker": "SPEAKER_04",
+      "text": "డైనింగ్ టేబుల్ చూపించేద్దాం ఆ లోపల మొత్తం డైనింగ్ టేబుల్ ఓహో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 245,
+      "start": 699.49,
+      "end": 701.96,
+      "speaker": "SPEAKER_00",
+      "text": "మెత్తులు రెండు స్పూన్లు మర్చిపోబాకండి మళ్ళీ చెప్పలేను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 246,
+      "start": 699.53,
+      "end": 703.41,
+      "speaker": "SPEAKER_01",
+      "text": "మెరుతులు రెండు స్పూన్లు మర్చిపోబాకండి మళ్ళీ చెప్పలేదంటారు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 247,
+      "start": 703.23,
+      "end": 704.55,
+      "speaker": "SPEAKER_03",
+      "text": "4 కేజీ",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 248,
+      "start": 703.75,
+      "end": 716.65,
+      "speaker": "SPEAKER_01",
+      "text": "4 కేజీలు ఇవి అయిపోయింది, దంచేసినం మొత్తం కలపుతుంది అక్క. కలవాలి కదా మొత్తము అని ఇప్పుడు స్టార్టింగ్ లో బకెట్ లో పెట్టడం ఉప్పు చల్లతారు స్టార్టింగ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 249,
+      "start": 718.7,
+      "end": 721.04,
+      "speaker": "SPEAKER_01",
+      "text": "బూజు పట్టకుండా బూజు పట్టకుండా బకెట్లో",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 250,
+      "start": 719.83,
+      "end": 720.74,
+      "speaker": "SPEAKER_02",
+      "text": "పట్టుకున్నా బకెట్లో",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 251,
+      "start": 721.8,
+      "end": 724.77,
+      "speaker": "SPEAKER_01",
+      "text": "నెమ్ము లేదు బానే తుడుచున్నావ్ అయ్యా మనకు డౌట్ తోటి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 252,
+      "start": 722.55,
+      "end": 723.63,
+      "speaker": "SPEAKER_02",
+      "text": "పానే తుడుచున్నావ్ నువ్వు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 253,
+      "start": 725.25,
+      "end": 739.07,
+      "speaker": "SPEAKER_01",
+      "text": "అదంతా పెట్టినాక మళ్ళీ లాస్ట్ లో ఉప్పు చల్లాలి మళ్ళీ కూడా. అవునక్క. ఆ జిగురు వస్తది బాగా. ఇంకో కొత్త విషయం ఏందంటే ఎవరైనా పచ్చడి దంచుకునే వాళ్ళు ఈ పచ్చడి వేసుకుని పచ్చడి రోట్లో మళ్ళీ ఉప్పు వేయబాకండి మర్చిపోయి పొరపాటున వేస్తారేమో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 254,
+      "start": 730.97,
+      "end": 731.2,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 255,
+      "start": 739.17,
+      "end": 741.63,
+      "speaker": "SPEAKER_01",
+      "text": "ఇప్పుడు కాదు రెండోసారి దంచేటప్పుడు చెప్పట్లే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 256,
+      "start": 739.56,
+      "end": 740.55,
+      "speaker": "SPEAKER_02",
+      "text": "రెండోసారి దాన్ని",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 257,
+      "start": 741.75,
+      "end": 756.9,
+      "speaker": "SPEAKER_01",
+      "text": "రెండోసారి దంచుకుంటే చెప్తాలే. రెండోసారి దంచుకునేటప్పుడు ఉప్పు వేయొద్దు. ఆ పసుపు కావాలంటే పడితే వేసుకోండి. తిరగదంచేది 20 రోజులకు దంచుకోండి. ముందే దంచబాకండి ఎందుకంటే కూడా రాలేదు కదా కవిత 4 కేజీ లా. అయితే అంతే 10 కేజీ లు పట్టుద్దమ్మగా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 258,
+      "start": 756.85,
+      "end": 757.67,
+      "speaker": "SPEAKER_02",
+      "text": "और ना ना।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 259,
+      "start": 757.7,
+      "end": 765.88,
+      "speaker": "SPEAKER_01",
+      "text": "అది కేసులు డబ్బా. పోయిన సంవత్సరం దీన్ని నిండా పెట్టినా. పెట్టి ఆడకు పంపించింది ఎరుకుంట పాడికి నేను అందరికీ పందేరం చేసినా చాలా మందికి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 260,
+      "start": 765.88,
+      "end": 767.82,
+      "speaker": "SPEAKER_03",
+      "text": "ఓ రోజు లాగా తీసుకున్నాం నాలుగు మాటలు ఐదు మాటలు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 261,
+      "start": 769.43,
+      "end": 782.99,
+      "speaker": "SPEAKER_00",
+      "text": "పోయింది. సో పైన ఉప్పు కొంచెం జల్లు పెడుతుంది. అది ఇంకా 20 డేస్ తర్వాత కలుద్దాం. చిందకాయ పచ్చడి దంచేటప్పుడు మళ్ళీ రెండోసారి. డైలింగ్ టేబుల్ చూపిస్తాం పాండి. రెండోసారి దంచేటప్పుడు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 262,
+      "start": 782.99,
+      "end": 789.73,
+      "speaker": "SPEAKER_01",
+      "text": "వాళ్ళ జిగట వస్తదంట దంచలేరంట కొంచెం డైనింగ్ టేబుల్ చూపిద్దాం పద లాస్ట్ లో ఈరోజు కొనుక్కొచ్చారు వీళ్ళు పోయి షాప్ కి పోయే",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 263,
+      "start": 783.94,
+      "end": 785.09,
+      "speaker": "SPEAKER_00",
+      "text": "దంచలేరంట.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 264,
+      "start": 789.93,
+      "end": 791.73,
+      "speaker": "SPEAKER_04",
+      "text": "మీరు అంత ఊహించుకోవద్దులే దాన్ని.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 265,
+      "start": 791.9,
+      "end": 792.53,
+      "speaker": "SPEAKER_01",
+      "text": "ઓતાર છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 266,
+      "start": 792.05,
+      "end": 793.19,
+      "speaker": "SPEAKER_04",
+      "text": "ಪಾರ ಪಾದಕ ಹೋಯ್ತಾ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 267,
+      "start": 793.49,
+      "end": 793.81,
+      "speaker": "SPEAKER_01",
+      "text": "റ",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 268,
+      "start": 794.48,
+      "end": 797.02,
+      "speaker": "SPEAKER_04",
+      "text": "అమ్మ ఎన్ని సార్లు చెప్పాలన్న ఏడలు మాట ఏంటమ్మా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 269,
+      "start": 797.31,
+      "end": 801.89,
+      "speaker": "SPEAKER_01",
+      "text": "ఎందుకే నువ్వు ఎవరు విన్నా లేదా మాట్లాడుతున్నావు లైట్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 270,
+      "start": 803.9,
+      "end": 804.55,
+      "speaker": "SPEAKER_04",
+      "text": "ಏಯ್ ಇಲ್ಲಿ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 271,
+      "start": 804.57,
+      "end": 805.67,
+      "speaker": "SPEAKER_01",
+      "text": "ఏ చాము రా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 272,
+      "start": 806.79,
+      "end": 808.1,
+      "speaker": "SPEAKER_00",
+      "text": "ఆ ఇదిగో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 273,
+      "start": 809.12,
+      "end": 816.25,
+      "speaker": "SPEAKER_00",
+      "text": "ఇవన్నీ మా మ్యాచింగ్ మ్యాచింగ్ ఉంటాయన్నమాట. సోఫా, టీపాయ్, మంచాలు అదే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 274,
+      "start": 817.13,
+      "end": 817.49,
+      "speaker": "SPEAKER_01",
+      "text": "ടെബ്",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 275,
+      "start": 817.49,
+      "end": 818.47,
+      "speaker": "SPEAKER_00",
+      "text": "టేబుల్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 276,
+      "start": 817.55,
+      "end": 821.43,
+      "speaker": "SPEAKER_01",
+      "text": "టేబులు మొత్తం మ్యాచింగ్ మా ఇంట్లో మ్యాచింగ్ మే దడదడ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 277,
+      "start": 821.43,
+      "end": 823.37,
+      "speaker": "SPEAKER_00",
+      "text": "అంతా చెక్కతోనే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 278,
+      "start": 823.17,
+      "end": 825.05,
+      "speaker": "SPEAKER_04",
+      "text": "కవిత ఇది ఎట్లా ఉంది అని కామెంట్ చేయండి చెప్పు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 279,
+      "start": 825.19,
+      "end": 828.21,
+      "speaker": "SPEAKER_00",
+      "text": "ఒకసారి ఎలా ఉందో కామెంట్ చేయండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 280,
+      "start": 827.02,
+      "end": 827.95,
+      "speaker": "SPEAKER_01",
+      "text": "కామెంట్ చేయండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 281,
+      "start": 828.77,
+      "end": 848.99,
+      "speaker": "SPEAKER_00",
+      "text": "సింపుల్ గా ఉంటదని మాత్రం చెప్పగలను ఎందుకంటే ఇప్పుడు గ్లాసెస్ అవి వస్తున్నాయి సిక్స్ సీట్ వస్తుంది కానీ ఇదైతే సింపుల్ గా ఉంటది ఈ ఇంటికి ఇది సరిపోద్ది మళ్ళీ పెద్దది తెచ్చుకొని ఇరుక్కు చేసుకొని తిరగడానికి ప్లేస్ లేకుండా చేసుకోవడం ఎందుకు అని చెప్పి ఇది తీసుకొచ్చాం ఎలా ఉందనేది ఒకసారి కామెంట్ చేసి చెప్పండి. అన్నీ మ్యాచింగ్ మ్యాచింగ్ సో అది మా ఫ్యామిలీకి మొత్తం మ్యాచింగ్ సెట్ ఉంది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 282,
+      "start": 848.99,
+      "end": 849.85,
+      "speaker": "SPEAKER_01",
+      "text": "వద్దనిపించి",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 283,
+      "start": 849.45,
+      "end": 852.05,
+      "speaker": "SPEAKER_04",
+      "text": "ఫుడ్స్ వీడియో కోసం పెట్టామంటే మళ్ళీ ఫ్రిడ్జ్ లో పెట్టాము.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 284,
+      "start": 852.4,
+      "end": 875.17,
+      "speaker": "SPEAKER_01",
+      "text": "పెడతావో ఇంకొకటి ఏంటంటే విచిత్రం చెప్తాను దగ్గరికి రా. ఈ ఈ ఈటి కలకండలు చూపిస్తోరా. ఇప్పుడే తెచ్చిండు ఇది కొనుక్కొచ్చినాక వెంటనే తెచ్చిండు. పోయి మా అన్న మొహం చూస్తేనే వేయాలనిపిస్తుందో ఏమో కుళ్ళిపోయినాయి పాసు పోయినాయి అన్నీ తెచ్చేస్తారు. ఏం పక్కన ఎత్తి పెట్టుకుంటున్నట్టు ఉండరా షాప్ వాళ్ళు కూడా మా అన్నని చూసి. ఇది చెడుపోయిన కాయలు మీరన్నా సరిగ్గా ఏరుకొని తెచ్చుకోండి ఫ్రూట్స్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 285,
+      "start": 876.13,
+      "end": 877.83,
+      "speaker": "SPEAKER_04",
+      "text": "లేకుంటే పోవాల మంది పోకండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 286,
+      "start": 876.26,
+      "end": 876.53,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 287,
+      "start": 877.37,
+      "end": 881.32,
+      "speaker": "SPEAKER_01",
+      "text": "ఆ అది ఇది గుర్తుపెట్టుకోండి ఆవిడలు పోయి తెచ్చుకోండి అబ్బా ఎందుకు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 288,
+      "start": 882.17,
+      "end": 895.97,
+      "speaker": "SPEAKER_00",
+      "text": "ఇది వీడియో అయితే ఇంతకుముందు వీడియోస్ అన్నీ పాత వీడియోస్ అన్నీ చూడండి ఒకసారి. ఆ వీడియోస్ చూసినట్లయితే మీకు ఈ వీడియో గాని నచ్చినట్లయితే సబ్స్క్రైబ్ చేయండి. ఈ వీడియో అంతా మీకు ఇవన్నీ నచ్చినట్లయితే లైక్ చేయండి, షేర్ చేయండి, కామెంట్ చేయండి. థాంక్యూ సో మచ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 2055,
+  "elapsed_sec": 190.72,
+  "rtf": 0.2126,
+  "clip_dur_sec": 897.0,
+  "transcribed_at_utc": "2026-08-22T06:33:21+00:00",
+  "clip_language": null,
+  "n_segments": 289,
+  "n_skipped_short": 11,
+  "detected_language": "te-IN",
+  "languages_seen": [
+    "en-IN",
+    "gu-IN",
+    "hi-IN",
+    "kn-IN",
+    "ml-IN",
+    "mr-IN",
+    "ta-IN",
+    "te-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 29
+}

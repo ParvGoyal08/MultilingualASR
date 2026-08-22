@@ -1,0 +1,516 @@
+{
+  "clip_id": "LK23jX9tgZM__59_221",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.03,
+      "end": 38.38,
+      "speaker": "SPEAKER_01",
+      "text": "તો ફરી એકવાર તમારા માટે એક નવો વિડીયો લઈને આવી ગયો છું અને હું છું અત્યારે રાજકોટ શહેરમાં 150 ફૂટ રિંગ રોડ ઉપર. એક્ઝેટ લોકેશન તમને કહું તો સામે નાગરિક બેંક છે અને આ બિલ્ડીંગ છે વેસ્ટ ગેટ બિલ્ડીંગ છે. ત્યાં યો ફ્રેન્કીમાં આવ્યો છું અને અહીંયા વિડીયો લેવા માટે એટલા માટે આવ્યો છું કે સૌરાષ્ટ્રમાં ખાસ કરીને રાજકોટમાં ફ્રેન્કી માટે બહુ ઓછા ઓપ્શન છે જે અત્યારના જનરેશનને વધારે પસંદ હોય છે. ₹50 થી શરૂઆત થાય છે ફ્રેન્કીની અને આગળ ઘણી બધી રેન્જ છે મોમોસ છે, શેક છે. એક છે પર કિડ્સને અને યંગસ્ટરને વધારે મજા આવે એ પ્રમાણના ભાવ છે અને ક્વોલિટી છે. ટેસ્ટમાં કેવું છે એ અંદર જઈને તમને બતાવું. ચાલો શરૂ કરીએ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 1,
+      "start": 41.0,
+      "end": 45.91,
+      "speaker": "SPEAKER_01",
+      "text": "જો ઓલરેડી અત્યારે આ એક છોકરો અહીંયા નાસ્તો કરવા આવ્યો છે, શું મંગાવ્યું આજે?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 2,
+      "start": 46.39,
+      "end": 47.66,
+      "speaker": "SPEAKER_02",
+      "text": "ક્રિસ્પી મોમોઝ ફ્રેન્કી",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 3,
+      "start": 48.1,
+      "end": 49.47,
+      "speaker": "SPEAKER_01",
+      "text": "ક્રિસ્પી મોમોઝ ફેંકી",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 4,
+      "start": 50.15,
+      "end": 50.73,
+      "speaker": "SPEAKER_00",
+      "text": "શું નામ તારું?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 5,
+      "start": 50.99,
+      "end": 51.31,
+      "speaker": "SPEAKER_02",
+      "text": "શુભ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 6,
+      "start": 52.07,
+      "end": 52.79,
+      "speaker": "SPEAKER_01",
+      "text": "કયા સ્ટાન્ડર્ડમાં?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 7,
+      "start": 53.05,
+      "end": 53.45,
+      "speaker": "SPEAKER_02",
+      "text": "এই যে।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 8,
+      "start": 53.94,
+      "end": 55.57,
+      "speaker": "SPEAKER_01",
+      "text": "ફર્સ્ટ ટાઈમ આવે છે કે આની પહેલાં આવ્યો છે?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 9,
+      "start": 56.09,
+      "end": 56.89,
+      "speaker": "SPEAKER_02",
+      "text": "ફર્સ્ટ ટાઈમ આવવું છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 10,
+      "start": 57.77,
+      "end": 58.79,
+      "speaker": "SPEAKER_01",
+      "text": "તારાય રિવ્યૂ લેશું તો.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 11,
+      "start": 58.79,
+      "end": 59.46,
+      "speaker": "SPEAKER_00",
+      "text": "પછી કેવું લાગે?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 12,
+      "start": 60.02,
+      "end": 60.47,
+      "speaker": "SPEAKER_01",
+      "text": "થેન્ક યુ",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 13,
+      "start": 62.04,
+      "end": 64.73,
+      "speaker": "SPEAKER_01",
+      "text": "સાહેબ અહીંના ઓનર છે. સાહેબ કેટલો સમય થયો અહીંયા?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 14,
+      "start": 64.87,
+      "end": 67.29,
+      "speaker": "SPEAKER_00",
+      "text": "આ સેપ્ટેમ્બર 19 ને આપણે ઇનોગ્રેશન કરેલું છે આનું.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 15,
+      "start": 67.7,
+      "end": 68.85,
+      "speaker": "SPEAKER_01",
+      "text": "ઓછા એક મહિના જેવું થયું.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 16,
+      "start": 67.75,
+      "end": 69.89,
+      "speaker": "SPEAKER_00",
+      "text": "છ એક મહિના જેવું થયું. છ એ સાત મહિના જેવું થયું છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 17,
+      "start": 69.89,
+      "end": 76.34,
+      "speaker": "SPEAKER_01",
+      "text": "બરાબર. સૌથી વધારે તો આજે નામ છે યુવા ફ્રેન્કી. એ જ તમારે અહીંયા વધારે ફેમસ હશે ને?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 18,
+      "start": 76.03,
+      "end": 85.43,
+      "speaker": "SPEAKER_00",
+      "text": "ફેમસ છે છે બરોડાની મેઈન. બરોડામાં જ ઓલરેડી પાંચથી છ એમની ફ્રેન્ચાઇઝી છે અને ફ્રેન્ચાઇઝી દેવાનું લાસ્ટ વન યરથી ચાલુ કર્યું. તો સૌરાષ્ટ્ર અને રાજકોટમાં આપણે પહેલી લઈ જવું છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 19,
+      "start": 77.85,
+      "end": 78.25,
+      "speaker": "SPEAKER_01",
+      "text": "ઓકે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 20,
+      "start": 85.28,
+      "end": 88.21,
+      "speaker": "SPEAKER_01",
+      "text": "ઓકે, કેટલી પ્રકારની આપણે ફ્રેન્કી રાખી છે?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 21,
+      "start": 88.37,
+      "end": 91.83,
+      "speaker": "SPEAKER_00",
+      "text": "ફ્રેન્કી આમાં છે આપણે છ થી સાત આઠ પ્રકારની છે હો.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 22,
+      "start": 91.85,
+      "end": 92.19,
+      "speaker": "SPEAKER_01",
+      "text": "ಹಾಂ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 23,
+      "start": 92.11,
+      "end": 96.79,
+      "speaker": "SPEAKER_00",
+      "text": "ચીઝ વાળી શેઝવાન ટેંગી છે તે ટેંગી છે એ એકદમ સ્પાઈસીમાં આવી જાય.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 24,
+      "start": 93.87,
+      "end": 94.25,
+      "speaker": "SPEAKER_01",
+      "text": "ಓಕೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 25,
+      "start": 96.35,
+      "end": 96.75,
+      "speaker": "SPEAKER_01",
+      "text": "ഓക്കേ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 26,
+      "start": 97.07,
+      "end": 100.28,
+      "speaker": "SPEAKER_00",
+      "text": "પનીર મખની છે, મોમોની ફ્રેન્કી છે, નવી જ ઇન્ટ્રોડ્યુસ થઈ છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 27,
+      "start": 100.29,
+      "end": 100.73,
+      "speaker": "SPEAKER_01",
+      "text": "ઓહો.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 28,
+      "start": 100.62,
+      "end": 102.41,
+      "speaker": "SPEAKER_00",
+      "text": "છોલે કુલચે નવી ઇન્ટ્રોડ્યુસ થઈ છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 29,
+      "start": 102.63,
+      "end": 103.13,
+      "speaker": "SPEAKER_01",
+      "text": "વાહ રે વાહ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 30,
+      "start": 102.93,
+      "end": 104.95,
+      "speaker": "SPEAKER_00",
+      "text": "અલગ અલગ ટાઈપની ઘણી ફ્રેન્કીઓ અને",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 31,
+      "start": 104.45,
+      "end": 105.83,
+      "speaker": "SPEAKER_01",
+      "text": "અને જૈન માટે Optionમાં",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 32,
+      "start": 105.77,
+      "end": 109.93,
+      "speaker": "SPEAKER_00",
+      "text": "જૈન માટે ઓપ્શનમાં અલગ ઘણી છે એમાંથી પ્યોર જૈન આવી જશે એમાં તમારે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 33,
+      "start": 107.85,
+      "end": 108.4,
+      "speaker": "SPEAKER_01",
+      "text": "પ્યોર જૈન",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 34,
+      "start": 109.47,
+      "end": 109.89,
+      "speaker": "SPEAKER_01",
+      "text": "ಓಕೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 35,
+      "start": 110.37,
+      "end": 112.99,
+      "speaker": "SPEAKER_00",
+      "text": "આમાં કેળાની ટીક્કી આવી જાય સલાડમાં નો ઓનિયન નો ગાર્લિક.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 36,
+      "start": 112.97,
+      "end": 113.26,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 37,
+      "start": 113.26,
+      "end": 115.91,
+      "speaker": "SPEAKER_00",
+      "text": "કેચપ ને એ બધું તો નો ઓનિયન નો ગાર્લિક માં ઓકે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 38,
+      "start": 115.15,
+      "end": 119.17,
+      "speaker": "SPEAKER_01",
+      "text": "ઓકે, આપણે ફ્રેન્કી ટ્રાય કરવી છે. નવું મેનુ શું છે તમારું?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 39,
+      "start": 117.65,
+      "end": 118.03,
+      "speaker": "SPEAKER_00",
+      "text": "ನೌ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 40,
+      "start": 119.21,
+      "end": 129.53,
+      "speaker": "SPEAKER_00",
+      "text": "નવું મેનુ મેં તમને જેમ કીધું બે ઇન્ટ્રોડ્યુસ નવી રહી છે. કુરકુરે ક્રિસ્પી કુરકુરે ફ્રેન્કી અને છોલે કુલચે. છોલે કુલચે ટ્રાય કરશો તો ગ્રેવી વાળી થોડીક બેઝ ઉપર આવે અને સારી લાગશે. લિટલ બીટ સ્પાઈસી.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 41,
+      "start": 129.55,
+      "end": 132.26,
+      "speaker": "SPEAKER_01",
+      "text": "ઓકે, તો મજા આવશે અને",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 42,
+      "start": 133.27,
+      "end": 135.78,
+      "speaker": "SPEAKER_01",
+      "text": "સાથે ડ્રિંકમાં આપણે લેશું શેક લઈ લેશું.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 43,
+      "start": 136.97,
+      "end": 138.39,
+      "speaker": "SPEAKER_01",
+      "text": "આ ચોકલેટ જ કરીએ",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 44,
+      "start": 139.03,
+      "end": 140.19,
+      "speaker": "SPEAKER_00",
+      "text": "ચોકલેટ ચેક સારો લેશે",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 45,
+      "start": 140.41,
+      "end": 141.45,
+      "speaker": "SPEAKER_01",
+      "text": "સસ્તું અને સારું.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 46,
+      "start": 141.45,
+      "end": 142.35,
+      "speaker": "SPEAKER_00",
+      "text": "સસ્તો ને સારો ₹80.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 47,
+      "start": 141.74,
+      "end": 147.99,
+      "speaker": "SPEAKER_01",
+      "text": "₹80 માં ચોકલેટ શેક મેં આ જાણીને અને આ તમે જે ફ્રેન્કી કીધી મને છોલે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 48,
+      "start": 147.99,
+      "end": 148.24,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 49,
+      "start": 148.24,
+      "end": 151.02,
+      "speaker": "SPEAKER_01",
+      "text": "એની શું કિંમત રહેશે? એની ₹50 છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 50,
+      "start": 151.02,
+      "end": 151.65,
+      "speaker": "SPEAKER_00",
+      "text": "બસ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 51,
+      "start": 152.03,
+      "end": 153.27,
+      "speaker": "SPEAKER_01",
+      "text": "અને આ છોકરાએ મંગાવી છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 52,
+      "start": 153.43,
+      "end": 154.49,
+      "speaker": "SPEAKER_00",
+      "text": "એની છે 45",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 53,
+      "start": 155.93,
+      "end": 161.96,
+      "speaker": "SPEAKER_01",
+      "text": "આ તો બહુ વ્યાજબી જ કહેવાય. વ્યાજબી છે. સાહેબ જો તમારી પરમિશન હોય તો આપણે મેકિંગ પ્રોસેસ એક બતાવીએ. પાકું પાકું આવે. થેન્ક્યુ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 478,
+  "elapsed_sec": 18.78,
+  "rtf": 0.1159,
+  "clip_dur_sec": 162.0,
+  "transcribed_at_utc": "2026-08-22T06:33:21+00:00",
+  "clip_language": null,
+  "n_segments": 54,
+  "n_skipped_short": 2,
+  "detected_language": "gu-IN",
+  "languages_seen": [
+    "bn-IN",
+    "en-IN",
+    "gu-IN",
+    "kn-IN",
+    "ml-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 10
+}

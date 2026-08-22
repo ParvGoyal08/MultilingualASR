@@ -1,0 +1,170 @@
+{
+  "clip_id": "Iqhnt8ENm3U__27_88",
+  "system": "sarvam-saaras-v3@reverb-v2",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "reverb-v2",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.013,
+      "end": 0.173,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 1,
+      "start": 0.172,
+      "end": 0.672,
+      "speaker": "SPEAKER_03",
+      "text": "ನಮಸ್ಕಾರ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 2,
+      "start": 0.853,
+      "end": 6.413,
+      "speaker": "SPEAKER_01",
+      "text": "हं? मस्का मस्का पाहिजे. का बरं तूप संपलं म्हणून ना? तूप संपलं ना. हा का?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 3,
+      "start": 6.413,
+      "end": 7.053,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 4,
+      "start": 7.333,
+      "end": 28.993,
+      "speaker": "SPEAKER_00",
+      "text": "शांत बस द्या का? मस्का पाहिजे. दे ना. काय देऊ? मस्का बिस्कळ नाही. इथे मस्का ठेवलाय कळलं ना. रुतुक नाही ना काय तूप मस्का तूप मस्का. तुम्हाला माहिती आहे सगळ्यांना इथेच चहाची वाटी यांची असते बरं का आणि त्याच्याच बाजूला तुपाची बरणी असते. हा पॉईंट आहे. ते ना जेव्हा येतात ना नाश्ता करायला तुपाची बरणी उचल.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 5,
+      "start": 9.793,
+      "end": 10.213,
+      "speaker": "SPEAKER_01",
+      "text": "ದೇಹ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 6,
+      "start": 9.812,
+      "end": 10.192,
+      "speaker": "SPEAKER_03",
+      "text": "ಏನಾಯ್ತು?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 7,
+      "start": 11.213,
+      "end": 11.293,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 8,
+      "start": 28.992,
+      "end": 37.832,
+      "speaker": "SPEAKER_01",
+      "text": "तीन पण चहाची वाटी अजिबात घेत नाही. हा फॅक्ट आहे या माणसाचा काय हो. दे ना ग बुमे. हा भाऊजी.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 9,
+      "start": 37.832,
+      "end": 39.172,
+      "speaker": "SPEAKER_03",
+      "text": "अरे मी देईन ना.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 10,
+      "start": 39.752,
+      "end": 40.712,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 11,
+      "start": 40.013,
+      "end": 50.993,
+      "speaker": "SPEAKER_03",
+      "text": "तो ठेवलंय ना. मी तुला संध्याकाळी पोंगी घेऊन येईना दे ना. काय घेऊन पोंगी? नको ते पोंगी पोंगी. पोंगी पोंगी नको. परत पोंगी माग माग मी तुला सांगतो पोंगी.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 12,
+      "start": 43.812,
+      "end": 43.992,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 13,
+      "start": 49.993,
+      "end": 59.133,
+      "speaker": "SPEAKER_02",
+      "text": "तुला सांगतो पोहून घे. नको पोहून घे तुला. हवे मला पोहून घे पण आता ते म्हणून त्याच्यासाठी मी मस्क्याची कुर्बानी देणार नाही आता.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 14,
+      "start": 59.073,
+      "end": 59.993,
+      "speaker": "SPEAKER_03",
+      "text": "देखो मैं देखो।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 15,
+      "start": 59.993,
+      "end": 60.993,
+      "speaker": "SPEAKER_02",
+      "text": "आपण नाही पडणार काय?",
+      "skipped": null,
+      "lang": "mr-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 157,
+  "elapsed_sec": 7.8,
+  "rtf": 0.1278,
+  "clip_dur_sec": 61.0,
+  "transcribed_at_utc": "2026-08-21T11:06:40+00:00",
+  "n_segments": 16,
+  "n_skipped_short": 3,
+  "detected_language": "mr-IN",
+  "languages_seen": [
+    "en-IN",
+    "gu-IN",
+    "hi-IN",
+    "kn-IN",
+    "mr-IN"
+  ]
+}

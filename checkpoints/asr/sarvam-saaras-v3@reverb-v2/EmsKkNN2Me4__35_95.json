@@ -1,0 +1,150 @@
+{
+  "clip_id": "EmsKkNN2Me4__35_95",
+  "system": "sarvam-saaras-v3@reverb-v2",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "reverb-v2",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.013,
+      "end": 2.373,
+      "speaker": "SPEAKER_01",
+      "text": "കപ്പയുണ്ട്, വെണ്ടയുണ്ട്. ഒരേപോലെയാണ് വളർന്നു പോകുന്നത്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 1,
+      "start": 2.473,
+      "end": 3.713,
+      "speaker": "SPEAKER_02",
+      "text": "இது இது இது கப்பா",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 2,
+      "start": 3.872,
+      "end": 4.132,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 3,
+      "start": 4.433,
+      "end": 14.853,
+      "speaker": "SPEAKER_02",
+      "text": "ഇത് കപ്പാ. ഇത് വെണ്ട. ഇതില് ഒരു 22 കായ ഇപ്പോ ഒരു ബ്രാഞ്ചിൽ നിന്ന് തന്നെ കിട്ടിയിട്ടുണ്ട്. ഒരു മെയിൻ തണ്ട് നിന്ന് തന്നെ കിട്ടിയിട്ടുണ്ട്. ഒന്ന്, രണ്ട്, മൂന്ന്, നാല്, അഞ്ച് ബ്രാഞ്ച് വേറെയുണ്ട്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 4,
+      "start": 6.192,
+      "end": 6.412,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 5,
+      "start": 14.492,
+      "end": 16.532,
+      "speaker": "SPEAKER_00",
+      "text": "അതായത് ഇത് ഇനം ജെനിയും.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 6,
+      "start": 16.532,
+      "end": 17.692,
+      "speaker": "SPEAKER_02",
+      "text": "ఇది అనజాయిమ్",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 7,
+      "start": 17.692,
+      "end": 18.252,
+      "speaker": "SPEAKER_00",
+      "text": "രാങ്ങിയാണ്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 8,
+      "start": 18.512,
+      "end": 28.052,
+      "speaker": "SPEAKER_02",
+      "text": "ഇതാണ് ഏറ്റവും നല്ല സാധനം. ഇത് മെയിൻ തണ്ട്. ഇതിൽ ഒന്ന്, രണ്ട്, മൂന്ന്, നാല് ബ്രാഞ്ച്. ഈ ഒരു തണ്ടിൽ നിന്ന് 20 എണ്ണം ഇപ്പോൾ ചെത്തിയിട്ടുണ്ട്. അതായത് മെയിൻ തണ്ടിൽ നിന്ന്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 9,
+      "start": 28.052,
+      "end": 28.312,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 10,
+      "start": 28.212,
+      "end": 28.772,
+      "speaker": "SPEAKER_01",
+      "text": "ഇരുവണ്ണം പൊട്ടിച്ചു.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 11,
+      "start": 28.773,
+      "end": 39.193,
+      "speaker": "SPEAKER_02",
+      "text": "ഒന്ന് രണ്ട് മൂന്ന് നാല് അഞ്ച് ആറ് ഏഴ് എട്ട് ഒമ്പത് പത്ത് പതിനൊന്ന് പന്ത്രണ്ട് പതിനൊന്ന് പതിനോട് പതിനഞ്ച് പതിനാറ് പതിനഞ്ച് ഇരുപത്തിരണ്ട് ഇരുപത്തിരണ്ട് ഇനി ഒരു പത്ത് പതിനഞ്ച് കായ ചെയ്യുന്നുണ്ട്",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 12,
+      "start": 39.312,
+      "end": 59.992,
+      "speaker": "SPEAKER_01",
+      "text": "ഇതും ഒന്ന് 15 കായ കൂടി പൊട്ടിക്കാൻ പറ്റും. ഇതിപ്പോ നമ്മൾ വെണ്ട നട്ടിട്ട് എത്രയായി? ഇതിപ്പോ നട്ടിട്ട് 20 ഉം 40 ദിവസം ആയിട്ടുണ്ട്. 40 ദിവസം. 40 ദിവസം ആയപ്പോഴേക്കും നമുക്ക് ഈ പറഞ്ഞ ഒരു 15 ഓളം വെണ്ടക്കായ നമ്മൾ പൊട്ടിച്ചു. അന്ന് തന്നെയാണോ നമ്മുടെ കപ്പ നട്ടിട്ടുള്ള ആ കപ്പ നട്ടിട്ട് ഒപ്പം തന്നെ നടുന്നത് വെണ്ട. അതായത് ഒറ്റപ്പണി ഒറ്റപ്പണി ഒറ്റപ്പണിയിൽ നിങ്ങളൊന്ന് ആലോചിക്കുക. രണ്ട് കപ്പയുടെ ഇടയിൽ ഒരു ഒരു ഒരു വെണ്ട നട്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 13,
+      "start": 57.713,
+      "end": 57.993,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    }
+  ],
+  "words": [],
+  "n_words": 154,
+  "elapsed_sec": 8.78,
+  "rtf": 0.1464,
+  "clip_dur_sec": 60.0,
+  "transcribed_at_utc": "2026-08-21T10:59:25+00:00",
+  "n_segments": 14,
+  "n_skipped_short": 4,
+  "detected_language": "ml-IN",
+  "languages_seen": [
+    "ml-IN",
+    "ta-IN",
+    "te-IN"
+  ]
+}

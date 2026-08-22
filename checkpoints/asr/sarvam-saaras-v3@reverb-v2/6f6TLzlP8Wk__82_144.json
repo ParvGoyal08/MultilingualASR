@@ -1,0 +1,148 @@
+{
+  "clip_id": "6f6TLzlP8Wk__82_144",
+  "system": "sarvam-saaras-v3@reverb-v2",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "reverb-v2",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.013,
+      "end": 2.333,
+      "speaker": "SPEAKER_00",
+      "text": "ਤੋ ਇਕੱਲੇ ਇਕੱਲੇ ਪਸ਼ੂ ਦੇ ਬਾਰੇ ਡਿਟੇਲ ਦੇ ਵਿੱਚ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 1,
+      "start": 4.013,
+      "end": 12.993,
+      "speaker": "SPEAKER_00",
+      "text": "ਭਾਈ ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ। ਭਾਈ ਜੀ ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ। ਭਾਈ ਕੀ ਨਾਮ ਹੈ ਆਪਣਾ? ਭਾਈ ਜੀ ਨਿਰਮਲ ਸਿੰਘ ਜੀ। ਠੀਕ ਹੈ ਭਾਈ। ਕਿੰਨਾ ਚਿਰ ਹੋ ਗਿਆ ਆਪਾਂ ਨੂੰ ਭਾਈ ਪਸ਼ੂ ਪਾਲਣ ਦਾ ਕਿੱਤਾ ਕਰਦੇ?",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 2,
+      "start": 12.992,
+      "end": 21.592,
+      "speaker": "SPEAKER_01",
+      "text": "ਤਕਰੀਬਨ ਸ਼ੁਰੂ ਤੋਂ ਹੀ ਕਰਦੇ ਆਏ ਪਹਿਲਾਂ ਬਾਪੂ ਜੀ ਦਾਦਾ ਜੀ ਕਰ ਦਿੰਦੇ ਉਸ ਤੋਂ ਬਾਅਦ ਡੈਡੀ ਉਸ ਤੋਂ ਬਾਅਦ ਮੈਂ ਜੰਜ ਸੁਰਤ ਸੰਭਲੀ ਇਸ ਦੇ ਕੰਮ ਤੇ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 3,
+      "start": 21.633,
+      "end": 39.873,
+      "speaker": "SPEAKER_00",
+      "text": "ਉਦੋਂ ਤੋਂ ਹੀ ਇੱਧਰਲੇ ਪਾਸੇ ਨੂੰ। ਠੀਕ ਹੈ। ਤੇ ਵੀਰ ਜੀ ਆਪਣੇ ਕੋਲ ਕਿੰਨੇ ਪਸ਼ੂ ਆ ਇਸ ਟਾਈਮ? ਇਸ ਟਾਈਮ ਜੀ ਆਪਣੇ ਕੋਲ 10 ਪਸ਼ੂ। 10 ਪਸ਼ੂ ਆ ਦੁੱਧ ਵਾਲੇ ਤੇ ਨਾਲ ਜਿਹੜੇ ਛੋਟੇ ਬੱਚੇ ਨਾਲ ਰਲਾ ਕੇ ਹੈਨਾ। ਪੰਜ ਦੁੱਧ ਵਾਲੇ ਜੀ ਬਾਕੀ ਛੋਟੇ। ਠੀਕ ਹੈ। ਕੀ ਲੱਗਦਾ ਵੀਰ ਜੀ ਤੁਹਾਨੂੰ ਅੱਜ ਦੇ ਟਾਈਮ ਚ ਮਤਲਬ ਦੁੱਧ ਦੇ ਕਿੱਤੇ ਦੇ ਵਿੱਚੋਂ ਤੁਹਾਨੂੰ ਵਧੀਆ ਪ੍ਰੋਫਿਟ ਹੋ ਰਿਹਾ?",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 4,
+      "start": 22.933,
+      "end": 23.133,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 5,
+      "start": 40.532,
+      "end": 46.712,
+      "speaker": "SPEAKER_02",
+      "text": "ਵੀਰ ਜੀ ਦੁੱਧ ਦੇ ਕਿੱਤੇ ਦੇ ਵਿੱਚੋਂ ਵੀ ਹੋ ਰਿਹਾ ਜੀ ਤੇ ਦੁੱਧ ਦੇ ਨਾਲੋਂ ਜਾਨਵਰ ਸਾਂਭਣ ਦੇ ਤੇ ਸੇਲ ਕਰਨ ਦੇ ਵਿੱਚ ਵੀ ਜਿਆਦਾ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 6,
+      "start": 46.953,
+      "end": 53.253,
+      "speaker": "SPEAKER_00",
+      "text": "ਉਹਦੇ ਵਿੱਚ ਵੀ ਫਾਇਦਾ ਹੈਗਾ। ਠੀਕ ਹੈ, ਬਾਕੀ ਤੁਸੀਂ ਜ਼ਿਆਦਾ ਬਰੀਡ ਲੈਵਲ ਤੇ ਕੰਮ ਕਰ ਰਹੇ ਹੋ ਹੈ ਨਾ? ਦੁੱਧ ਨਾਲੋਂ ਜ਼ਿਆਦਾ ਬਰੀਡ ਤੇ ਧਿਆਨ ਰੱਖੋ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 7,
+      "start": 53.252,
+      "end": 53.992,
+      "speaker": "SPEAKER_02",
+      "text": "ਜਿਆਦਾ ਬਰੇਡ ਤੇ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 8,
+      "start": 53.993,
+      "end": 56.993,
+      "speaker": "SPEAKER_00",
+      "text": "ਕਈ ਬੱਚੇ ਤਿਆਰ ਕਰਕੇ ਉਹਨਾਂ ਨੂੰ ਸੇਲ ਕਰਨ ਦੇ ਵਿੱਚ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 9,
+      "start": 54.733,
+      "end": 57.732,
+      "speaker": "SPEAKER_02",
+      "text": "ਤਿਆਰ ਕਰਕੇ ਉਹਨਾਂ ਨੂੰ ਸੇਲ ਕਰਨ ਦੇ ਵਿੱਚ ਜ਼ਿਆਦਾ ਮੁਨਾਫਾ ਹੈ ਜੀ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 10,
+      "start": 57.853,
+      "end": 58.853,
+      "speaker": "SPEAKER_00",
+      "text": "ਠੀਕ ਹੈ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 11,
+      "start": 58.653,
+      "end": 60.893,
+      "speaker": "SPEAKER_02",
+      "text": "ਪਲਾਸੀ ਨੇਲੀ ਰਾਵੀ ਹੈ ਜੀ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 12,
+      "start": 61.192,
+      "end": 61.512,
+      "speaker": "SPEAKER_00",
+      "text": "ਅੱਛਾ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 13,
+      "start": 61.513,
+      "end": 61.993,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "pa-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 222,
+  "elapsed_sec": 7.77,
+  "rtf": 0.1253,
+  "clip_dur_sec": 62.0,
+  "transcribed_at_utc": "2026-08-21T10:33:04+00:00",
+  "n_segments": 14,
+  "n_skipped_short": 1,
+  "detected_language": "pa-IN",
+  "languages_seen": [
+    "pa-IN"
+  ]
+}

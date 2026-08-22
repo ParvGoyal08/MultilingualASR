@@ -1,0 +1,136 @@
+{
+  "clip_id": "Iare1Emeueg__16_69",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.85,
+      "end": 1.24,
+      "speaker": "SPEAKER_00",
+      "text": "हाय मामा",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 1,
+      "start": 1.93,
+      "end": 4.33,
+      "speaker": "SPEAKER_01",
+      "text": "हम्म, कब से ट्राई कर रही हूँ मैं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 2,
+      "start": 5.83,
+      "end": 9.99,
+      "speaker": "SPEAKER_01",
+      "text": "ये लैपटॉप में कुछ प्रॉब्लम है, सर्विसिंग करानी पड़ेगी शायद, पंटी को बोलना पड़ेगा।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 3,
+      "start": 10.39,
+      "end": 16.04,
+      "speaker": "SPEAKER_00",
+      "text": "हाँ नेटवर्क में प्रॉब्लम है, कितनी बार बोला लैपटॉप बिल्कुल ठीक है। एनीवे आप बताओ आप कैसे हो, आपकी तबीयत कैसी है?",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 4,
+      "start": 16.61,
+      "end": 28.21,
+      "speaker": "SPEAKER_01",
+      "text": "ठीक हूँ बेटा। चल रहा है। ओह आई फॉरगॉट टू टेल यू। चक्र हीलिंग जॉइन करी है मैंने। इट्स सो इंटरेस्टिंग। इट कीप्स यू फिजिकली एंड इमोशनली हेल्थी। यंग लोग भी आते हैं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 5,
+      "start": 29.46,
+      "end": 30.86,
+      "speaker": "SPEAKER_01",
+      "text": "तुझे भी ट्राई करना चाहिए।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 6,
+      "start": 31.37,
+      "end": 32.75,
+      "speaker": "SPEAKER_00",
+      "text": "मामा चक्राचा चज्वा आहे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 7,
+      "start": 33.84,
+      "end": 39.65,
+      "speaker": "SPEAKER_01",
+      "text": "सो बोरिंग। अच्छा वो फोटोज देखे व्हाट्सएप पे जो मैंने भेजे थे? सच स्वीट गर्ल्स ना।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 8,
+      "start": 40.15,
+      "end": 41.93,
+      "speaker": "SPEAKER_00",
+      "text": "नाही सॉरी मा आय हॅव जस्ट बीन रिअली बिज़ी",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 9,
+      "start": 43.33,
+      "end": 45.37,
+      "speaker": "SPEAKER_01",
+      "text": "वो क्या था? कोई है तुम्हारे साथ?",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 10,
+      "start": 46.04,
+      "end": 49.27,
+      "speaker": "SPEAKER_00",
+      "text": "नहीं, क्यों? कुछ नहीं, व्हाट डू यू से दैट? कोई नहीं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 11,
+      "start": 49.81,
+      "end": 52.96,
+      "speaker": "SPEAKER_01",
+      "text": "अरे कोई है? अभी अभी तुम्हारे पीछे किसी को",
+      "skipped": null,
+      "lang": "hi-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 140,
+  "elapsed_sec": 4.39,
+  "rtf": 0.0828,
+  "clip_dur_sec": 53.0,
+  "transcribed_at_utc": "2026-08-22T06:33:20+00:00",
+  "clip_language": null,
+  "n_segments": 12,
+  "n_skipped_short": 0,
+  "detected_language": "hi-IN",
+  "languages_seen": [
+    "en-IN",
+    "hi-IN",
+    "mr-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 11
+}

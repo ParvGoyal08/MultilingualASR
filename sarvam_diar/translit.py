@@ -242,7 +242,6 @@ def apply_to_payload(payload: dict, table: dict[str, dict[str, str]]) -> tuple[d
                 new.append(t)
         s["text"] = " ".join(new)
     out["n_words"] = sum(len((s.get("text") or "").split()) for s in out["segments"])
-    out["translit_model"] = table.get("__model__", "")
     out["translit_tokens_changed"] = n
     out["transcribed_at_utc"] = now_utc_iso()
     return out, n

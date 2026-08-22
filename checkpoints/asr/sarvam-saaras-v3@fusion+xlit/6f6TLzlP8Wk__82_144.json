@@ -1,0 +1,198 @@
+{
+  "clip_id": "6f6TLzlP8Wk__82_144",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.01,
+      "end": 2.42,
+      "speaker": "SPEAKER_01",
+      "text": "ਤੋ ਇਕੱਲੇ ਇਕੱਲੇ ਪਸ਼ੂ ਦੇ ਬਾਰੇ ਡਿਟੇਲ ਦੇ ਵਿੱਚ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 1,
+      "start": 4.35,
+      "end": 5.19,
+      "speaker": "SPEAKER_01",
+      "text": "ਬਾਈ ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 2,
+      "start": 5.15,
+      "end": 6.33,
+      "speaker": "SPEAKER_00",
+      "text": "ਬਾਈ ਜੀ ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 3,
+      "start": 6.96,
+      "end": 8.16,
+      "speaker": "SPEAKER_01",
+      "text": "ਬਾਈ ਕੀ ਨਾਮ ਆਪਣਾ?",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 4,
+      "start": 8.07,
+      "end": 9.21,
+      "speaker": "SPEAKER_00",
+      "text": "ਭਾਈ ਜੀ ਨਿਰਮਲ ਸਿੰਘ ਜੀ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 5,
+      "start": 9.39,
+      "end": 12.53,
+      "speaker": "SPEAKER_01",
+      "text": "ਠੀਕ ਹੈ ਬਾਈ, ਕਿੰਨਾ ਚਿਰ ਹੋ ਗਿਆ ਆਪਾਂ ਨੂੰ ਬਾਈ ਪਸ਼ੂ ਪਾਲਣ ਦਾ ਕਿੱਤਾ ਕਰਦੇ?",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 6,
+      "start": 12.72,
+      "end": 21.54,
+      "speaker": "SPEAKER_00",
+      "text": "ਬਾਈ ਤਕਰੀਬਨ ਸ਼ੁਰੂ ਤੋਂ ਹੀ ਕਰਦੇ ਆਏ ਪਹਿਲਾਂ ਬਾਪੂ ਜੀ ਦਾਦਾ ਜੀ ਕਰਦੇ ਹੁੰਦੇ ਉਸ ਤੋਂ ਬਾਅਦ ਡੈਡੀ ਉਸ ਤੋਂ ਬਾਅਦ ਮੈਂ ਜੰਜ ਸਰਤ ਸੰਭਲੀ ਇਸ ਤੇ ਕੰਮ ਤੇ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 7,
+      "start": 21.63,
+      "end": 26.31,
+      "speaker": "SPEAKER_01",
+      "text": "ਉਦੋਂ ਤੋਂ ਹੀ ਇੱਧਰਲੇ ਪਾਸੇ ਨੂੰ ਆ। ਠੀਕ ਹੈ। ਤੇ ਵੀਰ ਜੀ ਆਪਣੇ ਕੋਲ ਕਿੰਨੇ ਪਸ਼ੂ ਆ ਇਸ ਟਾਈਮ?",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 8,
+      "start": 26.79,
+      "end": 28.68,
+      "speaker": "SPEAKER_00",
+      "text": "ਇਸ ਟਾਈਮ ਜੀ ਆਪਣੇ ਕੋਲੇ 10 ਪਸੂਟ ਹੈ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 9,
+      "start": 28.95,
+      "end": 32.61,
+      "speaker": "SPEAKER_01",
+      "text": "10 ਪਸ਼ੂ ਆ ਦੁੱਧ ਵਾਲੇ ਤੇ ਨਾਲ ਜਿਹੜੇ ਛੋਟੇ ਬੱਚੇ ਨਾਲ ਰਲਾ ਕੇ ਹੈ ਨਾ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 10,
+      "start": 32.75,
+      "end": 34.32,
+      "speaker": "SPEAKER_00",
+      "text": "ਪੰਜ ਦੁੱਧ ਵਾਲੇ ਜੀ ਬਾਕੀ ਛੋਟੇ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 11,
+      "start": 34.45,
+      "end": 39.87,
+      "speaker": "SPEAKER_01",
+      "text": "ਠੀਕ ਹੈ, ਕੀ ਲੱਗਦਾ ਵੀਰ ਜੀ ਤੁਹਾਨੂੰ ਅੱਜ ਦੇ ਟਾਈਮ ਚ ਮਤਲਬ ਦੁੱਧ ਦੇ ਕਿੱਤੇ ਦੇ ਵਿੱਚੋਂ ਤੁਹਾਨੂੰ ਵਧੀਆ ਪ੍ਰੋਫਿਟ ਹੋ ਰਿਹਾ?",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 12,
+      "start": 40.49,
+      "end": 46.72,
+      "speaker": "SPEAKER_00",
+      "text": "ਵੀਰ ਜੀ ਦੁੱਧ ਦੇ ਕਿੱਤੇ ਦੇ ਵਿੱਚੋਂ ਵੀ ਹੋ ਰਿਹਾ ਜੀ ਤੇ ਦੁੱਧ ਦੇ ਨਾਲੋਂ ਜਾਨਵਰ ਸਾਂਭਣ ਦੇ ਤੇ ਸੇਲ ਕਰਨ ਦੇ ਵਿੱਚ ਵੀ ਜਿਆਦਾ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 13,
+      "start": 46.94,
+      "end": 53.38,
+      "speaker": "SPEAKER_01",
+      "text": "ਉਹਦੇ ਚ ਵੀ ਫਾਇਦਾ ਹੈਗਾ। ਠੀਕ ਹੈ। ਬਾਕੀ ਤੁਸੀਂ ਜਿਆਦਾ ਬਰੀਡ ਲੈਵਲ ਤੇ ਕੰਮ ਕਰ ਰਹੇ ਆ ਹਨਾ? ਦੁੱਧ ਨਾਲੋਂ ਜਿਆਦਾ ਬਰੀਡ ਤੇ ਧਿਆਨ ਰੱਖੋ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 14,
+      "start": 52.73,
+      "end": 57.73,
+      "speaker": "SPEAKER_00",
+      "text": "ਤੇ ਧਿਆਨ ਰੱਖੋ। ਜਿਆਦਾ ਬਰੇਡ ਤੇ ਕਿਉਂਕਿ ਜੀ ਬੱਚੇ ਤਿਆਰ ਕਰਕੇ ਉਹਨਾਂ ਨੂੰ ਸੇਲ ਕਰਨ ਦੇ ਵਿੱਚ ਜਿਆਦਾ ਮੁਨਾਫਾ ਹੈ ਜੀ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 15,
+      "start": 55.37,
+      "end": 55.83,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 16,
+      "start": 57.84,
+      "end": 58.9,
+      "speaker": "SPEAKER_01",
+      "text": "ਠੀਕ ਹੈ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 17,
+      "start": 58.65,
+      "end": 61.99,
+      "speaker": "SPEAKER_00",
+      "text": "ਇਹ ਪਲਾਸੀ ਨੀਲੀ ਰਾਵੀ ਹੈ ਜੀ। ਅੱਛਾ। ਇਹ ਪਲਾਸੀ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 18,
+      "start": 61.15,
+      "end": 61.55,
+      "speaker": "SPEAKER_01",
+      "text": "ਅੱਛਾ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 224,
+  "elapsed_sec": 13.18,
+  "rtf": 0.2126,
+  "clip_dur_sec": 62.0,
+  "transcribed_at_utc": "2026-08-22T06:33:20+00:00",
+  "clip_language": null,
+  "n_segments": 19,
+  "n_failed_segments": 0,
+  "n_skipped_short": 0,
+  "detected_language": "pa-IN",
+  "languages_seen": [
+    "pa-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 2
+}

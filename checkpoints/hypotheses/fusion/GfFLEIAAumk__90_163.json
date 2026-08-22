@@ -1,0 +1,21 @@
+{
+  "model": "fusion",
+  "clip_id": "GfFLEIAAumk__90_163",
+  "status": "ok",
+  "oracle": false,
+  "n_turns": 7,
+  "n_speakers_hyp": 2,
+  "clip_dur_sec": 73.0,
+  "max_end": 72.99,
+  "elapsed_sec": null,
+  "rtf": null,
+  "fused_from": [
+    "community-1",
+    "reverb-v2",
+    "diarizen-large"
+  ],
+  "threshold": 0.5,
+  "min_dur": 0.2,
+  "weights": "equal",
+  "diarized_at_utc": "2026-08-21T11:59:45+00:00"
+}

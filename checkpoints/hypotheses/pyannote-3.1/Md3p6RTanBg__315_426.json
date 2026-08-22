@@ -1,0 +1,10 @@
+{
+  "model": "pyannote-3.1",
+  "clip_id": "Md3p6RTanBg__315_426",
+  "status": "ok",
+  "oracle": false,
+  "n_turns": 18,
+  "n_speakers_hyp": 3,
+  "clip_dur_sec": 111.0,
+  "imported_from": "error_explorer export"
+}

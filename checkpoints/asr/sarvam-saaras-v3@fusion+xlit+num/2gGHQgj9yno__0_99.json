@@ -1,0 +1,274 @@
+{
+  "clip_id": "2gGHQgj9yno__0_99",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.29,
+      "end": 6.57,
+      "speaker": "SPEAKER_00",
+      "text": "ગુડ મોર્નિંગ, જય શ્રી કૃષ્ણ. એક નવા વ્લોગમાં તમારા બધાનું એકવાર ફરીથી સ્વાગત છે. વાગ્યા છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 1,
+      "start": 7.83,
+      "end": 15.74,
+      "speaker": "SPEAKER_00",
+      "text": "આઠ અને અમે લોકોએ નાહી લીધું છે દીપ અને હર્ષ સિવાય આ ભાઈ અહીંયા ઊભા છે શું કરો છો તમે દીપ?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 2,
+      "start": 16.89,
+      "end": 19.91,
+      "speaker": "SPEAKER_01",
+      "text": "હું વિચારું છું કે શું કેવું કપડાં કયા ઉપર કેવું.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 3,
+      "start": 20.01,
+      "end": 22.39,
+      "speaker": "SPEAKER_00",
+      "text": "અચ્છા, તો મારું આ છે ને મેચિંગ હું પહેરીશ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 4,
+      "start": 23.13,
+      "end": 25.15,
+      "speaker": "SPEAKER_01",
+      "text": "વીસ ફુલ ડાઉન ફુલ ડાઉન",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 5,
+      "start": 25.11,
+      "end": 28.77,
+      "speaker": "SPEAKER_00",
+      "text": "કોરડાવાળો ને એમાં જે કલર્સ છે ગમે એક કલર ફિટ કરીને પહેરી લેવાનું.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 6,
+      "start": 28.68,
+      "end": 29.2,
+      "speaker": "SPEAKER_01",
+      "text": "ಎಲ್ಲಾ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 7,
+      "start": 29.3,
+      "end": 37.18,
+      "speaker": "SPEAKER_00",
+      "text": "લાલ નથી, પિંક છે, ઓરેન્જ છે. ચલો તો તમે કપડાં તમારા ચુઝ કરી લો, અમે જઈએ બીજા બધા પાસે. પપ્પાઓ ગોઠવાઈ ગયા છે સોફે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 8,
+      "start": 38.2,
+      "end": 38.59,
+      "speaker": "SPEAKER_01",
+      "text": "বলো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 9,
+      "start": 38.97,
+      "end": 39.75,
+      "speaker": "SPEAKER_00",
+      "text": "જય શ્રી કૃષ્ણા",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 10,
+      "start": 39.83,
+      "end": 40.77,
+      "speaker": "SPEAKER_01",
+      "text": "જય શ્રી કૃષ્ણા",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 11,
+      "start": 42.15,
+      "end": 43.59,
+      "speaker": "SPEAKER_00",
+      "text": "જો પપ્પાએ બી નાહી લીધું છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 12,
+      "start": 43.83,
+      "end": 45.97,
+      "speaker": "SPEAKER_01",
+      "text": "અગિયાર નો લાઈન છે, છ સાડા છ એ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 13,
+      "start": 44.75,
+      "end": 49.57,
+      "speaker": "SPEAKER_00",
+      "text": "હં, પપ્પા એમને કપડાં સાઈડમાં લઈને બેસી ગયા છે ફાઇનલ કરીને.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 14,
+      "start": 46.55,
+      "end": 47.17,
+      "speaker": "SPEAKER_01",
+      "text": "પપ્પા એમને",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 15,
+      "start": 48.85,
+      "end": 51.63,
+      "speaker": "SPEAKER_01",
+      "text": "ફાઇનલ કરીને ફૂલ ડેકોરેશનના ઈડિયા છે જો.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 16,
+      "start": 52.05,
+      "end": 52.63,
+      "speaker": "SPEAKER_00",
+      "text": "હમ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 17,
+      "start": 52.47,
+      "end": 53.61,
+      "speaker": "SPEAKER_01",
+      "text": "It's અ નોર્મલ કિડ",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 18,
+      "start": 54.17,
+      "end": 58.31,
+      "speaker": "SPEAKER_00",
+      "text": "ડેકોરેશનના ફૂલ ને બધું આવી ગયું છે, આસોપાલવનું તોરણ બી રેડી છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 19,
+      "start": 55.97,
+      "end": 56.49,
+      "speaker": "SPEAKER_01",
+      "text": "അപ്പൊ അത്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 20,
+      "start": 58.31,
+      "end": 62.57,
+      "speaker": "SPEAKER_01",
+      "text": "અમારા ફેમિલીમાં છે ડેકોરેશન સ્પેશિયાલિસ્ટ અમારા બાપુજી, તો એ હમણાં 8:30 એ આવશે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 21,
+      "start": 62.83,
+      "end": 63.39,
+      "speaker": "SPEAKER_00",
+      "text": "ಹ್ಮ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 22,
+      "start": 63.29,
+      "end": 76.96,
+      "speaker": "SPEAKER_01",
+      "text": "એટલે જે મારા સગાઈમાં નહીં આ કંકુ પગલામાં ડેકોરેશન કર્યું હતું તમે જોયો હતું વિડીયો. તો એ જે સાત આઠ ના ઉપર વ્યુ આવેલા છે ડેકોરેશન એમણે જ કર્યું હતું. તો અત્યારે હમણાં સાડા આઠે હું હર્ષિલ બાપુજી થઈશું દેરાવી તું થઈશ તું.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 23,
+      "start": 76.12,
+      "end": 76.69,
+      "speaker": "SPEAKER_00",
+      "text": "ಹಾ ಅಷ್ಟೇ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 24,
+      "start": 77.45,
+      "end": 81.51,
+      "speaker": "SPEAKER_01",
+      "text": "ઓકે, અમે જઈશું અને મમ્મી નાસ્તો બનાવે છે બધા માટે અત્યારે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 25,
+      "start": 81.27,
+      "end": 89.35,
+      "speaker": "SPEAKER_00",
+      "text": "જય શ્રી કૃષ્ણ. જય શ્રી કૃષ્ણ. શું કરો છો મમ્મી? કાંઈ નઈ જો. હું વિડીયો ઉતારવા આવી ત્યાં ચા મમ્મીએ મૂકી દીધી.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 26,
+      "start": 91.11,
+      "end": 98.76,
+      "speaker": "SPEAKER_00",
+      "text": "ચલો હા હું દૂધ બનાવી નાખું અમે બંને નાસ્તો કરી લઈએ હવે તમે લોકો વ્લોગમાં બન્યા રહો હવે આવશે અમે જે ડેકોરેશન કરીશું એ",
+      "skipped": null,
+      "lang": "gu-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 275,
+  "elapsed_sec": 16.8,
+  "rtf": 0.1697,
+  "clip_dur_sec": 99.0,
+  "transcribed_at_utc": "2026-08-22T06:33:20+00:00",
+  "clip_language": null,
+  "n_segments": 27,
+  "n_failed_segments": 0,
+  "n_skipped_short": 0,
+  "detected_language": "gu-IN",
+  "languages_seen": [
+    "bn-IN",
+    "en-IN",
+    "gu-IN",
+    "kn-IN",
+    "ml-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 5
+}

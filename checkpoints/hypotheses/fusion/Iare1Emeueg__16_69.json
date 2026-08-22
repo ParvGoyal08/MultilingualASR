@@ -1,0 +1,21 @@
+{
+  "model": "fusion",
+  "clip_id": "Iare1Emeueg__16_69",
+  "status": "ok",
+  "oracle": false,
+  "n_turns": 25,
+  "n_speakers_hyp": 2,
+  "clip_dur_sec": 53.0,
+  "max_end": 52.96,
+  "elapsed_sec": null,
+  "rtf": null,
+  "fused_from": [
+    "community-1",
+    "reverb-v2",
+    "diarizen-large"
+  ],
+  "threshold": 0.5,
+  "min_dur": 0.2,
+  "weights": "equal",
+  "diarized_at_utc": "2026-08-21T11:59:45+00:00"
+}

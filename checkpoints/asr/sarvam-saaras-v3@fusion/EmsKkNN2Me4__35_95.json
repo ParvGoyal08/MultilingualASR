@@ -1,0 +1,296 @@
+{
+  "clip_id": "EmsKkNN2Me4__35_95",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.01,
+      "end": 2.31,
+      "speaker": "SPEAKER_00",
+      "text": "കപ്പയുണ്ട് വെണ്ടയുണ്ട് ഒരേപോലെയാണ് വളർന്നു പോകുന്നത്",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 1,
+      "start": 2.27,
+      "end": 3.72,
+      "speaker": "SPEAKER_01",
+      "text": "ആ ഇത് ഇത് ഇത് കപ്പാ",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 2,
+      "start": 3.86,
+      "end": 4.13,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 3,
+      "start": 4.43,
+      "end": 6.11,
+      "speaker": "SPEAKER_01",
+      "text": "ഇത് കപ്പാ ഇത് വേണ്ട",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 4,
+      "start": 6.14,
+      "end": 6.42,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 5,
+      "start": 6.53,
+      "end": 14.34,
+      "speaker": "SPEAKER_01",
+      "text": "ഇതില് ഒരു 22 കായ ഇപ്പോ ഒരു ബ്രാഞ്ചിൽ നിന്ന് തന്നെ കിട്ടിയിട്ടുണ്ട്. ഒരു മെയിൻ തണ്ട് നിന്ന് തന്നെ കിട്ടിയിട്ടുണ്ട്. ഒന്ന്, രണ്ട്, മൂന്ന്, നാല്, അഞ്ച് ബ്രാഞ്ച് വേറെയുണ്ട്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 6,
+      "start": 11.69,
+      "end": 12.01,
+      "speaker": "SPEAKER_00",
+      "text": "ആ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 7,
+      "start": 14.39,
+      "end": 16.58,
+      "speaker": "SPEAKER_00",
+      "text": "ആ അതായത് ഇത് ഇനം ജാനി.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 8,
+      "start": 16.35,
+      "end": 18.01,
+      "speaker": "SPEAKER_01",
+      "text": "Idi Anjani",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 9,
+      "start": 17.57,
+      "end": 18.3,
+      "speaker": "SPEAKER_00",
+      "text": "യാ ഞാനാണ്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 10,
+      "start": 18.44,
+      "end": 21.83,
+      "speaker": "SPEAKER_01",
+      "text": "ഇതാണ് ഏറ്റവും നല്ലത് തന്നെ. ഇത് മെയിൻ തണ്ട്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 11,
+      "start": 21.83,
+      "end": 22.08,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 12,
+      "start": 22.25,
+      "end": 24.43,
+      "speaker": "SPEAKER_01",
+      "text": "ഇതില് ഒന്ന്, രണ്ട്, മൂന്ന്, നാല് ബ്രാഞ്ച്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 13,
+      "start": 24.55,
+      "end": 24.85,
+      "speaker": "SPEAKER_00",
+      "text": "ಹಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 14,
+      "start": 25.0,
+      "end": 27.05,
+      "speaker": "SPEAKER_01",
+      "text": "ഈ ഒരു തണ്ടിൽ നിന്ന് 20 എണ്ണം ഇപ്പോ ചെത്തിയിട്ടുണ്ട്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 15,
+      "start": 27.07,
+      "end": 28.98,
+      "speaker": "SPEAKER_00",
+      "text": "അതായത് മെയിൻ തണ്ടും നിന്ന് തന്നെ ഇരുവണ്ണം പൊട്ടിച്ചിട്ടുണ്ട്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 16,
+      "start": 27.99,
+      "end": 36.45,
+      "speaker": "SPEAKER_01",
+      "text": "ഒന്ന് രണ്ട് മൂന്ന് നാല് അഞ്ച് ആറ് ഏഴ് എട്ട് ഒമ്പത് പത്ത് പതിനൊന്ന് പന്ത്രണ്ട് പതിനൊന്ന് പതിനോട് പതിനഞ്ച് പതിനാറ് പതിനഞ്ച് പതിനൊന്ന് പതിനോട് പതിനൊന്ന് പതിനൊന്ന് പതിനൊന്ന്",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 17,
+      "start": 36.53,
+      "end": 36.85,
+      "speaker": "SPEAKER_00",
+      "text": "ಹ್ಮ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 18,
+      "start": 36.85,
+      "end": 39.27,
+      "speaker": "SPEAKER_01",
+      "text": "ഇനിയൊരു 10 15 കായ വരുന്നുണ്ട്",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 19,
+      "start": 39.29,
+      "end": 42.37,
+      "speaker": "SPEAKER_00",
+      "text": "ഇതും വന്ന് 15 കായ കൂടി പൊട്ടിക്കാൻ പറ്റും, ഇതിപ്പോ നമ്മൾ വെണ്ട നട്ടിട്ടത്രേ?",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 20,
+      "start": 40.95,
+      "end": 41.37,
+      "speaker": "SPEAKER_01",
+      "text": "ഒന്ന്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 21,
+      "start": 42.62,
+      "end": 45.57,
+      "speaker": "SPEAKER_01",
+      "text": "ഇതിപ്പോ നട്ടിട്ട് 20-ഉം 40 ദിവസമായിട്ടുണ്ട്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 22,
+      "start": 45.57,
+      "end": 51.83,
+      "speaker": "SPEAKER_00",
+      "text": "40 ദിവസം. 40 ദിവസം ആയപ്പോഴേക്കും നമുക്ക് ഈ പറഞ്ഞ ഒരു 15-ഓളം വെണ്ടക്കായ നമ്മൾ പൊട്ടിച്ചു. അന്ന് തന്നെയാണോ നമ്മുടെ കപ്പയിൽ നാട്ടിയിട്ടുള്ള ഇത്?",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 23,
+      "start": 51.44,
+      "end": 54.03,
+      "speaker": "SPEAKER_01",
+      "text": "ആ കപ്പൽ നട്ടിട്ട് ഒപ്പം തന്നെയാണ് നട്ടുന്നത് വണ്ടി.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 24,
+      "start": 53.84,
+      "end": 55.97,
+      "speaker": "SPEAKER_00",
+      "text": "അതായത് ഒറ്റപ്പണി ഒറ്റപ്പണി.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 25,
+      "start": 55.37,
+      "end": 56.35,
+      "speaker": "SPEAKER_01",
+      "text": "ഒറ്റ പണി അത് തന്നെ",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 26,
+      "start": 56.05,
+      "end": 57.77,
+      "speaker": "SPEAKER_00",
+      "text": "ഒറ്റ പണിയില് നിങ്ങളൊന്ന് ആലോചിക്കുക.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 27,
+      "start": 56.81,
+      "end": 59.05,
+      "speaker": "SPEAKER_01",
+      "text": "നിങ്ങളൊന്ന് ആലോചിക്കുക. രണ്ട് കപ്പട ഇട്ടാൽ ഒരു ഒരു",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 28,
+      "start": 59.12,
+      "end": 59.97,
+      "speaker": "SPEAKER_00",
+      "text": "ഒരു വെണ്ട നടുക.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 29,
+      "start": 59.31,
+      "end": 59.97,
+      "speaker": "SPEAKER_01",
+      "text": "ഒരു വെണ്ട നട്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 171,
+  "elapsed_sec": 33.52,
+  "rtf": 0.5587,
+  "clip_dur_sec": 60.0,
+  "transcribed_at_utc": "2026-08-21T14:53:45+00:00",
+  "clip_language": null,
+  "n_segments": 30,
+  "n_skipped_short": 3,
+  "detected_language": "ml-IN",
+  "languages_seen": [
+    "en-IN",
+    "kn-IN",
+    "ml-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0"
+}

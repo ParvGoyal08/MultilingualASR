@@ -1,0 +1,264 @@
+{
+  "clip_id": "2iMXYxBTwbM__339_401",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 1.25,
+      "end": 2.66,
+      "speaker": "SPEAKER_01",
+      "text": "म्हारू जेवायला का नाही बसला?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 1,
+      "start": 3.03,
+      "end": 4.07,
+      "speaker": "SPEAKER_00",
+      "text": "नाही उघडावं ते नाही मला.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 2,
+      "start": 4.19,
+      "end": 4.53,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 3,
+      "start": 4.75,
+      "end": 6.87,
+      "speaker": "SPEAKER_00",
+      "text": "नाही अगं खाली जाऊ दे मी सकाळी जास्त.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 4,
+      "start": 7.31,
+      "end": 8.25,
+      "speaker": "SPEAKER_01",
+      "text": "जास्त खाल्लेलं.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 5,
+      "start": 8.21,
+      "end": 8.82,
+      "speaker": "SPEAKER_00",
+      "text": "हम्म",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 6,
+      "start": 11.51,
+      "end": 12.02,
+      "speaker": "SPEAKER_00",
+      "text": "मी तुझ्याशी",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 7,
+      "start": 11.51,
+      "end": 15.83,
+      "speaker": "SPEAKER_01",
+      "text": "मी तुझ्या शेजारी बसली आहे आणि तुझं माझ्याकडे लक्ष नाही आहे, मोबाईलमध्ये लक्ष.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 8,
+      "start": 15.74,
+      "end": 17.81,
+      "speaker": "SPEAKER_00",
+      "text": "जा ग मोबाईल जरा फेकून तुझ्यासाठी काय होणार?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 9,
+      "start": 18.25,
+      "end": 20.53,
+      "speaker": "SPEAKER_01",
+      "text": "एवढी ओवर ॲक्टिंग कोणी करायला सांगितली आहे का?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 10,
+      "start": 18.43,
+      "end": 18.95,
+      "speaker": "SPEAKER_00",
+      "text": "വീഡിയോ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 11,
+      "start": 21.29,
+      "end": 23.93,
+      "speaker": "SPEAKER_01",
+      "text": "मोबाईल कोणाचा शेजारी बायकवाला फेकून देतात का?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 12,
+      "start": 24.31,
+      "end": 27.03,
+      "speaker": "SPEAKER_00",
+      "text": "बरं घेतो आता आता घेतो मी मला काय प्रॉब्लेम आहे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 13,
+      "start": 24.7,
+      "end": 28.53,
+      "speaker": "SPEAKER_01",
+      "text": "म्हणजे तू ओवर ऍक्ट करतो आहेस आता घेतो मी मला काय प्रॉब्लेम आहे म्हणजे नक्कीच काहीतरी तुझं भानगड आहे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 14,
+      "start": 29.09,
+      "end": 31.05,
+      "speaker": "SPEAKER_00",
+      "text": "का मोबाईल फेकून दिल्यावर मनगड असते थोडी.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 15,
+      "start": 31.15,
+      "end": 35.56,
+      "speaker": "SPEAKER_01",
+      "text": "मग एवढं ओवररिएक्ट कोण करतं का? तू माझ्या शेजारी येऊन स्वतःहून बसला असता तर मी मोबाईल फेकून दिला असता का?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 16,
+      "start": 36.39,
+      "end": 38.2,
+      "speaker": "SPEAKER_00",
+      "text": "उगाच काहीतरी खरं समज डोक्यात घेऊन बघ.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 17,
+      "start": 38.0,
+      "end": 42.03,
+      "speaker": "SPEAKER_01",
+      "text": "गैरसमज नाहीये, मी हे तुझं झालं ना आठवडाभर बघतीये, आठवड किती झाली आहे तुझी.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 18,
+      "start": 40.77,
+      "end": 43.95,
+      "speaker": "SPEAKER_00",
+      "text": "काय किती चालले तुझे? मोबाईल चेक कर काय असेल तर बघ त्यात.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 19,
+      "start": 43.93,
+      "end": 46.62,
+      "speaker": "SPEAKER_01",
+      "text": "डिलीट केल्यावर काय घंटा चेक करणार आहे?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 20,
+      "start": 47.26,
+      "end": 48.95,
+      "speaker": "SPEAKER_00",
+      "text": "डोक्यात तो भुसा भरायचा काढून टाक पहिला.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 21,
+      "start": 48.93,
+      "end": 51.13,
+      "speaker": "SPEAKER_01",
+      "text": "वाह! माझ्या डोक्यात घुसा घुसा.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 22,
+      "start": 50.69,
+      "end": 51.89,
+      "speaker": "SPEAKER_00",
+      "text": "कसले डाऊट शिकते आहेस तू?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 23,
+      "start": 51.83,
+      "end": 58.55,
+      "speaker": "SPEAKER_01",
+      "text": "एक मिनिट, डाऊट का वाटतायत? म्हणजे आधी मी तुझ्याशी बोलायची, शेअर करायची हे तुला छान वाटायचं आणि आता तुला डाऊट वाटतायत.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 24,
+      "start": 52.47,
+      "end": 53.15,
+      "speaker": "SPEAKER_00",
+      "text": "ಕೈ ಇಟ್ಕೊಳ್ಳಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 25,
+      "start": 59.33,
+      "end": 61.99,
+      "speaker": "SPEAKER_00",
+      "text": "तुला म्हणायचं काय सांग क्लिअर कर मला तुला म्हणायचं.",
+      "skipped": null,
+      "lang": "mr-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 205,
+  "elapsed_sec": 16.03,
+  "rtf": 0.2586,
+  "clip_dur_sec": 62.0,
+  "transcribed_at_utc": "2026-08-22T06:33:20+00:00",
+  "clip_language": null,
+  "n_segments": 26,
+  "n_failed_segments": 0,
+  "n_skipped_short": 0,
+  "detected_language": "mr-IN",
+  "languages_seen": [
+    "en-IN",
+    "kn-IN",
+    "ml-IN",
+    "mr-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 0
+}

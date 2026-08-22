@@ -1,0 +1,14 @@
+{
+  "model": "diarizen-large",
+  "clip_id": "NuhdqCEuIBo__197_540",
+  "status": "ok",
+  "oracle": false,
+  "clip_dur_sec": 343.0,
+  "elapsed_sec": null,
+  "rtf": null,
+  "n_turns": 141,
+  "n_speakers_hyp": 3,
+  "max_end": 343.132,
+  "imported_from": "diarizen_rttm/NuhdqCEuIBo__197_540.rttm",
+  "diarized_at_utc": "2026-08-20T19:20:19+00:00"
+}

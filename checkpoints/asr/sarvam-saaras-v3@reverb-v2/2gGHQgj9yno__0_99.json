@@ -1,0 +1,204 @@
+{
+  "clip_id": "2gGHQgj9yno__0_99",
+  "system": "sarvam-saaras-v3@reverb-v2",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "reverb-v2",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.013,
+      "end": 15.713,
+      "speaker": "SPEAKER_01",
+      "text": "ગુડ મોર્નિંગ, જય શ્રી કૃષ્ણ. એક નવા વ્લોગમાં તમારા બધાનું એકવાર ફરીથી સ્વાગત છે. વાગ્યા છે આઠ અને અમે લોકોએ નાહી લીધું છે. દીપ અને હર્ષ સિવાય આ ભાઈ અહીંયા ઊભા છે. શું કરો છો તમે લીલી?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 1,
+      "start": 16.953,
+      "end": 19.613,
+      "speaker": "SPEAKER_00",
+      "text": "હું વિચારું છું કે શું કેવું કપડાં કયા ઉપર?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 2,
+      "start": 20.052,
+      "end": 22.332,
+      "speaker": "SPEAKER_01",
+      "text": "અચ્છા, તો મારું આ છે ને મેચિંગ હું પહેરી લઉં.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 3,
+      "start": 23.152,
+      "end": 24.932,
+      "speaker": "SPEAKER_00",
+      "text": "Wait full down, full down.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 4,
+      "start": 25.133,
+      "end": 37.213,
+      "speaker": "SPEAKER_01",
+      "text": "પુરડા વાળો ને એમાં જે કલર્સ છે ગમે એક કલર પીક કરીને પહેરી લેવાનું હોય. લાલ નથી, પિંક છે, ઓરેન્જ છે. ચલો તો તમે કપડા તમારા ચુઝ કરી લો, અમે જઈએ બીજા બધા પાસે. પપ્પા ગોઠવાઈ ગયા છે સોફે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 5,
+      "start": 38.213,
+      "end": 38.533,
+      "speaker": "SPEAKER_00",
+      "text": "বলো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 6,
+      "start": 38.993,
+      "end": 39.713,
+      "speaker": "SPEAKER_01",
+      "text": "જય શ્રી Krishna",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 7,
+      "start": 39.853,
+      "end": 40.733,
+      "speaker": "SPEAKER_00",
+      "text": "જય શ્રી Krishna",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 8,
+      "start": 42.153,
+      "end": 43.593,
+      "speaker": "SPEAKER_01",
+      "text": "જો પપ્પાએ બી નાહી લીધું છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 9,
+      "start": 43.853,
+      "end": 44.573,
+      "speaker": "SPEAKER_00",
+      "text": "ક્યારનો લાઈન છે?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 10,
+      "start": 44.772,
+      "end": 45.332,
+      "speaker": "SPEAKER_01",
+      "text": "Hmm",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 11,
+      "start": 45.373,
+      "end": 45.873,
+      "speaker": "SPEAKER_00",
+      "text": "6:30.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 12,
+      "start": 46.192,
+      "end": 49.572,
+      "speaker": "SPEAKER_01",
+      "text": "પપ્પા એમને કપડાં સાઈડમાં લઈને બેસી ગયા છે ફાઇનલ કરીને",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 13,
+      "start": 50.093,
+      "end": 51.613,
+      "speaker": "SPEAKER_00",
+      "text": "Full decoration ideas jo",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 14,
+      "start": 52.112,
+      "end": 52.612,
+      "speaker": "SPEAKER_01",
+      "text": "હમ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 15,
+      "start": 52.653,
+      "end": 53.613,
+      "speaker": "SPEAKER_00",
+      "text": "Normal",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 16,
+      "start": 54.213,
+      "end": 58.313,
+      "speaker": "SPEAKER_01",
+      "text": "ડેકોરેશનના ફૂલ ને બધું આવી ગયું છે, આસોપાલવનું તોરણ બી રેડી છે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 17,
+      "start": 58.312,
+      "end": 81.272,
+      "speaker": "SPEAKER_00",
+      "text": "હું ફેમિલીમાં છે ડેકોરેશન સ્પેશિયાલિસ્ટ અમારા બાપુજી તો એ હમણાં 8:30 એ આવશે. એટલે જે મારા સગાઈમાં નહીં આ કંકુ પગલામાં ડેકોરેશન કર્યું હતું તમે જોયો હતું વિડીયો તો એ જે શાક આંટ ઉપર વ્યુ આવેલા છે ડેકોરેશન એમણે જ કર્યું હતું તો અત્યારે હમણાં 8:30 એ હું હર્ષિલ બાપુજી થઈશું ધરાવી તું થઈશ તું ઓકે અમે જઈશું અને મમ્મી નાસ્તો બનાવે છે બધા માટે અત્યારે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 18,
+      "start": 62.853,
+      "end": 63.013,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 19,
+      "start": 81.273,
+      "end": 98.993,
+      "speaker": "SPEAKER_01",
+      "text": "જય શ્રી કૃષ્ણ. જય શ્રી કૃષ્ણ. હું કરો છો મમ્મી? કાઈ નઈ જો. હું વિડીયો ઉતારવા આવી ત્યાં ચા મમ્મીએ મૂકી દીધી. ચલો. હા હું દૂધ બનાવી નાખું. અમે બંને નાસ્તો કરી લઈએ હવે તમે લોકો વ્લોગમાં બન્યા રહો. હવે આવશે અમે જે ડેકોરેશન કરીશું એ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 258,
+  "elapsed_sec": 12.69,
+  "rtf": 0.1281,
+  "clip_dur_sec": 99.0,
+  "transcribed_at_utc": "2026-08-21T10:32:00+00:00",
+  "n_segments": 20,
+  "n_skipped_short": 1,
+  "detected_language": "gu-IN",
+  "languages_seen": [
+    "bn-IN",
+    "en-IN",
+    "gu-IN"
+  ]
+}

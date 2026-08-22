@@ -1,0 +1,21 @@
+{
+  "model": "fusion",
+  "clip_id": "90uAd6xpTPo__16_408",
+  "status": "ok",
+  "oracle": false,
+  "n_turns": 18,
+  "n_speakers_hyp": 4,
+  "clip_dur_sec": 392.0,
+  "max_end": 390.04,
+  "elapsed_sec": null,
+  "rtf": null,
+  "fused_from": [
+    "community-1",
+    "reverb-v2",
+    "diarizen-large"
+  ],
+  "threshold": 0.5,
+  "min_dur": 0.2,
+  "weights": "equal",
+  "diarized_at_utc": "2026-08-21T11:59:45+00:00"
+}

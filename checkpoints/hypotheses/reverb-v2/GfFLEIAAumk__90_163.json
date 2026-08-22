@@ -1,0 +1,10 @@
+{
+  "model": "reverb-v2",
+  "clip_id": "GfFLEIAAumk__90_163",
+  "status": "ok",
+  "oracle": false,
+  "n_turns": 2,
+  "n_speakers_hyp": 2,
+  "clip_dur_sec": 73.0,
+  "imported_from": "error_explorer export"
+}

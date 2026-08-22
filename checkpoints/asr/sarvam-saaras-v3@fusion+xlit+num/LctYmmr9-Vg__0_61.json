@@ -1,0 +1,135 @@
+{
+  "clip_id": "LctYmmr9-Vg__0_61",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.01,
+      "end": 0.65,
+      "speaker": "SPEAKER_01",
+      "text": "म्हणून म्हणालो.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 1,
+      "start": 2.07,
+      "end": 2.57,
+      "speaker": "SPEAKER_01",
+      "text": "काय ग?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 2,
+      "start": 3.63,
+      "end": 4.41,
+      "speaker": "SPEAKER_01",
+      "text": "इज एवरीथिंग ऑलराइट",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 3,
+      "start": 4.93,
+      "end": 7.55,
+      "speaker": "SPEAKER_00",
+      "text": "अहो का असं का विचारतोयस?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 4,
+      "start": 7.75,
+      "end": 9.34,
+      "speaker": "SPEAKER_01",
+      "text": "तुझा चेहरा पडलाय म्हणून विचारलं.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 5,
+      "start": 10.83,
+      "end": 15.59,
+      "speaker": "SPEAKER_00",
+      "text": "काय नाही, ते एका ऑडिशनसाठी गेले होते ना, सिलेक्शन नाही झालं.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 6,
+      "start": 16.93,
+      "end": 17.33,
+      "speaker": "SPEAKER_01",
+      "text": "हो.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 7,
+      "start": 18.75,
+      "end": 25.13,
+      "speaker": "SPEAKER_01",
+      "text": "इट्स ओके अंजली, तू ट्राय करतीयेस ना? आज नाही तर उद्या तुला सौ सक्सेस मिळेल.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 8,
+      "start": 26.12,
+      "end": 41.89,
+      "speaker": "SPEAKER_00",
+      "text": "पण आता ना मेजर बोर झालाय रे मला. रोज उठा ऑडिशन्सला जा. रिजेक्शन्स त्या लाईन्समध्ये उभे राहा. आणि तुला माहिती आहे ज्यांची ओळख असते ना त्यांचंच सिलेक्शन होतं. आमच्यासारखे लोक तर नुसते चक्कर मारत असतात ऑफिसचे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 9,
+      "start": 42.05,
+      "end": 50.15,
+      "speaker": "SPEAKER_01",
+      "text": "आता कम ऑन अंजली, इतक्या लवकर गिव्ह अप करू नकोस आणि तुला इतकाच कंटाळा आलाय ना स्ट्रगलचा, लग्न करून टाक ना.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 10,
+      "start": 50.75,
+      "end": 51.93,
+      "speaker": "SPEAKER_00",
+      "text": "आणि त्याने काय होणार आहे?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 11,
+      "start": 52.25,
+      "end": 60.99,
+      "speaker": "SPEAKER_01",
+      "text": "अगं लग्नानंतर तुझं स्ट्रगल संपेल ना, नवर तुझं हट्ट पण पूर्ण करणार आणि तुला पॅम्पर पण करणार. आता आमच्याकडेच बघ ना, दादा आणि वहिनी मस्त हनीमूनला जाणार.",
+      "skipped": null,
+      "lang": "mr-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 133,
+  "elapsed_sec": 5.84,
+  "rtf": 0.0957,
+  "clip_dur_sec": 61.0,
+  "transcribed_at_utc": "2026-08-22T06:33:21+00:00",
+  "clip_language": null,
+  "n_segments": 12,
+  "n_skipped_short": 0,
+  "detected_language": "mr-IN",
+  "languages_seen": [
+    "en-IN",
+    "mr-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 1
+}

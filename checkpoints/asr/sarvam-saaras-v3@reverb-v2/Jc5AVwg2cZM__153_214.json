@@ -1,0 +1,131 @@
+{
+  "clip_id": "Jc5AVwg2cZM__153_214",
+  "system": "sarvam-saaras-v3@reverb-v2",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "reverb-v2",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.013,
+      "end": 15.073,
+      "speaker": "SPEAKER_00",
+      "text": "बापरे! सांभाळ सांभाळ सांभाळा. अरे हा उतार आहे. उतार उतार. जा अमित तुझ्यावर रिस्पॉन्सिबिलिटी आहे सगळ्यांना. थांब. थांब थांब नको नको. तू जो आहे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 1,
+      "start": 15.032,
+      "end": 19.352,
+      "speaker": "SPEAKER_01",
+      "text": "पण सिरीयसली यार यार यामुळे एक जरा ॲडव्हेंचर काहीतरी करायला मिळालं बस.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 2,
+      "start": 19.352,
+      "end": 20.232,
+      "speaker": "SPEAKER_00",
+      "text": "खरंच आहे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 3,
+      "start": 20.232,
+      "end": 23.012,
+      "speaker": "SPEAKER_01",
+      "text": "तुम्ही तर करून आलात 72 मैलच्या सिनेमात.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 4,
+      "start": 22.852,
+      "end": 36.492,
+      "speaker": "SPEAKER_00",
+      "text": "हा येस, इट्स अ ॲडव्हेंचरस. मी सांगू सिंहगडला आम्ही ट्रेकला यायचो. सर आरामसे, त्याची मजा येते. असा पाय टाकायचा आडवा आडवा, आडवा पाय टाकायचा.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 5,
+      "start": 38.093,
+      "end": 47.993,
+      "speaker": "SPEAKER_00",
+      "text": "आणि तो असा आडवा असा झाला आडवाच तर नाही असा काही नाही होत आडवा पाय टाकायचा म्हणजे घसरत नाही पाय ऐका जरा मोलाचे शब्द आहेत प्लीज मन लावून ऐका",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 6,
+      "start": 47.933,
+      "end": 60.993,
+      "speaker": "SPEAKER_02",
+      "text": "थांबे मॅडमचा ऐका, आडवा पाय टाका, आडवा पाय टाका. कसं असतं बघ स्मिता, नशिबाने नशिबाने अमितराज. काय? पाच वर्षांनी जोगवाची सीडी बाजारात आली. हो रे! याची तर सिनेमाच्या आधी येतीये. सिनेमाच्या आधी येतीये. सर सर सर सर, थँक्स टू गेजिंग गोड.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 7,
+      "start": 49.312,
+      "end": 49.332,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 8,
+      "start": 49.573,
+      "end": 49.793,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 9,
+      "start": 58.972,
+      "end": 59.052,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 10,
+      "start": 59.272,
+      "end": 59.912,
+      "speaker": "SPEAKER_01",
+      "text": "Sir Sir Sir",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 11,
+      "start": 60.233,
+      "end": 60.273,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    }
+  ],
+  "words": [],
+  "n_words": 142,
+  "elapsed_sec": 6.48,
+  "rtf": 0.1062,
+  "clip_dur_sec": 61.0,
+  "transcribed_at_utc": "2026-08-21T11:08:30+00:00",
+  "n_segments": 12,
+  "n_skipped_short": 4,
+  "detected_language": "mr-IN",
+  "languages_seen": [
+    "en-IN",
+    "mr-IN"
+  ]
+}

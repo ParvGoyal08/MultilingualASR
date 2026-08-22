@@ -1,0 +1,10 @@
+{
+  "model": "reverb-v2",
+  "clip_id": "Iare1Emeueg__16_69",
+  "status": "ok",
+  "oracle": false,
+  "n_turns": 5,
+  "n_speakers_hyp": 3,
+  "clip_dur_sec": 53.0,
+  "imported_from": "error_explorer export"
+}

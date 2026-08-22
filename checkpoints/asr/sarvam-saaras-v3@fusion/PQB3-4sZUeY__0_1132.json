@@ -1,0 +1,2687 @@
+{
+  "clip_id": "PQB3-4sZUeY__0_1132",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.25,
+      "end": 11.1,
+      "speaker": "SPEAKER_03",
+      "text": "హాయ్. హాయ్. గుడ్ ఈవెనింగ్. గుడ్ ఈవెనింగ్. మంచి ఈవెనింగ్, మంచి సెటప్. సాంగ్ కి హెడ్ టెయిల్ అందరూ ఇక్కడే ఉన్నారు. మీరు మిస్ అయ్యారు యాక్చువల్లీ ఆ రోజు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 1,
+      "start": 2.87,
+      "end": 3.22,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 2,
+      "start": 11.59,
+      "end": 13.09,
+      "speaker": "SPEAKER_03",
+      "text": "Song Audio Launch Roju",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 3,
+      "start": 11.71,
+      "end": 12.35,
+      "speaker": "SPEAKER_01",
+      "text": "ಸಾಂಗ್ ಆಡಿಯೋ ಸಾಂಗ್ ಆಡಿಯೋ ಸಾಂಗ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 4,
+      "start": 12.95,
+      "end": 13.54,
+      "speaker": "SPEAKER_00",
+      "text": "తెలుగు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 5,
+      "start": 16.01,
+      "end": 20.71,
+      "speaker": "SPEAKER_02",
+      "text": "ഓക്കേ യു ആർ കംഫർട്ടബിൾ ഇൻ ദി യൂ? യെ നോ നോ ഞാൻ സമ്മേ കംഫർട്ടബിൾ ആണ്. മലയാളം, കന്നഡ്, തെലുഗു, തമിഴ്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 6,
+      "start": 19.4,
+      "end": 21.73,
+      "speaker": "SPEAKER_00",
+      "text": "Kannada, Telugu, Tamil.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 7,
+      "start": 21.73,
+      "end": 28.55,
+      "speaker": "SPEAKER_01",
+      "text": "తెలుగు మాట్లాడలేరు అంతే అర్థం చేసుకోగలుగుతారు. ఇన్కమింగ్ ఉంది అవుట్ గోయింగ్ లేదు. ఆ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 8,
+      "start": 28.22,
+      "end": 29.59,
+      "speaker": "SPEAKER_00",
+      "text": "నేను రీఛార్జ్ చేపిస్తాను నేను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 9,
+      "start": 30.37,
+      "end": 33.39,
+      "speaker": "SPEAKER_01",
+      "text": "మీరు ఈసారి ఇది ఇదే పులిహారు కల్పడం అంటే చూడండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 10,
+      "start": 30.55,
+      "end": 33.39,
+      "speaker": "SPEAKER_02",
+      "text": "ఇది ఇదే పులిహారు కలిపినా అంటే చూడండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 11,
+      "start": 34.11,
+      "end": 35.55,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 12,
+      "start": 36.97,
+      "end": 45.69,
+      "speaker": "SPEAKER_03",
+      "text": "ఓకే ఆ ఓకే ఫస్ట్ క్వశ్చన్ ఇది క్వశ్చన్ లాగా అనుకోవద్దు కానీ అసలు మిమ్మల్ని కంఫర్టబుల్ ఫీల్ చేద్దామంటే అసలు మీ సాంగ్ ఎక్స్పీరియన్స్ ఎలా ఉంది",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 13,
+      "start": 46.43,
+      "end": 47.77,
+      "speaker": "SPEAKER_01",
+      "text": "ఎవరితో స్టార్ట్ చేశారు?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 14,
+      "start": 47.01,
+      "end": 49.08,
+      "speaker": "SPEAKER_03",
+      "text": "ఫస్ట్ ఫస్ట్ నేను అర్థం స్టార్ట్ చేయాలి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 15,
+      "start": 47.99,
+      "end": 55.97,
+      "speaker": "SPEAKER_01",
+      "text": "నేను ఆల్రెడీ చెప్పేసాను వీడియోలో. మళ్ళీ చెప్పండి. పర్లేదు. లైవ్ లో చెప్పండి. ఓకే. సో ఇంగ్లీష్ లో",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 16,
+      "start": 55.97,
+      "end": 93.41,
+      "speaker": "SPEAKER_02",
+      "text": "First these do mahanubhav lo log aaye and Manas was continuously practicing hard working and she came she was like chalo chalo chalo chalo chalo chalo but after like two to three hours practicing practicing both are like fabulous they did a very wonderful job and both are very hard working so I enjoyed a lot working with Vishnupriya garu and Manas garu especially I enjoyed I enjoyed the most is her laugh. Yes, her laugh is the main reason why we are entertained throughout the song. So I enjoyed a lot.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 17,
+      "start": 94.07,
+      "end": 99.98,
+      "speaker": "SPEAKER_03",
+      "text": "అండ్ మీ ఫస్ట్ కొరియోగ్రఫీ వచ్చేసి ఫ్రమ్ నివృత్తి వైబ్స్ కాబట్టి అండ్ హౌ డు యు ఫీల్ అబౌట్ దట్ లైక్ మీరు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 18,
+      "start": 99.1,
+      "end": 99.81,
+      "speaker": "SPEAKER_02",
+      "text": "Like you",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 19,
+      "start": 100.08,
+      "end": 109.01,
+      "speaker": "SPEAKER_03",
+      "text": "ఐ మీన్ లైక్ స్టార్టప్ స్టార్ట్ చేసినప్పుడు ఫస్ట్ ఒకరు ఛాన్స్ ఇచ్చి మిమ్మల్ని ఇంట్రడ్యూస్ చేస్తున్న సాంగ్ కాబట్టి వాట్ డు యు ఫీల్ అబౌట్ దిస్? సో థాంక్యూ సో మచ్ నివి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 20,
+      "start": 102.35,
+      "end": 102.96,
+      "speaker": "SPEAKER_02",
+      "text": "స్టార్ట్ చేసిన.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 21,
+      "start": 109.01,
+      "end": 132.34,
+      "speaker": "SPEAKER_02",
+      "text": "The vibes and Jyoti Garu, Priya Garu for giving me this wonderful chance. So my experience for doing this song as the first choreographer was very nice and everyone was very supportive regarding every department, team work and everything. So I also want to mention Ali's name. He was also very supportive throughout the song and shoot. So everything was very wonderful. Okay.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 22,
+      "start": 131.67,
+      "end": 132.03,
+      "speaker": "SPEAKER_00",
+      "text": "ಓಕೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 23,
+      "start": 132.01,
+      "end": 140.7,
+      "speaker": "SPEAKER_03",
+      "text": "ఫస్ట్ అఫ్ ఆల్ విష్ణు గారు, మీరందరూ క్వశ్చన్స్ కి మీరు ఆన్సర్ ఇవ్వకూడదు. సో లెట్ దెమ్ ఆన్సర్ ఫర్ దేర్ క్వశ్చన్స్ ఓకే? ఓకే ప్లీజ్ ఒక్కసారి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 24,
+      "start": 139.72,
+      "end": 144.51,
+      "speaker": "SPEAKER_02",
+      "text": "Oka sari. She will be the lifeline. Helpline sorry not lifeline. Helpline.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 25,
+      "start": 143.46,
+      "end": 144.73,
+      "speaker": "SPEAKER_03",
+      "text": "Haa haa",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 26,
+      "start": 147.59,
+      "end": 151.29,
+      "speaker": "SPEAKER_00",
+      "text": "ante if you don't get the answer she will answer, if I don't get the answer she will answer.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 27,
+      "start": 151.13,
+      "end": 154.45,
+      "speaker": "SPEAKER_02",
+      "text": "Done. You will get every answer. Maybe I am",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 28,
+      "start": 151.65,
+      "end": 152.12,
+      "speaker": "SPEAKER_00",
+      "text": "ಡನ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 29,
+      "start": 157.38,
+      "end": 164.03,
+      "speaker": "SPEAKER_03",
+      "text": "సరే, ఫేవరెట్ హ్యాంగ్ అవుట్ ప్లేస్ ఏది మీకు హైదరాబాద్లో? ఎవరిని అడుగుతున్నావ్?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 30,
+      "start": 164.03,
+      "end": 165.42,
+      "speaker": "SPEAKER_01",
+      "text": "మళ్ళీ నేను ఆన్సర్ ఇచ్చాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 31,
+      "start": 165.42,
+      "end": 166.53,
+      "speaker": "SPEAKER_03",
+      "text": "ముగ్గురు ఆన్సర్ ఇవ్వండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 32,
+      "start": 166.65,
+      "end": 168.52,
+      "speaker": "SPEAKER_00",
+      "text": "Ya one one first Shashti answer",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 33,
+      "start": 168.0,
+      "end": 169.87,
+      "speaker": "SPEAKER_03",
+      "text": "యా ట్రస్టీ గారు హలో ప్లీజ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 34,
+      "start": 171.34,
+      "end": 173.03,
+      "speaker": "SPEAKER_00",
+      "text": "డాన్స్ స్టూడియో మాత్రం చెప్పొద్దు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 35,
+      "start": 171.41,
+      "end": 172.15,
+      "speaker": "SPEAKER_03",
+      "text": "Dad Studio",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 36,
+      "start": 174.51,
+      "end": 177.77,
+      "speaker": "SPEAKER_03",
+      "text": "అదే ఉంది నో పార్టీ ప్లీజ్",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 37,
+      "start": 177.75,
+      "end": 178.29,
+      "speaker": "SPEAKER_00",
+      "text": "ಹ್ಞೂ ಹ್ಞೂ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 38,
+      "start": 178.6,
+      "end": 186.97,
+      "speaker": "SPEAKER_03",
+      "text": "ఫేవరెట్ హ్యాంగ్ అవుట్ పర్సన్ ఎవరితో మీరు హ్యాంగ్ అవుట్ అవ్వాలి అనుకుంటారు? నో వన్. నో వన్ ఇది రియల్లీ రియల్లీ ఆ స్కిన్ ని.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 39,
+      "start": 184.57,
+      "end": 185.62,
+      "speaker": "SPEAKER_02",
+      "text": "Really",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 40,
+      "start": 187.02,
+      "end": 198.73,
+      "speaker": "SPEAKER_03",
+      "text": "వన్ ఐ డోంట్ హ్యాంగ్ అవుట్. ప్రతి ఒక్కరికి ఒక పర్సన్ ఉంటారు. లైక్ ఓకే హ్యాంగ్ అవుట్ వదిలేసేయండి. టు ఫీల్ లైక్ ఎమోషనల్ గా బ్యాడ్ ఉన్నప్పుడు అసలు లేదు దట్ ఈజ్ ద ప్రాబ్లం. ఓకే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 41,
+      "start": 198.85,
+      "end": 210.61,
+      "speaker": "SPEAKER_01",
+      "text": "ఓకే నన్ను అడిగితే నేను ఐ లైక్ టు చిల్ విత్ మై ఓన్ సెల్ఫ్. యు డాన్స్ అది చెప్పారు. ఐ డాన్స్, ఐ సిట్, ఐ స్మోక్. ఎస్ ఐ స్మోక్. ఏం స్మోక్ చేస్తానో అడుగుతా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 42,
+      "start": 211.98,
+      "end": 231.79,
+      "speaker": "SPEAKER_01",
+      "text": "I smoke, I sit by myself, I dance. Very rarely occasionally I will meet my friends. Very monthly once or two months once. Shashti is also my friend I want to hang out with her. Song valla maa iddaru numerology one one anta helisi. And she is also very bubbly and energetic like me. So I am hoping to hang out with her but she is very busy.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 43,
+      "start": 225.01,
+      "end": 225.65,
+      "speaker": "SPEAKER_02",
+      "text": "वाली वाली।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 44,
+      "start": 232.09,
+      "end": 234.17,
+      "speaker": "SPEAKER_01",
+      "text": "I am not here, yeah, you are very busy.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 45,
+      "start": 232.24,
+      "end": 232.73,
+      "speaker": "SPEAKER_02",
+      "text": "I am not",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 46,
+      "start": 234.42,
+      "end": 234.69,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 47,
+      "start": 234.69,
+      "end": 235.43,
+      "speaker": "SPEAKER_02",
+      "text": "Into Kerala",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 48,
+      "start": 235.74,
+      "end": 241.07,
+      "speaker": "SPEAKER_01",
+      "text": "टू वेंट टू केरला। हां, मैं अकेले जाता हूं और एन्जॉय करके आ जाता हूं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 49,
+      "start": 240.06,
+      "end": 240.82,
+      "speaker": "SPEAKER_02",
+      "text": "जाता हूँ।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 50,
+      "start": 242.08,
+      "end": 245.11,
+      "speaker": "SPEAKER_01",
+      "text": "Sare, aa manam, who do you like to hang out with?",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 51,
+      "start": 242.64,
+      "end": 243.68,
+      "speaker": "SPEAKER_02",
+      "text": "Aa maane",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 52,
+      "start": 246.15,
+      "end": 257.97,
+      "speaker": "SPEAKER_00",
+      "text": "మై ఫేవరెట్ హ్యాంగ్ అవుట్ స్పాట్ అంటే ఫ్రెండ్స్ ఉన్న ప్లేస్ ఎక్కడైనా సరే ఇట్స్ మై ఫేవరెట్ హ్యాంగ్ అవుట్ స్పాట్. సో ఇట్ కెన్ బి ఎ పార్క్, ఇట్ కెన్ బి ఎ రోడ్, ఇట్ కెన్ బి ఎ కాఫీ షాప్ ఎనీవేర్. మనకు నచ్చిన వాళ్ళు ఎక్కడైతే ఉంటారో అది నా ఫేవరెట్ హ్యాంగ్ అవుట్ స్పాట్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 53,
+      "start": 257.35,
+      "end": 259.88,
+      "speaker": "SPEAKER_02",
+      "text": "He will not tell the places, okay, otherwise.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 54,
+      "start": 259.94,
+      "end": 262.69,
+      "speaker": "SPEAKER_00",
+      "text": "Did you tell the place? I don't hang out na, I don't.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 55,
+      "start": 261.99,
+      "end": 263.5,
+      "speaker": "SPEAKER_03",
+      "text": "I don't hang out much",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 56,
+      "start": 263.31,
+      "end": 264.41,
+      "speaker": "SPEAKER_00",
+      "text": "ಆ ಹಾ ಹಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 57,
+      "start": 264.12,
+      "end": 266.73,
+      "speaker": "SPEAKER_03",
+      "text": "ఈ ముగ్గురిలో ఎవరు ఫస్ట్ మ్యారేజ్ చేసుకుంటారు?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 58,
+      "start": 267.5,
+      "end": 268.05,
+      "speaker": "SPEAKER_00",
+      "text": "ನಾಲ್ಕು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 59,
+      "start": 267.51,
+      "end": 268.99,
+      "speaker": "SPEAKER_03",
+      "text": "నాకు చేసుకోవాలని ఉంది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 60,
+      "start": 271.65,
+      "end": 276.02,
+      "speaker": "SPEAKER_00",
+      "text": "ఫస్ట్ విష్ణువే చేసుకుంటది నాకు నాకు తెలిసి బాగా తొందరలో ఉంది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 61,
+      "start": 275.97,
+      "end": 291.31,
+      "speaker": "SPEAKER_01",
+      "text": "తొందరలో ఉంది బట్ ఎవ్వరూ 1% ఓకే ఒక్క వ్యక్తి కనిపించాడు ఆ ఒక్క వ్యక్తి నన్ను పెళ్లి చేసుకోవడానికి ఇష్టపడట్లేదు ఎందుకంటే హి ఇస్ సో మచ్ ఓల్డర్ టు మీ ఇంకా నాకు మళ్ళీ దొరకనే దొరకలేదు ఈ క్వాలిటీస్ ఉన్న అబ్బాయిని చేసుకుంటాడని మరి దేవుడా ప్లీజ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 62,
+      "start": 291.53,
+      "end": 293.8,
+      "speaker": "SPEAKER_00",
+      "text": "వీడియో చూస్తున్నారు కదా ఎవరైనా ఉంటే ప్లీజ్ కాంటాక్ట్ చేయండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 63,
+      "start": 293.63,
+      "end": 302.13,
+      "speaker": "SPEAKER_01",
+      "text": "I want to marry an actor only for sure. He has to know how to dance, how to act, how to do gymming, how to do horse riding, how to do swimming, how to sing.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 64,
+      "start": 296.35,
+      "end": 297.11,
+      "speaker": "SPEAKER_00",
+      "text": "Act as",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 65,
+      "start": 304.11,
+      "end": 307.27,
+      "speaker": "SPEAKER_01",
+      "text": "How to make love, how to do everything is in",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 66,
+      "start": 305.3,
+      "end": 306.43,
+      "speaker": "SPEAKER_03",
+      "text": "How to do",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 67,
+      "start": 307.63,
+      "end": 317.11,
+      "speaker": "SPEAKER_00",
+      "text": "కాదు ఏదో మాట వరసకి యాక్చువల్లీ డిజైన్ చేద్దాం మీ కోసం. కాదు మాట వరసకి ఏదో చూసుకోండి మీరు కాంటాక్ట్ అవ్వండి అన్నది రిక్వైర్మెంట్స్ అన్నీ చెప్పేస్తాను మీకు. యా మళ్ళీ ఎవరికి",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 68,
+      "start": 308.75,
+      "end": 309.63,
+      "speaker": "SPEAKER_01",
+      "text": "Actually design",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 69,
+      "start": 316.19,
+      "end": 325.46,
+      "speaker": "SPEAKER_01",
+      "text": "యా మళ్ళీ ఎవరు పడితే వాళ్ళు విష్ణును అడిగి కూడా నో హి హాస్ టు బి ఆన్ యాక్టర్ ఫర్ షూర్ ఫస్ట్ ప్రయారిటీ ఆ ఓకే డన్. వాట్ అబౌట్ 20 సంవత్సరాలు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 70,
+      "start": 324.3,
+      "end": 327.98,
+      "speaker": "SPEAKER_02",
+      "text": "వాట్ అబౌట్ యు? 20 సంవత్సరాలు నేను ఎలా పెళ్లి చేసుకోవాలి ఇప్పుడు నైస్ అండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 71,
+      "start": 327.79,
+      "end": 329.02,
+      "speaker": "SPEAKER_00",
+      "text": "ఎలా అయినా చేసుకోవచ్చు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 72,
+      "start": 328.58,
+      "end": 332.82,
+      "speaker": "SPEAKER_01",
+      "text": "అప్ అప్ 20 సంవత్సరాలు ఓన్లీ. 22 మూడు నాట్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 73,
+      "start": 331.01,
+      "end": 333.58,
+      "speaker": "SPEAKER_00",
+      "text": "2230 not",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 74,
+      "start": 333.24,
+      "end": 335.4,
+      "speaker": "SPEAKER_01",
+      "text": "22, 23, Now You Are Just 20.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 75,
+      "start": 336.14,
+      "end": 337.03,
+      "speaker": "SPEAKER_00",
+      "text": "20 సంవత్సరాలు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 76,
+      "start": 336.8,
+      "end": 339.77,
+      "speaker": "SPEAKER_01",
+      "text": "इतनी छोटी उम्र में इतना टैलेंटेड बच्ची।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 77,
+      "start": 342.47,
+      "end": 348.85,
+      "speaker": "SPEAKER_03",
+      "text": "ఓకే, మీ ఫస్ట్ కెమెరా ఎక్స్పీరియన్స్ ఎలా ఉంది? మీది, మీది అండ్ మీది కూడా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 78,
+      "start": 350.25,
+      "end": 352.17,
+      "speaker": "SPEAKER_00",
+      "text": "ఏయ్ ఏంటి ఇద్దరు నాలుగు వస్తున్నారు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 79,
+      "start": 350.27,
+      "end": 360.63,
+      "speaker": "SPEAKER_01",
+      "text": "ఏయ్ ఏంటి ఇద్దరు నా ఓకే నా ఫస్ట్ కెమెరా ఎక్స్పీరియన్స్ నేను 17 ఉన్నప్పుడు ఓకే ఆర్ఎఫ్సి లో అక్కడ ఎక్కడో దూరంగా కెమెరా పెట్టారు నేను ఇక్కడ చెట్టు దగ్గర నుంచొని నవ్వాలి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 80,
+      "start": 360.63,
+      "end": 360.9,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 81,
+      "start": 361.35,
+      "end": 365.64,
+      "speaker": "SPEAKER_01",
+      "text": "ఆ నవ్వేటప్పుడు ఈ లెఫ్ట్ బుగ్గ ఫస్ట్ టైం ఓన్లీ బుగ్గ ఒక్కటే వణకడం నాకు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 82,
+      "start": 367.01,
+      "end": 383.19,
+      "speaker": "SPEAKER_01",
+      "text": "అసలు నవ్వంటే ఆ బుగ్గు ఒక్కటే వణికిపోతుంది. సో దట్ వాస్ మై ఫస్ట్ కెమెరా ఎక్స్పీరియన్స్. అండ్ ఆ మూవీ అంతా వణుకుతూనే చేశాను. ఆ మూవీ చూసి ఇంకెప్పుడు నేను కెమెరా ముందుకు రాకూడదని డిసైడ్ కూడా అయ్యాను. కానీ ఇప్పుడు వచ్చారు కదా. దాని తర్వాత దేవుడు మళ్ళీ నువ్వు రావాలి అని తీసుకొచ్చాడు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 83,
+      "start": 383.12,
+      "end": 385.23,
+      "speaker": "SPEAKER_00",
+      "text": "నిన్ను చూడంగానే కెమెరామెన్ చేతులు వెనకలేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 84,
+      "start": 386.18,
+      "end": 386.82,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 85,
+      "start": 386.33,
+      "end": 386.89,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 86,
+      "start": 388.51,
+      "end": 389.64,
+      "speaker": "SPEAKER_03",
+      "text": "and",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 87,
+      "start": 389.64,
+      "end": 406.12,
+      "speaker": "SPEAKER_00",
+      "text": "నాది ఇట్ వాస్ నరసింహ నాయుడు ఇట్ వాస్ మై ఫస్ట్ ఫిలిం యాస్ ఏ చైల్డ్ ఆర్టిస్ట్. సో ఫస్ట్ డేనే నేను లైవ్ సెట్ లో బాంబ్ బ్లాస్టింగ్స్, కార్లు ఎగరడాలు, తర్వాత మనుషులు పరిగెట్టడాలు, ఫ్లిప్స్, చేజ్లు ప్రతి ఒక్కటి డే వన్ చూసేసాను నేను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 88,
+      "start": 402.83,
+      "end": 403.66,
+      "speaker": "SPEAKER_03",
+      "text": "చేజ్ లు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 89,
+      "start": 406.17,
+      "end": 406.71,
+      "speaker": "SPEAKER_03",
+      "text": "Okay",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 90,
+      "start": 406.71,
+      "end": 418.0,
+      "speaker": "SPEAKER_00",
+      "text": "ఇంకా నాకు అది అంత హై ఇంకా ఎక్కడా నాకు అనిపించలేదు లైక్ ఎనీవేర్ యు గో ఒక స్పోర్ట్స్ మీట్ అయినా సరే ఏదైనా సరే స్కూల్ అంటే స్కూల్ లైఫ్ లో ఒక స్టూడెంట్ గా చూసేవి ఎక్కడా నాకు ఏది హై అనిపించలేదు అంతకంటే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 91,
+      "start": 417.97,
+      "end": 419.53,
+      "speaker": "SPEAKER_03",
+      "text": "మీరు అన్నీ చూశారా ఆల్రెడీ?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 92,
+      "start": 418.83,
+      "end": 429.46,
+      "speaker": "SPEAKER_00",
+      "text": "ఆ అంటే లైక్ అవన్నీ ఎక్స్పీరియన్సెస్ లైవ్ లో చూడంగానే అండ్ ఆల్సో ద సేఫ్టీ ప్రికాషన్స్ దట్ దే వర్ టేకింగ్ డ్యూరింగ్ ద ఫైట్ సీక్వెన్సెస్ అండ్ ఆల్ దే వర్ లైక్ టాప్ నాచ్. ప్రతిదీ జాగ్రత్త తీసుకుంటూనే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 93,
+      "start": 419.69,
+      "end": 420.4,
+      "speaker": "SPEAKER_03",
+      "text": "యా అంటే",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 94,
+      "start": 429.7,
+      "end": 434.19,
+      "speaker": "SPEAKER_00",
+      "text": "కెమెరా ఫ్రేమ్ లో పెట్టంగానే మాత్రం అద్భుతంగా ఉంది. సో దట్ వాస్ ఏ వెరీ గుడ్ ఎక్స్పీరియన్స్ ఫర్ మీ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 95,
+      "start": 435.99,
+      "end": 450.84,
+      "speaker": "SPEAKER_02",
+      "text": "My first reality show that D. Okay. D11 it was my first camera experience. So as a dancer so I didn't face much things. Dancing chesi comments. Ha, the most important thing at that time I didn't know Telugu.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 96,
+      "start": 452.07,
+      "end": 453.49,
+      "speaker": "SPEAKER_03",
+      "text": "మేనేజ్ చేశారు కాదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 97,
+      "start": 453.09,
+      "end": 473.22,
+      "speaker": "SPEAKER_02",
+      "text": "Kaadu, incoming kooda ledu appudu. Okay. Means I came from North, so I don't know even a single word also. So I think Priyamani gaaru, ya Priyamani Ma'am was asking me like where are you from. Means first they said like you did you did very nice, I was like thank you, thank you. So she asked me in Telugu where are you from. So in that question I also said thank you so much.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 98,
+      "start": 473.39,
+      "end": 473.98,
+      "speaker": "SPEAKER_00",
+      "text": "ಅಯ್ಯೋ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 99,
+      "start": 474.43,
+      "end": 482.13,
+      "speaker": "SPEAKER_02",
+      "text": "So it was very awkward for me when people told me like nahi woh aisa bol rahe hain. So my first experience was D a reality show.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 100,
+      "start": 482.57,
+      "end": 492.54,
+      "speaker": "SPEAKER_03",
+      "text": "ఓకే తెలుగు ఫిలిం ఇండస్ట్రీలో మీరు ఒక హీరోతో కానీ హీరోయిన్ తో కానీ ఫిలిం చేయాలి అనుకుంటే ఎవరిని ప్రిఫర్ చేస్తారు ఆ హీరో ఎవరు అని",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 101,
+      "start": 491.24,
+      "end": 494.75,
+      "speaker": "SPEAKER_02",
+      "text": "I will tell about Maa.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 102,
+      "start": 494.68,
+      "end": 495.95,
+      "speaker": "SPEAKER_00",
+      "text": "अरे!",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 103,
+      "start": 495.65,
+      "end": 501.55,
+      "speaker": "SPEAKER_01",
+      "text": "माइनस जाओ अभी बोतल से। वन टू थ्री पूजा हेक्टे।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 104,
+      "start": 497.37,
+      "end": 497.61,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 105,
+      "start": 502.9,
+      "end": 503.46,
+      "speaker": "SPEAKER_03",
+      "text": "Okay",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 106,
+      "start": 503.98,
+      "end": 508.79,
+      "speaker": "SPEAKER_01",
+      "text": "మీరు అఖిల్ అని చెప్పకూడదు వాళ్ళు. నేను అల్లు అర్జున్. మా ఆన్సర్ మార్చారు. సెకండ్ ఆప్షన్ అల్లు అర్జున్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 107,
+      "start": 509.27,
+      "end": 521.35,
+      "speaker": "SPEAKER_00",
+      "text": "ఇప్పుడు మొన్న ఒక వీడియో యాక్చువల్లీ రిలీజ్ చేశాడు కదా అలీ మన అలీ ఏంటంటే బట్ వీళ్ళిద్దరూ డిస్కస్ చేసుకుంటుంది ఏ హీరోయిన్ గురించి అనుకుంటున్నారు లేకపోతే ఏ స్టార్ గురించి అనుకుంటున్నారు మీరు కామెడీ చేస్తూ మొత్తం అంతా అలా చేశారు కదా ఎవరి గురించి అనుకుంటున్నారు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 108,
+      "start": 518.21,
+      "end": 518.7,
+      "speaker": "SPEAKER_01",
+      "text": "കോമെഡി.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 109,
+      "start": 522.32,
+      "end": 525.02,
+      "speaker": "SPEAKER_01",
+      "text": "పూజా హెగ్డే బట్ ఎవరూ ఆ వీడియో చూసుండరు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 110,
+      "start": 524.91,
+      "end": 527.17,
+      "speaker": "SPEAKER_00",
+      "text": "యా నేను చూశాను ఇప్పుడు నేను చెప్తున్నాను వ్యూయర్స్ కి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 111,
+      "start": 527.29,
+      "end": 530.51,
+      "speaker": "SPEAKER_01",
+      "text": "అలీ అంటో ఎవరో మళ్ళీ వాళ్ళు యూట్యూబ్ లో ఎక్కడ వెతుక్కుంటారో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 112,
+      "start": 529.94,
+      "end": 535.44,
+      "speaker": "SPEAKER_00",
+      "text": "నేను నేను నేను ఉన్నా కదా వీడియో మళ్ళీ పంపించడానికి ఐ యామ్ దేర్ టు షేర్ ఐ విల్ షేర్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 113,
+      "start": 535.59,
+      "end": 543.99,
+      "speaker": "SPEAKER_01",
+      "text": "నమస్తే మాస్టర్. అమ్మో పూజా హెగ్డి ఫ్యాన్స్ ఇప్పుడు మనల్ని తిడుతారు. అందుకే డోంట్ పుట్ దిస్ అదర్వైస్ ఐ విల్ బి డెడ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 114,
+      "start": 542.57,
+      "end": 543.03,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 115,
+      "start": 544.94,
+      "end": 552.41,
+      "speaker": "SPEAKER_03",
+      "text": "ఇట్స్ ఓకే ఆ? చలో ఓకే ఇప్పుడు క్వశ్చన్స్ వద్దు అంటే ఏ బి సి ఆప్షన్ లో చూస్ సంథింగ్ ఓకే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 116,
+      "start": 550.54,
+      "end": 552.15,
+      "speaker": "SPEAKER_00",
+      "text": "Choose something, okay.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 117,
+      "start": 552.82,
+      "end": 554.18,
+      "speaker": "SPEAKER_03",
+      "text": "బిర్యానీ ఆవకాయ",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 118,
+      "start": 554.84,
+      "end": 559.69,
+      "speaker": "SPEAKER_00",
+      "text": "Both. C option. Both. C option ledu. Both.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 119,
+      "start": 559.97,
+      "end": 560.37,
+      "speaker": "SPEAKER_02",
+      "text": "ബോട്ട്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 120,
+      "start": 560.11,
+      "end": 561.95,
+      "speaker": "SPEAKER_00",
+      "text": "Both, Both seriously Both.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 121,
+      "start": 561.45,
+      "end": 562.67,
+      "speaker": "SPEAKER_02",
+      "text": "ಅವಕಾಯಿ ಅಂಟಿ ಆಚಾರ್",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 122,
+      "start": 562.75,
+      "end": 564.91,
+      "speaker": "SPEAKER_01",
+      "text": "अचार हां, मतलब बिरयानी का अचार।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 123,
+      "start": 563.47,
+      "end": 565.35,
+      "speaker": "SPEAKER_02",
+      "text": "मतलब बिरयानी पसंद है या अचार पसंद है?",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 124,
+      "start": 565.66,
+      "end": 569.51,
+      "speaker": "SPEAKER_01",
+      "text": "दोनों में क्या है? दोनों में क्या चूज़ करना पसंद करते हो? बिरयानी।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 125,
+      "start": 571.87,
+      "end": 573.39,
+      "speaker": "SPEAKER_00",
+      "text": "For me both, C option C.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 126,
+      "start": 573.77,
+      "end": 574.4,
+      "speaker": "SPEAKER_01",
+      "text": "For me also",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 127,
+      "start": 574.79,
+      "end": 575.5,
+      "speaker": "SPEAKER_02",
+      "text": "अच्छा सी था कि",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 128,
+      "start": 574.81,
+      "end": 575.33,
+      "speaker": "SPEAKER_01",
+      "text": "ಯಾಕಂದ್ರೆ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 129,
+      "start": 576.04,
+      "end": 577.99,
+      "speaker": "SPEAKER_00",
+      "text": "नहीं अपना हम क्रिएट कर रहे थे।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 130,
+      "start": 576.73,
+      "end": 579.16,
+      "speaker": "SPEAKER_03",
+      "text": "हम क्रिएट कर रहे हैं। अच्छा, हमने क्रिएट किया। नहीं, ठीक है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 131,
+      "start": 578.07,
+      "end": 578.95,
+      "speaker": "SPEAKER_02",
+      "text": "नहीं, ठीक है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 132,
+      "start": 579.41,
+      "end": 582.09,
+      "speaker": "SPEAKER_03",
+      "text": "ఓకే సినిమా ఆర్ సీరియల్ మీకు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 133,
+      "start": 582.67,
+      "end": 584.21,
+      "speaker": "SPEAKER_00",
+      "text": "నాకా సినిమా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 134,
+      "start": 585.03,
+      "end": 585.42,
+      "speaker": "SPEAKER_03",
+      "text": "Okay",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 135,
+      "start": 585.39,
+      "end": 585.73,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 136,
+      "start": 586.13,
+      "end": 588.41,
+      "speaker": "SPEAKER_03",
+      "text": "Shows are movies",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 137,
+      "start": 589.89,
+      "end": 592.01,
+      "speaker": "SPEAKER_03",
+      "text": "Both. Because I enjoy everything.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 138,
+      "start": 592.01,
+      "end": 593.27,
+      "speaker": "SPEAKER_01",
+      "text": "everywhere both of them",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 139,
+      "start": 593.71,
+      "end": 595.75,
+      "speaker": "SPEAKER_03",
+      "text": "choreography or being an actress",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 140,
+      "start": 595.75,
+      "end": 596.03,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 141,
+      "start": 597.33,
+      "end": 609.16,
+      "speaker": "SPEAKER_01",
+      "text": "ఐ ఎంజాయ్ దిస్. నో ఇట్స్ నాట్ ఇఫ్ వై. సీ వి విమెన్ మనం అప్పట్లో దేవతలను చూస్తే వాళ్ళు అన్నీ ఆయుధాలని పట్టుకొని ఉండి యు కెన్ డూ ఎవ్రీథింగ్ యు కెన్ డూ మల్టిపుల్ థింగ్స్ సో యు కెన్ ఎంజాయ్ మల్టిపుల్ థింగ్స్ సో వై నాట్?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 142,
+      "start": 597.42,
+      "end": 597.65,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 143,
+      "start": 609.8,
+      "end": 617.89,
+      "speaker": "SPEAKER_00",
+      "text": "There was this speech annamaata. Oka famous celebrity gave a speech. So on stage it was",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 144,
+      "start": 619.02,
+      "end": 655.31,
+      "speaker": "SPEAKER_00",
+      "text": "There were two separate events which were both equally important. So aa rendu events attend cheyadam it's like it is impossible to even think about. So alaantidi manage to attend both the events and the last end line is we should be greedy to you know like wanting and you know to learn ante to edaina achieve cheyaali lekapothe edaina kaavaali anukunnappudu we can be greedy for those things no problem. So veellu cheppina answers lo problem ledu they can be greedy for both. for both. She wants to become an actress and as well as a choreographer. So she can be because it is an ambitious, ambitious thing.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 145,
+      "start": 652.67,
+      "end": 654.07,
+      "speaker": "SPEAKER_01",
+      "text": "No, and also she can",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 146,
+      "start": 655.31,
+      "end": 663.96,
+      "speaker": "SPEAKER_01",
+      "text": "And moreover you enjoy you know, andar se you want to do, karna hai, you want to be a mother, you want to be a girlfriend, you want to be everything, you want to be an actor, you want to be.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 147,
+      "start": 656.83,
+      "end": 657.41,
+      "speaker": "SPEAKER_00",
+      "text": "ಅಂದ್ರೆ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 148,
+      "start": 664.33,
+      "end": 669.99,
+      "speaker": "SPEAKER_01",
+      "text": "ఆల్ దట్ ఇన్ లైఫ్, లైఫ్ లో అన్నీ ఫ్రూట్స్ అనుభవించి చచ్చిపోవాలి. ఐ టోల్డ్ యు నా షి ఇస్",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 149,
+      "start": 672.91,
+      "end": 675.75,
+      "speaker": "SPEAKER_03",
+      "text": "ఓకే మీ ఇద్దరికీ ఈ క్వశ్చన్ జరీ జరీ ఆర్ గంగులు సాంగ్",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 150,
+      "start": 676.49,
+      "end": 676.78,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 151,
+      "start": 678.81,
+      "end": 680.45,
+      "speaker": "SPEAKER_03",
+      "text": "Jerry Jerry",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 152,
+      "start": 680.97,
+      "end": 681.52,
+      "speaker": "SPEAKER_01",
+      "text": "Okay",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 153,
+      "start": 682.59,
+      "end": 682.84,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 154,
+      "start": 682.61,
+      "end": 685.81,
+      "speaker": "SPEAKER_01",
+      "text": "Because I have lyrics",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 155,
+      "start": 683.36,
+      "end": 685.47,
+      "speaker": "SPEAKER_00",
+      "text": "I am literally shaking",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 156,
+      "start": 686.3,
+      "end": 698.31,
+      "speaker": "SPEAKER_02",
+      "text": "I feel like moogam bhai. No no no you know what I thought mere ko kya laga hoye tha when he had the song Gangulu he was like dorikindi naaku eesari song dorikindi paadaniki.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 157,
+      "start": 700.51,
+      "end": 701.64,
+      "speaker": "SPEAKER_01",
+      "text": "Yeah, yeah.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 158,
+      "start": 701.61,
+      "end": 705.08,
+      "speaker": "SPEAKER_00",
+      "text": "And Vishnu was like naaku lyrics ledu hammayya nenu steps okati nenu techukoni",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 159,
+      "start": 704.47,
+      "end": 704.96,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 160,
+      "start": 704.96,
+      "end": 715.71,
+      "speaker": "SPEAKER_01",
+      "text": "No but naaku lyrics ledu kanna kaavali because see now that I see song I look like moogammayi kaadu kaadu she will she will like",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 161,
+      "start": 717.74,
+      "end": 718.11,
+      "speaker": "SPEAKER_01",
+      "text": "ആ ആ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 162,
+      "start": 719.27,
+      "end": 730.12,
+      "speaker": "SPEAKER_01",
+      "text": "అదే ఐ ఫీల్ లైక్ ఆ నాకు నాకు ఆ పాట చూసిన తర్వాత అరే విస్తుకు రెండు రెండు పాటలు రెండు ఆ లిప్ సింగ్ కి వెళ్తే బాగుండు. సమ్మర్ వింటర్ రైనింగ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 163,
+      "start": 727.51,
+      "end": 728.23,
+      "speaker": "SPEAKER_00",
+      "text": "Same",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 164,
+      "start": 730.17,
+      "end": 730.67,
+      "speaker": "SPEAKER_00",
+      "text": "Rainy",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 165,
+      "start": 730.73,
+      "end": 737.15,
+      "speaker": "SPEAKER_01",
+      "text": "I'm born in rainy season. I enjoy all seasons, but summer I guess.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 166,
+      "start": 739.32,
+      "end": 745.45,
+      "speaker": "SPEAKER_01",
+      "text": "Ya Summer Raangane Holiday Holiday Holiday Holiday Swimming Pool Autumn",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 167,
+      "start": 745.4,
+      "end": 748.16,
+      "speaker": "SPEAKER_00",
+      "text": "అంటే స్కూల్ హాలిడేస్ చిన్నప్పుడు హాలిడేస్ ఉంటాయి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 168,
+      "start": 746.44,
+      "end": 750.27,
+      "speaker": "SPEAKER_01",
+      "text": "हां, सो माइंड में अभी भी वो नहीं है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 169,
+      "start": 748.74,
+      "end": 749.85,
+      "speaker": "SPEAKER_00",
+      "text": "अभी भी वही है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 170,
+      "start": 751.22,
+      "end": 755.63,
+      "speaker": "SPEAKER_01",
+      "text": "माइंड में अभी भी वही समर हॉलिडेज का माहौल है, सो समर।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 171,
+      "start": 756.37,
+      "end": 757.89,
+      "speaker": "SPEAKER_03",
+      "text": "వింటా ఓకే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 172,
+      "start": 758.37,
+      "end": 773.75,
+      "speaker": "SPEAKER_01",
+      "text": "विंटर है लाइक इतना नींद आती है पूरा स्टिल है। नो ट्री विल मूव। नो क्लाउड क्लाउड में आकाश में एक कलर नहीं है। समर बोले तो जो आज हालत हो रहा है वही हालत होने वाला है। ये बिकनी पहन के स्विमिंग पूल में जा रही है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 173,
+      "start": 768.57,
+      "end": 771.69,
+      "speaker": "SPEAKER_02",
+      "text": "अमर बोले तो जो आज हालत हो रहा है वही हालत होने वाला है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 174,
+      "start": 772.99,
+      "end": 773.53,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 175,
+      "start": 773.64,
+      "end": 773.86,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 176,
+      "start": 776.79,
+      "end": 779.65,
+      "speaker": "SPEAKER_02",
+      "text": "It's not necessary that everyone will be a bikini.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 177,
+      "start": 779.45,
+      "end": 780.88,
+      "speaker": "SPEAKER_01",
+      "text": "Okay Swimming Suit",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 178,
+      "start": 781.73,
+      "end": 784.11,
+      "speaker": "SPEAKER_02",
+      "text": "It's not necessary everyone will be here swimming soon.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 179,
+      "start": 784.14,
+      "end": 784.61,
+      "speaker": "SPEAKER_01",
+      "text": "ठीक है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 180,
+      "start": 784.69,
+      "end": 786.83,
+      "speaker": "SPEAKER_02",
+      "text": "But in winter everyone will wear sweater",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 181,
+      "start": 787.05,
+      "end": 787.31,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 182,
+      "start": 787.31,
+      "end": 787.65,
+      "speaker": "SPEAKER_02",
+      "text": "ಹಾ ಹಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 183,
+      "start": 788.01,
+      "end": 795.63,
+      "speaker": "SPEAKER_01",
+      "text": "ఆ ట్రెడిషనల్ ఆర్ వెస్టర్న్. అగైన్ బోత్. సీ వెస్టర్న్ గాలా ఆడుతది ట్రెడిషనల్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 184,
+      "start": 800.41,
+      "end": 801.93,
+      "speaker": "SPEAKER_00",
+      "text": "Depends on the occasion it's like",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 185,
+      "start": 801.69,
+      "end": 807.29,
+      "speaker": "SPEAKER_01",
+      "text": "అండ్ ట్రెడిషనల్ ఫస్ట్ అఫ్ ఆల్ గాలి ఆడదు బట్ ఓన్లీ ఒకేషన్ ఫోటోస్ దీపాలు పెట్టామా డ్రెస్ తిప్పేసామా అయిపోయింది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 186,
+      "start": 808.85,
+      "end": 809.81,
+      "speaker": "SPEAKER_02",
+      "text": "আচ্ছা আচ্ছা।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 187,
+      "start": 809.81,
+      "end": 811.09,
+      "speaker": "SPEAKER_00",
+      "text": "For me both depends on",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 188,
+      "start": 811.55,
+      "end": 812.47,
+      "speaker": "SPEAKER_02",
+      "text": "Traditional",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 189,
+      "start": 812.51,
+      "end": 817.28,
+      "speaker": "SPEAKER_01",
+      "text": "అమ్మా నువ్వు మైక్ పెట్టుకున్నావా? మా వాయిస్ లో వెళ్తాయి, నీ వాయిస్ వెళ్తదో లేదో దాంట్లోకి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 190,
+      "start": 817.28,
+      "end": 818.39,
+      "speaker": "SPEAKER_03",
+      "text": "అవసరం లేదు కదా ఇందాక.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 191,
+      "start": 818.07,
+      "end": 818.71,
+      "speaker": "SPEAKER_01",
+      "text": "Okay",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 192,
+      "start": 819.35,
+      "end": 819.81,
+      "speaker": "SPEAKER_00",
+      "text": "ಓಕೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 193,
+      "start": 820.61,
+      "end": 821.57,
+      "speaker": "SPEAKER_03",
+      "text": "A person or night person",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 194,
+      "start": 823.61,
+      "end": 840.65,
+      "speaker": "SPEAKER_01",
+      "text": "ఆల్వేస్ నేనైతే నైట్ పర్సన్. నాకు నైట్ అయితే బాహుబలి లాంటి స్ట్రెంత్ వస్తది. పొద్దున్నైతే అసలు ఏమీ అర్థం కాదు. సగం స్లీప్ లోనే ఉంటా పొద్దున్న లేపితే నన్ను. వాళ్ళ ఆన్సర్స్ మీరే చెప్తున్నారు. నేను ఫస్ట్ నా ఆన్సర్ చెప్తున్నానని చెప్పానా ఇప్పుడు నీ ఆన్సర్ చెప్పు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 195,
+      "start": 841.19,
+      "end": 843.42,
+      "speaker": "SPEAKER_00",
+      "text": "నేనా నేను కూడా నైట్ పర్సన్ నే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 196,
+      "start": 844.06,
+      "end": 848.03,
+      "speaker": "SPEAKER_01",
+      "text": "సేమ్ ఆన్సర్ కాబట్టి అలా తల తెలుచుకున్నాడు. సృష్టి డిపెండ్స్ ఆన్",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 197,
+      "start": 849.17,
+      "end": 850.41,
+      "speaker": "SPEAKER_01",
+      "text": "मूड कौन सा मूड?",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 198,
+      "start": 850.99,
+      "end": 853.14,
+      "speaker": "SPEAKER_02",
+      "text": "काम के ऊपर डिपेंड है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 199,
+      "start": 853.61,
+      "end": 853.87,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 200,
+      "start": 854.12,
+      "end": 856.25,
+      "speaker": "SPEAKER_02",
+      "text": "ऐसा बहुत डे नाइट।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 201,
+      "start": 856.82,
+      "end": 860.33,
+      "speaker": "SPEAKER_03",
+      "text": "మీ ఫేవరెట్ అఖిల్ గారి సినిమాలో ఒక డైలాగ్ ఉంటుంది కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 202,
+      "start": 859.45,
+      "end": 864.63,
+      "speaker": "SPEAKER_00",
+      "text": "సచ్చింది సచ్చింది చెప్పు ఇప్పుడు చెప్పు ఇప్పుడు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 203,
+      "start": 862.29,
+      "end": 863.23,
+      "speaker": "SPEAKER_03",
+      "text": "ചെമ്പി വിട്ടു.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 204,
+      "start": 865.29,
+      "end": 866.51,
+      "speaker": "SPEAKER_01",
+      "text": "ఏం డైలాగ్ అడుగుతున్నారు?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 205,
+      "start": 867.73,
+      "end": 869.22,
+      "speaker": "SPEAKER_03",
+      "text": "చాలా డైలాగ్స్ ఉన్నాయి కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 206,
+      "start": 867.81,
+      "end": 869.24,
+      "speaker": "SPEAKER_01",
+      "text": "చాలా డైలాగ్స్ ఉన్నాయి కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 207,
+      "start": 869.24,
+      "end": 869.99,
+      "speaker": "SPEAKER_03",
+      "text": "ఫేవరెట్ చెప్పండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 208,
+      "start": 870.03,
+      "end": 874.84,
+      "speaker": "SPEAKER_01",
+      "text": "ఆ లైఫ్ లో రిస్క్ తీసుకోకపోతే",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 209,
+      "start": 874.56,
+      "end": 875.89,
+      "speaker": "SPEAKER_00",
+      "text": "మిగిలేది రస్క్ మాత్రమే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 210,
+      "start": 875.59,
+      "end": 877.43,
+      "speaker": "SPEAKER_01",
+      "text": "మిగిలేది రస్క్ మాత్రమే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 211,
+      "start": 878.57,
+      "end": 879.83,
+      "speaker": "SPEAKER_01",
+      "text": "డ్యూ యాడ్ అనుకుంటా ఇది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 212,
+      "start": 881.07,
+      "end": 885.39,
+      "speaker": "SPEAKER_01",
+      "text": "ఆ నీ ఫేవరెట్ పూజా హెగ్డి డైలాగ్ చెప్పు. పూజా హెగ్డి డైలాగ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 213,
+      "start": 884.79,
+      "end": 885.37,
+      "speaker": "SPEAKER_03",
+      "text": "అది ఏదైనా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 214,
+      "start": 885.41,
+      "end": 885.95,
+      "speaker": "SPEAKER_01",
+      "text": "పర్లేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 215,
+      "start": 887.33,
+      "end": 888.53,
+      "speaker": "SPEAKER_00",
+      "text": "ఏది లైక్ డైలాగ్స్ ఆ?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 216,
+      "start": 888.57,
+      "end": 894.55,
+      "speaker": "SPEAKER_03",
+      "text": "డైలాగ్ మీ ఫేవరెట్ యాక్టర్ కానీ యాక్ట్రెస్ కానీ డైరెక్టర్ కానీ ఎవరు పెట్టినా కూడా ఆ డైలాగ్ అయితే ఒకటి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 217,
+      "start": 894.47,
+      "end": 905.95,
+      "speaker": "SPEAKER_00",
+      "text": "ఐ లైక్ ఇన్ని ఇయర్స్ అయినా సరే ఐ థింక్ యే మేరా జహా సాంగ్ ఇస్ మై గోటు సాంగ్. సో ఆ సాంగ్ వినంగానే ఐ ఫీల్ లైక్ మోటివేటెడ్ అండ్ నైస్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 218,
+      "start": 905.95,
+      "end": 916.03,
+      "speaker": "SPEAKER_01",
+      "text": "సాంగా డైలాగ్ అడిగారా ఇలా అయితే నాకు ఎవడ్రా ఎవడ్రా నువ్వు ఫ్రమ్ పుష్ప వినంగానే మట్టిని మట్టిని నేను నన్ను తొక్కితే ఇటు కవుతాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 219,
+      "start": 906.89,
+      "end": 907.25,
+      "speaker": "SPEAKER_00",
+      "text": "ಡೈಲಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 220,
+      "start": 916.33,
+      "end": 917.37,
+      "speaker": "SPEAKER_00",
+      "text": "నేను అడగలేదు కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 221,
+      "start": 917.94,
+      "end": 920.03,
+      "speaker": "SPEAKER_01",
+      "text": "మరి నువ్వు సాంగ్ అంటే మరి నేను చెప్పేది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 222,
+      "start": 919.43,
+      "end": 924.54,
+      "speaker": "SPEAKER_00",
+      "text": "నేను చెప్పాను నేను ఏదో కవర్ డ్రైవ్ ఇచ్చుకున్నాను నేను. డైలాగ్ చెప్పుకుంటే నాకు సాంగ్ అని చెప్పారు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 223,
+      "start": 923.87,
+      "end": 931.78,
+      "speaker": "SPEAKER_01",
+      "text": "Bunny sir idi chooste sila when Sukumar gaaru called me for office I was like yesterday only sir I put and I am dancing.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 224,
+      "start": 932.99,
+      "end": 935.91,
+      "speaker": "SPEAKER_01",
+      "text": "Full Vibration Andi Okay Okay",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 225,
+      "start": 936.96,
+      "end": 939.14,
+      "speaker": "SPEAKER_00",
+      "text": "வீபத்சம். வீபத்சம் பய அக்கம்.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 226,
+      "start": 937.93,
+      "end": 941.99,
+      "speaker": "SPEAKER_01",
+      "text": "फुल्ली ऐसा कांतारा आ जाता अंदर से मेरा।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 227,
+      "start": 943.17,
+      "end": 945.43,
+      "speaker": "SPEAKER_03",
+      "text": "మీరు ఆన్సర్ చెప్పలేదు డైలాగ్ చెప్పలేదు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 228,
+      "start": 945.61,
+      "end": 947.25,
+      "speaker": "SPEAKER_02",
+      "text": "ಆ ನಿನಗೆ ತೂ ತಲೆ ಕೈತೆ ಲೆದ್ದು ನಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 229,
+      "start": 947.25,
+      "end": 949.93,
+      "speaker": "SPEAKER_03",
+      "text": "కురి పాస్ చేయండి మానస్ కి నేను అయినా పర్లేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 230,
+      "start": 949.25,
+      "end": 951.84,
+      "speaker": "SPEAKER_01",
+      "text": "हिंदी है ना पहले तो? हिंदी में कुछ नहीं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 231,
+      "start": 951.43,
+      "end": 952.11,
+      "speaker": "SPEAKER_02",
+      "text": "नहीं, कोई नहीं है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 232,
+      "start": 952.37,
+      "end": 953.9,
+      "speaker": "SPEAKER_01",
+      "text": "भाईजान का कोई नहीं नहीं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 233,
+      "start": 953.45,
+      "end": 954.27,
+      "speaker": "SPEAKER_02",
+      "text": "नहीं नहीं नहीं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 234,
+      "start": 954.33,
+      "end": 960.19,
+      "speaker": "SPEAKER_01",
+      "text": "याद नहीं है। भाई जान बहन जान नहीं है। नहीं किसी का भाई किसी सलमान का।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 235,
+      "start": 961.7,
+      "end": 963.44,
+      "speaker": "SPEAKER_01",
+      "text": "No Okay Sunrise Sunset",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 236,
+      "start": 964.81,
+      "end": 965.29,
+      "speaker": "SPEAKER_00",
+      "text": "ಸನ್ಸೆಟ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 237,
+      "start": 966.41,
+      "end": 966.78,
+      "speaker": "SPEAKER_01",
+      "text": "ಸೆಟ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 238,
+      "start": 967.19,
+      "end": 969.71,
+      "speaker": "SPEAKER_03",
+      "text": "సెట్ వెరీ గుడ్ సింక్ లో ఉన్నారు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 239,
+      "start": 970.56,
+      "end": 972.7,
+      "speaker": "SPEAKER_01",
+      "text": "అందుకే అందరం Ganguly చేసాం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 240,
+      "start": 974.07,
+      "end": 975.87,
+      "speaker": "SPEAKER_01",
+      "text": "ఆ One Word About Sudheer గారు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 241,
+      "start": 977.27,
+      "end": 978.03,
+      "speaker": "SPEAKER_01",
+      "text": "Magic",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 242,
+      "start": 979.75,
+      "end": 982.91,
+      "speaker": "SPEAKER_01",
+      "text": "is magic in my life and mostly everyone's life also.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 243,
+      "start": 981.32,
+      "end": 982.98,
+      "speaker": "SPEAKER_03",
+      "text": "Mostly everyone's life also",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 244,
+      "start": 983.43,
+      "end": 983.77,
+      "speaker": "SPEAKER_01",
+      "text": "ಹಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 245,
+      "start": 983.55,
+      "end": 984.87,
+      "speaker": "SPEAKER_03",
+      "text": "One word about Sunny gaaru",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 246,
+      "start": 985.13,
+      "end": 985.41,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 247,
+      "start": 985.71,
+      "end": 989.27,
+      "speaker": "SPEAKER_00",
+      "text": "Sunny is a lively person",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 248,
+      "start": 990.57,
+      "end": 991.17,
+      "speaker": "SPEAKER_00",
+      "text": "Relatively",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 249,
+      "start": 991.37,
+      "end": 995.89,
+      "speaker": "SPEAKER_03",
+      "text": "Okay. Aa one word about dance. Life.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 250,
+      "start": 997.13,
+      "end": 1007.26,
+      "speaker": "SPEAKER_01",
+      "text": "अब आई एम सॉरी, आई वांट टू आस्क यू एस कोरियोग्राफर, आपको कौन इंस्पायर किया नाचने के लिए? मम्मी। मम्मी नाचते? नहीं, नाचते नहीं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 251,
+      "start": 1007.26,
+      "end": 1007.82,
+      "speaker": "SPEAKER_02",
+      "text": "नहीं है बट।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 252,
+      "start": 1007.89,
+      "end": 1008.79,
+      "speaker": "SPEAKER_00",
+      "text": "इंस्पायर किए हैं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 253,
+      "start": 1009.01,
+      "end": 1010.37,
+      "speaker": "SPEAKER_02",
+      "text": "ಈ ಸ್ಪೈಕ್ ಗೆ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 254,
+      "start": 1009.03,
+      "end": 1009.25,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 255,
+      "start": 1010.85,
+      "end": 1014.17,
+      "speaker": "SPEAKER_02",
+      "text": "क्यों क्या कहते हैं? आपने टैलेंट देके उन्हें इनकरेज किया।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 256,
+      "start": 1010.93,
+      "end": 1016.05,
+      "speaker": "SPEAKER_01",
+      "text": "आपने टैलेंट देके उन्हें एंकरेज किया, बट आपको",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 257,
+      "start": 1016.03,
+      "end": 1018.35,
+      "speaker": "SPEAKER_02",
+      "text": "नहीं, ऐसा इंस्पिरेशन बोले तो कोई भी नहीं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 258,
+      "start": 1016.55,
+      "end": 1017.03,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 259,
+      "start": 1018.35,
+      "end": 1022.43,
+      "speaker": "SPEAKER_01",
+      "text": "നിങ്ങൾക്ക് പോഴ്സണലി സ്വയം ഇഷ്ട്ടം ഉണ്ടോ? ഓക്കേ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 260,
+      "start": 1019.21,
+      "end": 1020.36,
+      "speaker": "SPEAKER_02",
+      "text": "Personally Kutka",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 261,
+      "start": 1022.5,
+      "end": 1023.01,
+      "speaker": "SPEAKER_02",
+      "text": "ಹಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 262,
+      "start": 1022.97,
+      "end": 1023.68,
+      "speaker": "SPEAKER_03",
+      "text": "इसकी और वोडका।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 263,
+      "start": 1024.9,
+      "end": 1027.51,
+      "speaker": "SPEAKER_00",
+      "text": "విస్కీ ఆర్ వోడ్ ఖానా ఇది ఎందుకు వచ్చింది మధ్యలో?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 264,
+      "start": 1027.53,
+      "end": 1028.51,
+      "speaker": "SPEAKER_03",
+      "text": "And that is a question",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 265,
+      "start": 1029.42,
+      "end": 1031.71,
+      "speaker": "SPEAKER_00",
+      "text": "ನನ್ನ ಕಳ್ಳು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 266,
+      "start": 1034.7,
+      "end": 1035.19,
+      "speaker": "SPEAKER_01",
+      "text": "ആ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 267,
+      "start": 1035.19,
+      "end": 1036.35,
+      "speaker": "SPEAKER_03",
+      "text": "మనం రెడ్ వైన్ పెట్టుకుందాం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 268,
+      "start": 1036.4,
+      "end": 1050.05,
+      "speaker": "SPEAKER_01",
+      "text": "No, I don't like alcohol at all, but if I want to, if I have to in holidays, just in the, just for the mood of it, I would, I don't mind whiskey on the rocks. No, not on the rocks, plain whiskey with water, yeah. Kobbar neeru.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 269,
+      "start": 1050.55,
+      "end": 1050.75,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 270,
+      "start": 1050.66,
+      "end": 1065.19,
+      "speaker": "SPEAKER_01",
+      "text": "Oh bahut oh bacchi hai abhi 20, I am 28. 8 years mein she learn how to do. Okay. Meghna thank you for this lovely interview. Hope you had a lovely time. Thank you for",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 271,
+      "start": 1064.07,
+      "end": 1069.56,
+      "speaker": "SPEAKER_02",
+      "text": "थैंक यू फॉर कीपिंग आउट द सीक्रेट्स। बाहर सारा सीक्रेट्स निकाल दिया यार। और बहुत",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 272,
+      "start": 1068.75,
+      "end": 1072.33,
+      "speaker": "SPEAKER_01",
+      "text": "और बहुत है, नहीं इतना मैं हम नहीं कर रही।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 273,
+      "start": 1071.11,
+      "end": 1073.83,
+      "speaker": "SPEAKER_02",
+      "text": "नहीं हम नहीं कर रहे हैं, मुझे इतना ही है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 274,
+      "start": 1074.23,
+      "end": 1077.88,
+      "speaker": "SPEAKER_00",
+      "text": "Tum tum kar do interview Meghna, if you leave na, these guys will interview and want to.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 275,
+      "start": 1077.6,
+      "end": 1080.14,
+      "speaker": "SPEAKER_01",
+      "text": "I don't, only Srishti I have no idea.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 276,
+      "start": 1080.08,
+      "end": 1080.87,
+      "speaker": "SPEAKER_00",
+      "text": "Oh no!",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 277,
+      "start": 1080.14,
+      "end": 1080.53,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 278,
+      "start": 1080.99,
+      "end": 1087.4,
+      "speaker": "SPEAKER_01",
+      "text": "Nuvvu vellipova ani cheppanu. Nuvvu palace friends vellina about that. I am I think can I say that I am your friend?",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 279,
+      "start": 1081.95,
+      "end": 1082.79,
+      "speaker": "SPEAKER_02",
+      "text": "Now",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 280,
+      "start": 1082.13,
+      "end": 1084.11,
+      "speaker": "SPEAKER_00",
+      "text": "లేదు ఫ్రెండ్స్ బిల్లు నా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 281,
+      "start": 1087.55,
+      "end": 1088.07,
+      "speaker": "SPEAKER_00",
+      "text": "Yes",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 282,
+      "start": 1088.07,
+      "end": 1089.48,
+      "speaker": "SPEAKER_01",
+      "text": "Ya, I know a man is.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 283,
+      "start": 1089.73,
+      "end": 1089.93,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 284,
+      "start": 1090.13,
+      "end": 1090.96,
+      "speaker": "SPEAKER_01",
+      "text": "fence fence",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 285,
+      "start": 1090.96,
+      "end": 1094.64,
+      "speaker": "SPEAKER_02",
+      "text": "Instagram, heart, fans, die hard fans.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 286,
+      "start": 1093.77,
+      "end": 1103.14,
+      "speaker": "SPEAKER_00",
+      "text": "अरे सृष्टि डाई हार्ट फैंस बोल के एक पेज है सी दी। बिफोर इवन यू नो सृष्टि पोस्ट्स दे एडिट एंड दे पोस्ट एंड हां आपका फैंस।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 287,
+      "start": 1102.99,
+      "end": 1104.09,
+      "speaker": "SPEAKER_01",
+      "text": "हां, बहुत अच्छा है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 288,
+      "start": 1103.84,
+      "end": 1107.82,
+      "speaker": "SPEAKER_00",
+      "text": "बहुत अच्छा है उसको, स्किल्स बहुत अच्छा है। बहुत एडिटिंग स्किल्स बहुत अच्छा है लाइक।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 289,
+      "start": 1107.43,
+      "end": 1107.84,
+      "speaker": "SPEAKER_02",
+      "text": "હા.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 290,
+      "start": 1108.09,
+      "end": 1110.19,
+      "speaker": "SPEAKER_00",
+      "text": "Before even she post the edit and",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 291,
+      "start": 1109.75,
+      "end": 1114.97,
+      "speaker": "SPEAKER_02",
+      "text": "No that the one with photo is there na with Dhanush sir na, I don't know who is that.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 292,
+      "start": 1113.35,
+      "end": 1113.83,
+      "speaker": "SPEAKER_00",
+      "text": "ಫೀನ್ ಆಯ್ತು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 293,
+      "start": 1115.38,
+      "end": 1121.15,
+      "speaker": "SPEAKER_02",
+      "text": "But really they'll post everything before me and I'll be like send me this, send me this then I'll post.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 294,
+      "start": 1121.59,
+      "end": 1131.53,
+      "speaker": "SPEAKER_01",
+      "text": "Nice. So thank you, hope you all had fun watching this interview. Thank you Nivritti Vibes, keep watching and do subscribe to Nivritti Vibes. Bye!",
+      "skipped": null,
+      "lang": "en-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 2892,
+  "elapsed_sec": 231.6,
+  "rtf": 0.2046,
+  "clip_dur_sec": 1132.0,
+  "transcribed_at_utc": "2026-08-21T15:28:35+00:00",
+  "clip_language": null,
+  "n_segments": 295,
+  "n_skipped_short": 14,
+  "detected_language": "te-IN",
+  "languages_seen": [
+    "bn-IN",
+    "en-IN",
+    "gu-IN",
+    "hi-IN",
+    "kn-IN",
+    "ml-IN",
+    "pa-IN",
+    "ta-IN",
+    "te-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0"
+}

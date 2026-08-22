@@ -1,0 +1,117 @@
+{
+  "clip_id": "RWTmftezCwI__0_60",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.53,
+      "end": 3.71,
+      "speaker": "SPEAKER_00",
+      "text": "രാലേട്ടൻ അങ്ങനെ ഉമ്മ കൊടുക്കാറില്ല, എനിക്കൊരെണ്ണം തന്നു.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 1,
+      "start": 4.91,
+      "end": 7.05,
+      "speaker": "SPEAKER_00",
+      "text": "പിന്നെ ഇങ്ങനെ തിരിച്ചു കൊടുക്കാണ്ട് പോകുമെന്ന് വിചാരിച്ചു.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 2,
+      "start": 7.28,
+      "end": 8.99,
+      "speaker": "SPEAKER_02",
+      "text": "അല്ല ഇന്നലെ ചേട്ടൻ തിരിച്ചു കൊടുക്കാൻ കഴിഞ്ഞു.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 3,
+      "start": 9.97,
+      "end": 10.99,
+      "speaker": "SPEAKER_00",
+      "text": "ഹലോ",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 4,
+      "start": 12.56,
+      "end": 16.36,
+      "speaker": "SPEAKER_02",
+      "text": "നിരഞ്ചേട്ടാ ഒരുപാട് നാളത്തെ ഒരു കാത്തിരിപ്പ് തോന്നുന്നില്ലേ കാരണം രാജുവിൻ പോലത്തെ ഒരു സിനിമ",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 5,
+      "start": 16.36,
+      "end": 32.11,
+      "speaker": "SPEAKER_01",
+      "text": "അതെ, ആ വിനായക ഫിലിംസിൻ്റെ തുടക്ക സിനിമയാണ്. അതിങ്ങനെ ഓരോന്നും കഴിയുമ്പോൾ നമ്മൾ ഭയങ്കര വീർത്തും കൂട്ടി കാത്തിരിക്കുകയായിരുന്നു. കാരണം നമ്മൾ അത്രയും മനസ്സുകൊണ്ടൊക്കെ എല്ലാവരും ഒരു ഒരു ഒരു കണക്ക് ഒപ്പിച്ച് വന്നൊരു സിനിമയാണ്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 6,
+      "start": 32.67,
+      "end": 38.64,
+      "speaker": "SPEAKER_02",
+      "text": "അല്ല ഇതില് അഭിനയിച്ച അഭിനേതാക്കള്ക്ക് അടക്കം എല്ലാ താരങ്ങള്ക്കും നല്ല രീതിയില് ഒരു ക്യാരക്ടര് ഉണ്ട്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 7,
+      "start": 38.43,
+      "end": 40.21,
+      "speaker": "SPEAKER_01",
+      "text": "അതെ അതെ എത്ര ചെറുതായാലും ഭയങ്കര",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 8,
+      "start": 39.85,
+      "end": 44.78,
+      "speaker": "SPEAKER_02",
+      "text": "ഒരു ഡെപ്ത് ഫീൽ ചെയ്യുന്നുണ്ട് ഒരു ക്യാരക്ടർ ഇങ്ങനെ ഒരു സിനിമയിലെ ഒരു അനുഭവങ്ങളും കാര്യങ്ങളും.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 9,
+      "start": 44.95,
+      "end": 59.99,
+      "speaker": "SPEAKER_01",
+      "text": "സിനിമ അതുപോലെ തന്നെ നമ്മൾ ഓരോ സീനും ചെയ്യുമ്പോഴേക്കും കോമ്പിനേഷൻ നിൽക്കുന്ന ആർട്ടിസ്റ്റുകളും ഡയറക്ടർ തരുന്ന ഫ്രീഡവും ഒക്കെ അത്രയും നമുക്ക് ആസ്വദിച്ച് ചെയ്യാൻ പറ്റുന്നതാണ്. നമുക്കൊരു അവരുടെ അടുത്തൊരു ഒരു ഒഴിവ് ഒഴിവ് പറയാതെ ചെയ്യാൻ ഉത്തരവാദിത്വം.",
+      "skipped": null,
+      "lang": "ml-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 113,
+  "elapsed_sec": 5.29,
+  "rtf": 0.0881,
+  "clip_dur_sec": 60.0,
+  "transcribed_at_utc": "2026-08-22T06:33:21+00:00",
+  "clip_language": null,
+  "n_segments": 10,
+  "n_skipped_short": 0,
+  "detected_language": "ml-IN",
+  "languages_seen": [
+    "en-IN",
+    "ml-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 1
+}

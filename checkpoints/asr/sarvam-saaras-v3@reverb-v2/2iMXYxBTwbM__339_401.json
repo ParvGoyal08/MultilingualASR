@@ -1,0 +1,195 @@
+{
+  "clip_id": "2iMXYxBTwbM__339_401",
+  "system": "sarvam-saaras-v3@reverb-v2",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "reverb-v2",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.013,
+      "end": 2.673,
+      "speaker": "SPEAKER_01",
+      "text": "म्हारू जेवायला का नाही बसला?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 1,
+      "start": 3.032,
+      "end": 7.412,
+      "speaker": "SPEAKER_00",
+      "text": "नाही उघड होती ना मला. का? नाही अगं खाल्लं होतं मी सकाळी जास्त.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 2,
+      "start": 4.192,
+      "end": 4.532,
+      "speaker": "SPEAKER_01",
+      "text": "ಕ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 3,
+      "start": 7.312,
+      "end": 15.972,
+      "speaker": "SPEAKER_01",
+      "text": "जास्त खाल्लेलं. मी तुझ्या शेजारी बसली आहे आणि तुझं माझ्याकडे लक्ष नाहीये, मोबाईलमध्ये लक्ष.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 4,
+      "start": 15.873,
+      "end": 17.753,
+      "speaker": "SPEAKER_00",
+      "text": "अगं मोबाईल जरा फेकून तुझ्यासाठी काय होणार?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 5,
+      "start": 18.172,
+      "end": 25.812,
+      "speaker": "SPEAKER_01",
+      "text": "एवढी ओवरऍक्टिंग कोणी करायला सांगितली आहे का? मोबाईल कोणाचा शेजारी बायको वगैरे फेकून देता का? बरं घेतो आता म्हणजे तू ओवरऍक्ट आहेस.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 6,
+      "start": 25.692,
+      "end": 26.812,
+      "speaker": "SPEAKER_00",
+      "text": "आता येतो मी मला काय",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 7,
+      "start": 26.812,
+      "end": 28.572,
+      "speaker": "SPEAKER_01",
+      "text": "म्हणजे नक्कीच काहीतरी तुझं भानगड आहे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 8,
+      "start": 29.113,
+      "end": 31.053,
+      "speaker": "SPEAKER_00",
+      "text": "का मोबाईल फेकून दिल्यावर मानगड असते थोडी.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 9,
+      "start": 31.152,
+      "end": 36.532,
+      "speaker": "SPEAKER_01",
+      "text": "मग एवढं ओवररिएक्ट कोण करतं का? तू माझ्या शेजारी येऊन स्वतःहून बसला असता तर मी मोबाईल फेकून दिला असता का?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 10,
+      "start": 36.392,
+      "end": 37.872,
+      "speaker": "SPEAKER_00",
+      "text": "उगाच काहीतरी खरं समज डोक्यात घेऊन.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 11,
+      "start": 37.873,
+      "end": 42.853,
+      "speaker": "SPEAKER_01",
+      "text": "गैरसमज नाहीये, मी हे तुझं झालं ना आठवडाभर बघतीये, आठवडी किती झाली आहे तुझी? मोबाईल चेक कर.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 12,
+      "start": 42.093,
+      "end": 43.853,
+      "speaker": "SPEAKER_00",
+      "text": "मोबाईल चेक कर काय असेल ते बघ त्या.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 13,
+      "start": 43.552,
+      "end": 47.272,
+      "speaker": "SPEAKER_01",
+      "text": "डिलीट केल्यावर काय घंटा चेक करणार आहे?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 14,
+      "start": 45.853,
+      "end": 48.953,
+      "speaker": "SPEAKER_00",
+      "text": "डोक्यात तो भुसा भरायचा काढून टाक पहिला.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 15,
+      "start": 48.953,
+      "end": 58.613,
+      "speaker": "SPEAKER_01",
+      "text": "वाह! माझ्या डोक्यात घुसा बसला. कसले डाऊट घेतेस तू? एक मिनिट. काय डाऊट का वाटतायत? म्हणजे आधी मी तुझ्याशी बोलायची, शेअर करायची हे तुला छान वाटायचं आणि आता तुला डाऊट वाटतायत?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 16,
+      "start": 51.093,
+      "end": 51.493,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 17,
+      "start": 52.573,
+      "end": 52.633,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 18,
+      "start": 59.293,
+      "end": 61.993,
+      "speaker": "SPEAKER_00",
+      "text": "तुला म्हणायचं काय सांग क्लिअर कर मला तुला म्हणायचं.",
+      "skipped": null,
+      "lang": "mr-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 185,
+  "elapsed_sec": 12.64,
+  "rtf": 0.2039,
+  "clip_dur_sec": 62.0,
+  "transcribed_at_utc": "2026-08-21T10:32:12+00:00",
+  "n_segments": 19,
+  "n_skipped_short": 1,
+  "detected_language": "mr-IN",
+  "languages_seen": [
+    "kn-IN",
+    "mr-IN",
+    "od-IN"
+  ]
+}

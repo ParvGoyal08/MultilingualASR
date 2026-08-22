@@ -1,0 +1,10 @@
+{
+  "model": "reverb-v2",
+  "clip_id": "Kdi-ECuOaKg__2_78",
+  "status": "ok",
+  "oracle": false,
+  "n_turns": 7,
+  "n_speakers_hyp": 6,
+  "clip_dur_sec": 76.0,
+  "imported_from": "error_explorer export"
+}

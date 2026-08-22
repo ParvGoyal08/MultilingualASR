@@ -27,7 +27,8 @@ from sarvam_diar import asr, data, llm_refine as lr, reference, text_metrics as 
 from sarvam_diar.config import Config  # noqa: E402
 from sarvam_diar.utils import append_jsonl, read_json, write_json_atomic  # noqa: E402
 
-SOURCE = "sarvam-saaras-v3@fusion"
+import os
+SOURCE = os.environ.get("XLIT_SOURCE", "sarvam-saaras-v3@fusion")
 SEED = 20260822
 
 

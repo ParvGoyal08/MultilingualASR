@@ -46,6 +46,7 @@ API_ROOT = "https://generativelanguage.googleapis.com/v1beta"
 # gemini-3.7-flash is capped at 2 requests/day/model on this key's free
 # tier. 3.5-flash is the strongest model with usable quota.
 DEFAULT_MODEL = "gemini-3.5-flash"
+BEDROCK_DEFAULT = "us.anthropic.claude-sonnet-4-6"
 GEMINI_KEYS = ("GEMINI_TOKEN", "GEMINI_API_KEY", "GOOGLE_API_KEY")
 SEED = 20260822
 
@@ -378,6 +379,45 @@ def cache_key(model: str, system: str, user: str, gen: dict) -> str:
     return hashlib.sha1(blob.encode("utf-8")).hexdigest()[:16]
 
 
+def _is_bedrock(model: str) -> bool:
+    return "anthropic" in model
+
+
+def call_bedrock(cfg: Config, model: str, system: str, user: str,
+                 max_out: int, use_cache: bool = True) -> dict:
+    """Same contract as call_gemini: returns {"response": <raw>, "key": ...}."""
+    from . import translit
+
+    gen = {"temperature": 0, "max_tokens": min(max_out, 16000)}
+    ck = cache_key(model, system, user, gen)
+    path = cache_dir(cfg, model.replace("/", "_")) / ck[:2] / f"{ck}.json"
+    if use_cache:
+        hit = read_json(path, None)
+        if hit and hit.get("response"):
+            return {"cached": True, "key": ck, **hit}
+    # Gemini gets its JSON from responseSchema; Bedrock has no equivalent, so
+    # the format has to be demanded in-band AND pinned with an assistant
+    # prefill. Without the prefill Sonnet returns the rendered transcript back
+    # in the same line format it was shown, which parses as nothing.
+    sysmsg = system + (
+        "\n\nOUTPUT FORMAT -- this overrides any other formatting instinct.\n"
+        "Return ONE JSON object and nothing else. No prose, no code fence, no\n"
+        "restatement of the input format. The shape is exactly:\n"
+        '{"segments":[{"id":<integer>,"text":"<string>"}, ...]}\n'
+        "Include every id you were asked to return, once each.")
+    # No assistant prefill: this model rejects it ("conversation must end with a
+    # user message"), so the format is carried entirely by the directive above.
+    body = {"anthropic_version": "bedrock-2023-05-31", "system": sysmsg,
+            "messages": [{"role": "user", "content": user}], **gen}
+    t0 = time.perf_counter()
+    resp = translit._post(body, translit.resolve_bedrock_key(cfg), model)
+    rec = {"cached": False, "key": ck, "model": model, "response": resp,
+           "prompt_version": PROMPT_VERSION,
+           "elapsed_sec": round(time.perf_counter() - t0, 2), "at_utc": now_utc_iso()}
+    write_json_atomic(path, {k: v for k, v in rec.items() if k != "cached"})
+    return rec
+
+
 def call_gemini(cfg: Config, key: str, model: str, system: str, user: str,
                 max_out: int, use_cache: bool = True) -> dict:
     gen = {"temperature": 0, "topP": 1.0, "candidateCount": 1, "seed": SEED,
@@ -412,6 +452,28 @@ def call_gemini(cfg: Config, key: str, model: str, system: str, user: str,
 
 def _extract(resp: dict) -> tuple[list[dict] | None, str]:
     """(segments, finish_reason). Fails loudly rather than returning nothing."""
+    if "content" in resp and isinstance(resp.get("content"), list):   # Bedrock
+        txt = "".join(c.get("text", "") for c in resp["content"])
+        fin = resp.get("stop_reason", "?")
+        if "```" in txt:                       # tolerate a fenced block
+            seg = txt.split("```")
+            for k in range(1, len(seg), 2):
+                body_ = seg[k]
+                if body_.lstrip().startswith("json"):
+                    body_ = body_.lstrip()[4:]
+                if "{" in body_ or "[" in body_:
+                    txt = body_; break
+        a, b = txt.find("{"), txt.rfind("}")
+        if a < 0 or b <= a:
+            a, b = txt.find("["), txt.rfind("]")
+        if a < 0 or b <= a:
+            return None, f"NO_JSON:{fin}"
+        try:
+            obj = json.loads(txt[a:b + 1])
+        except json.JSONDecodeError:
+            return None, f"BAD_JSON:{fin}"
+        segs = obj.get("segments") if isinstance(obj, dict) else obj
+        return (segs if isinstance(segs, list) else None), fin
     if resp.get("promptFeedback", {}).get("blockReason"):
         return None, "BLOCKED:" + resp["promptFeedback"]["blockReason"]
     cands = resp.get("candidates") or []
@@ -448,6 +510,21 @@ def guard_segment(old_text: str, new_text: str, dup: set[int]) -> tuple[str, str
         return old_text, "romanisation", stats
     if len(new) > math.ceil(GROWTH_FRAC * len(old)) + 1:
         return old_text, "growth", stats
+    # R6 per-token script rail. obs [51] measured 7 of 24 applied edits
+    # introducing a script absent from the input -- Telugu "party" becoming
+    # Japanese katakana, Bengali "etao" becoming Korean hangul -- and every one
+    # passed the DOMINANT-script test, because one corrupted token in forty
+    # cannot move a majority. Reject any output token whose script is new.
+    def _scripts(toks):
+        out = set()
+        for t in toks:
+            sc, _, _ = dominant_script(t)
+            if sc and sc != "-":
+                out.add(sc)
+        return out
+    if _scripts(new) - _scripts(old):
+        return old_text, "new_script_token", stats
+
     ops = align(old, new)
     unlicensed = sum(1 for tag, i, _ in ops
                      if (tag in ("replace", "delete") and i not in dup) or tag == "insert")
@@ -470,7 +547,7 @@ def refine_clip(cfg: Config, source_system: str, clip_id: str, arm: str,
     segments[i]['text'] touched."""
     from . import asr
 
-    key = key or resolve_gemini_key(cfg)
+    key = key or (None if _is_bedrock(model) else resolve_gemini_key(cfg))
     src = read_json(asr.asr_path(cfg, source_system, clip_id))
     segs = src["segments"]
     dup = dup_positions(segs)
@@ -491,8 +568,11 @@ def refine_clip(cfg: Config, source_system: str, clip_id: str, arm: str,
         user = render_window(src, w, arm)
         core_chars = sum(len(segs[i].get("text") or "") for i in ids)
         try:
-            rec = call_gemini(cfg, key, model, system_instruction(arm), user,
-                              min(65536, 512 + 4 * core_chars), use_cache)
+            rec = (call_bedrock(cfg, model, system_instruction(arm), user,
+                                min(65536, 512 + 4 * core_chars), use_cache)
+                   if _is_bedrock(model) else
+                   call_gemini(cfg, key, model, system_instruction(arm), user,
+                               min(65536, 512 + 4 * core_chars), use_cache))
         except Exception as exc:  # noqa: BLE001
             LOG.warning("%s w%d: call failed %s: %s", clip_id, w_idx,
                         type(exc).__name__, str(exc)[:140])

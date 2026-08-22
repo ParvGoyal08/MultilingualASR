@@ -1,0 +1,10 @@
+{
+  "model": "community-1",
+  "clip_id": "83gP2vLH7UY__255_2005",
+  "status": "ok",
+  "oracle": false,
+  "n_turns": 395,
+  "n_speakers_hyp": 5,
+  "clip_dur_sec": 1750.0,
+  "imported_from": "error_explorer export"
+}

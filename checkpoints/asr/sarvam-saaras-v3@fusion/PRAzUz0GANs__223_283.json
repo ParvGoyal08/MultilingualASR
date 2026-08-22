@@ -1,0 +1,232 @@
+{
+  "clip_id": "PRAzUz0GANs__223_283",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.01,
+      "end": 11.45,
+      "speaker": "SPEAKER_01",
+      "text": "ಈಗ ನೋಡಿ ಬ್ಯುಸಿ ಇರೋರು ಕೂಡ ನಿಮ್ಮ ರೀಲ್ಸ್ ನೋಡ್ಕೊಂಡು ಬಹಳ ಖುಷಿ ಪಡ್ತಾರಲ್ವಾ? ನಿಮಗೆ ಬಂದಿರುವಂತ ರಿವ್ಯೂನಲ್ಲಿ ದಿ ಬೆಸ್ಟ್ ರಿವ್ಯೂ ನಿಮಗೆ ನನಗೆ ತುಂಬಾ ಖುಷಿಯಾಗಿದ್ದು ಅಂತಂದ್ರೆ ಯಾವುದು? ಯಾರ್ದು ಯಾರ್ ಕಡೆಯಿಂದ ಸಿಕ್ಕಿದ್ದು?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 1,
+      "start": 11.65,
+      "end": 16.97,
+      "speaker": "SPEAKER_00",
+      "text": "ಫಸ್ಟ್ ಸುಧಾಮೂರ್ತಿ ಪೇಜ್ ಇದೆಯಲ್ಲ ಆ ಫ್ಯಾನ್ ಪೇಜ್ ಕಡೆಯಿಂದ ಒಂದು ವಿಡಿಯೋ ಮಾಡಿ ಹಾಕಿದ್ರು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 2,
+      "start": 13.91,
+      "end": 14.27,
+      "speaker": "SPEAKER_01",
+      "text": "ಹಾ ಹಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 3,
+      "start": 17.0,
+      "end": 17.21,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 4,
+      "start": 17.48,
+      "end": 20.35,
+      "speaker": "SPEAKER_00",
+      "text": "ಇದೇನು ಪ್ರಮೋಷನ್ ಇದು ಪೇಯ್ಡ್ ಪ್ರಮೋಷನ್ ಅಲ್ಲ ಇದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 5,
+      "start": 20.33,
+      "end": 20.72,
+      "speaker": "SPEAKER_01",
+      "text": "ಹ್ಮ್ ಹ್ಮ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 6,
+      "start": 20.72,
+      "end": 26.19,
+      "speaker": "SPEAKER_00",
+      "text": "ಒಂದು ಕಲೆಗೆ ಒಂದು ಪ್ರಮೋಷನ್ ಮಾಡೋಣ ಅಂತ ಹೇಳಿ ಅವರು ಮಾಡಿದ್ರು. ಆನಂತರ ಏನ್ ಮಾಡಿದ್ರು ಫಸ್ಟ್ ಜಿ.ಸಿ. ಗೌಡ್ರು ಅಂತ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 7,
+      "start": 26.27,
+      "end": 26.69,
+      "speaker": "SPEAKER_01",
+      "text": "ಹ್ಞೂ ಹ್ಞೂ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 8,
+      "start": 26.98,
+      "end": 31.7,
+      "speaker": "SPEAKER_00",
+      "text": "ಜಿ.ಸಿ.ಗೌಡ್ರು ಅಂತ ಇನ್ಸ್ಟಾಗ್ರಾಮ್ ಅಲ್ಲಿ ತೆಗೆದು ಈ ಫಾರೆಸ್ಟ್ ಡಿಪಾರ್ಟ್ಮೆಂಟ್ ವ್ಯಕ್ತಿ ಯಾರು ಅಂತ ಗೊತ್ತಿಲ್ಲ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 9,
+      "start": 29.71,
+      "end": 30.01,
+      "speaker": "SPEAKER_01",
+      "text": "ಈ ಫಾಲ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 10,
+      "start": 31.7,
+      "end": 31.99,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 11,
+      "start": 31.99,
+      "end": 35.29,
+      "speaker": "SPEAKER_00",
+      "text": "ಬಟ್ ಇವರ ಕಲೆಗೆ ನಾವು ಒಂದು ಬೆಲೆ ಇದನ್ನ ಕೊಡಬೇಕು ಅಂತ ಫಸ್ಟ್ ಜಿ.ಸಿ. ಗೌಡ್ರು ಮಾಡಿದ್ರು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 12,
+      "start": 35.25,
+      "end": 35.51,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 13,
+      "start": 35.89,
+      "end": 41.03,
+      "speaker": "SPEAKER_00",
+      "text": "ಆನಂತರ ಏನ್ ಮಾಡಿದ್ರು ಸುಧಾಮೂರ್ತಿ ಅಮ್ಮ ಪೇಜ್ ಇದೆಯಲ್ಲ ಅವರು ಮಾಡಿದ್ರು ಆನಂತರ ಕೀರ್ತಿ ಸರ್ ಇದ್ದಾರಲ್ಲ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 14,
+      "start": 38.49,
+      "end": 38.75,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 15,
+      "start": 41.03,
+      "end": 41.3,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 16,
+      "start": 41.3,
+      "end": 50.97,
+      "speaker": "SPEAKER_00",
+      "text": "ಅವರು ಅವರೊಂದು ವಿಡಿಯೋ ಮಾಡಿದ್ರು. ಅದೊಂದು ತುಂಬಾ ಹೆಲ್ಪ್ ಆಯ್ತು. ಜಿ.ಸಿ. ಗೌಡ್ರು, ಸುಧಾಮೂರ್ತಿ ಅಮ್ಮ ಪೇಜು ಮತ್ತೆ ಕಿರಿ ಕೀರ್ತಿ ಸರ್ ಇದ್ದಾರಲ್ಲ ಆ ಪೇಜು, ಮೂರು ಪೇಜು ತುಂಬಾ ಹೆಲ್ಪ್ ಆಯ್ತು ಅದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 17,
+      "start": 49.33,
+      "end": 49.59,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 18,
+      "start": 50.84,
+      "end": 51.24,
+      "speaker": "SPEAKER_01",
+      "text": "ಹ್ಞೂ ಹ್ಞೂ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 19,
+      "start": 51.24,
+      "end": 52.34,
+      "speaker": "SPEAKER_00",
+      "text": "ಅವರು ಈಗ ನಿಮಗೆ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 20,
+      "start": 51.85,
+      "end": 59.09,
+      "speaker": "SPEAKER_01",
+      "text": "ಈಗ ನಿಮಗೆ ನಿರಂತರವಾಗಿ ಮೆಸೇಜಸ್ ನೈಸ್ ಸೂಪರ್ ಮ್ಯಾಜಿಕಲ್ ವಾಯ್ಸ್ ಅಂತ ಹೇಳಿ ಲೇಡೀಸ್ ಫ್ಯಾನ್ಸ್ ಕ್ಲಬ್ ಜಾಸ್ತಿ ಓಪನ್ ಆಗ್ಬಿಟ್ಟಿತ್ತು ಅದರ ಬಗ್ಗೆ ಏನು ಹೇಳ್ತೀರಿ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 21,
+      "start": 54.93,
+      "end": 55.31,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 22,
+      "start": 58.91,
+      "end": 59.97,
+      "speaker": "SPEAKER_00",
+      "text": "ಇಲ್ಲ ಇಲ್ಲ ಇಲ್ಲ ನಂಗೆ ಎಂಗೇಜ್ಮೆಂಟ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 164,
+  "elapsed_sec": 7.6,
+  "rtf": 0.1266,
+  "clip_dur_sec": 60.0,
+  "transcribed_at_utc": "2026-08-21T15:28:43+00:00",
+  "clip_language": null,
+  "n_segments": 23,
+  "n_skipped_short": 6,
+  "detected_language": "kn-IN",
+  "languages_seen": [
+    "kn-IN",
+    "pa-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0"
+}

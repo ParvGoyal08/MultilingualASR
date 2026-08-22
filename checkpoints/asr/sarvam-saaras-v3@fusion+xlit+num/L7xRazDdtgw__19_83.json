@@ -1,0 +1,98 @@
+{
+  "clip_id": "L7xRazDdtgw__19_83",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 3.42,
+      "end": 11.74,
+      "speaker": "SPEAKER_01",
+      "text": "આ આ મોબાઈલની અંદર પેલા ભજન આવે છે ને, તો વહુએ શીખવાડ્યું તું એકવાર, તે મથી રહી છું બેટા.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 1,
+      "start": 16.31,
+      "end": 21.15,
+      "speaker": "SPEAKER_01",
+      "text": "દામિની વહુને? હા, બોલાવો. દામિની વહુ.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 2,
+      "start": 22.49,
+      "end": 23.57,
+      "speaker": "SPEAKER_01",
+      "text": "દામિની બેટા",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 3,
+      "start": 36.65,
+      "end": 43.89,
+      "speaker": "SPEAKER_01",
+      "text": "બીજું કંઈ કામ હતું? ના, કામ મારે નહોતું, રોનકને હતું. રોનક.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 4,
+      "start": 44.81,
+      "end": 47.55,
+      "speaker": "SPEAKER_00",
+      "text": "મારે તમારા લોકો સાથે થોડી વાત કરવી હતી.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 5,
+      "start": 48.21,
+      "end": 54.14,
+      "speaker": "SPEAKER_01",
+      "text": "બોલને બેટા, શું વાત કરવી છે? હા, તમારી સાથે વાત કરવી છે. ના ના.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 6,
+      "start": 53.69,
+      "end": 58.62,
+      "speaker": "SPEAKER_00",
+      "text": "ના ના, મારે તમારા બંને સાથે વાત કરવી છે, મીરા અને આદિ વિશે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 7,
+      "start": 59.15,
+      "end": 63.99,
+      "speaker": "SPEAKER_01",
+      "text": "મીરા અને આદિ વિશે? હું કંઈ સમજી નહીં બેટા.",
+      "skipped": null,
+      "lang": "gu-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 82,
+  "elapsed_sec": 3.63,
+  "rtf": 0.0567,
+  "clip_dur_sec": 64.0,
+  "transcribed_at_utc": "2026-08-22T06:33:21+00:00",
+  "clip_language": null,
+  "n_segments": 8,
+  "n_skipped_short": 0,
+  "detected_language": "gu-IN",
+  "languages_seen": [
+    "gu-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 0
+}

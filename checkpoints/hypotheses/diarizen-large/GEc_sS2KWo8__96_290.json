@@ -1,0 +1,14 @@
+{
+  "model": "diarizen-large",
+  "clip_id": "GEc_sS2KWo8__96_290",
+  "status": "ok",
+  "oracle": false,
+  "clip_dur_sec": 194.0,
+  "elapsed_sec": null,
+  "rtf": null,
+  "n_turns": 65,
+  "n_speakers_hyp": 3,
+  "max_end": 194.092,
+  "imported_from": "diarizen_rttm/GEc_sS2KWo8__96_290.rttm",
+  "diarized_at_utc": "2026-08-20T19:20:19+00:00"
+}

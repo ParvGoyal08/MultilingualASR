@@ -1,0 +1,21 @@
+{
+  "model": "fusion",
+  "clip_id": "VHlIFsHPWbk__23_470",
+  "status": "ok",
+  "oracle": false,
+  "n_turns": 35,
+  "n_speakers_hyp": 4,
+  "clip_dur_sec": 447.0,
+  "max_end": 446.99,
+  "elapsed_sec": null,
+  "rtf": null,
+  "fused_from": [
+    "community-1",
+    "reverb-v2",
+    "diarizen-large"
+  ],
+  "threshold": 0.5,
+  "min_dur": 0.2,
+  "weights": "equal",
+  "diarized_at_utc": "2026-08-21T11:59:45+00:00"
+}

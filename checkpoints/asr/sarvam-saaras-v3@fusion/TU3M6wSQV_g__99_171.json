@@ -1,0 +1,236 @@
+{
+  "clip_id": "TU3M6wSQV_g__99_171",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.2,
+      "end": 1.19,
+      "speaker": "SPEAKER_00",
+      "text": "అండ్ హాయ్ అండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 1,
+      "start": 1.19,
+      "end": 1.92,
+      "speaker": "SPEAKER_01",
+      "text": "Hi Madam",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 2,
+      "start": 1.75,
+      "end": 2.2,
+      "speaker": "SPEAKER_00",
+      "text": "नमस्ते",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 3,
+      "start": 2.2,
+      "end": 2.98,
+      "speaker": "SPEAKER_01",
+      "text": "నమస్తే Madam",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 4,
+      "start": 2.9,
+      "end": 3.44,
+      "speaker": "SPEAKER_00",
+      "text": "మీ పేరు?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 5,
+      "start": 3.42,
+      "end": 6.52,
+      "speaker": "SPEAKER_01",
+      "text": "నా పేరు బి.ఎస్.ఎస్. కృష్ణ అండి. నా స్వగ్రమం గుంటూరు అండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 6,
+      "start": 4.9,
+      "end": 8.71,
+      "speaker": "SPEAKER_00",
+      "text": "నా స్వగ్రమం గుంటూరు అండి. తేజ గారి ఈ క్లినిక్ ఎలా తెలిసింది మీకు?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 7,
+      "start": 8.71,
+      "end": 10.83,
+      "speaker": "SPEAKER_01",
+      "text": "అంటే యాక్చువల్ గా నా ఫ్రెండ్ ఒకతను",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 8,
+      "start": 10.76,
+      "end": 11.1,
+      "speaker": "SPEAKER_00",
+      "text": "हम्म।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 9,
+      "start": 11.01,
+      "end": 18.17,
+      "speaker": "SPEAKER_01",
+      "text": "యూట్యూబ్ ఛానల్ లో వీడియోస్ చూడాలని చెప్పారు. సరే అనేసి తేజ గారి యూట్యూబ్ ఛానల్ లో వీడియోస్ చూసి నేను హైదరాబాద్ రావడం జరిగింది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 10,
+      "start": 16.73,
+      "end": 17.11,
+      "speaker": "SPEAKER_00",
+      "text": "ఉమ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 11,
+      "start": 18.15,
+      "end": 20.27,
+      "speaker": "SPEAKER_00",
+      "text": "అసలు ఏంటి ఏంటి సార్ అసలు మీ ప్రాబ్లం ఏంటి?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 12,
+      "start": 19.57,
+      "end": 26.09,
+      "speaker": "SPEAKER_01",
+      "text": "అసలు నాకు నాలుగు సంవత్సరాల నుండి కూడా నడుము నొప్పి, మెడ నొప్పి తర్వాత 10 నిమిషాల కంటే ఎక్కువ నించుంటే తిమ్మిర్లు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 13,
+      "start": 21.47,
+      "end": 21.88,
+      "speaker": "SPEAKER_00",
+      "text": "ಹ್ಮ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 14,
+      "start": 26.17,
+      "end": 26.63,
+      "speaker": "SPEAKER_00",
+      "text": "হুম।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 15,
+      "start": 26.57,
+      "end": 28.38,
+      "speaker": "SPEAKER_01",
+      "text": "కాళ్ళు తిమ్మిర్లు, చేతులు తిమ్మిర్లు ఉండేవి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 16,
+      "start": 28.31,
+      "end": 28.66,
+      "speaker": "SPEAKER_00",
+      "text": "Hmm",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 17,
+      "start": 28.97,
+      "end": 42.53,
+      "speaker": "SPEAKER_01",
+      "text": "సో ఈ ప్రాబ్లమ్స్ అన్నీ ఉండబట్టి చాలామంది డాక్టర్లను సంప్రదిస్తే వాళ్ళు ఏం చెప్పారంటే సర్జరీ చేస్తాం కానీ 100% గ్యారెంటీ ఉండదు. 50% మాత్రమే మేము ఎస్యూరెన్స్ ఇస్తామని చెప్పారు. సరే అని చెప్పేసి ఇక ఆలోచిస్తూ నాలుగు సంవత్సరాల నుంచి నేను టాబ్లెట్స్ అవన్నీ వాడటం జరిగింది మేడం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 18,
+      "start": 42.45,
+      "end": 42.91,
+      "speaker": "SPEAKER_00",
+      "text": "ஹம்.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 19,
+      "start": 43.03,
+      "end": 65.45,
+      "speaker": "SPEAKER_01",
+      "text": "వాడుతున్నాను కానీ నాకేమీ ఏమి మార్పు ఏమి కనిపించలేదు. తర్వాత ఆ వీడియోస్ చూసి నేను హైదరాబాద్ రావడం జరిగింది. డాక్టర్ గారిని సంప్రదించడం జరిగింది. తర్వాత ఇక్కడ పాత పేషెంట్లు ఎవరైతే ట్రీట్మెంట్ తీసుకుంటున్నారో వాళ్ళందరూ కూడా చెప్పడం జరిగింది మేడం పాజిటివ్ గా చెప్పారు. అంతా బాగా వెంటనే నయం అవుతుంది చాలా బాగా పాజిటివ్ గా ఉందని చెప్పి చెప్పడం జరిగింది. అందువల్ల నేను ట్రీట్మెంట్ తీసుకోవడం జరిగింది. ఒక 20 రోజుల నుంచి ట్రీట్మెంట్ తీసుకున్నాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 20,
+      "start": 65.37,
+      "end": 65.79,
+      "speaker": "SPEAKER_00",
+      "text": "ఉమ్",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 21,
+      "start": 65.55,
+      "end": 71.99,
+      "speaker": "SPEAKER_01",
+      "text": "తీసుకున్నాక వెంటనే నాకు 10 నిమిషాల కంటే వన్ అవర్ నుంచున్నా కానీ నాకు ప్రాబ్లం లేదండి. 90% వరకు నాకు క్యూర్ లేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 22,
+      "start": 70.61,
+      "end": 71.04,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 205,
+  "elapsed_sec": 8.89,
+  "rtf": 0.1235,
+  "clip_dur_sec": 72.0,
+  "transcribed_at_utc": "2026-08-21T15:42:48+00:00",
+  "clip_language": null,
+  "n_segments": 23,
+  "n_skipped_short": 0,
+  "detected_language": "te-IN",
+  "languages_seen": [
+    "bn-IN",
+    "en-IN",
+    "hi-IN",
+    "kn-IN",
+    "ta-IN",
+    "te-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0"
+}

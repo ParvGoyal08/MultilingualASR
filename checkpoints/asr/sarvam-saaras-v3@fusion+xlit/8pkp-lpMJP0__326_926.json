@@ -1,0 +1,1509 @@
+{
+  "clip_id": "8pkp-lpMJP0__326_926",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 1.61,
+      "end": 7.64,
+      "speaker": "SPEAKER_02",
+      "text": "ఓకే ఓకే నాకు నేమ్స్ వద్దు నువ్వు ఆర్డర్ చేయండి నేను చేస్తున్నాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 1,
+      "start": 7.64,
+      "end": 7.94,
+      "speaker": "SPEAKER_00",
+      "text": "ಇಟ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 2,
+      "start": 8.01,
+      "end": 9.27,
+      "speaker": "SPEAKER_02",
+      "text": "హా బెటర్ బెటర్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 3,
+      "start": 10.27,
+      "end": 19.79,
+      "speaker": "SPEAKER_03",
+      "text": "ఓయ్ ఈ క్రాంతు ఏ లోట్ల కొంచం అన్న తాక్కుంటుంటావ్ పిల్లమా ఈ పిల్ల అంటే ఏది నువ్వు తాక్కుంటుంటావ్ మేము తినం పిలు ఈ క్రాంతుడు పిలు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 4,
+      "start": 18.45,
+      "end": 19.05,
+      "speaker": "SPEAKER_02",
+      "text": "ఆ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 5,
+      "start": 20.56,
+      "end": 22.13,
+      "speaker": "SPEAKER_02",
+      "text": "మీ స్టైల్లో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 6,
+      "start": 22.17,
+      "end": 32.19,
+      "speaker": "SPEAKER_03",
+      "text": "మీ సైల్ లో వీళ్ళు నా సైల్ లో వీళ్ళు. ఓకే. పిలు విక్రమ్. విక్రమ్ తో కుకింగ్ చేయాలంటే ఓటు అంటే ఓటు వేస్తున్నావ్ మొర్రి బింకడు కళ్ళు మోకాళ్ళ వంటివి పట్టుకొని వస్తున్నావ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 7,
+      "start": 32.19,
+      "end": 33.4,
+      "speaker": "SPEAKER_04",
+      "text": "వచ్చినావా వచ్చినావా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 8,
+      "start": 33.22,
+      "end": 33.63,
+      "speaker": "SPEAKER_03",
+      "text": "ಹಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 9,
+      "start": 34.17,
+      "end": 35.47,
+      "speaker": "SPEAKER_04",
+      "text": "ഇടവെട്ട് അട്ട് അട്ട് അട്ട് ഇടവെട്ട്",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 10,
+      "start": 35.55,
+      "end": 36.43,
+      "speaker": "SPEAKER_03",
+      "text": "అంజన",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 11,
+      "start": 36.41,
+      "end": 36.79,
+      "speaker": "SPEAKER_04",
+      "text": "हाँ।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 12,
+      "start": 36.75,
+      "end": 43.45,
+      "speaker": "SPEAKER_03",
+      "text": "చందు నీకేమన్నా మానం సిగ్గు ఉందా? మేము వీడియో చేసుకోవాలా కుకింగ్ అంటే గ పిల్లగాని తాగ తీసుకుపోతావా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 13,
+      "start": 43.02,
+      "end": 45.47,
+      "speaker": "SPEAKER_06",
+      "text": "అంటే ఇప్పుడు మేము రాకముందే వీడియో వేయదనుస్తున్నాం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 14,
+      "start": 44.19,
+      "end": 44.45,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 15,
+      "start": 46.42,
+      "end": 50.69,
+      "speaker": "SPEAKER_04",
+      "text": "ఇంకా తాగేవు సగం కుండ తాగినా సగం కుండ తాగినా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 16,
+      "start": 52.17,
+      "end": 59.05,
+      "speaker": "SPEAKER_04",
+      "text": "ఏ నిమ్మకాయ రసం ఉన్నట్టు ఉంది. ఏ అన్న అన్న అన్న అది చెప్పొద్దు చెప్పొద్దు అప్పుడు. ఏ లేదు జస్ట్ తీసుకొచ్చినాం అంతే కళ్ళు ఆగిపోయాయి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 17,
+      "start": 59.15,
+      "end": 61.39,
+      "speaker": "SPEAKER_03",
+      "text": "కాదు మనకు పని ఎప్పుడు అయిద్ది అనుకున్నావ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 18,
+      "start": 59.17,
+      "end": 65.23,
+      "speaker": "SPEAKER_00",
+      "text": "కాదు మనకు పని ఎప్పుడు అయిద్ది అనుకున్నావ్ విక్రాంత్ అసలు తాగనే తాగడు అంటుంది మీరేమో హాఫ్ కుండ తాగేసి వచ్చినావ్ అని చెప్పి",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 19,
+      "start": 65.41,
+      "end": 67.41,
+      "speaker": "SPEAKER_04",
+      "text": "ఏం తాగలేదు ఊరికే జస్ట్ అంటే తాగలేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 20,
+      "start": 66.67,
+      "end": 68.22,
+      "speaker": "SPEAKER_06",
+      "text": "అంటే తాగలేదు తాగినా నాన్న.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 21,
+      "start": 68.01,
+      "end": 68.35,
+      "speaker": "SPEAKER_03",
+      "text": "ಹಾಂ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 22,
+      "start": 68.87,
+      "end": 69.47,
+      "speaker": "SPEAKER_06",
+      "text": "താങ്കളെ",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 23,
+      "start": 69.47,
+      "end": 69.87,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 24,
+      "start": 69.87,
+      "end": 78.33,
+      "speaker": "SPEAKER_03",
+      "text": "అడుగు వాసన చూడు ఎట్లా వస్తదో చూడు ఆ ఇదిగో ఇదండీ వెన్నడు వెన్నడు వెన్నడు తెలుసు వెన్నడు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 25,
+      "start": 74.99,
+      "end": 77.73,
+      "speaker": "SPEAKER_01",
+      "text": "ఇవన్నీ ఇవన్నీ ఇవన్నీ ఐ హాడ్ లెస్ సెల్స్ ఇది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 26,
+      "start": 78.11,
+      "end": 79.03,
+      "speaker": "SPEAKER_06",
+      "text": "నేను తాగడం లేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 27,
+      "start": 80.82,
+      "end": 82.29,
+      "speaker": "SPEAKER_06",
+      "text": "కానీ గంగ ఇది మోసం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 28,
+      "start": 80.85,
+      "end": 81.09,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 29,
+      "start": 82.43,
+      "end": 82.89,
+      "speaker": "SPEAKER_03",
+      "text": "ఎందుకు?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 30,
+      "start": 83.03,
+      "end": 91.43,
+      "speaker": "SPEAKER_06",
+      "text": "మేమందరం రాకముందే వీళ్ళందరూ కూర్చుని పెట్టుకొని వీడియో వేద్దామని ప్లాన్ చేసినోళ్లే. అబ్బా బాగా చాలా అయిపోయింది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 31,
+      "start": 88.01,
+      "end": 88.91,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 32,
+      "start": 92.15,
+      "end": 96.59,
+      "speaker": "SPEAKER_01",
+      "text": "మీకు తెలియని విషయం ఏంటంటే ఆల్రెడీ వీడియో స్టార్ట్ అయిపోయి చాలా సేపు అయింది మీరే మధ్యలో వచ్చి జాయిన్ అయ్యారు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 33,
+      "start": 96.94,
+      "end": 97.55,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 34,
+      "start": 97.06,
+      "end": 97.69,
+      "speaker": "SPEAKER_06",
+      "text": "ఆ మీరు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 35,
+      "start": 98.99,
+      "end": 101.07,
+      "speaker": "SPEAKER_01",
+      "text": "నేను పిలవలేదండి అరిచాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 36,
+      "start": 99.03,
+      "end": 100.6,
+      "speaker": "SPEAKER_02",
+      "text": "మేము పిలవలేదండి అరిచాము.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 37,
+      "start": 100.77,
+      "end": 101.55,
+      "speaker": "SPEAKER_06",
+      "text": "अरे यार!",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 38,
+      "start": 101.6,
+      "end": 103.97,
+      "speaker": "SPEAKER_02",
+      "text": "ఆ చెప్తున్నాను ఏం జరుగుతుంది ఇప్పుడు?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 39,
+      "start": 104.01,
+      "end": 110.52,
+      "speaker": "SPEAKER_06",
+      "text": "అంటే మీరు వీడియో స్టార్ట్ చేశారు, మేము ఇంకోటి స్టార్ట్ చేశాము. ఆ ఈరోజు స్పెషల్ గా ఒక మంచి కర్రీ వేయబోతున్నాం. అన్న ఏం కర్రీ వేస్తున్నావ్ ఈరోజు?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 40,
+      "start": 106.15,
+      "end": 106.76,
+      "speaker": "SPEAKER_02",
+      "text": "हाँ।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 41,
+      "start": 110.63,
+      "end": 116.6,
+      "speaker": "SPEAKER_05",
+      "text": "చంపారన్ మటన్ మనకేందంటే విలేజ్ స్టైల్ లో ఆ కుండలు కూడా రెడీ ఉన్నాయి. మ్యారినేషన్ ఏం చేద్దాం ఎట్లా చేద్దాం అనేది చూద్దాం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 42,
+      "start": 116.6,
+      "end": 131.6,
+      "speaker": "SPEAKER_06",
+      "text": "ఈరోజు ఆ చంపారన్ మటన్ తో పాటు మనకు స్పెషల్ గా స్పార్క్ సినిమా టీం వాళ్ళు వచ్చారు. అన్న వచ్చేసి మన విక్రాంత్ అన్న సినిమా హీరోగా వేశారు. డైరెక్టర్ డైరెక్టర్ హీరో ప్రొడ్యూసర్ అన్నీ చాలా రకాల అన్న వాళ్ళు నివ్వండి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 43,
+      "start": 126.2,
+      "end": 126.67,
+      "speaker": "SPEAKER_04",
+      "text": "ಡೈರೆಕ್ಟರ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 44,
+      "start": 128.07,
+      "end": 128.77,
+      "speaker": "SPEAKER_04",
+      "text": "ప్రొడ్యూసర్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 45,
+      "start": 130.89,
+      "end": 131.51,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 46,
+      "start": 132.61,
+      "end": 134.61,
+      "speaker": "SPEAKER_03",
+      "text": "అవ్వ నేను ఈ సినిమా తీసింది అని చెప్పినావా?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 47,
+      "start": 134.67,
+      "end": 135.39,
+      "speaker": "SPEAKER_04",
+      "text": "చెప్పలేను కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 48,
+      "start": 135.31,
+      "end": 136.99,
+      "speaker": "SPEAKER_03",
+      "text": "ಚೆನ್ನಾಗಿ ನಾನು ತಿಳಿಯೋಣ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 49,
+      "start": 135.87,
+      "end": 138.42,
+      "speaker": "SPEAKER_04",
+      "text": "ఓకే ఓకే చెప్తా ఇప్పుడు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 50,
+      "start": 138.18,
+      "end": 141.75,
+      "speaker": "SPEAKER_03",
+      "text": "పిల్లని తీసుకొని వచ్చిన వాడిని నేను అనుకున్నా అమ్మ తోడు నాకు తెలవది నాన్న.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 51,
+      "start": 141.63,
+      "end": 144.53,
+      "speaker": "SPEAKER_04",
+      "text": "అది పిల్ల కాదు పిల్ల కాదు హీరోని హీరోయిని.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 52,
+      "start": 144.47,
+      "end": 145.64,
+      "speaker": "SPEAKER_03",
+      "text": "నాకే నా కై ఇల్లు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 53,
+      "start": 145.3,
+      "end": 147.06,
+      "speaker": "SPEAKER_04",
+      "text": "అరేయ్ ఆ హీరో పేరు తెలుసా నీకు?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 54,
+      "start": 147.37,
+      "end": 152.09,
+      "speaker": "SPEAKER_03",
+      "text": "ए पेर मुनी की वृक्षा रु वृक्ष तन रुक्षा",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 55,
+      "start": 153.15,
+      "end": 153.53,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 56,
+      "start": 153.67,
+      "end": 154.11,
+      "speaker": "SPEAKER_06",
+      "text": "",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 57,
+      "start": 154.11,
+      "end": 158.65,
+      "speaker": "SPEAKER_03",
+      "text": "रुका रुका रुका रुका रुका रुका रुका रुका।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 58,
+      "start": 154.83,
+      "end": 155.43,
+      "speaker": "SPEAKER_06",
+      "text": "పిక్చర్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 59,
+      "start": 159.48,
+      "end": 170.01,
+      "speaker": "SPEAKER_06",
+      "text": "సో ఇక వీళ్ళందరితోని ఇప్పుడు మంచి చంపారన్ మటన్ చేస్తూ వాళ్ళ సినిమా ముచ్చట్లు అడుగుతూ వీడియోనైతే స్టార్ట్ చేయబోతున్నాం. చేసినట్టు కాదు వీడియో మొత్తం మీరే వేయాలి ఫుడ్ మీరందరూ కలిసి వేయాలి ముందే చెప్తున్నా. అన్న.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 60,
+      "start": 170.01,
+      "end": 177.11,
+      "speaker": "SPEAKER_05",
+      "text": "ఫస్ట్ ఏం కావాలంటే చెప్పండి. మనకు డ్రై మసాలాలు కావాల్సినవి ఉన్నాయి. ఉడిగడ్డలు మనకు ఎక్కువ ఉంటాయి కాబట్టి ఉడిగడ్డలు కట్ చేసుకోవాలి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 61,
+      "start": 175.05,
+      "end": 176.02,
+      "speaker": "SPEAKER_02",
+      "text": "चाकू काढ यायची.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 62,
+      "start": 177.59,
+      "end": 183.24,
+      "speaker": "SPEAKER_05",
+      "text": "ఉల్లిగడ్డ ఒకటి కట్ చేయండి. తర్వాత పచ్చిమిర్చిలు సగం సగం కట్ చేస్తే అయిపోతాయి. చిన్న చిన్నగా అవసరం లేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 63,
+      "start": 181.67,
+      "end": 183.73,
+      "speaker": "SPEAKER_06",
+      "text": "చిన్న చిన్నగా అవసరం లేదు ఓకే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 64,
+      "start": 183.9,
+      "end": 188.77,
+      "speaker": "SPEAKER_05",
+      "text": "తర్వాత ఎండుమిర్చిలు అలా వేసేయాలి. ఓకే కొత్తిమీర పూజ కట్ చేసేటివి వేసేయాలి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 65,
+      "start": 186.37,
+      "end": 186.89,
+      "speaker": "SPEAKER_06",
+      "text": "ಓಕೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 66,
+      "start": 188.81,
+      "end": 189.21,
+      "speaker": "SPEAKER_05",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 67,
+      "start": 188.83,
+      "end": 190.93,
+      "speaker": "SPEAKER_06",
+      "text": "ఓకే అన్న మీరేం కార్ ఇస్తారన్న?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 68,
+      "start": 189.21,
+      "end": 189.43,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 69,
+      "start": 192.37,
+      "end": 195.01,
+      "speaker": "SPEAKER_03",
+      "text": "నాన్న నువ్వు ఏం చేస్తావు నాన్న",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 70,
+      "start": 193.77,
+      "end": 194.37,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 71,
+      "start": 196.06,
+      "end": 201.75,
+      "speaker": "SPEAKER_04",
+      "text": "నేను అమెరికాలో జాబ్ చేసేటోడిని అవ్వలేదు. అయితే ఇప్పుడు మానేసింది. మానేసి సినిమా వేద్దామని వచ్చింది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 72,
+      "start": 203.09,
+      "end": 207.64,
+      "speaker": "SPEAKER_03",
+      "text": "చదువు లాల్ కోరి జారీ అయ్యాక సినిమాలు వేస్తున్నాకే మంచిగా ఉంది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 73,
+      "start": 209.16,
+      "end": 215.95,
+      "speaker": "SPEAKER_04",
+      "text": "సినిమా పిచ్చావా? నీకా? చిన్నప్పటినుంచి సినిమాలు చూసి చూసి ఎప్పుడైనా ఒక మంచి సినిమా తీయాలి అని ఒక కోరిక.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 74,
+      "start": 215.09,
+      "end": 217.79,
+      "speaker": "SPEAKER_03",
+      "text": "అని ఒక కోరిక. ఏ సినిమా చేసినావ్ ఇప్పుడు?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 75,
+      "start": 217.91,
+      "end": 218.44,
+      "speaker": "SPEAKER_04",
+      "text": "స్పార్క్",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 76,
+      "start": 218.83,
+      "end": 219.2,
+      "speaker": "SPEAKER_03",
+      "text": "আর",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 77,
+      "start": 219.76,
+      "end": 224.18,
+      "speaker": "SPEAKER_04",
+      "text": "స్పార్క్ కాదల్లా స్పార్క్ స్పా స్పార్క్ మెరుపు మెరుపు మెరుపు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 78,
+      "start": 224.18,
+      "end": 224.67,
+      "speaker": "SPEAKER_03",
+      "text": "ಏನು?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 79,
+      "start": 224.67,
+      "end": 225.79,
+      "speaker": "SPEAKER_04",
+      "text": "మెరుపు షార్క్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 80,
+      "start": 226.11,
+      "end": 227.91,
+      "speaker": "SPEAKER_03",
+      "text": "మరి క్రెండీ వేసుకున్నావ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 81,
+      "start": 228.18,
+      "end": 230.54,
+      "speaker": "SPEAKER_04",
+      "text": "ఆ చేసుకుంటాం.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 82,
+      "start": 231.01,
+      "end": 234.05,
+      "speaker": "SPEAKER_03",
+      "text": "ఎవరిని వేస్తుంది? అలా ఆవిడ సినిమా సినిమా సినిమా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 83,
+      "start": 231.97,
+      "end": 232.5,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 84,
+      "start": 232.5,
+      "end": 233.1,
+      "speaker": "SPEAKER_00",
+      "text": "ಸೀಕ್ರೆನ್ಸ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 85,
+      "start": 233.1,
+      "end": 234.98,
+      "speaker": "SPEAKER_04",
+      "text": "సీక్రెట్ సీక్రెట్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 86,
+      "start": 234.98,
+      "end": 235.43,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 87,
+      "start": 236.17,
+      "end": 239.67,
+      "speaker": "SPEAKER_04",
+      "text": "సినిమా సినిమా చేసుకున్న పెళ్లి సినిమానే పెళ్లి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 88,
+      "start": 238.74,
+      "end": 242.08,
+      "speaker": "SPEAKER_03",
+      "text": "సినిమానే తెల్ల. సినిమాలో చేసుకున్నా కానీ వేరే ఇది చేసుకోలేదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 89,
+      "start": 242.11,
+      "end": 243.43,
+      "speaker": "SPEAKER_04",
+      "text": "చిన్నోళ్లే ఈ మెతల్లో",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 90,
+      "start": 243.95,
+      "end": 244.73,
+      "speaker": "SPEAKER_03",
+      "text": "ఈవెన్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 91,
+      "start": 244.73,
+      "end": 245.21,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 92,
+      "start": 245.33,
+      "end": 246.79,
+      "speaker": "SPEAKER_03",
+      "text": "अरे वो",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 93,
+      "start": 246.25,
+      "end": 247.11,
+      "speaker": "SPEAKER_04",
+      "text": "अरे ओपन है।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 94,
+      "start": 246.79,
+      "end": 248.55,
+      "speaker": "SPEAKER_02",
+      "text": "రివీల్ చేసేసారు రివీల్ చేసేసారు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 95,
+      "start": 247.73,
+      "end": 250.48,
+      "speaker": "SPEAKER_04",
+      "text": "మిల్లేసేసారు ఇంకా పెళ్ళాం కూడా సినిమాలో.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 96,
+      "start": 250.85,
+      "end": 258.55,
+      "speaker": "SPEAKER_02",
+      "text": "బట్ ఐ టోల్డ్ హర్ సెట్ సినిమాలో ఓకే బట్ రియల్ లైఫ్ లో పెళ్ళి కోసం బాయ్ కావాలి సో షి ఇస్ గోయింగ్ టు లుక్ ఫర్ మీ.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 97,
+      "start": 258.79,
+      "end": 259.5,
+      "speaker": "SPEAKER_04",
+      "text": "అవునా?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 98,
+      "start": 259.15,
+      "end": 259.56,
+      "speaker": "SPEAKER_02",
+      "text": "ಹಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 99,
+      "start": 259.56,
+      "end": 262.01,
+      "speaker": "SPEAKER_04",
+      "text": "అబ్బా మరి చూస్తావా సంబంధం అంటే కావాలని చూస్తావా?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 100,
+      "start": 261.29,
+      "end": 262.03,
+      "speaker": "SPEAKER_02",
+      "text": "हां।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 101,
+      "start": 262.01,
+      "end": 263.81,
+      "speaker": "SPEAKER_03",
+      "text": "ಏನು ಉಂಡಾ ಹಿಂಗೆ ಎದುರು ಸಾವ ಅಂದೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 102,
+      "start": 264.99,
+      "end": 265.29,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 103,
+      "start": 265.65,
+      "end": 266.77,
+      "speaker": "SPEAKER_03",
+      "text": "హలో",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 104,
+      "start": 265.66,
+      "end": 268.02,
+      "speaker": "SPEAKER_04",
+      "text": "షీ ఇజ్ సేయింగ్ యూ నో వై డూ యూ నీడ్ టు లర్న్ దట్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 105,
+      "start": 268.42,
+      "end": 269.83,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 106,
+      "start": 269.18,
+      "end": 288.73,
+      "speaker": "SPEAKER_04",
+      "text": "అవ్వా ఈ సినిమాలో ఇంకొక హీరోయిన్ ఉంది అవ్వా. హనీ ఇస్ ద బెస్ట్ తెలుసా నీకు అది? మెహ్రీన్. చూసినావా ఎఫ్ టు ఎఫ్ త్రీ సినిమా? చూడలే. చూడలే వెంకటేష్ ఇది లేదా ఇట్లా అంటావ్ చూసినావా? ఆ పిల్ల ఇంకొక హీరోయిన్. ఆవిడ మెయిన్ హీరోయినా? ఆమె మెయిన్ హీరోయిన్. నేను వీరు సెకండ్ అంటే సెకండ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 107,
+      "start": 289.05,
+      "end": 294.07,
+      "speaker": "SPEAKER_03",
+      "text": "రెండో భార్య ఈమె. కాదు కాదు. రెండో భార్య కాదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 108,
+      "start": 290.51,
+      "end": 290.99,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 109,
+      "start": 292.17,
+      "end": 293.25,
+      "speaker": "SPEAKER_04",
+      "text": "కాదు కాదు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 110,
+      "start": 293.25,
+      "end": 293.74,
+      "speaker": "SPEAKER_01",
+      "text": "ഭാര്യ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 111,
+      "start": 293.74,
+      "end": 295.01,
+      "speaker": "SPEAKER_04",
+      "text": "సినిమాలో ఇద్దరు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 112,
+      "start": 294.83,
+      "end": 297.45,
+      "speaker": "SPEAKER_03",
+      "text": "చీర మల్లె",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 113,
+      "start": 295.56,
+      "end": 296.25,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 114,
+      "start": 297.55,
+      "end": 299.76,
+      "speaker": "SPEAKER_04",
+      "text": "సినిమానే ఆ అబ్బా నేను చెప్పనా క్లియర్ గా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 115,
+      "start": 299.69,
+      "end": 300.25,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 116,
+      "start": 300.32,
+      "end": 302.68,
+      "speaker": "SPEAKER_04",
+      "text": "ముగ్గురు పెళ్ళాలి ఫస్ట్ పెళ్ళాం సినిమా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 117,
+      "start": 302.87,
+      "end": 303.32,
+      "speaker": "SPEAKER_03",
+      "text": "ಹ್ಞೂ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 118,
+      "start": 303.3,
+      "end": 305.15,
+      "speaker": "SPEAKER_04",
+      "text": "రెండో పిల్ల మాది, మూడో పిల్ల మీది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 119,
+      "start": 305.51,
+      "end": 311.29,
+      "speaker": "SPEAKER_03",
+      "text": "वो बुरा आदमी है। अब वो कोई जफी करने ना तू नहीं बोल सकता। आई एम वेरी पसी गा गया अब तू।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 120,
+      "start": 309.8,
+      "end": 310.37,
+      "speaker": "SPEAKER_02",
+      "text": "I'm వెరీ",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 121,
+      "start": 311.34,
+      "end": 317.92,
+      "speaker": "SPEAKER_03",
+      "text": "సినిమా డైరెక్టర్ చేసుడు నువ్వే రాసుకుండు చేసుడు అంటే బాగా కష్టపడ్డవులే.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 122,
+      "start": 318.09,
+      "end": 323.37,
+      "speaker": "SPEAKER_04",
+      "text": "బాగా కష్టపడినావా ఎందుకంటే కష్టము ఇష్టంగా చేస్తే కష్టం అనిపించదు అట్లా చేసినా బెస్ట్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 123,
+      "start": 323.13,
+      "end": 326.47,
+      "speaker": "SPEAKER_03",
+      "text": "మరి అమ్మ నాన్న అద్దం కదా ఇంత కొడుకా నువ్వు ఎందుకు కష్టపడతావని",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 124,
+      "start": 326.61,
+      "end": 339.69,
+      "speaker": "SPEAKER_04",
+      "text": "అన్నారు అన్నారు కష్టపడుతున్నావ్ పైసలు పెడుతున్నావ్ మరి చూసుకో మరి అన్నారు బేసిక్ గా కానీ వాళ్ళు కూడా తర్వాత ఏం చూసినారంటే నేను నాకు ఎంత ఇష్టం సినిమా అంటే ఎంత ప్యాషన్ అనేది చూసింది తర్వాత వాళ్ళు కూడా సపోర్ట్ చేశారు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 125,
+      "start": 339.69,
+      "end": 343.11,
+      "speaker": "SPEAKER_06",
+      "text": "అన్న మీరు వచ్చే ముందు నేను మీ ట్రైలర్ చూశాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 126,
+      "start": 339.7,
+      "end": 340.41,
+      "speaker": "SPEAKER_04",
+      "text": "అన్న మీరు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 127,
+      "start": 343.05,
+      "end": 343.43,
+      "speaker": "SPEAKER_04",
+      "text": "ಹ್ಞೂ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 128,
+      "start": 343.65,
+      "end": 347.63,
+      "speaker": "SPEAKER_06",
+      "text": "సో ట్రైలర్ లో మొత్తం ఇంత పెద్ద పెద్ద కాస్ట్ ని పెట్టేసారు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 129,
+      "start": 347.55,
+      "end": 347.89,
+      "speaker": "SPEAKER_04",
+      "text": "ಹಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 130,
+      "start": 347.89,
+      "end": 353.63,
+      "speaker": "SPEAKER_06",
+      "text": "సుహాసిని గారు ఉన్నారు, నాజర్ గారు ఉన్నారు, వెన్నెల కిషోర్ గారు, వీరు మెహరిన్ గారు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 131,
+      "start": 353.59,
+      "end": 354.49,
+      "speaker": "SPEAKER_04",
+      "text": "ਹਾਂਜੀ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 132,
+      "start": 353.93,
+      "end": 354.97,
+      "speaker": "SPEAKER_06",
+      "text": "ഞാൻ പറഞ്ഞാലും",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 133,
+      "start": 354.85,
+      "end": 355.25,
+      "speaker": "SPEAKER_04",
+      "text": "ಹ್ಮ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 134,
+      "start": 355.23,
+      "end": 381.01,
+      "speaker": "SPEAKER_06",
+      "text": "సార్ పెద్ద కాస్ట్ అంటే బడ్జెట్ పెద్ద బడ్జెట్ సినిమా. నాకు అర్థం కాదంటే అప్పుడే కామన్ కి వెళ్ళిపోయారు చెప్పినట్టు. అప్పటికే ఆర్మీ వచ్చేసింది మళ్ళీ. అప్పుడే అప్పుడే చంపేస్తున్నారు. వాళ్ళు అప్పుడే ఫైట్ చేస్తున్నారు. అంటే మొత్తం కన్ఫ్యూజ్ కన్ఫ్యూజ్ అయిపోయింది అది ఇది ఇదేంది అదేంది అన్నట్టు. ఆల్ జానర్స్. అన్నిటికీ క్వశ్చన్ మార్క్ క్వశ్చన్ మార్క్ పెట్టుకుంటూ వెళ్లారు. అంటే ఇప్పుడు ఇవన్నీ క్వశ్చన్ మార్క్ రిలీజ్ కావాలంటే మీ సినిమా కూడా చూడాలా. సినిమా కూడా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 135,
+      "start": 381.01,
+      "end": 417.99,
+      "speaker": "SPEAKER_04",
+      "text": "ఇప్పుడు స్పార్క్ అనేది మన సినిమా టైటిల్ కాదు స్పార్క్ లైఫ్. లైఫ్ ఎల్ ఐ ఎఫ్ ఈ అంటే మన సినిమాలో నాలుగు ప్రధాన అంశాలు తీసుకుని పెట్టిన పేరు అది. లైఫ్, లవ్, ఇన్వెస్టిగేషన్, ఫైట్, ఈవిల్, ప్రేమ, అన్వేషణ, యుద్ధం, రాక్షసత్వం. అనే నాలుగు మెయిన్ అంశాలను తీసుకుని సినిమా చేసినాం మనం. సో సినిమాలో ఎవరికి ఏది కావాలో అది ఉంటది. లవ్ స్టోరీ ఇష్టపడే వాళ్ళకి లవ్ స్టోరీ ఉంటది. ఒక బాగా మంచి థ్రిల్లర్ ఇన్వెస్టిగేషన్ ఇష్టపడే వాళ్ళకి థ్రిల్లర్ ఉంటది. పిల్లర్ ఉంటది. మంచి యాక్షన్ ఇష్టపడే వాళ్ళకి యాక్షన్ ఉంటది. ఫుల్ కొంచెం హారర్ ఈ టైపు ఇష్టపడే వాళ్ళకి కొంచెం హారర్ కూడా ఉంటది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 136,
+      "start": 418.37,
+      "end": 423.84,
+      "speaker": "SPEAKER_06",
+      "text": "సో అన్నీ వన్ సాంగ్స్ ఉన్నాయి మ్యూజిక్ సాంగ్స్ ఒక రెండు సాంగ్స్ చాలా అద్భుతంగా వ్యూస్ అయినాయి కదా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 137,
+      "start": 418.53,
+      "end": 418.81,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 138,
+      "start": 424.01,
+      "end": 427.01,
+      "speaker": "SPEAKER_06",
+      "text": "మంచి లవ్ సాంగ్ ఉంది మన మెజీటో డైరెక్టర్ హర్షా బాబు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 139,
+      "start": 427.01,
+      "end": 430.46,
+      "speaker": "SPEAKER_04",
+      "text": "అబ్దుల్ వహాబ్ అని రీసెంట్ గా ఖుషి ఖుషి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 140,
+      "start": 429.07,
+      "end": 429.46,
+      "speaker": "SPEAKER_05",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 141,
+      "start": 430.81,
+      "end": 448.73,
+      "speaker": "SPEAKER_04",
+      "text": "ఆరాధ్య సో మంచి బ్లాక్ బస్టర్ ఆల్బమ్ ఇచ్చిండు మలయాళంలో టాప్ మేజర్ డైరెక్టర్ ఖుషి ఫస్ట్ సినిమా తెలుగులో సెకండ్ సినిమా మనదే మనకి కూడా మంచి బ్లాక్ బస్టర్ ఆల్బమ్ ఇచ్చిండు ఫస్ట్ సాంగ్ ఏమాన్ వెళ్ళిపోయింది జనాల్లోకి ఏమాన్ జం గేమా",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 142,
+      "start": 448.49,
+      "end": 455.53,
+      "speaker": "SPEAKER_06",
+      "text": "అదే మీరు రాము చూసారా అన్న అది సరే అన్నీ మిగిలిన దాటిపోయింది టైలార్ మిలియన్ దాటిపోయింది సాంగ్స్ కూడా మిలియన్ దాటిపోయాయి బ్రదర్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 143,
+      "start": 455.18,
+      "end": 455.47,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 144,
+      "start": 456.02,
+      "end": 456.89,
+      "speaker": "SPEAKER_06",
+      "text": "ఇప్పుడు",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 145,
+      "start": 456.07,
+      "end": 504.01,
+      "speaker": "SPEAKER_04",
+      "text": "ఇప్పుడు మీరు షూట్ చేసేటప్పుడు ఈ ర్యాంక్ లో ట్యాంక్ కి వచ్చిర్రా? యు సెడ్ యు ఆర్ షూటింగ్ ద మూవీ ఇన్ ద మిడిల్ ఆఫ్ మూవీ డిడ్ ద హీరోయిన్స్ కమ్ ఆన్ టైం. ఐ సెడ్ అదర్ హీరోయిన్ వాస్ గుడ్ బట్ విత్ హర్ ఐ హాడ్ సం ప్రాబ్లమ్స్ ఐ హాడ్ సం ఇష్యూస్ అఫ్ సరే. ఏ బాత్ మీ బాత్ మీ కాదు దిగడ బాత్ మీ కాదు. లేదు మామా అందరూ కరెక్ట్ ట్యాంక్ కి వచ్చిరు మన దగ్గర ఉన్న యాక్టర్స్ అంతా సీనియర్ యాక్టర్ సుహాసిని గారు ఆమె అసలు వచ్చిందంటే పొద్దున 8:00 కి రాత్రి 12:00 వరకైనా అట్లా నుంచుంటారు అంతే. వీళ్ళు కూర్చోండి మేడం అన్నా కూర్చోరు నాజర్ గారు అంతే. మెరీన్ ఆ అమ్మాయి అంతే ప్రొఫెషనల్ ఈ పిల్ల అంతే. ఈ పిల్లతో అయితే మూనార్లో సాంగ్ చేయించినాం పొద్దున 4:00 నుంచి రాత్రి 12:00 వరకు చేయించినాం షూటింగ్. మొత్తం ఎన్ని రోజులు పడుతుందన్నా సినిమా అయిపో వరకా? మొత్తం 100 రోజులు. 100 రోజులు కంప్లీట్ చేశారు షూటింగ్.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 146,
+      "start": 502.41,
+      "end": 507.14,
+      "speaker": "SPEAKER_06",
+      "text": "అందరూ కంప్లీట్ చేశారు. మరి దీనికి ఎంత బడ్జెట్ పెట్టి దాంట్లో చెప్పగలుగుతావా?",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 147,
+      "start": 507.93,
+      "end": 508.5,
+      "speaker": "SPEAKER_04",
+      "text": "ఒక",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 148,
+      "start": 507.95,
+      "end": 509.99,
+      "speaker": "SPEAKER_03",
+      "text": "ఒక నేనే అడుగుతాను అనుకున్నాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 149,
+      "start": 509.43,
+      "end": 511.73,
+      "speaker": "SPEAKER_04",
+      "text": "ఒక పెద్ద సినిమాకి ఎంత బడ్జెట్ పెట్టాలో అంత పెట్టింది.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 150,
+      "start": 511.66,
+      "end": 512.12,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 151,
+      "start": 511.74,
+      "end": 549.37,
+      "speaker": "SPEAKER_04",
+      "text": "మీకు సినిమాలో ఎక్కడ ఒక చిన్న సినిమా ఏదైనా ఎక్కడ రాదు ఎందుకంటే ఒక పెద్ద సినిమా లాగానే తీసినాం. కాస్టింగ్ అయినా లొకేషన్స్ అయినా మామ ఐస్లాండ్ పోయినాం. ఐస్లాండ్ వెళ్లడమే చాలా కష్టం అది. ఆ లొకేషన్ లో ఇంతవరకు తెలుగు ఎప్పుడు తీయలేదు అనుకుంటా నాకు తెలిసి. ఆ లొకేషన్స్ లో ఒక పాట తీసినాం. కొన్ని సీన్స్ తీసినాం. అద్దిరిపోతే స్క్రీన్ మీద అది. ఆల్రెడీ ఇది ఇది మాయా అని సాంగ్ రిలీజ్ చేసినాం. మేరింది నాది. ఆ సాంగ్ విజువల్స్ నెక్స్ట్ లెవెల్ బేసిక్ గా. సో సినిమాలో ఏందంటే ఎక్కడ ఒక ఒక్క బ్లాక్ అయినా సరే తక్కువ కనిపియ్యొద్దు అని ప్రతి బ్లాక్, ప్రతి సీను, ప్రతి యాంగిల్ జాగ్రత్తగా తీసినా. అందుకే 100 రోజులు పట్టింది, 1 1/2 ఇయర్ తీసినా.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 152,
+      "start": 549.77,
+      "end": 573.98,
+      "speaker": "SPEAKER_06",
+      "text": "ఇగ ఇప్పర్రక సినిమా ముచ్చట్లు చెప్పుకున్నాం కదా ఇప్పుడు అసలు ఫుడ్ ముచ్చట్లు చెప్పుకుందాం. ఫుడ్ అంటే మనం లీజీగా అనుకుంటున్నాం అంటురు అన్న. ఈరోజు ఫుడ్ మొత్తం మీరే చేయాలని చెప్పినా. ఇప్పుడు మార్నిషియం చేయాలి. కారా ఉంటది ఉప్పు ఉంటది అన్నీ ఉంటది. మంచిగా చేయాల మాకు మంచిగా ఉండాలి ఫుడ్డు. మీరు రెడీగా చేయాలి రెడీ ఆ ఓకే రవి అన్న మీరు చెప్తూ ఉండండి. ఇప్పుడు అన్నయ్య చెప్తూ ఉంటాడు అన్నయ్య చేస్తుంటాడు ఏమన్నా తప్పులు అయితే మీరు తాగి ఇక్కడ నువ్వు డైరెక్టర్ అన్న.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 153,
+      "start": 571.02,
+      "end": 571.27,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 154,
+      "start": 574.03,
+      "end": 574.85,
+      "speaker": "SPEAKER_06",
+      "text": "हां।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 155,
+      "start": 574.69,
+      "end": 577.43,
+      "speaker": "SPEAKER_03",
+      "text": "అక్కడ సినిమాలు కూడా పెడతారు.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 156,
+      "start": 576.13,
+      "end": 577.07,
+      "speaker": "SPEAKER_02",
+      "text": "అసిస్టెంట్ షెఫ్",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 157,
+      "start": 577.45,
+      "end": 581.45,
+      "speaker": "SPEAKER_05",
+      "text": "ఇక్కడ అనడా రెడీ రెడీ ముందుగా మనం ఉల్లిపాయలు కట్ చేసుకున్నాము.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 158,
+      "start": 577.57,
+      "end": 578.45,
+      "speaker": "SPEAKER_03",
+      "text": "ఇక్కడ",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 159,
+      "start": 581.88,
+      "end": 583.24,
+      "speaker": "SPEAKER_05",
+      "text": "ఇవన్నీ వేసేసుకొని",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 160,
+      "start": 584.56,
+      "end": 585.84,
+      "speaker": "SPEAKER_05",
+      "text": "ఇవి కొంచెం ఓపెన్ చేయాలి.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 161,
+      "start": 586.01,
+      "end": 586.84,
+      "speaker": "SPEAKER_02",
+      "text": "నేను హెల్ప్ చేస్తాను.",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 162,
+      "start": 586.99,
+      "end": 588.19,
+      "speaker": "SPEAKER_05",
+      "text": "ಸಗಂ ಕುಂಡದಾಗಿದೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 163,
+      "start": 594.33,
+      "end": 599.99,
+      "speaker": "SPEAKER_05",
+      "text": "డ్రై మసాలాలు, లవంగాలు, యాలకులు, మనకు కొంచెం జాపత్రి ఇవి కూడా వేసుకుందాం. ఓకే. దాని తర్వాత వచ్చి అల్లం.",
+      "skipped": null,
+      "lang": "te-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 1396,
+  "elapsed_sec": 141.88,
+  "rtf": 0.2365,
+  "clip_dur_sec": 600.0,
+  "transcribed_at_utc": "2026-08-22T06:33:20+00:00",
+  "clip_language": null,
+  "n_segments": 164,
+  "n_skipped_short": 6,
+  "detected_language": "te-IN",
+  "languages_seen": [
+    "bn-IN",
+    "en-IN",
+    "hi-IN",
+    "kn-IN",
+    "ml-IN",
+    "mr-IN",
+    "pa-IN",
+    "te-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 28
+}

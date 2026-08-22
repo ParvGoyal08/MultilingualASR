@@ -1,0 +1,1155 @@
+{
+  "clip_id": "PVDfS7lcJHY__0_360",
+  "system": "sarvam-saaras-v3@fusion",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.46,
+      "end": 7.13,
+      "speaker": "SPEAKER_00",
+      "text": "ದಾವಣಗೆರೆ ಜಿಲ್ಲೆ, ಹೊನ್ನಾಣಿ ತಾಲೂಕು, ಬಳ್ಳೇಶ್ವರ. ಲಕ್ಷ್ಮಣಪ್ಪ ಬಿ.ಎಂ. ತೋಟ ಹೊಲ ಅವರದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 1,
+      "start": 6.03,
+      "end": 7.77,
+      "speaker": "SPEAKER_03",
+      "text": "ತೋಟ ಹೊಲ ಅವರದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 2,
+      "start": 7.81,
+      "end": 8.73,
+      "speaker": "SPEAKER_00",
+      "text": "ಅವರ ಮನೆಯವರು ನಾನು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 3,
+      "start": 8.79,
+      "end": 9.07,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 4,
+      "start": 9.93,
+      "end": 15.4,
+      "speaker": "SPEAKER_00",
+      "text": "ಮಗ ಮಲ್ಲಿಕಾರ್ಜುನ ಈಗ ಅವನೇ ಈಗ ಬಂದ್ಮೇಲೆ ಇದೆಲ್ಲಾ ತೋಟನ ತಂದೆಯವರು ಇರೋ ತನಕ ಅಷ್ಟೊಂದು ಇಂಪ್ರೂವ್ ಆಗಿದ್ದಿಲ್ಲ ಅದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 5,
+      "start": 15.43,
+      "end": 15.74,
+      "speaker": "SPEAKER_03",
+      "text": "हाँ।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 6,
+      "start": 15.89,
+      "end": 28.81,
+      "speaker": "SPEAKER_00",
+      "text": "ಈಗ ಮಗ ಬಂದ್ಮೇಲೆ ಮೆಜಾರಿಟಿಗೆ ಇವೆಲ್ಲ ಇಂಥ ಕೇಳ್ಕೆಂದು ಹೊರಗಡೆನ ಈ ತರ ಮಾಡ್ರಿ ಈ ತರ ಬಿಡ್ರಿ ಚೆನ್ನಾಗೈತೆ ಅಂತ ಹೇಳಿದ್ಮೇಲೆ ಅದನ್ನ ತಗೊಂಡು ಬಂದು ಅದರಂತಲೇ ಎಲ್ಲ ಮಾಡ್ತಾ ಇದಾನೆ ಇದು ಚೆನ್ನಾಗಿ ಫಸಲ್ ಐತಿ ಚೆನ್ನಾಗಿ ಗಿಡನು ಐತಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 7,
+      "start": 29.07,
+      "end": 30.69,
+      "speaker": "SPEAKER_03",
+      "text": "ಫಸ್ಟ್ಗೆ ಯಾವ ತರ ಐತ್ರಿ ಇದು ತೋಟ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 8,
+      "start": 30.74,
+      "end": 35.83,
+      "speaker": "SPEAKER_00",
+      "text": "ಅಗ್ದಿ ಫಸಲೇ ಇರಲಿಲ್ಲ, ಈಗ ಮೂರು ಮುಕ್ಕಾಲು ಎಕರೆ ಇದ್ರೂ ಒಂದು ಲಕ್ಷದ ಮೇಲೆ ಹೋಗಿದ್ದಿಲ್ಲ ನಮ್ದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 9,
+      "start": 32.43,
+      "end": 32.7,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 10,
+      "start": 34.13,
+      "end": 34.4,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 11,
+      "start": 36.13,
+      "end": 36.65,
+      "speaker": "SPEAKER_03",
+      "text": "ಯಾವುದ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 12,
+      "start": 36.81,
+      "end": 37.27,
+      "speaker": "SPEAKER_00",
+      "text": "फसलं.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 13,
+      "start": 37.29,
+      "end": 38.21,
+      "speaker": "SPEAKER_03",
+      "text": "ಎಷ್ಟು ವರ್ಷ ಆಯ್ತು ಅದು?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 14,
+      "start": 38.23,
+      "end": 39.78,
+      "speaker": "SPEAKER_00",
+      "text": "ಈಗಲೇ 11ನೇ ವರ್ಷ ಇದೆ ಈಗ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 15,
+      "start": 39.93,
+      "end": 40.56,
+      "speaker": "SPEAKER_03",
+      "text": "11 ವರ್ಷ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 16,
+      "start": 40.12,
+      "end": 44.53,
+      "speaker": "SPEAKER_00",
+      "text": "ಈಗ ಫಸಲು ಕೊಡೋಕೆ ಈಗ ಇದ್ದಿದ್ರಾಗೆ ಈಗ ಇಷ್ಟು ವರ್ಷಕ್ಕಿಂತಲೂ ಈ ವರ್ಷ ಜಾಸ್ತಿ ಫಸಲು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 17,
+      "start": 44.43,
+      "end": 46.43,
+      "speaker": "SPEAKER_03",
+      "text": "11 ವರ್ಷದಿಂದ ಒಂದು ಲಕ್ಷಕ್ಕೆ ಮೀರೆ ಹೋಗಿಲ್ಲ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 18,
+      "start": 46.37,
+      "end": 47.18,
+      "speaker": "SPEAKER_00",
+      "text": "ಮೀರಿ ಹೋಗಿಲ್ಲ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 19,
+      "start": 47.18,
+      "end": 51.87,
+      "speaker": "SPEAKER_03",
+      "text": "ಯಾವತ್ತೂ ಹೋಗಿಲ್ಲ, ಈಗ ನೀವು ಈ ಕೆರಾ ನನ್ನ ಕಂಪನಿದು ಯೂಸ್ ಮಾಡಿದ ಮೇಲೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 20,
+      "start": 51.95,
+      "end": 56.05,
+      "speaker": "SPEAKER_00",
+      "text": "ಮಾಡಿದ ಮೇಲೆ ಈಗ 70 ಕ್ವಿಂಟಲ್ ಹಿಡಿಸಿದ್ದೀವಿ ಎರಡು ಸರಿಗೆ ಈಗ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 21,
+      "start": 52.78,
+      "end": 53.13,
+      "speaker": "SPEAKER_03",
+      "text": "ಹಾ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 22,
+      "start": 56.17,
+      "end": 56.47,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 23,
+      "start": 56.66,
+      "end": 59.73,
+      "speaker": "SPEAKER_00",
+      "text": "ಇನ್ನೂ ಮೂರು ಸರಿ ಇಳಿಸಬಹುದು. ಇನ್ನೆಷ್ಟು ಬರುತ್ತೋ ಗೊತ್ತಿಲ್ಲ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 24,
+      "start": 58.51,
+      "end": 62.63,
+      "speaker": "SPEAKER_03",
+      "text": "ಎಷ್ಟು ಬರುತ್ತೆ ಗೊತ್ತಿಲ್ಲ. ಈ ಕಂಪನಿ ಒಂದು ಮೆಡಿಸಿನ್ ಯೂಸ್ ಮಾಡಿದ್ರೆ ನಿಮಗೆ ಹೆಂಗಿದೆ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 25,
+      "start": 62.85,
+      "end": 64.05,
+      "speaker": "SPEAKER_00",
+      "text": "ಚೆನ್ನಾಗಿ ಐತ್ರಿ ಇಂಪ್ರೂವ್ ಐತ್ರಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 26,
+      "start": 64.27,
+      "end": 66.01,
+      "speaker": "SPEAKER_03",
+      "text": "ಇಂಪ್ರೂವ್ ಆಯ್ತಾ? 70 ಕ್ವಿಂಟಲ್ ಅಂದ್ರೆ ಎಷ್ಟು?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 27,
+      "start": 65.05,
+      "end": 66.53,
+      "speaker": "SPEAKER_02",
+      "text": "70 ಕ್ವಿಂಟಲ್ ಅಂದ್ರೆ ಎಷ್ಟಾಗುತ್ತೆ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 28,
+      "start": 66.81,
+      "end": 68.53,
+      "speaker": "SPEAKER_00",
+      "text": "ಇನ್ನೂ ಇನ್ನೂ ಒಂದು",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 29,
+      "start": 68.23,
+      "end": 73.62,
+      "speaker": "SPEAKER_02",
+      "text": "ಅಲ್ಲಲ್ಲ 70 ಕ್ವಿಂಟಲಿಗೆ ಅಮೌಂಟ್ ಎಷ್ಟಾಗುತ್ತೆ ಇವತ್ತು? 2,80,000 ಆಗುತ್ತೆ. 2,80,000 ಈಗ ಆಲ್ರೆಡಿ 2,80,000 ಆಗಿದೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 30,
+      "start": 73.07,
+      "end": 77.29,
+      "speaker": "SPEAKER_00",
+      "text": "ತರ ಆಗಿದೆ ಎರಡು ಸರಿ ಇಳಿಸೋಕೆ ಇಷ್ಟ ಆಗೈತೆ ಈಗ ಇನ್ನು ಮೂರು ಸರಿ ಇಳಿಸಬೇಕು ಅಂತ ಇದ್ದಾರೆ ಇಳಿಸೋರು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 31,
+      "start": 75.05,
+      "end": 75.33,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 32,
+      "start": 77.09,
+      "end": 77.73,
+      "speaker": "SPEAKER_02",
+      "text": "ಹ್ಮ್ ಹೌದು ಹೌದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 33,
+      "start": 78.17,
+      "end": 78.41,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 34,
+      "start": 78.56,
+      "end": 80.33,
+      "speaker": "SPEAKER_02",
+      "text": "ಅದು ಇನ್ನು ಇದೆ ಅಡಿಕೆ ಬೇಕಾದಷ್ಟು ಇದೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 35,
+      "start": 79.69,
+      "end": 80.57,
+      "speaker": "SPEAKER_00",
+      "text": "ಇದು ಮಾಲೈ ತಡಿಕೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 36,
+      "start": 80.47,
+      "end": 81.87,
+      "speaker": "SPEAKER_02",
+      "text": "ನಿನ್ನ ನಾಡಿಗೆ ಬೇಕಾದಷ್ಟು ಇದೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 37,
+      "start": 81.65,
+      "end": 83.07,
+      "speaker": "SPEAKER_00",
+      "text": "ಇದು ಬಂದಾಗ ಹಂಗೆ ಐತಿ ಬಹಳ ಐತಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 38,
+      "start": 82.67,
+      "end": 85.45,
+      "speaker": "SPEAKER_02",
+      "text": "ನೀವು ನಿಮಗೆ ಹಂಗಾರೆ ಇದು ತೃಪ್ತಿ ತಂದೈತಿ ಅಂದಂಗೆ ಅದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 39,
+      "start": 85.17,
+      "end": 87.89,
+      "speaker": "SPEAKER_00",
+      "text": "ಹೂನಪ್ಪ ತೃಪ್ತಿ ಚಂದೈತಿ ಮತ್ತೆ ಮಾಡ್ತಾ ಇದಾವೆ ಅದೇ ಮೆಡಿಸಿನ್ ಈಗ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 40,
+      "start": 87.96,
+      "end": 89.95,
+      "speaker": "SPEAKER_02",
+      "text": "ರೈತರು ಇದನ್ನ ಮಾಡಬಹುದು ಅಂದಂಗೆ ಆಯ್ತು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 41,
+      "start": 89.77,
+      "end": 91.65,
+      "speaker": "SPEAKER_00",
+      "text": "ಹೋಂ ಧಾರಾಳವಾಗಿ ಮಾಡಬಹುದು ಅವರು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 42,
+      "start": 91.67,
+      "end": 96.43,
+      "speaker": "SPEAKER_03",
+      "text": "ನಿಮಗೆ ಇವರ ಲೋಕಲ್ ನಿಮಗೆ ಯಾರು ಪರಿಚಯ ಮಾಡಿದ್ದಾರೆ ಈ ಕೆನರಾ ಕಂಪನಿಯನ್ನ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 43,
+      "start": 96.07,
+      "end": 101.82,
+      "speaker": "SPEAKER_00",
+      "text": "ಅವರು ಡಿಸಿಸಿ ಬ್ಯಾಂಕ್ ನನ್ನ ಮಗ ಅಪಾಯಿಂಟ್ ನಾಗಿದ್ದಾನೆ ಇವರು ಅಲ್ಲಿ ಅವರಿಗೆ ಪರಿಚಯ ಆಗಿದ್ದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 44,
+      "start": 100.05,
+      "end": 100.25,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 45,
+      "start": 102.03,
+      "end": 103.17,
+      "speaker": "SPEAKER_02",
+      "text": "ಲೋಕಣ್ಣ ಲೋಕಣ್ಣ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 46,
+      "start": 102.78,
+      "end": 109.23,
+      "speaker": "SPEAKER_00",
+      "text": "ಶಿಕಾರಿಪುರದಲ್ಲಿ ಪರಿಚಯ ಆಗಿದ್ದು, ಅವನು ಅಲ್ಲಿ ಡ್ಯೂಟಿ ಮಾಡ್ತಿದ್ದು, ಅಲ್ಲಿ ಇವರ ಪರಿಚಯ ಆಗಿದ್ದು. ಇವರು ಹೇಳಿದ ಮೇಲೆ, ಇವರು ಮೆಡಿಸನ್ ಮಾಡಿದ ಮೇಲೆ ಫಾರ್ವರ್ಡ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 47,
+      "start": 109.95,
+      "end": 110.45,
+      "speaker": "SPEAKER_03",
+      "text": "ಚೆನ್ನಾಗಿದೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 48,
+      "start": 110.44,
+      "end": 110.85,
+      "speaker": "SPEAKER_00",
+      "text": "ಚೆನ್ನಾಗಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 49,
+      "start": 110.83,
+      "end": 111.63,
+      "speaker": "SPEAKER_03",
+      "text": "ನಿಮಗೆ ಖುಷಿಯಾಗಿದೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 50,
+      "start": 111.67,
+      "end": 114.55,
+      "speaker": "SPEAKER_00",
+      "text": "ಖುಷಿ ಅನ್ನೋದು ಏನಪ್ಪಾ ನೀವೇ ಲೆಕ್ಕ ಮಾಡಿದ್ರಲ್ಲ ಇಷ್ಟು ವಸ್ತು ಬಂದ್ರೆ ಯಾರಿಗೆ ಖುಷಿ ಆಗಲ್ಲ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 51,
+      "start": 114.51,
+      "end": 115.81,
+      "speaker": "SPEAKER_02",
+      "text": "ಅದು ಒಂದು",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 52,
+      "start": 114.67,
+      "end": 118.63,
+      "speaker": "SPEAKER_03",
+      "text": "ಅದಕ್ಕೆ ಆದರೆ ಇನ್ನೊಬ್ಬರು ರೈತರು ಯೂಸ್ ಮಾಡಬಹುದು ಇದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 53,
+      "start": 117.49,
+      "end": 118.71,
+      "speaker": "SPEAKER_02",
+      "text": "ರೈತರು ಯೂಸ್ ಮಾಡಬಹುದು ಇದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 54,
+      "start": 118.57,
+      "end": 123.57,
+      "speaker": "SPEAKER_00",
+      "text": "ಚಾಲತ್ತಿಲ್ಲ ಪಾಪ. ಒಂದು ಲಕ್ಷದಿಂದ ಬಂದಿದ್ದು ಈಗ ಐದು ಲಕ್ಷ ಮೇಲೆ ಹೋಗಿದೆ ಅಂದ್ರೆ ಯಾರಿಗೆ ಖುಷಿಯಾಗಲ್ಲ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 55,
+      "start": 123.35,
+      "end": 127.19,
+      "speaker": "SPEAKER_02",
+      "text": "ಖುಷಿಯಾಗಿದೆ ಇದು ಒಂದನೇ ವರ್ಷನೇ ಇಷ್ಟ ಐತಿ ಅಂದ್ರೆ ಮುಂದಿನ ವರ್ಷ ಇನ್ನೂ ಚೆನ್ನಾಗಿ ಆಗಲಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 56,
+      "start": 125.87,
+      "end": 129.01,
+      "speaker": "SPEAKER_00",
+      "text": "ಮುಂದಿನ ವರ್ಷ ಇನ್ನೂ ಚೆನ್ನಾಗಿ ಆಗುತ್ತೆ, ಇನ್ನೂ ಇಂಪ್ರೂವ್ ಆಗುತ್ತೆ ಅಂತ ನಮಗೆ ಭರವಸೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 57,
+      "start": 129.33,
+      "end": 131.01,
+      "speaker": "SPEAKER_02",
+      "text": "ಹಂಗಾರೆ ಎಲ್ಲಾ ರೈತರು ಮಾಡಬಹುದು ಅಂದಂಗೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 58,
+      "start": 130.71,
+      "end": 132.41,
+      "speaker": "SPEAKER_00",
+      "text": "ಮಾಡಬಹುದಪ್ಪ ಧಾರಾಳವಾಗಿ ಮಾಡಬಹುದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 59,
+      "start": 132.93,
+      "end": 133.33,
+      "speaker": "SPEAKER_02",
+      "text": "ആ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 60,
+      "start": 133.55,
+      "end": 135.73,
+      "speaker": "SPEAKER_00",
+      "text": "ಅಂದ್ರೆ ಖರ್ಚು ಕಮ್ಮಿ, ಇನ್ಕಮ್ ಜಾಸ್ತಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 61,
+      "start": 134.62,
+      "end": 134.91,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 62,
+      "start": 135.85,
+      "end": 136.47,
+      "speaker": "SPEAKER_00",
+      "text": "ಇದರಾಗೆ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 63,
+      "start": 136.6,
+      "end": 137.01,
+      "speaker": "SPEAKER_02",
+      "text": "ആ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 64,
+      "start": 137.03,
+      "end": 137.79,
+      "speaker": "SPEAKER_00",
+      "text": "ನಾವು ಮಾಡಿರೋದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 65,
+      "start": 137.87,
+      "end": 141.23,
+      "speaker": "SPEAKER_02",
+      "text": "ಹಂಗಾರೆ ನಿಮಗೆ ಆರ್ಗ್ಯಾನಿಕ್ ನಲ್ಲಿ ಒಂದು ಹೆಜ್ಜೆ ಇಟ್ಟಂಗೆ ಆಯ್ತು ನಿಮಗೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 66,
+      "start": 141.89,
+      "end": 147.47,
+      "speaker": "SPEAKER_04",
+      "text": "ഇത് നിങ്ങ തോട്ടക്ക് ബളിസിരല്ല അക്കാ ഇഗ. ഇഗ പക്കദവര് കേള് നിങ്ങ എളാക്ക് ഇഷ്ട് എന്ത് അനിസത്തെ?",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 67,
+      "start": 147.41,
+      "end": 150.97,
+      "speaker": "SPEAKER_00",
+      "text": "ಅವರು ಕೇಳಿದ್ರೆ ಖುಷಿಯಿಂದ ಹೇಳ್ತಾರೆ, ಎಲ್ಲ ಕರೆಕ್ಟಾಗಿ ಹೇಳ್ತಾರೆ ಮಾಹಿತಿ ಮಾಡ್ರಿ ಅಂತ ಹೇಳಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 68,
+      "start": 150.97,
+      "end": 151.77,
+      "speaker": "SPEAKER_04",
+      "text": "ಮಾಡಿರ್ತೀವಿ ಅಂತ ಹೇಳ್ತಿವಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 69,
+      "start": 151.59,
+      "end": 151.97,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 70,
+      "start": 151.97,
+      "end": 155.55,
+      "speaker": "SPEAKER_04",
+      "text": "ಈಗ ಅವರ ತೋಟ ನಾವು ಬಂದಾಗ ಬಹಳ ಚೆನ್ನಾಗಿತ್ತು, ನಿಮ್ಮಕ್ಕಿಂತ ಚೆನ್ನಾಗಿತ್ತು ಅದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 71,
+      "start": 152.19,
+      "end": 152.45,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 72,
+      "start": 155.55,
+      "end": 155.91,
+      "speaker": "SPEAKER_00",
+      "text": "ಹ್ಞೂ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 73,
+      "start": 155.92,
+      "end": 158.25,
+      "speaker": "SPEAKER_04",
+      "text": "ಈಗ ಅದಕ್ಕೂ ಇದಕ್ಕೂ ಕಂಪೇರ್ ಮಾಡಿದ್ರೆ ನಿಮಗೆ ಮನಸ್ಸಿಗೆ ಏನು ಅನ್ಸುತ್ತೆ ಈಗ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 74,
+      "start": 158.28,
+      "end": 159.68,
+      "speaker": "SPEAKER_00",
+      "text": "ನಮಗೆ ಖುಷಿ ಅನ್ನಿಸುತ್ತೆ ನಮ್ಮನ್ನ ನೋಡಿದ್ರೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 75,
+      "start": 159.73,
+      "end": 160.69,
+      "speaker": "SPEAKER_04",
+      "text": "ತುಂಬಾ ಖುಷಿ ಅನಿಸುತ್ತೆ ಈಗ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 76,
+      "start": 160.43,
+      "end": 164.25,
+      "speaker": "SPEAKER_00",
+      "text": "ಈಗ ನಮ್ಮದಲ್ಲದೆ ಈಗ ಅವರಿಗೆ ಮಾಡೋಕೆ ಹೇಳಿದ್ದೇವೆ ನಾವು ಅವರು ಮಾಡ್ತಾ ಇದ್ದಾರೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 77,
+      "start": 164.37,
+      "end": 164.66,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 78,
+      "start": 164.96,
+      "end": 169.67,
+      "speaker": "SPEAKER_00",
+      "text": "ಅದೇ ಅವರು. ಹೌದು ಹೌದು ಎಷ್ಟಪ್ಪ ಮೂರು ಎಕರೆ ಅಲ್ಲ ನಾಲ್ಕು ಎಕರೆ ಅವರದು ಹೊಸೂರು ಇಲ್ಲಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 79,
+      "start": 165.77,
+      "end": 167.53,
+      "speaker": "SPEAKER_04",
+      "text": "ಹೌದು ಹೌದು ಎಷ್ಟಪ್ಪ ಮೂರು ಎಕರೆ ಅಲ್ಲಿ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 80,
+      "start": 168.69,
+      "end": 170.02,
+      "speaker": "SPEAKER_04",
+      "text": "ಹೊಸೂರಿಲ್ಲಿ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 81,
+      "start": 170.21,
+      "end": 178.01,
+      "speaker": "SPEAKER_00",
+      "text": "ಅಲ್ಲೇ ಅಲ್ಲೇ ಈಗ ಅವರಿಗೆ ಹೇಳಿ ಅವರಿಗೆ ಕರ ಇತ್ತು ಅಂತ ಫೋನ್ ಮಾಡಿ ಹೇಳಿ ಕರ ಕಳಿಸಿ ಕೊಡ್ಸಿ ಎಲ್ಲ ಹಾಕಿಸಿ ಮಾಡ್ಸಿದ್ದೇವೆ ಅವರಿಗೆ ಈಗ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 82,
+      "start": 179.25,
+      "end": 181.53,
+      "speaker": "SPEAKER_01",
+      "text": "ನಮಸ್ಕಾರ ಸರ್. ನಿಮ್ಮ ಹೆಸರು? ಮಂಜುನಾಥ್ ಅಂತ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 83,
+      "start": 181.39,
+      "end": 182.41,
+      "speaker": "SPEAKER_04",
+      "text": "ಮಂಜುನಾಥ್ ಯಾವ ಊರಲ್ಲಿ ಇದ್ದಾರೆ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 84,
+      "start": 181.79,
+      "end": 198.58,
+      "speaker": "SPEAKER_01",
+      "text": "ಯಾವ ಊರು ಸಾಗರ ನವಣಗೆರೆ ಜಿಲ್ಲೆ ಹೊನ್ನಾಳಿ ತಾಲೂಕು ನಾವು ಕರಿ ಗೊಬ್ಬರ ಮಾಡ್ತಿದ್ದಿಲ್ಲ ಫಸ್ಟ್ಗೆ ಇಲ್ಲಿ ಸ್ವಲ್ಪ ಮಾಹಿತಿ ತಿಳ್ಕೊಂಡು ಇವರು ಹೇಳಿದ್ರು ಹಿಂಗಿಂಗ್ ಮಾಡ್ರಿ ಅಡಿಕೆ ಗಿಡಕ್ಕೆ ಒಳ್ಳೆ ಫಸಲು ಒಳ್ಳೆ ನಾಲ್ಕು ವರ್ಷ ಐದು ವರ್ಷಕ್ಕೆ ಫಲಕ್ ಬಂದುಬಿಡ್ತವೆ ಮತ್ತೆ ಯಾವ ರೋಗ ಬೀಳಲ್ಲ ಏನು ಬೀಳಲ್ಲ ಮತ್ತೆ ಏನು ಆಗಲ್ಲ ಗಿಡಕ್ಕೆ ಅಂತ ಹೇಳಿದ್ರು",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 85,
+      "start": 198.58,
+      "end": 198.83,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 86,
+      "start": 198.83,
+      "end": 208.94,
+      "speaker": "SPEAKER_01",
+      "text": "ನಾವು ಎಲ್ಲ ರೆಡಿ ಮಾಡಿಸ್ಕೊಂಡು ಕೆರಣ್ಣನ ಕಂಪನಿಗೆ ಎಲ್ಲ ತಗೊಂಡು ಅವನು ತಗೊಂಡು ಸತ್ಕಾರ ತಗೊಂಡು ಎಲ್ಲ ಮಾಡಿಸಿ ಈಗ ಎರಡು ತಿಂಗಳು ಆಗೈತೆ ಹಾಕಿ ಮೂರನೇ ತಿಂಗಳಿಗೆ ಓಪನ್ ಮಾಡಿ ನಾವು ಹಾಕ್ಬೇಕು ಹಾಕ್ಬೇಕು ಹೌದಾ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 87,
+      "start": 209.33,
+      "end": 210.59,
+      "speaker": "SPEAKER_04",
+      "text": "ಈಗ ಮಧ್ಯ ತೋಟ ನೋಡಿದ್ದೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 88,
+      "start": 210.78,
+      "end": 215.39,
+      "speaker": "SPEAKER_01",
+      "text": "ನೋಡಿದ್ದೆ ಸರ್. ಹೆಂಗಿತ್ತು ತೋಟ ಅವಾಗ? ಅವಾಗ ಏನು ಫಸಲು ಬಂದಿಲ್ಲ ಇದೆ. ಐದು ವರ್ಷ ಆದ್ರೂ ಬರೀ ಲಕ್ಷ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 89,
+      "start": 214.91,
+      "end": 216.03,
+      "speaker": "SPEAKER_00",
+      "text": "ಇದು ಆರು ವರ್ಷ ಏಳು ವರ್ಷ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 90,
+      "start": 216.03,
+      "end": 223.18,
+      "speaker": "SPEAKER_01",
+      "text": "ಆದ್ರೆ ಫಸಲ್ ಇಲ್ಲ ಅಂತ ಹೇಳ್ತಿದ್ರು. ಇವರ ಮಗ ಬಂದು ನಮಗೆ ಸಿಕ್ಕಿ ಇನ್ಫಾರ್ಮೇಷನ್ ಹೇಳಿ ಅಲ್ಲ ನಮಗೂ ಮಾಡೋಕೆ ಹೇಳಿದ್ರು ನಾವು ಮಾಡ್ತೀವಿ ಸರ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 91,
+      "start": 216.2,
+      "end": 217.19,
+      "speaker": "SPEAKER_00",
+      "text": "ಆದ್ರೂ ಅಂದ್ರೆ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 92,
+      "start": 221.35,
+      "end": 221.65,
+      "speaker": "SPEAKER_04",
+      "text": "ನಮ್ಮ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 93,
+      "start": 223.27,
+      "end": 225.11,
+      "speaker": "SPEAKER_04",
+      "text": "ಹ್ಞೂ, ನಿಮಗೆ ಈ ತೋಟ ನೋಡಿ ಏನು ಅನಿಸುತ್ತೆ ಈಗ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 94,
+      "start": 225.16,
+      "end": 237.71,
+      "speaker": "SPEAKER_01",
+      "text": "ಇದು ಚೆನ್ನಾಗಿ ಸರ್ ಈಗ ಈ ತರ ಮಾಡಿದ್ರೆ ನಮ್ದು ಐದು ವರ್ಷಕ್ಕೆ ಫಲಕ್ ಬರಬಹುದು ಅಂತ ನಾವು ಅನಿಸಿಕೆ ನಮ್ಮ ಅನಿಸಿಕೆ. ಐದು ವರ್ಷಕ್ಕೆ ತರಬಹುದು ಅಂತ ಇತ್ತು ತರಬಹುದು ಅಂತ. ಈಗ ಎರಡು ವರ್ಷ ಹಾಕಿ ಅವರು ಎರಡು ವರ್ಷಕ್ಕೆ ಬರೆ ಎರಡು ವರ್ಷ ಹಾಕಿ ಚೆನ್ನಾಗಿ ಬಂದಿದೆ ಇದು ಹಾಕಿದ್ರೆ ಇನ್ನು ಸ್ವಲ್ಪ ಚೆನ್ನಾಗಿ ಬರಬಹುದು ಅಂತ ಚೆನ್ನಾಗಿ ಬರುತ್ತೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 95,
+      "start": 240.75,
+      "end": 242.74,
+      "speaker": "SPEAKER_04",
+      "text": "ಹಾ ಹಳ್ಳಿ ಮಲ್ಲಪುರ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 96,
+      "start": 242.57,
+      "end": 242.96,
+      "speaker": "SPEAKER_05",
+      "text": "ಚನ್ನಗಿರಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 97,
+      "start": 242.96,
+      "end": 253.21,
+      "speaker": "SPEAKER_04",
+      "text": "ತಾಲೂಕು ದಾವಣಗೆರೆ ಜಿಲ್ಲೆ ಹೌದು ಸರ್ ಈಗ ನೀವು ರೈತರು ತಾನೆ ಹೌದು ಸರ್ ಹೌದು ನೀವು ಎಷ್ಟು ಮಾಡಿದ್ರಿ ತೋಟನ ಸರ್ ನಮ್ದೊಂದು 10 ಎಕರೆ ಇದೆ 10 ಎಕರೆ ಐತಿ ನೀವು 10 ಎಕರೆಗೆ ಏನು ಬಳಸ್ತಾ ಇದ್ದೀರಾ ತೋಟಕ್ಕೆ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 98,
+      "start": 254.06,
+      "end": 272.89,
+      "speaker": "SPEAKER_05",
+      "text": "ಸರ್ ಅದೇ ಬೇರೆ ಬೇರೆ ಕಂಪನಿಯವರ ಮಾತು ಕೇಳಿ ಆರ್ಗ್ಯಾನಿಕ್ ಇದು ಅದು ಇದು ಅಂತ ಬಳಸಿದ್ವಿ. ಮತ್ತೆ ನಮ್ಮ ಪ್ರೈವೇಟ್ ಆಗಿ ನಾವೇನೇ ಬೋರನ್, ಜಿಂಕ್, ಜಿಪ್ಸಮ್ ಅದು ಇದು ಮಾಡಿದ್ವಿ. ಆಮೇಲೆ ಧನಿ ಗೊಬ್ಬರ ಹಾಕ್ತಿವಿ. ಆಮೇಲೆ ಬಂದ್ಬಿಟ್ಟು ಈಗ ಸರ್ಕಾರಿ ಅಂತ 10 26 ಅಂತದು ಪೊಟ್ಯಾಶು ಯೂರಿಯಾ ಹಾಕ್ತಿವಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 99,
+      "start": 271.97,
+      "end": 272.33,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 100,
+      "start": 273.73,
+      "end": 281.83,
+      "speaker": "SPEAKER_04",
+      "text": "ಸರ್ ಈಗ ಹಾಕಿದ್ದೀರಿ, ಈಗ ನಿಮ್ಮ ತೋಟ ಸರ್ಕಾರಿ ಗೊಬ್ಬರ ಹಾಕಿದ್ದೀರಿ, ಇದು ಆರ್ಗನೈಸ್ ಬೆಳೆದ ತೋಟ, ನಿಮ್ಮ ತೋಟಕ್ಕೂ ಇದಕ್ಕೂ ಕಂಪೇರ್ ಮಾಡಿದ್ರೆ ನಿಮಗೆ ಏನು ಅನಿಸುತ್ತೆ ಈಗ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 101,
+      "start": 282.02,
+      "end": 283.79,
+      "speaker": "SPEAKER_05",
+      "text": "ಅದನ್ನ ನೋಡಿದ್ರೆ ನಮಗೆ ಸ್ವಲ್ಪ ಖುಷಿ ಅನ್ನಿಸ್ತು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 102,
+      "start": 283.79,
+      "end": 286.07,
+      "speaker": "SPEAKER_04",
+      "text": "ಹೆಂಗೆ ಯಾವ ಟೈಪ್ ಖುಷಿ ಅನ್ಸುತ್ತೆ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 103,
+      "start": 286.09,
+      "end": 297.33,
+      "speaker": "SPEAKER_05",
+      "text": "ಇದರಲ್ಲಿ ರೋಗದ ಲಕ್ಷಣಗಳು ಕಡಿಮೆ ಇದಾವೆ. ಆಮೇಲೆ ಫಸಲು ಚೆನ್ನಾಗಿದೆ. ಅದರಲ್ಲೂ ಹಿಂದಿನ ವರ್ಷಕ್ಕೆ ಕಂಪೇರ್ ಮಾಡಿದ್ರೆ ಅವರು ಹೇಳಿದ್ರಲ್ಲ ಆ ತರ ಒಂದು ಲಕ್ಷಕ್ಕೆ ಟಾರ್ಗೆಟ್ ಕೇಳ್ತಾ ಇದ್ದಿದ್ದು ಇವತ್ತು ಐದಾರು ಲಕ್ಷಕ್ಕೆ ಹೋಗ್ತಾ ಇದೆ ಅಂದ್ರೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 104,
+      "start": 290.23,
+      "end": 290.51,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 105,
+      "start": 293.63,
+      "end": 294.12,
+      "speaker": "SPEAKER_04",
+      "text": "ಒಂದು ಲಕ್ಷ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 106,
+      "start": 297.33,
+      "end": 297.67,
+      "speaker": "SPEAKER_04",
+      "text": "ಹ್ಞೂ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 107,
+      "start": 297.72,
+      "end": 303.86,
+      "speaker": "SPEAKER_05",
+      "text": "ಖುಷಿಯಾಗುತ್ತೆ ಖುಷಿಯಾಗುತ್ತೆ ಈ ತರ ಎಲ್ಲ ಇದ್ದಾಗ ರೈತರಿಗೆ ಆತ್ಮಹತ್ಯೆ ಮಾಡಿಕೊಳ್ಳೋದು ಅದು ಇದು ಏನು ಬರಲ್ಲ ನಿಲ್ಲಿಸಬಹುದು ನಾವು ಅಂತ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 108,
+      "start": 302.83,
+      "end": 303.12,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 109,
+      "start": 303.91,
+      "end": 304.23,
+      "speaker": "SPEAKER_05",
+      "text": "ಓಕೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 110,
+      "start": 304.23,
+      "end": 304.62,
+      "speaker": "SPEAKER_04",
+      "text": "ಹೌದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 111,
+      "start": 304.62,
+      "end": 307.95,
+      "speaker": "SPEAKER_05",
+      "text": "ಅದು ಕಡಿಮೆ ಖರ್ಚಿಲ್ಲಿ ನಮಗೆ ಮಾಡಬೇಕು ಅನ್ನೋ ಒಂದು ಹುಮ್ಮಸ್ ಬರುತ್ತೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 112,
+      "start": 305.81,
+      "end": 306.85,
+      "speaker": "SPEAKER_04",
+      "text": "ನಮಗೆ ಕಡಿಮೆ ಮಾಡಬೇಕು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 113,
+      "start": 307.91,
+      "end": 311.29,
+      "speaker": "SPEAKER_04",
+      "text": "ಹಾ ಈಗ ಸರ್ ಈ ತೋಟ ಉಂಡಿ ಮಾಡಿಸಬೇಕು ಅಂತ ತುಂಬಾ ಸುಲಭ ಸರ್ ಈಗ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 114,
+      "start": 310.95,
+      "end": 311.62,
+      "speaker": "SPEAKER_05",
+      "text": "ಹೌದು ಸರ್ ಮಾಡ್ಸೋದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 115,
+      "start": 311.62,
+      "end": 342.91,
+      "speaker": "SPEAKER_04",
+      "text": "ಬೇಕು ಅಂತ ಹೌದಾ? ಈ ಪ್ರೈವೇಟ್ ಅದು ಇದು ನಿಮ್ಮ ಹತ್ತಿರಕ್ಕೆ ತೋಟ ಇರೋದು. ಇವತ್ತು ರಾಸಾಯನಿಕ ಗೊಬ್ಬರ ಹಾಕಿಂದ ಏನು ಕಾಯಿಲೆ ಸ್ಟಾರ್ಟ್ ಆಗೈತಿ ನಿಮಗೆ ಗೊತ್ತು ಈಗ ಇಡುಮುಂಡಿಗೆ ರೋಗ, ಕೊಳೆ ರೋಗ, ಹೊಲ ಅಂಡು ಒಡಕ ಎಲ್ಲ ಸ್ಟಾರ್ಟ್ ಆಗಿದ್ದಾವೆ. ಆ ಉದ್ದೇಶಕ್ಕೆ ನಾವು ಈಗ ಆರ್ಗ್ಯಾನಿಕ್ ಬೆಳೆಸಿದರೆ ಆದಷ್ಟು ಬೇಗ ತೋಟ ರಿಕ್ವರಿ ಮಾಡಬಹುದು. ಒಳ್ಳೇದಾಗುತ್ತೆ ಮುಂದೆ ಅನುಕೂಲ ಆಗುತ್ತೆ ಭೂಮಿ ಹಾಳಾಗಲ್ಲ. ಈಗ ರಾಸಾಯನಿಕ ಹಾಕಿ ಭೂಮಿ ಮೇಲೆ ಹಾಳಾಗಿ ಹೋಗುತ್ತೆ ಈಗ ಬೆಂಡ ಆಗ್ಬಿಡುತ್ತೆ. ಇದು ಈ ಟೈಪ್ ಅಲ್ಲಿ ಐತಿ. ನೋಡ್ರಿ ಇವೆಲ್ಲ ನೋಡಿ ನಿಮಗೆ ನೀವು ಇನ್ನೊಬ್ಬ ರೈತರಿಗೆ ಮಾದರಿ ರೈತರಾಗಬೇಕು ಅಂದ್ರೆ ಒಂದು ಆಗಬೇಕು ಅಂದ್ರೆ ಒಂದು ಈ ಆರ್ಗ್ಯಾನಿಕ್ ಗೆ ಬರಲೇಬೇಕು ಈಗ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 116,
+      "start": 342.91,
+      "end": 344.93,
+      "speaker": "SPEAKER_05",
+      "text": "ಅದು ಸರ್ ಖಂಡಿತ ಬರಲೇಬೇಕು ನಾವು ಬರಲೇಬೇಕು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 117,
+      "start": 342.93,
+      "end": 346.23,
+      "speaker": "SPEAKER_04",
+      "text": "ಅದು ಸರ್ ಖಂಡಿತ ಬರಲೇಬೇಕು ನಾವು ಫಸ್ಟ್ ನಾವು ಮಾಡಬೇಕು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 118,
+      "start": 346.15,
+      "end": 348.56,
+      "speaker": "SPEAKER_05",
+      "text": "ಆಮೇಲೆ ಬೇರೆಯವರಿಗೆ ನಾವು ಚೆನ್ನಾಗಿದ್ದೀವಿ ಅಂದಾಗ ಬೇರೆಯವರಿಗೆ ಅಡ್ವರ್ಸ್ಟ್ ಮಾಡ್ತೀವಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 119,
+      "start": 346.79,
+      "end": 347.39,
+      "speaker": "SPEAKER_04",
+      "text": "ಹೌದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 120,
+      "start": 348.75,
+      "end": 355.84,
+      "speaker": "SPEAKER_04",
+      "text": "ಈ ಟೈಪ್ ಮಾಡ್ರಿ ಚೆನ್ನಾಗೈತೆ. ಕೆರನ್ ಹೆಲ್ತ್ ಇಟ್ಕೋ ಅಂದ್ರೆ ನಿಜವಾಗ್ಲೂ ಅದು ಅಮೃತ ಇದ್ದಂಗೆ ಈಗ. ಖಂಡಿತ ಮಾಡ್ತೀವಿ ಸರ್. ಬಹಳ ಚೆನ್ನಾಗೈತೆ ರಿಸಲ್ಟ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 121,
+      "start": 349.66,
+      "end": 349.91,
+      "speaker": "SPEAKER_05",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 122,
+      "start": 355.37,
+      "end": 357.23,
+      "speaker": "SPEAKER_05",
+      "text": "ಈ ನೆಕ್ಸ್ಟ್ ತಿಂಗಳಲ್ಲಿ ಈಗ ಮಾಡಿಬಿಡ್ತೀವಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 123,
+      "start": 357.35,
+      "end": 358.81,
+      "speaker": "SPEAKER_04",
+      "text": "ಮಾಡ್ತೀರಾ? ಹೌದು. ಥ್ಯಾಂಕ್ ಯು ಸರ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 124,
+      "start": 357.79,
+      "end": 358.23,
+      "speaker": "SPEAKER_05",
+      "text": "ಹೌದು.",
+      "skipped": null,
+      "lang": "kn-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 989,
+  "elapsed_sec": 67.52,
+  "rtf": 0.1876,
+  "clip_dur_sec": 360.0,
+  "transcribed_at_utc": "2026-08-22T06:33:21+00:00",
+  "clip_language": null,
+  "n_segments": 125,
+  "n_skipped_short": 14,
+  "detected_language": "kn-IN",
+  "languages_seen": [
+    "hi-IN",
+    "kn-IN",
+    "ml-IN",
+    "mr-IN",
+    "pa-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "translit_model": "",
+  "translit_tokens_changed": 0
+}
