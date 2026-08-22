@@ -613,7 +613,9 @@ def refine_clip(cfg: Config, source_system: str, clip_id: str, arm: str,
                               "end": segs[i]["end"], "old_text": segs[i].get("text"),
                               "new_text": proposed[i], "applied_text": kept,
                               "action": "reverted" if reason else "changed",
-                              "reason": reason, "cache_key": rec["key"], **st})
+                              # cache files written before the rename carry "key"
+                              "reason": reason,
+                              "cache_key": rec.get("cache_key") or rec.get("key"), **st})
         if reverts > max(1, math.ceil(WINDOW_REVERT_FRAC * len(ids))):
             n_fallback += 1
             LOG.warning("%s w%d: %d/%d reverted -- dropping window", clip_id, w_idx,
