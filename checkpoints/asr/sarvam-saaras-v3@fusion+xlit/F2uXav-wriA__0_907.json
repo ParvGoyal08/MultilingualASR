@@ -1,6 +1,6 @@
 {
   "clip_id": "F2uXav-wriA__0_907",
-  "system": "sarvam-saaras-v3@fusion",
+  "system": "sarvam-saaras-v3@fusion+xlit",
   "status": "ok",
   "strategy": "segment",
   "diar_model": "fusion",
@@ -894,7 +894,7 @@
   "elapsed_sec": 105.14,
   "rtf": 0.1159,
   "clip_dur_sec": 907.0,
-  "transcribed_at_utc": "2026-08-22T06:33:20+00:00",
+  "transcribed_at_utc": "2026-08-22T08:49:53+00:00",
   "clip_language": null,
   "n_segments": 98,
   "n_skipped_short": 4,
@@ -910,6 +910,7 @@
     "te-IN"
   ],
   "settings_key": "beam?-cond1-lidself-batch0",
-  "translit_model": "",
-  "translit_tokens_changed": 20
+  "translit_tokens_changed": 20,
+  "translit_model": "us.anthropic.claude-sonnet-4-6",
+  "translit_stage": "latin"
 }

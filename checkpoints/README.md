@@ -12,16 +12,33 @@ from `data/youtube_segments.csv`.
 
 ## Reproducing the headline numbers
 
+The simplest route is `main.ipynb` — it runs every stage below against this
+directory and prints the tables from `WRITEUP.md`. Set `SUBSET = 10` for a quick
+check, `0` for the full corpus.
+
+To run the stages directly, pass `--root checkpoints` so the tools read what is
+committed here. These commands were verified from a clean clone:
+
 ```bash
-# Step 4a: the fusion regenerates bit-for-bit from the three constituent RTTMs
-python3 -c "from sarvam_diar import refinement"     # see main.ipynb §4
+# Step 4b: applies the committed lookup tables, no API key needed.
+# Prints "3,520 Latin tokens -> native script" and "697 numerals spelled out".
+python3 tools/run_translit.py --root checkpoints
 
-# Step 4b: applies the committed tables, no API key needed
-python3 tools/run_translit.py --root local_out/step4_input
-
-# provenance: every stored transcript must match the segmentation it was cut on
-python3 tools/audit_segmentation.py --root local_out/step4_input   # expect 99 ok
+# Provenance: every stored transcript must match the segmentation it was cut on.
+# Prints "every stored transcript matches the current segmentation".
+python3 tools/audit_segmentation.py --root checkpoints
 ```
+
+Step 4a needs no command: `main.ipynb` §4a rebuilds the fusion from the three
+constituent RTTMs with `refinement.dover_lap` and asserts the result is
+bit-for-bit identical to the committed `hypotheses/fusion/` on all 99 clips.
+
+Note that `--root checkpoints` makes `run_translit.py` rewrite `asr/…+xlit/` and
+`asr/…+xlit+num/` in place. The transcript content is deterministic and will come
+back identical, but the files are **not** byte-for-byte identical afterwards:
+every payload carries a fresh `transcribed_at_utc`. So `git diff` will show 198
+modified files, and the check that matters is that the diff touches only
+`transcribed_at_utc` — any change to `segments` means something has drifted.
 
 `results/step2_metrics.csv` (495 rows, model × clip) and
 `results/step3_metrics.csv` (539 rows, system × clip) are the per-video tables;
