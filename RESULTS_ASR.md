@@ -217,6 +217,8 @@ Attribution for the long-form rows uses the **fusion** diarization.
 |---|---|---|---|---|---|---|---|
 | `sarvam-saaras-v3@reverb-v2` | 99 | 0.96 | 0.2728 | **0.3957** | 0.2728 | 0.1229 | 0.1128 |
 | `sarvam-saaras-v3@fusion` | 99 | 0.979 | 0.2787 | **0.3181** | 0.2787 | 0.0394 | 0.0628 |
+| **`…@fusion+xlitpc`** (Step 4b, **final**) | 99 | 0.979 | **0.2617** | **0.3049** | 0.2617 | 0.0431 | **0.0603** |
+| `…@fusion+xlit+num` (Step 4b, corpus vocab) | 99 | 0.981 | 0.2585 | 0.3017 | 0.2585 | 0.0432 | 0.0602 |
 | `sarvam-saaras-v4@reverb-v2` | 9 | 0.96 | 0.2606 | **0.3485** | 0.2606 | 0.0879 | 0.0718 |
 | `whisper-large-v3-turbo` | 99 | 0.75 | 0.9827 | **0.9957** | 0.9827 | 0.0130 | 0.5471 |
 | `whisper-large-v3` | 35 | 0.31 | 0.9296 | **0.9340** | 0.9296 | 0.0044 | 0.2664 |
@@ -224,12 +226,21 @@ Attribution for the long-form rows uses the **fusion** diarization.
 `ratio` = hypothesis words ÷ reference words; a system producing about as many
 words as were spoken sits near 1.0.
 
-**The `@fusion` row is now complete at 99 clips** and is the final system. It
+**The `@fusion` row is now complete at 99 clips.** It
 supersedes the partial rows quoted in earlier revisions of this file (32 clips:
 cpWER 0.3811; 81 clips: 0.3446). Two things changed between those and this one:
 the sweep finished, and 27 clips were re-transcribed after the fusion→ASR
 provenance defect was found (see WRITEUP.md §5) — that fix alone moved corpus
 cpWER 0.3381 → 0.3181.
+
+**The final system is `@fusion+xlitpc`** — the fusion front-end plus per-clip
+script correction (Claude Sonnet 4.6, temperature 0), scored held out with the
+configuration frozen at commit `f284e59`: test cpWER 0.3552 → 0.3364, 29 clips
+better and 0 worse. The `+xlit+num` row scores 0.0032 better but builds its
+lookup table from all 99 clips' hypotheses including test, so it is
+**transductive** and its split cannot test generalisation; with a dev-built
+vocabulary its test gain falls from −0.0216 to −0.0042. See `WRITEUP.md`
+§6.1–§6.2.
 
 Against `@reverb-v2` on the same 99 clips the fusion front-end is worth **−19.6%
 relative cpWER** and **−44.3% relative WDER**, winning on 88 of 99 clips. Flat WER
