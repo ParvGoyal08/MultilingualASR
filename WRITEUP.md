@@ -116,7 +116,26 @@ is **withdrawn**. What the fusion does win is JER, confusion, speaker-count
 accuracy (60.6 % → 79.8 %) and, decisively, the downstream ASR result — cpWER
 0.3957 → 0.3181, which *is* significant.
 
-## 5 · What did not work
+## 5 · Error by language
+
+| script | clips | WER | cpWER | WDER |
+|---|---|---|---|---|
+| Telugu | 12 | 0.3535 | **0.4123** | 0.1127 |
+| Malayalam | 7 | 0.3322 | 0.3900 | 0.0736 |
+| Oriya | 9 | 0.3464 | 0.3868 | 0.0535 |
+| Bengali | 8 | 0.2467 | 0.3750 | **0.1233** |
+| Gujarati | 12 | 0.2950 | 0.3332 | 0.0673 |
+| Kannada | 9 | 0.2372 | 0.3281 | 0.0696 |
+| Gurmukhi | 7 | 0.2770 | 0.3229 | 0.0548 |
+| Tamil | 10 | 0.2471 | 0.2723 | 0.0280 |
+| Devanagari | 25 | 0.1906 | **0.2006** | 0.0293 |
+
+**Telugu is 2.06× Devanagari on cpWER** — language is a far larger axis of
+variation than anything else measured. Bengali has the third-best WER but the
+worst WDER: words recognised well, speakers attributed badly. Groups are 7–25
+clips, so read the ordering as indicative.
+
+## 6 · What did not work
 
 | intervention | outcome |
 |---|---|
@@ -143,7 +162,7 @@ Whisper's best 0.9058**, 2.2× better from a model 2.6× smaller. On 92 of 99 cl
 Whisper emitted fluent English *translation* rather than transcription, and it has
 **no Oriya** at all.
 
-## 6 · Where the error still is
+## 7 · Where the error still is
 
 **Overlap is the dominant unfixed weakness.** It carries 52.5 % of all miss and
 27.4 % of DER error, and overlapped words are deleted at **3.9× the clean rate**.
@@ -158,18 +177,19 @@ pointing at the wrong targets: segments under 2 s have a 56 % error rate but hol
 only 30 % of the wrong-labelled time, while the 36 % in long segments has a 5.6 %
 error rate — flagging it would be 94 % false positives.
 
-**Language dominates every other axis.** Telugu is 2.06× Devanagari on cpWER
-(0.4123 vs 0.2006), and Bengali has the third-best WER but the worst WDER — words
-recognised well, speakers attributed badly.
+**Ground-truth quality is a measurement floor**, and the audit is *recorded, not
+fully resolved*. An alignment audit flagged 39 of 99 clips whose reference is
+displaced 1.0–5.0 s, 38 in the same direction. Applying the **23** that met the
+auto-accept bar is a **diagnostic, not the headline** — every reported metric uses
+raw ground truth — but it moves fusion DER 0.2442 → 0.1959 and *inverts the
+ranking among single systems*: the least temporally precise model looked best
+because the reference was wrong. **The other 16 remain open**, held for manual
+review because the constituent systems disagreed on the lag. Two further defect
+families are catalogued and likewise unfixed: 39 unannotated stretches over 5 s
+carrying 218 s of false alarm, and 16 implausibly long reference turns carrying
+563 s of miss — 97 % of it one pathological speaker label.
 
-**Ground-truth quality is a measurement floor.** An alignment audit flagged 39 of
-99 clips whose reference is displaced 1.0–5.0 s, 38 in the same direction.
-Applying the 23 auto-accepted corrections is a **diagnostic, not the headline** —
-every reported metric uses raw ground truth — but it moves fusion DER 0.2442 →
-0.1959 and *inverts the ranking among single systems*: the least temporally
-precise model looked best because the reference was wrong.
-
-## 7 · Engineering lessons
+## 8 · Engineering lessons
 
 1. **Provenance outranks modelling.** The largest single ASR gain after the
    front-end swap was a bug fix. "Is the input what I think it is" should be
@@ -184,7 +204,7 @@ precise model looked best because the reference was wrong.
    from the LLM's response schema removed a whole class of failure that no amount
    of prompt instruction would have guaranteed.
 
-## 8 · Limitations
+## 9 · Limitations
 
 - **DER parity with `reverb-v2`.** The fusion's case rests on JER, speaker count
   and downstream cpWER, not on DER.
@@ -200,10 +220,13 @@ precise model looked best because the reference was wrong.
   per-clip variant ships because its number survives review.
 - **Whisper's 99-clip row is a known-broken configuration** and is excluded from
   the headline; IndicConformer and Saaras v4 cover only 10 and 9 clips.
-- **The Step 5 pilot's per-edit log was overwritten** by a later re-run to the same
-  path — the same defect class as §3.2, on a stage that was not shipped.
+- **The GT audit is a diagnostic, not a correction pass.** 39 clips flagged, 23
+  auto-accepted, **16 held for manual review**; two further defect families
+  catalogued and unfixed. Visual spot-checks covered 15–20 of the 39 and per-clip
+  verdicts were not recorded, so the attestation is at that granularity. Headline
+  numbers use raw, unmodified ground truth throughout.
 
-## 9 · Reproducing
+## 10 · Reproducing
 
 [`main.ipynb`](main.ipynb) runs Steps 1–5 end to end from committed checkpoints —
 **no GPU, no API key, no gated model access.** A `SUBSET = 10` toggle verifies the

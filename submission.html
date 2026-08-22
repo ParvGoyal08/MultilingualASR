@@ -1,0 +1,282 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Multilingual Speaker Diarization + ASR on Indic YouTube</title>
+<style>
+@page { size: A4; margin: 11mm 11mm 9mm 11mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body{
+  font-family:"Charter","Palatino Linotype",Palatino,Georgia,serif;
+  font-size:9.0pt; line-height:1.31; color:#15181d; margin:0;
+  hyphens:auto; -webkit-hyphens:auto; text-align:left;
+}
+h1{ font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-size:16.2pt;
+    line-height:1.1; margin:0 0 1.5mm; letter-spacing:-.35px; font-weight:700; }
+.sub{ font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-size:8.35pt;
+      color:#4a5160; margin:0 0 2mm; line-height:1.35; text-align:left; }
+.rule{ border-bottom:1.4px solid #15181d; margin:0 0 2.4mm; }
+h2{ font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-size:8.9pt;
+    text-transform:uppercase; letter-spacing:.62px; font-weight:700;
+    margin:3.1mm 0 1.3mm; padding-bottom:.7mm; border-bottom:.7px solid #b9c0cc;
+    color:#0d1b3e; break-after:avoid; text-align:left; }
+h2:first-of-type{ margin-top:0; }
+h3{ font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-size:8.35pt;
+    margin:2.1mm 0 .8mm; font-weight:700; color:#22293a; break-after:avoid; text-align:left; }
+p{ margin:0 0 1.42mm; }
+b,strong{ font-weight:700; color:#000; }
+code,.m{ font-family:"SF Mono",Menlo,Consolas,monospace; font-size:7.75pt;
+         background:#eef1f6; padding:0 1.2px; border-radius:2px; }
+.cols{ column-count:2; column-gap:6.2mm; column-fill:auto; }
+table{ width:100%; border-collapse:collapse; margin:.9mm 0 1.9mm;
+       font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+       font-size:7.62pt; break-inside:avoid; }
+th{ text-align:right; font-weight:700; border-bottom:.85px solid #15181d;
+    padding:.62mm .85mm; white-space:nowrap; }
+th:first-child{ text-align:left; }
+td{ text-align:right; padding:.52mm .85mm; border-bottom:.4px solid #dfe4ec; white-space:nowrap; }
+td:first-child{ text-align:left; white-space:normal; }
+tr:last-child td{ border-bottom:.85px solid #15181d; }
+.win{ color:#0a6b34; font-weight:700; }
+.neg{ color:#8d2c1b; }
+.hero{ background:#f2f5fa; border:.8px solid #ccd4e2; border-left:2.6px solid #0d1b3e;
+       padding:1.6mm 2.1mm; margin:0 0 2mm; break-inside:avoid; }
+.hero table{ margin:0; font-size:7.75pt; }
+.hero td,.hero th{ border-color:#ccd4e2; }
+.hero tr:last-child td{ border-bottom:none; }
+.sys b{ color:#8fd0ff; }
+.sys{ font-family:"SF Mono",Menlo,Consolas,monospace; font-size:7.5pt;
+      background:#0d1b3e; color:#f4f7fc; padding:1.5mm 2mm; border-radius:2.5px;
+      margin:0 0 2mm; line-height:1.45; break-inside:avoid; text-align:left; }
+.note{ border-left:2.2px solid #b9c0cc; padding:.4mm 0 .4mm 2mm; margin:0 0 1.7mm;
+       color:#333a48; break-inside:avoid; }
+ul{ margin:0 0 1.6mm; padding-left:3.4mm; }
+li{ margin:0 0 .68mm; }
+.nb{ white-space:nowrap; }
+.kv{ font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-size:7.7pt;
+     color:#3c4354; margin:0 0 1.9mm; line-height:1.45; text-align:left; }
+.foot{ break-inside:avoid; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-size:6.35pt;
+       color:#5a6272; border-top:.7px solid #b9c0cc; padding-top:.8mm; margin-top:1.8mm;
+       line-height:1.3; text-align:left; }
+.avoid{ break-inside:avoid; }
+table.flow{ break-inside:auto; }
+table.flow tr{ break-inside:avoid; }
+</style>
+
+<h1>Multilingual Speaker Diarization&#8202;+&#8202;ASR on Indic YouTube</h1>
+<div class="sub">
+99 YouTube clips · 12.26&nbsp;h · nine Indic scripts · 2–8 speakers/clip · 7.13&nbsp;% overlapped speech.
+DER at <b>collar 0.0 with overlap scored</b>, per the brief. Every figure below is re-derived from
+committed artefacts and reproduced end-to-end by <code>main.ipynb</code>.
+&nbsp;·&nbsp; Full documentation: <code>README.md</code> · lab notebook: <code>obs.txt</code>
+</div>
+<div class="rule"></div>
+
+<div class="cols">
+
+<div class="sys"><b>Saaras&nbsp;v3</b> @ DOVER-Lap(<br>
+&nbsp;&nbsp;&nbsp;community-1, reverb-v2, diarizen-large)<br>
+&nbsp;&nbsp;+ per-clip script correction (Sonnet&nbsp;4.6, T=0)</div>
+
+<div class="hero">
+<table>
+<tr><th>metric</th><th>baseline</th><th>final</th><th>Δ</th></tr>
+<tr><td><b>cpWER</b></td><td>0.3957</td><td><b>0.3049</b></td><td class="win">−23.0 %</td></tr>
+<tr><td><b>WDER</b></td><td>0.1128</td><td><b>0.0603</b></td><td class="win">−46.6 %</td></tr>
+<tr><td>WER</td><td>0.2728</td><td>0.2617</td><td class="win">−4.1 %</td></tr>
+<tr><td>DER</td><td>0.2521</td><td>0.2442</td><td>n.s.</td></tr>
+<tr><td>JER</td><td>0.3834</td><td>0.3608</td><td class="win">−5.9 %</td></tr>
+<tr><td>speaker-count acc.</td><td>60.6 %</td><td>79.8 %</td><td class="win">+19.2 pt</td></tr>
+</table>
+</div>
+
+<p>Baseline is Saaras&nbsp;v3 on the best single diarizer (<code>reverb-v2</code>). The final
+system wins on <b>92 of 99 clips</b> individually.</p>
+
+<p><b>Against the achievable floor.</b> Feeding the reference transcript back as if perfectly
+recognised, on the reference diarization, still scores cpWER <b>0.1242</b> — one transcript
+cannot carry two simultaneous speakers. The final system sits <b>0.1807 above that floor</b>,
+not 0.3049 above zero.</p>
+
+<h2>1 · Data and discipline</h2>
+<p>99 of 100 clips extracted; 9 have no overlap. Two properties drive every decision. Overlap is
+pervasive rather than an edge case. And the reference is <b>code-switched with a dual-form
+convention</b> — 20,599 parenthesised Latin glosses, e.g. <span class="m">कॉफी(coffee)</span> —
+so <i>surface form</i>, not just meaning, is scored.</p>
+<p><b>Ground truth is never a pipeline input.</b> Stages receive <code>ClipInput</code>, a frozen
+dataclass that structurally carries no reference field. Speaker counts never reach a diarizer;
+language never reaches a recogniser. The 50/49 dev/test split is frozen in
+<code>results/split.json</code>; test was scored once.</p>
+
+<h2>2 · What produced the gain</h2>
+<table>
+<tr><th>step</th><th>cpWER</th><th>Δ</th></tr>
+<tr><td>baseline, Saaras v3 @ <code>reverb-v2</code></td><td>0.3957</td><td>—</td></tr>
+<tr><td>1 · DOVER-Lap fusion front-end</td><td>0.3381</td><td class="win">−0.0576</td></tr>
+<tr><td>2 · provenance bug fix</td><td>0.3181</td><td class="win">−0.0200</td></tr>
+<tr><td>3 · per-clip script correction</td><td><b>0.3049</b></td><td class="win">−0.0133</td></tr>
+</table>
+
+<h3>2.1 · DOVER-Lap fusion</h3>
+<p>Hungarian label alignment onto a growing centroid, then per-frame voting with <b>each speaker
+thresholded independently</b> so overlap survives — an argmax vote cannot emit two simultaneous
+speakers. <code>pyannote-3.1</code> is excluded: it shares <code>segmentation-3.0</code> with
+<code>community-1</code> and differs by 0.320&nbsp;s of miss+FA over 12.4&nbsp;h, so under
+majority voting they would be one vote counted twice.</p>
+<p><i>GT-free at inference</i> — <code>dover_lap</code> reads only the three constituent RTTMs and
+the clip duration, which comes from the CSV manifest, not from any annotation. The configuration
+was selected on <b>dev</b> and frozen in <code>results/fusion_config.json</code> before test
+evaluation. The operator is GT-free; the selection used dev DER. Those are kept apart deliberately.</p>
+
+<h3>2.2 · A provenance bug — the largest lesson</h3>
+<p>27 of 99 clips had been transcribed against a <i>stale two-system fusion</i>, so the measured
+“fusion” result was partly not the fusion. <code>settings_key</code> existed precisely to catch
+stale work and missed it, because it fingerprinted <b>decoding</b> and not <b>segmentation</b>.
+The fix was a <code>segmentation_key</code>: a hash of the turn boundaries, re-derived from each
+transcript’s stored spans at audit time and compared against the diarization on disk. Worth
+<b>−0.0200 cpWER and −41&nbsp;% insertions</b>, from no modelling change at all — for scale, the
+GT-perfect ceiling for overlap deduplication was −0.023.</p>
+
+<h3>2.3 · Per-clip script correction</h3>
+<p>The reference writes code-switched English <i>phonetically in the native script</i>; Saaras
+writes Latin. <b>3,481 of 21,357 substitutions are correctly-recognised words scored wrong for
+their script.</b> Sonnet&nbsp;4.6 rewrites the script of a token and nothing else, seeing only the
+clip it is correcting — no corpus vocabulary, no other clip, never the reference. Replacement is
+whole-token, so token count is invariant and words cannot be added, deleted, reordered or
+translated.</p>
+
+<h2>3 · Held-out validation</h2>
+<p>Model, prompt, temperature and every guard were frozen and committed at
+<code>f284e59</code> <i>before</i> the test half was scored.</p>
+<table>
+<tr><th>split</th><th>before</th><th>after</th><th>Δ</th><th>95 % CI</th><th>W/L</th></tr>
+<tr><td>dev (50)</td><td>0.2676</td><td>0.2619</td><td class="win">−0.0056</td><td>[−.011,&nbsp;−.003]</td><td><b>26/0</b></td></tr>
+<tr><td>test (49)</td><td>0.3552</td><td><b>0.3364</b></td><td class="win">−0.0189</td><td>[−.024,&nbsp;−.005]</td><td><b>29/0</b></td></tr>
+</table>
+<p>3,249 of 121,243 tokens changed (2.68&nbsp;%): <b>2,232 helpful edits, 0 harmful, 0 cross-script
+corruptions.</b> Zero harmful is structural — the reference holds 27 Latin tokens in 123,896, so a
+Latin hypothesis token is almost never already a match and an edit can only help or be inert. The
+downside is bounded at zero.</p>
+
+<h2>4 · The diarization number, stated plainly</h2>
+<table>
+<tr><th>comparison</th><th>Δ DER</th><th>95 % CI</th><th>W/L</th></tr>
+<tr><td><code>community-1</code> → fusion</td><td class="win">−0.0193</td><td>[−.025,&nbsp;−.014]</td><td>83/16</td></tr>
+<tr><td><code>pyannote-3.1</code> → fusion</td><td class="win">−0.0195</td><td>[−.031,&nbsp;−.009]</td><td>80/19</td></tr>
+<tr><td><code>diarizen-large</code> → fusion</td><td class="win">−0.0184</td><td>[−.029,&nbsp;−.007]</td><td>80/19</td></tr>
+<tr><td><code>reverb-v2</code> → fusion</td><td>−0.0079</td><td class="neg">[−.035,&nbsp;<b>+.016</b>]</td><td class="neg">42/57</td></tr>
+</table>
+<p>The fusion beats three of four constituents decisively. Against <code>reverb-v2</code> the DER
+difference is <b>not significant</b> — the interval spans zero and <code>reverb-v2</code> wins 57
+of 99 clips. An earlier draft reported “−3.1&nbsp;% relative DER” as the Step&nbsp;4 result; that is
+<b>withdrawn</b>. What the fusion does win is JER, confusion, speaker-count accuracy
+(60.6&nbsp;%&nbsp;→&nbsp;79.8&nbsp;%) and, decisively, the downstream ASR result — cpWER
+0.3957&nbsp;→&nbsp;0.3181, which <i>is</i> significant.</p>
+
+<h2>5 · Error by language</h2>
+<table class="flow">
+<tr><th>script</th><th>clips</th><th>WER</th><th>cpWER</th><th>WDER</th></tr>
+<tr><td>Telugu</td><td>12</td><td>0.3535</td><td><b>0.4123</b></td><td>0.1127</td></tr>
+<tr><td>Malayalam</td><td>7</td><td>0.3322</td><td>0.3900</td><td>0.0736</td></tr>
+<tr><td>Oriya</td><td>9</td><td>0.3464</td><td>0.3868</td><td>0.0535</td></tr>
+<tr><td>Bengali</td><td>8</td><td>0.2467</td><td>0.3750</td><td><b>0.1233</b></td></tr>
+<tr><td>Gujarati</td><td>12</td><td>0.2950</td><td>0.3332</td><td>0.0673</td></tr>
+<tr><td>Kannada</td><td>9</td><td>0.2372</td><td>0.3281</td><td>0.0696</td></tr>
+<tr><td>Gurmukhi</td><td>7</td><td>0.2770</td><td>0.3229</td><td>0.0548</td></tr>
+<tr><td>Tamil</td><td>10</td><td>0.2471</td><td>0.2723</td><td>0.0280</td></tr>
+<tr><td>Devanagari</td><td>25</td><td>0.1906</td><td><b>0.2006</b></td><td>0.0293</td></tr>
+</table>
+<p><b>Telugu is 2.06× Devanagari on cpWER</b> — language is a far larger axis of variation than
+anything else measured. Bengali has the third-best WER but the worst WDER: words recognised well,
+speakers attributed badly. Groups are 7–25 clips, so read the ordering as indicative.</p>
+
+<h2>6 · What did not work</h2>
+<table>
+<tr><th>intervention</th><th>outcome</th></tr>
+<tr><td>1-of-3 overlap voting</td><td class="neg">DER .2442→.3193; FA .050→.218</td></tr>
+<tr><td>ConvTasNet separation</td><td class="neg">word recovery 52.6→50.0 %</td></tr>
+<tr><td>LLM contextual refinement</td><td class="neg">null; all abandon criteria fired</td></tr>
+<tr><td>segmentation transplant</td><td class="neg">confusion worsened; no grid cell won</td></tr>
+<tr><td>blind boundary padding</td><td class="neg">−0.0031 DER — too small to ship</td></tr>
+<tr><td>overlap deduplication</td><td class="neg">helped before the bug fix, <b>hurts after</b></td></tr>
+</table>
+<p>Two further ideas — an MSDD-style verifier and an OSD-and-constituent intersection — reached only
+candidate-precision audits (11.5% and 23.6%) and were dropped before implementation; they are
+reported as <b>audits, not experiments</b>. The separation result is scoped narrowly: an
+<i>out-of-domain 8&nbsp;kHz</i> separator, given <i>oracle</i> overlap regions, does not help; a
+16&nbsp;kHz in-domain separator is <b>untested</b>.</p>
+<p><b>Whisper was rejected on evidence</b>, across three probes: configuration is not the problem
+(eight configurations span 0.906–0.964 WER), language ID is not the problem (oracle language moves
+WER by ≤0.007), and it is an Indic capability gap — IndicConformer-600M scores <b>WER 0.4158 against
+Whisper’s best 0.9058</b>, 2.2× better from a model 2.6× smaller. On 92 of 99 clips Whisper emitted
+fluent English <i>translation</i> rather than transcription, and it has <b>no Oriya</b> at all.</p>
+
+<h2>7 · Where the error still is</h2>
+<p><b>Overlap dominates.</b> It carries 52.5% of all miss and 27.4% of DER error, and overlapped
+words are deleted at <b>3.9× the clean rate</b>. Fusion overlap recall is only 21.5% (678&nbsp;s of
+3,148&nbsp;s), and 882&nbsp;s of the 1,560&nbsp;s it marks is in the wrong place. A perfect
+separator is worth <b>−0.031 WER</b> — the largest ceiling measured here.</p>
+<p><b>The brief’s hint does not hold on this corpus.</b> “Repeated text across a speaker boundary
+suggesting a false split” occurs <b>36 times in 6,312 segments</b> and does not predict error (lift
+1.09×). The signals that do work are duration proxies pointing at the wrong targets: segments under
+2&nbsp;s have a 56% error rate but hold only 30% of the wrong-labelled time, while the 36% in long
+segments has a 5.6% error rate — flagging it would be 94% false positives.</p>
+<p><b>Ground-truth quality is a measurement floor, and the audit is recorded but not fully
+resolved.</b> 39 of 99 clips carry a reference displaced 1.0–5.0&nbsp;s, 38 in the same direction.
+Applying the <b>23</b> that met the auto-accept bar is a <b>diagnostic, not the headline</b> — every
+reported metric uses raw ground truth — but it moves fusion DER 0.2442&nbsp;→&nbsp;0.1959 and
+<i>inverts the ranking among single systems</i>: the least temporally precise model looked best
+because the reference was wrong. <b>The other 16 remain open</b>, held for manual review because the
+constituent systems disagreed on the lag. Two further families are catalogued and likewise unfixed:
+39 unannotated stretches carrying 218&nbsp;s of false alarm, and 16 over-long reference turns
+carrying 563&nbsp;s of miss — 97% of it one pathological speaker label.</p>
+
+<h2>8 · Engineering lessons</h2>
+<ul>
+<li><b>Provenance outranks modelling.</b> The largest single ASR gain after the front-end swap was a
+bug fix. “Is the input what I think it is” should be checked before “is the model good enough”.</li>
+<li><b>A silent failure that looks like a valid result is worse than a crash.</b> Twice: a stale
+fusion that <code>is_done()</code> happily skipped, and a truncated LLM response that parsed to
+<code>{}</code> and was counted as 431 abstentions.</li>
+<li><b>Aggregates hide inverted rankings.</b> GT correction moved fusion DER by 19.8% and reversed
+which single model is best. Any claim resting on a 0.01 DER gap is noise — <b>including one of our
+own</b>, now withdrawn.</li>
+<li><b>Structural impossibility beats validation.</b> Omitting speakers and timestamps from the LLM’s
+response schema removed a class of failure no prompt instruction would have guaranteed.</li>
+</ul>
+
+<h2>9 · Limitations</h2>
+<ul>
+<li><b>DER parity with <code>reverb-v2</code>.</b> The fusion’s case rests on JER, speaker count and
+downstream cpWER, not on DER.</li>
+<li><b>99 clips is small</b> — 0.01-level DER differences are not resolvable — and the dev/test
+boundary is stratified on reference-derived fields: held out from tuning, but drawing it was not a
+GT-blind act.</li>
+<li><b>Step 4b is script-only.</b> It cannot fix a misheard word, and 31&nbsp;% of its edits are
+correct transliterations the annotator spelled differently — unrealised headroom.</li>
+<li><b>An earlier Step 4b variant</b> builds one lookup table from all 99 clips’ hypotheses,
+scoring 0.0032 better (0.3017) but <b>transductive</b>: with a dev-built vocabulary its test gain
+collapses to −0.0042. The per-clip variant ships because its number survives review.</li>
+<li><b>Whisper’s 99-clip row is a known-broken configuration</b>, excluded from the headline;
+IndicConformer and Saaras v4 cover only 10 and 9 clips.</li>
+<li><b>The GT audit is a diagnostic, not a correction pass.</b> Spot-checks covered 15–20 of the 39
+flagged clips and per-clip verdicts were not recorded, so the attestation is at that granularity.
+Headline numbers use raw ground truth throughout.</li>
+
+</ul>
+
+<h2>10 · Reproducing</h2>
+<p><code>main.ipynb</code> runs Steps 1–5 end to end from committed checkpoints — <b>no GPU, no API
+key, no gated model access</b>; a <code>SUBSET&nbsp;=&nbsp;10</code> toggle verifies the pipeline in
+under a minute. Verified from a clean clone. Per-video tables
+<code>step2_metrics.csv</code> (495 rows) and <code>step3_metrics.csv</code> (638 rows) pool exactly
+to every figure above.</p>
+
+<div class="foot">
+<b>References.</b> Raj+ <i>DOVER-Lap</i> SLT&nbsp;2021 · Bredin <i>pyannote.audio/.metrics</i> ·
+Han+ <i>DiariZen</i> ICASSP&nbsp;2025 · Rev.ai <i>Reverb&nbsp;v2</i> · Sarvam&nbsp;AI
+<i>Saaras&nbsp;v3</i> · Radford+ <i>Whisper</i> ICML&nbsp;2023 · AI4Bharat
+<i>IndicConformer-600M</i> · Watanabe+ <i>CHiME-6</i> 2020 (cpWER) · El&nbsp;Shafey+ 2019 (WDER) ·
+Anthropic <i>Claude Sonnet&nbsp;4.6</i>. Full list in <i>WRITEUP.md</i>.
+</div>
+
+</div>
