@@ -1,0 +1,302 @@
+{
+  "clip_id": "HZv_WvIr6lE__21_105",
+  "system": "sarvam-saaras-v3@fusion+xlitpc",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.01,
+      "end": 2.52,
+      "speaker": "SPEAKER_00",
+      "text": "பரவாயில்லை இல்ல ஒரு தடவ கம்மி மாட்டிட்டு அதுல உசிர இருக்கு.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 1,
+      "start": 1.63,
+      "end": 1.88,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 2,
+      "start": 2.51,
+      "end": 4.23,
+      "speaker": "SPEAKER_02",
+      "text": "இந்த கோட்டிங் வந்து அதுதானா இது?",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 3,
+      "start": 4.13,
+      "end": 5.45,
+      "speaker": "SPEAKER_00",
+      "text": "அதுக்குதான் கொடுத்துருக்கோம்.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 4,
+      "start": 5.77,
+      "end": 6.59,
+      "speaker": "SPEAKER_02",
+      "text": "ஓகே ஓகே ஓகே.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 5,
+      "start": 6.65,
+      "end": 10.11,
+      "speaker": "SPEAKER_00",
+      "text": "ஏரோ கிளாஸ் கோட்டட் அது ஏரோ கிளாஸ் கோட்டட் இது அது",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 6,
+      "start": 10.31,
+      "end": 11.81,
+      "speaker": "SPEAKER_02",
+      "text": "அக்கா என்ன படிச்சிருக்கீங்கக்கா?",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 7,
+      "start": 10.33,
+      "end": 10.93,
+      "speaker": "SPEAKER_00",
+      "text": "அக்கா என்ன போட்ட?",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 8,
+      "start": 12.13,
+      "end": 12.61,
+      "speaker": "SPEAKER_00",
+      "text": "ಆರಾಮ್ಸೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 9,
+      "start": 12.67,
+      "end": 13.25,
+      "speaker": "SPEAKER_02",
+      "text": "நீங்க.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 10,
+      "start": 13.37,
+      "end": 13.69,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 11,
+      "start": 14.07,
+      "end": 15.41,
+      "speaker": "SPEAKER_02",
+      "text": "இவ்ளோ டீடைலா சொல்றீங்க.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 12,
+      "start": 16.8,
+      "end": 19.41,
+      "speaker": "SPEAKER_01",
+      "text": "வொர்க் பண்றாங்கன்னு தான் சொல்றாங்க.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 13,
+      "start": 18.12,
+      "end": 19.15,
+      "speaker": "SPEAKER_02",
+      "text": "பாத்து டிகிரி உள்ளது.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 14,
+      "start": 20.01,
+      "end": 21.59,
+      "speaker": "SPEAKER_01",
+      "text": "வா இங்கிலீஷ்",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 15,
+      "start": 20.09,
+      "end": 20.43,
+      "speaker": "SPEAKER_02",
+      "text": "ಇನ್ನ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 16,
+      "start": 21.61,
+      "end": 22.15,
+      "speaker": "SPEAKER_02",
+      "text": "சூப்பர்.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 17,
+      "start": 21.63,
+      "end": 28.14,
+      "speaker": "SPEAKER_01",
+      "text": "சூப்பர். அது புரியுது. அது பேசுறதுலேயே தெரியுதுல்ல. டீச்சர் ஆமா. அது கொஞ்சம் ஷூஸ் நல்லா இருக்கு.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 18,
+      "start": 22.99,
+      "end": 25.43,
+      "speaker": "SPEAKER_02",
+      "text": "அது பேசுறதுலேயே தெரியுது இல்ல.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 19,
+      "start": 28.09,
+      "end": 32.22,
+      "speaker": "SPEAKER_02",
+      "text": "சரி ஓகே அது தேவையில்லை. இன்னைக்கு நம்ம ஒரு நல்ல ஜாப்ல இருக்கோம். ஓகே சூப்பர்.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 20,
+      "start": 28.46,
+      "end": 30.1,
+      "speaker": "SPEAKER_01",
+      "text": "அது தேவையில்லை இன்னைக்கு.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 21,
+      "start": 32.22,
+      "end": 45.2,
+      "speaker": "SPEAKER_01",
+      "text": "சோ நம்ம இப்ப எங்க வந்துருக்கோம் பாத்தீங்கன்னா காஞ்சிபுரத்துல இருக்க டார்லிங் ஷோரூம் தான் வந்துருக்கோம். நம்ம வீட்ல வந்து வாட்டர் ஹீட்டர் ப்ராப்ளம் ஆயிடுச்சு. சரி இன்னைக்கு அப்படியே நம்ம இதோ திருத்தணி எல்லாம் போயிட்டு வந்துட்டோம். ஒரே வேலையா நம்ம வாட்டர் ஹீட்டரையும் வாங்கிட்டு போயிடலாம் அப்படின்னு சொல்லிட்டு நாங்க வந்து",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 22,
+      "start": 34.43,
+      "end": 34.77,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 23,
+      "start": 43.97,
+      "end": 61.28,
+      "speaker": "SPEAKER_02",
+      "text": "வாட்டர் ஹீட் ப்ராப்ளம் ஆகி ஒரு டூ இயர்ஸ் மேல ஆகுது. இது வந்து எப்படின்னா டார்லிங் ஒரு நாள் போகணும்ன்றது மாதிரியே யோசிச்சு வச்சிருந்தோம். போன உடனே பேனர் பாத்துட்டு வா போலாம் அப்படின்னு அங்கேயே நிறுத்திட்டு அப்படியே உள்ள வந்தாச்சு. சரி இத ஒரு ப்ளாக் பண்ணிருவோம் அப்படின்னுதான் ப்ளாக் பண்றோம். சோ இங்க வந்து இன்னும் என்னென்ன ஐட்டம் என்னென்ன ஆஃபர் போயிட்டு இருக்குன்னு போடுறோம்.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 24,
+      "start": 61.31,
+      "end": 65.96,
+      "speaker": "SPEAKER_01",
+      "text": "வீடு கட்டி 5 வருஷம் தான் ஆகுது, புதுசாக மாட்டினோம், 3 வருஷம் இல்லை 2.5 வருஷம் தான் வந்தது.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 25,
+      "start": 66.04,
+      "end": 73.35,
+      "speaker": "SPEAKER_00",
+      "text": "இதுல வந்து ரோபோடிக் உங்களுக்கு சர்க்குலேஷன் வரும். இது மனுஷனால இது பண்ணது கிடையாது. ரோபோடிக் மாடல்னால ஜாயிண்டிங்லாம் எதுவும் கிடையாது.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 26,
+      "start": 70.37,
+      "end": 70.73,
+      "speaker": "SPEAKER_02",
+      "text": "ಓಹ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 27,
+      "start": 73.01,
+      "end": 74.71,
+      "speaker": "SPEAKER_02",
+      "text": "வெல்டு அந்த மாதிரி இது கிடையாது.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 28,
+      "start": 73.59,
+      "end": 83.99,
+      "speaker": "SPEAKER_00",
+      "text": "அந்த மாதிரி இது கிடையாது. உங்களுக்கு அப்படியே லோ பக்கிங்னால ஒரே ஒரு இது மட்டும்தான் இருக்கு ஷீல்டு மாதிரி இருக்கு இங்க. அந்த உப்பு வந்து அந்த டேங்க் ஆறிக்கிறதுனால உங்களுக்கு வாட்டர் லீக்கேஜ் அந்த மாதிரி ப்ராப்ளம் இருக்கு.",
+      "skipped": null,
+      "lang": "ta-IN"
+    },
+    {
+      "i": 29,
+      "start": 79.11,
+      "end": 79.54,
+      "speaker": "SPEAKER_02",
+      "text": "ஓகே",
+      "skipped": null,
+      "lang": "en-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 239,
+  "elapsed_sec": 27.11,
+  "rtf": 0.3228,
+  "clip_dur_sec": 84.0,
+  "transcribed_at_utc": "2026-08-21T15:01:39+00:00",
+  "clip_language": null,
+  "n_segments": 30,
+  "n_skipped_short": 1,
+  "detected_language": "ta-IN",
+  "languages_seen": [
+    "en-IN",
+    "kn-IN",
+    "ta-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "experiment": {
+    "prompt_version": "xlit-perclip-v1",
+    "model": "us.anthropic.claude-sonnet-4-6",
+    "temperature": 0,
+    "scope": "per-clip"
+  }
+}

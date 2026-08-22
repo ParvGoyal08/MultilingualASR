@@ -1,0 +1,185 @@
+{
+  "clip_id": "7YfsQPYY-W0__351_411",
+  "system": "sarvam-saaras-v3@fusion+xlitpc",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.03,
+      "end": 1.39,
+      "speaker": "SPEAKER_01",
+      "text": "ଆପଣଙ୍କୁ କମ୍ପ୍ଲିମେଣ୍ଟାରୀ ମିଳିବ।",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 1,
+      "start": 1.33,
+      "end": 1.75,
+      "speaker": "SPEAKER_00",
+      "text": "ଆଜ୍ଞା।",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 2,
+      "start": 1.89,
+      "end": 6.53,
+      "speaker": "SPEAKER_01",
+      "text": "ଆଉ ଆମର କହିବେ ଆପଲ୍ ରେ ଏଇଟା ମିଳିବ, ଆଣ୍ଡ୍ରୋଏଡ୍ ରେ ଆପଣଙ୍କର ସେଇଟା ରହିବ। ନାଇଁ କି?",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 3,
+      "start": 6.03,
+      "end": 9.89,
+      "speaker": "SPEAKER_00",
+      "text": "ନାଇଁ ନାଇଁ ସିଏ ବି ଆମର ଆମେ ଦେଇପାରିବୁ ଆପେଲ ଆପେଲ ବି ରହିବ ଆପେଲ ବି ରହିବ।",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 4,
+      "start": 7.97,
+      "end": 17.04,
+      "speaker": "SPEAKER_01",
+      "text": "ଆପଲ୍ ଆପଲ୍ ବି ରହିବ। ଆପଲ୍ ତାହେଲେ ଆପଣଙ୍କର ଯୋଉଟା ଗିଫ୍ଟ ଆଇଟମ୍ ଆପଣଙ୍କୁ ଦେଖିବା ପାଇଁ ମିଳିବ। ଆଉ ଆମର କହିବେ ଆପଲ୍ ଫୋନ୍ ଭାଇ ଯୋଉମାନେ ନବା ଭାଇ ଡାଟା ଟ୍ରାନ୍ସଫର୍ କେମିତି କଣ ସବୁ ରହୁଛି?",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 5,
+      "start": 11.75,
+      "end": 12.19,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 6,
+      "start": 17.17,
+      "end": 23.65,
+      "speaker": "SPEAKER_00",
+      "text": "ଡାଟା ଟ୍ରାନ୍ସଫର ଆପଣଙ୍କୁ କିଛି ଟେନସନ ନାହିଁ, ଆପଣ ଓଲ୍ଡ ଫୋନରୁ ନିଉ ଫୋନକୁ ଡାଟା ଟ୍ରାନ୍ସଫର ଆମେ ଟୋଟାଲ ନିଟ ଆଣ୍ଡ କ୍ଲିନ କରି ହଣ୍ଡରେଡ ପରସେଣ୍ଟ କରିକି ଦବୁ ଆମେ ଆପଣଙ୍କୁ।",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 7,
+      "start": 24.19,
+      "end": 27.71,
+      "speaker": "SPEAKER_01",
+      "text": "ଆପଣ କୌଣସି ଫୋନ ନିଅନ୍ତୁ, ଆପଣଙ୍କୁ ଇଣ୍ଟରେଷ୍ଟ ଲାଗିବନି, ପ୍ରୋସେସିଙ୍ଗ ବି ଲାଗିବନି।",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 8,
+      "start": 27.03,
+      "end": 31.45,
+      "speaker": "SPEAKER_00",
+      "text": "କିଛି ଲାଗିବନି ଆଜ୍ଞା। ଆପଣ ଆସନ୍ତୁ ଟ୍ରିପଲ ଜିରୋରୁ ନେଇକି ଯିବେ। ଟ୍ରିପଲ ଜିରୋ। ଆଜ୍ଞା।",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 9,
+      "start": 27.95,
+      "end": 28.99,
+      "speaker": "SPEAKER_01",
+      "text": "କିଛି ବି ଲାଗିବ।",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 10,
+      "start": 31.69,
+      "end": 35.19,
+      "speaker": "SPEAKER_01",
+      "text": "ତାର ଆମର ଆସିଗଲା ସାମସଙ୍ଗ ଫୋନ, ସାମସଙ୍ଗ ଫୋନ ଭାଇ କେତେ ଟଙ୍କାରୁ ଷ୍ଟାର୍ଟିଙ୍ଗ ହଉଛି?",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 11,
+      "start": 35.29,
+      "end": 39.19,
+      "speaker": "SPEAKER_00",
+      "text": "ସାର୍ ସାମସଙ୍ଗ ଫୋନ୍ ଆପଣଙ୍କର ₹8000 ରୁ ଷ୍ଟାର୍ଟିଙ୍ଗ୍ ହେଇଯିବ।",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 12,
+      "start": 35.81,
+      "end": 36.35,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 13,
+      "start": 39.78,
+      "end": 41.85,
+      "speaker": "SPEAKER_00",
+      "text": "ଆଉ ନେଇକି ଆପଣଙ୍କୁ ₹1,00,000",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 14,
+      "start": 43.11,
+      "end": 52.12,
+      "speaker": "SPEAKER_00",
+      "text": "50, 60, 2 ଲକ୍ଷ ପର୍ଯ୍ୟନ୍ତ ଆସିଯିବ। ଆଉ ଆମର ଏଇଟା ବି କେତେ ଟଙ୍କା ଆସୁଛି? ଏଇଟା ₹8000 ରୁ ଷ୍ଟାର୍ଟିଙ୍ଗ ରହିବ। ଆପଣ ଆରାମ ସେ ଏଇଟାକୁ ଆସିକି ନେଇପାରିବେ। ଏଇ ସ୍କିମ କେତେ? ଆଠ ମାସ ନା ଛଅ ମାସ?",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 15,
+      "start": 50.61,
+      "end": 50.92,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 16,
+      "start": 52.27,
+      "end": 59.99,
+      "speaker": "SPEAKER_00",
+      "text": "ଏଇ ଛଅ ମାସ ଅଛି, ଆଠ ମାସ ଦୁଇଟା ଏକ ଅଛି ଆପଣଙ୍କ ପାଖରେ ଆମ ପାଖରେ ସ୍କିମ ଆପଣ ଆସିକି ଦେଖିକି ଆଜ୍ଞା ଭାଇ ଡିପି କେତେ ଲାଗିବ? ଡିପି ₹1000",
+      "skipped": null,
+      "lang": "od-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 191,
+  "elapsed_sec": 7.26,
+  "rtf": 0.1209,
+  "clip_dur_sec": 60.0,
+  "transcribed_at_utc": "2026-08-21T18:50:02+00:00",
+  "clip_language": null,
+  "n_segments": 17,
+  "n_failed_segments": 0,
+  "n_skipped_short": 0,
+  "detected_language": "od-IN",
+  "languages_seen": [
+    "hi-IN",
+    "od-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "experiment": {
+    "prompt_version": "xlit-perclip-v1",
+    "model": "us.anthropic.claude-sonnet-4-6",
+    "temperature": 0,
+    "scope": "per-clip"
+  }
+}

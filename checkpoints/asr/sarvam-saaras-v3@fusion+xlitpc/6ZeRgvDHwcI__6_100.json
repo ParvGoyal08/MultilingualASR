@@ -1,0 +1,184 @@
+{
+  "clip_id": "6ZeRgvDHwcI__6_100",
+  "system": "sarvam-saaras-v3@fusion+xlitpc",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 8.41,
+      "end": 9.27,
+      "speaker": "SPEAKER_00",
+      "text": "હું કરે છે આ",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 1,
+      "start": 10.77,
+      "end": 12.63,
+      "speaker": "SPEAKER_01",
+      "text": "પગે લાગુ છું, હું કરે છે એવું.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 2,
+      "start": 14.01,
+      "end": 21.25,
+      "speaker": "SPEAKER_00",
+      "text": "કેટલી વાર ના પાડીશ મેં હ મને તો આ ધતીંગ ગમતા નથી આજ પછી ક્યારેય મને પગે ના લાગતી તું",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 3,
+      "start": 23.06,
+      "end": 30.33,
+      "speaker": "SPEAKER_01",
+      "text": "કેમ? હું તો મારો ધર્મ નિભાવું છું ને, એમાં શું વાંધો છે? ઈશ્વર પછીનો બીજો દરજ્જો ધણીને દેવાનો હોય.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 4,
+      "start": 31.61,
+      "end": 32.81,
+      "speaker": "SPEAKER_01",
+      "text": "તમને વાંધો શું છે મારાથી?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 5,
+      "start": 33.78,
+      "end": 41.85,
+      "speaker": "SPEAKER_00",
+      "text": "અરે ભાડમાં ગયો તારો ધર્મ, હું નથી માનતો આ ધર્મને અને નથી માનતો તને મારી પત્ની, કેટલી વાર કહેવાનું તને?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 6,
+      "start": 43.56,
+      "end": 46.15,
+      "speaker": "SPEAKER_00",
+      "text": "આ સામે મારા ઘરની ડેલી છે. હં?",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 7,
+      "start": 47.48,
+      "end": 54.15,
+      "speaker": "SPEAKER_00",
+      "text": "ગમે ત્યારે જઈ શકે છે તું, પણ તું છે કે આ ઘરમાંથી જવા નથી માંગતી, હું ધાર્યું છે તે.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 8,
+      "start": 54.85,
+      "end": 56.75,
+      "speaker": "SPEAKER_01",
+      "text": "જે હોય ત્યાં એક ને એક વાત લઈને બેહો છો.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 9,
+      "start": 58.01,
+      "end": 59.65,
+      "speaker": "SPEAKER_01",
+      "text": "કે ડેલી ખુલ્લી છે વહી જા અહીંયાથી.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 10,
+      "start": 60.77,
+      "end": 72.53,
+      "speaker": "SPEAKER_01",
+      "text": "તમે મને આજ સુધી કોઈ દી કારણ નથી કીધું કે તમને મારાથી વાંધો શું છે? હું કાંઈ ભૂલમાં આવી ગઈ છું? મારા કાંઈ શબ્દો ખોટા લાગ્યા છે? મારું કાંઈ વર્તન ખોટું લાગ્યું છે? એકવાર મને કહી દયો ને.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 11,
+      "start": 72.75,
+      "end": 74.29,
+      "speaker": "SPEAKER_00",
+      "text": "હંધાય કારણ કહેવાના ના હોય.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 12,
+      "start": 75.46,
+      "end": 76.71,
+      "speaker": "SPEAKER_00",
+      "text": "તું એ કારણ જ છો.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 13,
+      "start": 78.75,
+      "end": 84.49,
+      "speaker": "SPEAKER_00",
+      "text": "હા મારા ઘરમાં તારા માટે કોઈ માન નથી, ફક્ત કામવાળી છો.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 14,
+      "start": 86.12,
+      "end": 88.01,
+      "speaker": "SPEAKER_00",
+      "text": "પત્ની બનીને આ ઘરમાં તો આવી ગઈ તું.",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 15,
+      "start": 89.33,
+      "end": 89.71,
+      "speaker": "SPEAKER_00",
+      "text": "પણ",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 16,
+      "start": 91.03,
+      "end": 93.33,
+      "speaker": "SPEAKER_00",
+      "text": "તને પત્નીનું સ્થાન હવે હું આપવા નથી માંગતો.",
+      "skipped": null,
+      "lang": "gu-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 194,
+  "elapsed_sec": 6.93,
+  "rtf": 0.0738,
+  "clip_dur_sec": 94.0,
+  "transcribed_at_utc": "2026-08-21T18:48:58+00:00",
+  "clip_language": null,
+  "n_segments": 17,
+  "n_failed_segments": 0,
+  "n_skipped_short": 0,
+  "detected_language": "gu-IN",
+  "languages_seen": [
+    "gu-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "experiment": {
+    "prompt_version": "xlit-perclip-v1",
+    "model": "us.anthropic.claude-sonnet-4-6",
+    "temperature": 0,
+    "scope": "per-clip"
+  }
+}

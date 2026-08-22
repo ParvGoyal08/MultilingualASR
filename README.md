@@ -16,9 +16,9 @@ number below. The one network call is a first-run fetch of the assignment's
 
 | | baseline | final | |
 |---|---|---|---|
-| **cpWER** | 0.3957 | **0.3017** | **−23.8%** |
-| **WDER** | 0.1128 | **0.0602** | **−46.6%** |
-| WER | 0.2728 | 0.2585 | −5.2% |
+| **cpWER** | 0.3957 | **0.3049** | **−23.0%** |
+| **WDER** | 0.1128 | **0.0603** | **−46.6%** |
+| WER | 0.2728 | 0.2617 | −4.1% |
 | DER | 0.2521 | 0.2442 | not significant |
 | JER | 0.3834 | 0.3608 | −5.9% |
 | speaker-count accuracy | 60.6% | 79.8% | +19.2 pt |
@@ -27,17 +27,17 @@ Baseline is Saaras v3 on the single best diarizer (`reverb-v2`). Final is
 
 ```
 sarvam-saaras-v3 @ DOVER-Lap(community-1, reverb-v2, diarizen-large)
-                 + script/numeral normalisation
+                 + per-clip script correction (Sonnet 4.6, temperature 0)
 ```
 
-Improvement holds on the held-out half — test cpWER 0.4463 → 0.3337 (−0.1127) —
-and on **92 of 99 clips individually**, with 5 regressions. DER is scored at
+Improvement holds on the held-out half — test cpWER 0.4463 → 0.3364 (−0.1100) —
+and on **92 of 99 clips individually**, with 6 regressions. DER is scored at
 **collar 0.0 with overlap included**, as the brief requires.
 
 For scale: feeding the reference transcript back as if perfectly recognised, on
 the reference diarization, still scores cpWER **0.1242** — one transcript cannot
-carry two simultaneous speakers. The final system sits 0.1775 above that floor,
-not 0.3017 above zero.
+carry two simultaneous speakers. The final system sits 0.1807 above that floor,
+not 0.3049 above zero.
 
 ## What produced the gain
 
@@ -49,7 +49,7 @@ because the middle term is easy to hide inside the first:
 | baseline, Saaras v3 @ `reverb-v2` | 0.3957 | |
 | 1. swap the diarizer for the DOVER-Lap fusion | 0.3381 | **−0.0576** |
 | 2. fix the provenance bug | 0.3181 | **−0.0200** |
-| 3. script + numeral normalisation | **0.3017** | **−0.0164** |
+| 3. per-clip script correction | **0.3049** | **−0.0133** |
 
 1. **DOVER-Lap fusion** (Step 4a), with each speaker thresholded independently so
    overlap survives — an argmax vote cannot emit two simultaneous speakers, and
@@ -60,15 +60,21 @@ because the middle term is easy to hide inside the first:
    each transcript's stored segment spans at audit time and compared against the
    diarization on disk. −0.0200 cpWER and −41% insertions, from no modelling
    change at all.
-3. **Script and numeral normalisation** (Step 4b) — the reference writes
-   code-switched English phonetically in the native script and numbers as spoken
-   words; Saaras writes Latin and digits. 3,481 of 21,357 substitutions were
-   *correctly recognised words scored wrong for their spelling convention*.
-   −0.0164 cpWER, 72 clips better / 1 worse, 0 dev regressions. This stage is
-   **transductive** — its lookup table is built from all 99 clips' hypotheses
-   (not their ground truth), so the dev/test split does not test it. With a
-   dev-only table the gain is −0.0064; `WRITEUP.md` §6.1 reports both and
-   explains which applies when.
+3. **Per-clip script correction** (Step 4b) — the reference writes code-switched
+   English phonetically in the native script; Saaras writes Latin. 3,481 of
+   21,357 substitutions were *correctly recognised words scored wrong for their
+   script*. Claude Sonnet 4.6 rewrites the script of a token and nothing else,
+   seeing **only the clip it is correcting** — no corpus vocabulary, no other
+   clip, never the reference. −0.0133 cpWER overall and **−0.0189 on held-out
+   test with 29 clips better and 0 worse**; 2,232 helpful edits, **0 harmful**,
+   0 cross-script corruptions. Config frozen at `f284e59` before test was
+   scored.
+
+   An earlier variant built one lookup table from all 99 clips' hypotheses. It
+   scores marginally better (0.3017) but is **transductive**, so its dev/test
+   split cannot test generalisation — restricted to a dev-built vocabulary its
+   test gain collapses to −0.0042. Both are reported in `WRITEUP.md` §6.1–§6.2;
+   the per-clip variant ships because its number survives review.
 
 Three interventions were built, measured end-to-end and **rejected**: a 1-of-3
 overlap vote, ConvTasNet source separation, and LLM contextual refinement. Each
@@ -100,7 +106,7 @@ dev; test was scored once.
 | `sarvam_diar/` | library: data, reference, diarization, refinement, asr, translit, metrics |
 | `tools/` | probes and drivers; nothing here writes under `asr/` |
 | `checkpoints/` | committed model outputs (26 MB) so nothing needs re-running |
-| `results/` | `step2_metrics.csv` (495 rows), `step3_metrics.csv` (539 rows), split, tables |
+| `results/` | `step2_metrics.csv` (495 rows), `step3_metrics.csv` (638 rows), split, tables |
 | [`RUNBOOK.md`](RUNBOOK.md) | how to re-run each stage, and which notebook owns what |
 | [`RESULTS_DIARIZATION.md`](RESULTS_DIARIZATION.md), [`RESULTS_ASR.md`](RESULTS_ASR.md) | per-stage detail |
 | [`GT_AUDIT.md`](GT_AUDIT.md) | reference-quality audit and the correction manifest |

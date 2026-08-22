@@ -1680,3 +1680,61 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      orthographic variants; the rest are different words. The remaining
      deletions are backchannels the recogniser drops. Neither is reachable by a
      text-only stage, and this line of work is closed.
+
+[56] The Step 4b gain is real, not an artefact of seeing the test vocabulary.
+     Re-ran the same idea with the corpus removed and it survives.
+
+     [54]/[53] built ONE lookup table from the Latin vocabulary of all 99 clips.
+     That is transductive: the table's coverage was fixed with the test clips'
+     hypotheses in view, so the dev/test split could never have detected a
+     generalisation failure. Restricted to a dev-built vocabulary the test gain
+     collapses from -0.0216 to -0.0042, which left the obvious question open.
+
+     PER-CLIP VARIANT. Each clip corrected in isolation: the model sees only the
+     Latin tokens of that clip's own hypothesis and that hypothesis's dominant
+     script. No other clip, no corpus vocabulary, no split, never the reference.
+     claude-sonnet-4-6, temperature 0, prompt xlit-perclip-v1, batch 60. Frozen
+     and committed at f284e59 BEFORE test was scored. Numerals dropped -- they
+     change token count, which puts them outside "script only".
+
+     The prompt's one real addition over [53] is an explicit abstention clause:
+     "returning null is always safe and is the correct answer when in doubt."
+
+       split   baseline   corrected     delta   95% CI            W / L / tie
+       dev       0.2676      0.2619   -0.0056   [-0.0108,-0.0034]  26 / 0 / 24
+       test      0.3552      0.3364   -0.0189   [-0.0241,-0.0051]  29 / 0 / 20
+       all       0.3181      0.3049   -0.0133                      54 / 0 / 45
+
+     3,249 of 121,243 tokens changed (2.68%). 2,232 helpful, 0 HARMFUL, 1,017
+     neutral. 0 cross-script corruptions. Zero harmful is structural, not luck:
+     the reference holds 27 Latin tokens in 123,896, so a Latin hypothesis token
+     is almost never already a match and an edit can only help or be inert.
+
+       shipped +xlit+num  test -0.0216  (corpus vocab, incl. test)
+       shipped, dev vocab test -0.0042  (inductive)
+       per-clip           test -0.0189  (one clip only)
+
+     So per-clip recovers ~90% of the transductive gain with a clean held-out
+     claim, and 4.5x the honest inductive estimate. The corpus vocabulary bought
+     COVERAGE, not validity. Shipped the per-clip variant: it costs 0.0032 cpWER
+     and buys a number that survives review.
+
+     Best edits are the romanised INDIC words, not the English ones -- mhanun ->
+     म्हणून, aahet -> आहेत, nahi -> नाही, udya -> उद्या. A pure sound
+     transliterator fails these; the model recognised them as native words.
+
+     Abstentions (9.4%) are single letters, contraction remnants and fragments:
+     s, a, t, ll, idi, roo, tns. Correct refusals. The real limitation is the
+     31% of edits that are NEUTRAL -- correct transliterations the annotator
+     happened to spell differently (you -> యూ, sir -> सर). Free, but unrealised.
+
+     ONE DEFECT, worth recording because it nearly passed as a result. The first
+     frozen run reported 431 "abstentions" on one test clip. Not judgement: the
+     reply hit stop_reason=max_tokens at 3,999/4,000 and the unclosed JSON parsed
+     to {}, which the code counted as abstention on every word. Frozen test was
+     -0.0100 because of it. Batching at 60 and treating truncation as a hard
+     error fixed it. Same lesson as [49]: a silent failure that looks like a
+     valid result is worse than a crash, and an unparseable response and a
+     genuine abstention must not share a code path. The repair came after test
+     was scored, which is disclosed -- stop_reason is visible at inference time
+     and needs no reference, so no test metric informed it.

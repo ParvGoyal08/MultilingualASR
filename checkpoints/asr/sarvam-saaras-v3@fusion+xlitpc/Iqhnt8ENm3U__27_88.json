@@ -1,0 +1,248 @@
+{
+  "clip_id": "Iqhnt8ENm3U__27_88",
+  "system": "sarvam-saaras-v3@fusion+xlitpc",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.01,
+      "end": 0.27,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 1,
+      "start": 0.17,
+      "end": 0.67,
+      "speaker": "spk3",
+      "text": "ನಮಸ್ಕಾರ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 2,
+      "start": 0.81,
+      "end": 6.55,
+      "speaker": "SPEAKER_00",
+      "text": "हं? मस्का मस्का पाहिजे. का बरं तूप संपलं म्हणून ना? तूप संपलं ना. हा का?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 3,
+      "start": 6.41,
+      "end": 7.05,
+      "speaker": "spk3",
+      "text": "ಅದೇ ನಾಗೆ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 4,
+      "start": 7.64,
+      "end": 9.7,
+      "speaker": "SPEAKER_01",
+      "text": "शांत बसते का? मस्त पाहिजे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 5,
+      "start": 9.79,
+      "end": 10.21,
+      "speaker": "SPEAKER_00",
+      "text": "ದೇನಾ?",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 6,
+      "start": 9.81,
+      "end": 10.19,
+      "speaker": "spk3",
+      "text": "ದೇಹ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 7,
+      "start": 10.41,
+      "end": 23.48,
+      "speaker": "SPEAKER_01",
+      "text": "काय देऊ? मस्त बिस्कळ नाही, इथे मस्त काय ठेवलंय कळलं ना? रुतुक नाही ना का तूप मस्त तूप मस्त. तुम्हाला माहिती आहे सगळ्यांना इथेच चहाची वाटी यांची असते बरं का आणि त्याच्याच बाजूला तुपाची बरणी असते.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 8,
+      "start": 23.19,
+      "end": 24.33,
+      "speaker": "SPEAKER_00",
+      "text": "हा पॉईंट आहे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 9,
+      "start": 24.31,
+      "end": 28.99,
+      "speaker": "SPEAKER_01",
+      "text": "ते ना जेव्हा येतात ना नाश्ता करायला, तुपाची बरणी उचलते.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 10,
+      "start": 28.99,
+      "end": 30.91,
+      "speaker": "SPEAKER_00",
+      "text": "पण चहाची वाटी अजिबात घेत नाही.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 11,
+      "start": 32.09,
+      "end": 35.03,
+      "speaker": "SPEAKER_00",
+      "text": "हा फॅक्ट आहे या माणसाचा काय हो दे ना गप उमेश.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 12,
+      "start": 35.63,
+      "end": 36.05,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 13,
+      "start": 35.75,
+      "end": 37.35,
+      "speaker": "SPEAKER_00",
+      "text": "आ भाऊजी।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 14,
+      "start": 37.67,
+      "end": 38.43,
+      "speaker": "SPEAKER_01",
+      "text": "नहीं नहीं।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 15,
+      "start": 38.39,
+      "end": 39.17,
+      "speaker": "spk3",
+      "text": "अरे नहीं देना।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 16,
+      "start": 40.71,
+      "end": 41.27,
+      "speaker": "spk3",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 17,
+      "start": 41.29,
+      "end": 42.28,
+      "speaker": "SPEAKER_01",
+      "text": "ठेवलंय ना.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 18,
+      "start": 41.79,
+      "end": 43.63,
+      "speaker": "spk3",
+      "text": "मम्मी तुला संध्याकाळी पोकी घेऊन ये ना दे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 19,
+      "start": 43.89,
+      "end": 46.35,
+      "speaker": "SPEAKER_01",
+      "text": "काय घेऊन पुंगी? नको ते पुंगी पुंगी.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 20,
+      "start": 47.47,
+      "end": 50.99,
+      "speaker": "spk3",
+      "text": "पोंगे पोंगे नको परत पोंगे माई माई मी तुला सांगतो पोंगे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 21,
+      "start": 52.36,
+      "end": 52.91,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 22,
+      "start": 53.31,
+      "end": 59.19,
+      "speaker": "SPEAKER_01",
+      "text": "हवे मला पोहून घे पण आता ते म्हणून त्याच्यासाठी मी मस्क्याची कुर्बानी देणार नाही अजून.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 23,
+      "start": 59.19,
+      "end": 59.99,
+      "speaker": "spk3",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 141,
+  "elapsed_sec": 28.46,
+  "rtf": 0.4666,
+  "clip_dur_sec": 61.0,
+  "transcribed_at_utc": "2026-08-21T15:05:42+00:00",
+  "clip_language": null,
+  "n_segments": 24,
+  "n_skipped_short": 1,
+  "detected_language": "mr-IN",
+  "languages_seen": [
+    "hi-IN",
+    "kn-IN",
+    "mr-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "experiment": {
+    "prompt_version": "xlit-perclip-v1",
+    "model": "us.anthropic.claude-sonnet-4-6",
+    "temperature": 0,
+    "scope": "per-clip"
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "clip_id": "Jc5AVwg2cZM__153_214",
+  "system": "sarvam-saaras-v3@fusion+xlitpc",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.75,
+      "end": 1.93,
+      "speaker": "SPEAKER_01",
+      "text": "આપણે",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 1,
+      "start": 1.58,
+      "end": 3.07,
+      "speaker": "SPEAKER_00",
+      "text": "शांत शांत शांत.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 2,
+      "start": 2.9,
+      "end": 6.93,
+      "speaker": "SPEAKER_01",
+      "text": "अरे हा उतार आहे, उतार उतार.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 3,
+      "start": 8.31,
+      "end": 12.11,
+      "speaker": "SPEAKER_01",
+      "text": "जा अमित, तुझ्यावर रिस्पॉन्सिबिलिटी आहे सगळ्यांना. थांब.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 4,
+      "start": 10.53,
+      "end": 10.85,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 5,
+      "start": 12.67,
+      "end": 15.53,
+      "speaker": "SPEAKER_01",
+      "text": "थांब थांब नको नको तू उतर खा.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 6,
+      "start": 15.06,
+      "end": 18.11,
+      "speaker": "SPEAKER_00",
+      "text": "पण सिरीयसली यार यार यामुळे एक जरा ॲडव्हेंचर आहे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 7,
+      "start": 15.75,
+      "end": 19.36,
+      "speaker": "SPEAKER_02",
+      "text": "बट सिरीयसली यार यार यामुळे एक जरा ॲडव्हेंचर काहीतरी करायला मिळालं बस.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 8,
+      "start": 19.35,
+      "end": 20.61,
+      "speaker": "SPEAKER_01",
+      "text": "खरंच आहे. ए मातू.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 9,
+      "start": 20.16,
+      "end": 22.85,
+      "speaker": "SPEAKER_02",
+      "text": "तुम्ही तर करून आलात 72 मैलच्या सिनेमात.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 10,
+      "start": 21.71,
+      "end": 22.3,
+      "speaker": "SPEAKER_00",
+      "text": "മൈൽ ചാ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 11,
+      "start": 22.77,
+      "end": 24.9,
+      "speaker": "SPEAKER_01",
+      "text": "हा येस it's एडवेंचरस",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 12,
+      "start": 27.63,
+      "end": 31.07,
+      "speaker": "SPEAKER_01",
+      "text": "मग सांगू सिंहगडला आम्ही ट्रेकला यायचो.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 13,
+      "start": 31.29,
+      "end": 31.89,
+      "speaker": "SPEAKER_02",
+      "text": "सर आराम से।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 14,
+      "start": 31.85,
+      "end": 32.75,
+      "speaker": "SPEAKER_01",
+      "text": "त्याची मजा येते.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 15,
+      "start": 33.93,
+      "end": 36.59,
+      "speaker": "SPEAKER_01",
+      "text": "असा पाय टाकायचा आडवा आडवा आडवा पाय टाकायचा.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 16,
+      "start": 38.15,
+      "end": 40.09,
+      "speaker": "SPEAKER_02",
+      "text": "आणि तो असा आडवा असा झाला आडवाच तर.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 17,
+      "start": 40.15,
+      "end": 44.48,
+      "speaker": "SPEAKER_01",
+      "text": "नाही, असं काही नाही होत. आडवा पाय टाकायचा म्हणजे घसरत नाही पाय. ऐका जरा.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 18,
+      "start": 43.68,
+      "end": 44.65,
+      "speaker": "SPEAKER_02",
+      "text": "तर स्मिताचं ऐका.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 19,
+      "start": 44.73,
+      "end": 47.43,
+      "speaker": "SPEAKER_01",
+      "text": "मोलाचे शब्द आहेत, प्लीज मन लावून ऐका.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 20,
+      "start": 47.93,
+      "end": 49.96,
+      "speaker": "SPEAKER_02",
+      "text": "तांबे मॅडमचा ऐका, आडवा पाय टाका.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 21,
+      "start": 49.25,
+      "end": 53.01,
+      "speaker": "SPEAKER_00",
+      "text": "आडवा पाय टाका. कसं असतं बघ स्मिता, नशिबाने नशिबाने अमितराज.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 22,
+      "start": 49.97,
+      "end": 50.62,
+      "speaker": "SPEAKER_01",
+      "text": "आडवा पायाला.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 23,
+      "start": 53.03,
+      "end": 53.37,
+      "speaker": "SPEAKER_01",
+      "text": "काय?",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 24,
+      "start": 53.33,
+      "end": 55.73,
+      "speaker": "SPEAKER_00",
+      "text": "5 वर्षांनी जोगवाची सीडी बाजारात आली.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 25,
+      "start": 55.79,
+      "end": 56.88,
+      "speaker": "SPEAKER_01",
+      "text": "हो रे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 26,
+      "start": 56.4,
+      "end": 58.13,
+      "speaker": "SPEAKER_00",
+      "text": "याची तर सिनेमाच्या आधी येते.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 27,
+      "start": 57.95,
+      "end": 59.05,
+      "speaker": "SPEAKER_01",
+      "text": "सिनेमाच्या आधी येते.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 28,
+      "start": 58.99,
+      "end": 60.99,
+      "speaker": "SPEAKER_00",
+      "text": "सर सर सर सर थैंक्स टू गेजिंग गोट",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 29,
+      "start": 59.27,
+      "end": 59.91,
+      "speaker": "SPEAKER_02",
+      "text": "सर सर सर",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 30,
+      "start": 60.07,
+      "end": 60.39,
+      "speaker": "SPEAKER_01",
+      "text": "थैंक्स टू",
+      "skipped": null,
+      "lang": "en-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 162,
+  "elapsed_sec": 43.48,
+  "rtf": 0.7127,
+  "clip_dur_sec": 61.0,
+  "transcribed_at_utc": "2026-08-21T15:09:21+00:00",
+  "clip_language": null,
+  "n_segments": 31,
+  "n_skipped_short": 0,
+  "detected_language": "mr-IN",
+  "languages_seen": [
+    "en-IN",
+    "gu-IN",
+    "hi-IN",
+    "ml-IN",
+    "mr-IN",
+    "pa-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "experiment": {
+    "prompt_version": "xlit-perclip-v1",
+    "model": "us.anthropic.claude-sonnet-4-6",
+    "temperature": 0,
+    "scope": "per-clip"
+  }
+}

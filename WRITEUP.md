@@ -45,7 +45,7 @@ means surface form, not just meaning, is what gets scored.
 speaker-count accuracy and MAE; **cpWER** (concatenated minimum-permutation WER,
 Watanabe et al. 2020), **WDER** = (S_IS + C_IS)/(S + C) (El Shafey et al. 2019),
 and **DI-cpWER**, computed on flat speaker-agnostic streams. On this corpus
-DI-cpWER equals WER in all 539 per-clip rows, so `cpWER − DI-cpWER` is simply
+DI-cpWER equals WER in all 638 per-clip rows, so `cpWER − DI-cpWER` is simply
 `cpWER − WER`; it is reported because that difference is the share of cpWER
 attributable to attribution rather than words. It is not a clean zero-floor
 quantity — the oracle's own DI-cpWER is 0.0818, from cross-speaker word ordering
@@ -142,7 +142,8 @@ threshold 0.5 (i.e. 2-of-3), frozen on dev before any Step 4 measurement
 both selected by **dev** DER. That is legitimate hyperparameter selection on a
 split held out from test, but it is not "GT-free", and the distinction matters.
 
-**Result, with significance.** Paired bootstrap over clips, 10,000 resamples:
+**Result, with significance.** Paired bootstrap of the **pooled** Δ DER over
+clips, 10,000 resamples — the same estimand as the point estimate beside it:
 
 | comparison | Δ DER | 95% CI | per-clip W/L |
 |---|---|---|---|
@@ -201,7 +202,8 @@ are skipped; above 29.0 s they are split (a hard server limit).
 |---|---|---|---|---|---|---|
 | **`saaras-v3@fusion`** | 0.979 | 0.2787 | **0.3181** | 0.2787 | 0.0394 | **0.0628** |
 | `saaras-v3@reverb-v2` | 0.960 | 0.2728 | 0.3957 | 0.2728 | 0.1229 | 0.1128 |
-| **`saaras-v3@fusion+xlit+num`** (§6) | 0.981 | **0.2585** | **0.3017** | 0.2585 | 0.0432 | **0.0602** |
+| **`saaras-v3@fusion+xlitpc`** (§6.2, **shipped**) | 0.979 | **0.2617** | **0.3049** | 0.2617 | 0.0431 | **0.0603** |
+| `saaras-v3@fusion+xlit+num` (§6.1, corpus vocabulary) | 0.981 | 0.2585 | 0.3017 | 0.2585 | 0.0432 | 0.0602 |
 
 `ratio` = hypothesis words ÷ reference words. All rows are the full 99 clips.
 
@@ -507,8 +509,11 @@ the *hypothesis* text; the spellings come from a general model's knowledge of
 the language. Deriving the mapping from reference pairs would be a leak and
 would inflate the result. (An independent audit confirmed this by rebuilding
 every cache key from the hypothesis vocabulary: 32/32 and 11/11 keys hit, while
-building from the wrong source gives 5 hits / 6 misses — so the prompts provably
-contained the hypothesis vocabulary and nothing else.)
+rebuilding the vocabulary from the **reference** instead produces 124 batch keys
+of which **0 hit**, while the hypothesis-built vocabulary produces 43 keys that
+hit **43 of 43** and account for every cache entry on disk with none left
+unexplained — so the prompts provably contained the hypothesis vocabulary and
+nothing else.)
 
 **Result, all 99 clips:**
 
@@ -561,6 +566,12 @@ tokens) appear anywhere in dev**. A dev-built table simply has no entry for most
 test words. The LLM itself generalises fine: it renders any word handed to it,
 and never saw the split. What does not transfer is the *word list*.
 
+**§6.2 resolves this.** Rather than leave the question open, the same idea was
+re-run with the corpus removed entirely — one clip at a time, no cross-clip
+vocabulary — and it recovers −0.0189 on held-out test against this stage's
+−0.0042 inductive estimate. The gain is real; the corpus vocabulary bought
+coverage, not validity. That per-clip variant is what ships.
+
 Which number is the honest headline depends on the deployment, so both are
 reported. As a batch post-processor over a corpus you already hold — the setting
 here, and the normal one for offline transcription — you build the table from
@@ -594,6 +605,125 @@ learned from the reference. Both rejected.
 
 ---
 
+## 6.2 Step 4b, inductive — per-clip correction with Sonnet 4.6
+
+§6.1 ends with an uncomfortable admission: the shipped stage is transductive, and
+restricted to a dev-built vocabulary its test gain collapses from −0.0216 to
+−0.0042. That leaves an obvious question unanswered — **is the gain real, or is it
+an artefact of having seen the test vocabulary?** This section answers it by
+running the same idea with the corpus removed.
+
+### Design
+
+Each clip is corrected **in isolation**. The model receives exactly two things:
+the Latin-script tokens appearing in *that clip's own hypothesis*, and the
+dominant script of *that same hypothesis*. No other clip, no corpus vocabulary,
+no split membership, and never the reference. Ground truth is opened only by the
+scoring script, after all inference has finished.
+
+Scope is narrower than §6.1 on purpose. Only the *script* of an already-recognised
+token may change; replacement is whole-token, so token count is invariant and
+words cannot be added, deleted, reordered or translated. **Numerals are excluded**,
+because spelling a digit out changes the token count.
+
+Six guards, each counted: abstain-on-null, single token with no whitespace, no
+digits, reject still-Latin, **reject any rendering not in the clip's own script**,
+and reject identity. The prompt carries an explicit abstention instruction —
+*"returning null is always safe and is the correct answer when in doubt"* — which
+the §6.1 prompt lacks.
+
+`us.anthropic.claude-sonnet-4-6`, temperature 0, prompt `xlit-perclip-v1`, batched
+at 60 words. **Model, prompt, temperature and every threshold were frozen and
+committed at `f284e59` before the test half was scored**, so the freeze is
+checkable from git history rather than asserted.
+
+### Result
+
+| | WER | cpWER | WDER |
+|---|---|---|---|
+| baseline `saaras-v3@fusion` | 0.2787 | 0.3181 | 0.0628 |
+| **+ per-clip script correction** | **0.2617** | **0.3049** | **0.0603** |
+| dev (50) | 0.2317 → 0.2258 | 0.2676 → **0.2619** | 0.0439 → 0.0424 |
+| **test (49), held out** | 0.3132 → **0.2881** | 0.3552 → **0.3364** | 0.0769 → 0.0737 |
+
+| split | mean Δ cpWER | 95% CI | better | worse | tie |
+|---|---|---|---|---|---|
+| dev | −0.0067 | [−0.0108, −0.0034] | 26 | **0** | 24 |
+| test | −0.0135 | [−0.0241, −0.0051] | 29 | **0** | 20 |
+
+**3,249 of 121,243 tokens changed (2.68%). 2,232 helpful edits, 0 harmful, 1,017
+neutral. Zero cross-script corruptions.** Attribution is per-token: replacement is
+whole-token, so the before/after streams have equal length and the alignment op at
+each changed position says whether that edit turned an error into a match or the
+reverse.
+
+Zero harmful is not luck. The reference contains 27 Latin tokens in 123,896, so a
+Latin token in the hypothesis is almost never already a match — an edit can only
+help or be inert. **The downside is structurally bounded at zero**, and the
+measurement confirms it.
+
+### What this settles
+
+| system | cpWER (99) | test Δ | test W/L | information used |
+|---|---|---|---|---|
+| shipped `+xlit` | 0.3045 | −0.0197 | 27 / 0 | all 99 hypotheses, **incl. test** |
+| shipped `+xlit+num` | **0.3017** | −0.0216 | 38 / 1 | all 99 hypotheses, **incl. test** |
+| shipped, dev-built vocabulary | — | −0.0042 | — | dev only |
+| **per-clip (§6.2)** | 0.3049 | **−0.0189** | **29 / 0** | **one clip only** |
+
+**The transductive property was not necessary to the result.** Per-clip scoping
+recovers −0.0189 of the shipped stage's −0.0216 — about 90% — while supporting a
+clean held-out claim, and it is 4.5× the shipped stage's honest inductive estimate
+of −0.0042. So the §6.1 gain is real; what the corpus vocabulary bought was
+coverage, not validity.
+
+The two are within 0.0032 cpWER of each other on the corpus. **§6.2 is the variant
+this project would ship**, because it buys a defensible held-out number for a
+third of a point of cpWER, and the number it gives up is one that cannot be
+defended anyway.
+
+### Failure modes
+
+**Abstentions** (181 of 1,916 types, 9.4%) are single letters, contraction
+remnants and fragments — `s`, `a`, `t`, `ll`, `idi`, `roo`, `tns`. These are
+correct refusals; the abstention clause is doing its job.
+
+**Neutral edits** are the real limitation: 1,017 of 3,249 (31%) are correct
+transliterations that still do not match the reference, because the annotator
+chose a different spelling — `you → యూ`, `was → వాజ్`, `sir → सर`. They cost
+nothing but represent unrealised headroom, and a stricter confidence bar would
+trade volume for precision. Untested.
+
+**Successes** split into two kinds. Code-switched English is the expected case:
+`youtube → यूट्यूब`, `challenges → चॅलेंजेस`, `tomorrow → टुमारो`. More
+interesting are **romanised Indic words**, where the model correctly produced the
+native word rather than a phonetic rendering of English — `mhanun → म्हणून`,
+`aahet → आहेत`, `nahi → नाही`, `udya → उद्या`, `thik → ठीक`. A pure
+sound-transliterator would have failed these.
+
+### One defect, disclosed
+
+The first frozen run produced 431 spurious "abstentions" on a single test clip.
+The cause was not model judgement: the reply hit `stop_reason: max_tokens` at
+3,999 of 4,000 output tokens, so the JSON never closed and the code counted an
+unparseable response as abstention on every word in it. That clip scored
+cpWER 0.7700 unchanged, and the frozen run's test result was −0.0100.
+
+The repair batches requests at 60 words and treats a truncated reply as a hard
+error rather than an abstention; prompt, model, temperature and thresholds are
+byte-identical. It was made **after** test had been scored, which is disclosed
+rather than hidden. It is defensible because `stop_reason` is returned at
+inference time and needs no reference — a correct harness would have caught it
+before any scoring, and no test metric informed the change. Both results are kept:
+`experiments/xlit_perclip/score_test_v1_frozen.json` holds the frozen −0.0100,
+`score_test.json` the repaired −0.0189.
+
+The general lesson is the one from §5 again: **a silent failure that looks like a
+valid result is worse than a crash.** An unparseable response and a genuine
+abstention are not the same event and must not share a code path.
+
+---
+
 ## 7. Final system and results
 
 **`sarvam-saaras-v3 @ DOVER-Lap(community-1, reverb-v2, diarizen-large)`,
@@ -619,25 +749,39 @@ diarization claims are **JER −5.9%**, **speaker-count accuracy +19.2 points**,
 |---|---|---|---|---|
 | baseline (`saaras-v3@reverb-v2`) | 0.960 | 0.2728 | 0.3957 | 0.1128 |
 | + Step 4a fusion front-end | 0.979 | 0.2787 | 0.3181 | 0.0628 |
-| **+ Step 4b normalisation (final)** | 0.981 | **0.2585** | **0.3017** | **0.0602** |
-| **total improvement** | — | **−5.2%** | **−23.8%** | **−46.6%** |
+| **+ Step 4b, per-clip (§6.2) — shipped** | 0.979 | **0.2617** | **0.3049** | **0.0603** |
+| **total improvement** | — | **−4.1%** | **−23.0%** | **−46.6%** |
+| *+ Step 4b, corpus vocabulary (§6.1)* | *0.981* | *0.2585* | *0.3017* | *0.0602* |
+| *total, corpus variant* | — | *−5.2%* | *−23.8%* | *−46.6%* |
 
-Step 4a contributes −19.6% relative cpWER (88/99 clips), Step 4b a further
-−5.2% (72/99, CIs excluding zero on both halves — though see §6.1: Step 4b is
-**transductive**, so its dev/test split is not a generalisation test, and the
-inductive estimate is −0.0064 rather than −0.0164). Flat WER dips at 4a — the
-fusion preserves overlap, so overlapped audio is transcribed once per speaker
-and some words appear twice — and 4b more than recovers it.
+**Two Step 4b variants are reported and the difference between them is
+epistemic, not numerical.** They are 0.0032 cpWER apart. The §6.1 variant builds
+one lookup table from all 99 clips' hypotheses, which makes it **transductive**:
+its dev/test split cannot test generalisation, and restricted to a dev-built
+vocabulary its test gain is only −0.0042. The §6.2 variant sees one clip at a
+time, and its **held-out test gain is −0.0189 with 29 clips better and 0 worse**.
+
+**The per-clip variant is the shipped system.** It costs a third of a point of
+cpWER and buys a number that survives review. All downstream analysis in §8 is
+reported on it unless stated.
+
+Step 4a contributes −19.6% relative cpWER (88/99 clips); Step 4b a further −4.1%
+relative WER and −0.0133 cpWER (54/99 better, 0 worse, CIs excluding zero on
+both halves, and genuinely held out). Flat WER dips at 4a — the fusion preserves
+overlap, so overlapped audio is transcribed once per speaker and some words
+appear twice — and 4b more than recovers it.
 
 ### Split-wise, final system
 
-| split | clips | ratio | WER | cpWER | WDER |
-|---|---|---|---|---|---|
-| dev | 50 | 0.988 | 0.2219 | 0.2582 | 0.0423 |
-| test | 49 | 0.975 | 0.2854 | 0.3337 | 0.0736 |
-| all | 99 | 0.981 | 0.2585 | 0.3017 | 0.0602 |
+| split | clips | WER | cpWER | WDER |
+|---|---|---|---|---|
+| dev | 50 | 0.2258 | 0.2619 | 0.0424 |
+| test | 49 | 0.2881 | **0.3364** | 0.0737 |
+| all | 99 | 0.2617 | 0.3049 | 0.0603 |
 
-**Dev and test are not equally hard** (final-system cpWER 0.2582 vs 0.3337; the
+Test was scored once, with the configuration frozen at commit `f284e59`.
+
+**Dev and test are not equally hard** (final-system cpWER 0.2619 vs 0.3364; the
 gap is the same before Step 4b, 0.2676 vs 0.3552). Only deltas
 transfer across the split; a dev absolute is not a prediction for test. The split
 was frozen before any Step 4 tuning (`results/split.json`), stratified by script
@@ -648,8 +792,8 @@ not itself GT-blind, though no per-clip metric influenced it.
 
 Feeding the reference transcript back as if recognised, attributed against the
 reference diarization, still scores **cpWER 0.1242 / WDER 0.0349** — and exactly
-0 on the 9 zero-overlap clips. The final system is **0.1775 above that floor**,
-not 0.3017 above zero.
+0 on the 9 zero-overlap clips. The final system is **0.1807 above that floor**,
+not 0.3049 above zero. (The §6.1 corpus variant sits 0.1775 above it.)
 
 Two components make up the floor, and only one is physical: 0.0424 is
 attribution ("one transcript cannot carry two simultaneous speakers"), and the
@@ -658,22 +802,23 @@ approximating reference word times by even spread within a turn. The second
 component would shrink with real word alignments, so the floor is an upper bound
 on what is unreachable and it flatters the final system slightly.
 
-**14.3% of remaining cpWER is attribution** (0.0432 of 0.3017); the other 85.7%
+**14.1% of remaining cpWER is attribution** (0.0431 of 0.3049); the other 85.9%
 is word error.
 
-That gap *widened* after Step 4b, from 0.0394 to 0.0432, and the reason is worth
+That gap *widened* after Step 4b, from 0.0394 to 0.0431, and the reason is worth
 stating because it looks like a regression and is not one. Step 4b cut DI-cpWER
-by 0.0202 but cpWER by only 0.0164, and `cpWER − DI-cpWER` is the cost that
+by 0.0170 but cpWER by only 0.0133, and `cpWER − DI-cpWER` is the cost that
 speaker-attributed scoring adds over speaker-agnostic scoring — not a measure of
 attribution quality on its own. A word that was both misrecognised and
 misattributed used to score wrong under both metrics. Once the word is fixed it
 scores right under DI-cpWER and still wrong under cpWER, so correcting words
 **unmasks** attribution errors that word errors had been hiding. The direct
 attribution metric moved the other way over the same change: WDER 0.0628 →
-0.0602. Both readings are in `results/step3_metrics.csv`.
+0.0603. Both readings are in `results/step3_metrics.csv`.
 
-**Per-video tables.** `results/step3_metrics.csv` — **539 rows**, `system × clip`,
-seven ASR systems including the final one (pooling reproduces cpWER 0.3017).
+**Per-video tables.** `results/step3_metrics.csv` — **638 rows**, `system × clip`,
+eight ASR systems including the shipped final one (pooling reproduces cpWER
+0.3049) and the §6.1 corpus variant (0.3017).
 `results/step2_metrics.csv` — **495 rows**, `model × clip`, all five diarization
 systems **including the fusion** (pooling reproduces DER 0.2442, JER 0.3608).
 
@@ -749,23 +894,23 @@ reaches only 30% of the damage; the 36% sitting in long segments has a 5.6% erro
 rate, so flagging it would be 94% false positives.
 
 **ASR error is overwhelmingly recognition, not attribution** — 87.6% of remaining
-cpWER. By script, on the **final system** (`saaras-v3@fusion+xlit+num`):
+cpWER. By script, on the **shipped final system** (`saaras-v3@fusion+xlitpc`):
 
 | script | clips | WER | cpWER | WDER |
 |---|---|---|---|---|
-| Telugu | 12 | 0.3521 | **0.4103** | 0.1122 |
-| Malayalam | 7 | 0.3299 | 0.3877 | 0.0732 |
-| Oriya | 9 | 0.3448 | 0.3852 | 0.0534 |
-| Bengali | 8 | 0.2455 | 0.3746 | **0.1233** |
-| Gujarati | 12 | 0.2901 | 0.3287 | 0.0672 |
-| Kannada | 9 | 0.2276 | 0.3183 | 0.0697 |
-| Gurmukhi | 7 | 0.2704 | 0.3169 | 0.0548 |
-| Tamil | 10 | 0.2458 | 0.2710 | 0.0282 |
-| Devanagari | 25 | 0.1885 | **0.1985** | 0.0292 |
+| Telugu | 12 | 0.3535 | **0.4123** | 0.1127 |
+| Malayalam | 7 | 0.3322 | 0.3900 | 0.0736 |
+| Oriya | 9 | 0.3464 | 0.3868 | 0.0535 |
+| Bengali | 8 | 0.2467 | 0.3750 | **0.1233** |
+| Gujarati | 12 | 0.2950 | 0.3332 | 0.0673 |
+| Kannada | 9 | 0.2372 | 0.3281 | 0.0696 |
+| Gurmukhi | 7 | 0.2770 | 0.3229 | 0.0548 |
+| Tamil | 10 | 0.2471 | 0.2723 | 0.0280 |
+| Devanagari | 25 | 0.1906 | **0.2006** | 0.0293 |
 
-**Telugu is 2.07× Devanagari on cpWER.** Language is a far larger axis of
+**Telugu is 2.06× Devanagari on cpWER.** Language is a far larger axis of
 variation than anything else measured. WER and cpWER also rank scripts
-differently: **Bengali has the third-best WER (0.2455) but the worst WDER
+differently: **Bengali has the third-best WER (0.2467) but the worst WDER
 (0.1233)** and only the fourth-worst cpWER — its words are recognised well and
 its speakers attributed badly. Group sizes are 7–25 clips, so read the ordering
 as indicative.
@@ -822,7 +967,8 @@ Only proposals with measured support are listed.
 **Future work, evidence-backed.**
 1. **Overlap remains the largest opportunity and is currently unaddressed.**
    Overlapped regions carry 52.5% of miss and 27.4% of all DER error, and
-   overlapped words are deleted at 17.9% against 4.7% for clean speech — a
+   overlapped words are deleted at 17.9% against 4.7% for clean speech (3.8×,
+   measured on `@fusion`, before Step 4b; 3.9× on the shipped system) — a
    perfect separator would be worth **−0.031 WER** (0.2787 → 0.2479), the
    largest ceiling measured here.
 

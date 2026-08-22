@@ -191,8 +191,13 @@ a positive one.
   15.5 s ones. No cell of the full 4×4 grid beat `reverb-v2` alone.
 * **Lower threshold for additional speakers**, to recover the overlap majority
   voting suppresses. With three equal voters there is no threshold between
-  "2 of 3" and "1 of 3", so it either changed nothing or exploded false alarm
-  (0.0441 → 0.1404).
+  "2 of 3" and "1 of 3", so it either changed nothing or exploded false alarm.
+  Measured on all 99 clips, equal weights, `min_dur` 0.20: dropping the
+  threshold from 0.5 to 0.30 moves DER **0.2442 → 0.3193** and false alarm
+  **0.0498 → 0.2180**, buying a miss reduction of only 0.1138 → 0.0370. An
+  earlier draft of this file reported the false-alarm pair as 0.0441 → 0.1404;
+  those figures do not reproduce under any configuration recorded here and are
+  replaced by the measured ones. The conclusion is unchanged.
 * **Non-uniform weights**, to break that quantisation. Moves the cliffs, does
   not remove them; no weighting beat equal.
 * **Blind boundary padding**, to exploit a measured 137 ms trailing bias in the

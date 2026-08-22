@@ -1,0 +1,1407 @@
+{
+  "clip_id": "1LFl5JEipII__0_597",
+  "system": "sarvam-saaras-v3@fusion+xlitpc",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.58,
+      "end": 9.38,
+      "speaker": "SPEAKER_04",
+      "text": "শোনো শোনো, আমি তো বলছি তো চিড়িয়াখানা যাব। না না না, চিড়িয়াখানা ফিরিয়াখানা হবে না, মিউজিয়াম ফাইনাল। ফাইনাল ওটাই ব্যাস। না না না। হ্যাঁ তারিকা, তুই ফালতু কথা বেশি বলছিস।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 1,
+      "start": 0.97,
+      "end": 2.59,
+      "speaker": "SPEAKER_00",
+      "text": "আমি তো বলছি তো চিড়িয়াখানা।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 2,
+      "start": 6.07,
+      "end": 7.03,
+      "speaker": "SPEAKER_00",
+      "text": "ওটাই ব্যাস।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 3,
+      "start": 8.94,
+      "end": 9.32,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 4,
+      "start": 9.38,
+      "end": 12.89,
+      "speaker": "SPEAKER_03",
+      "text": "চেঁচাচ্ছিস কেন? এটা ভদ্রলোকের বাড়ি।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 5,
+      "start": 12.89,
+      "end": 13.61,
+      "speaker": "SPEAKER_00",
+      "text": "Bhajolog কোথায়?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 6,
+      "start": 13.91,
+      "end": 14.79,
+      "speaker": "SPEAKER_03",
+      "text": "একটা থাম না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 7,
+      "start": 15.17,
+      "end": 15.79,
+      "speaker": "SPEAKER_02",
+      "text": "দাঁড়াও না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 8,
+      "start": 15.79,
+      "end": 17.81,
+      "speaker": "SPEAKER_00",
+      "text": "আমি বলছি আমরা চিড়িয়াখানা যাব।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 9,
+      "start": 17.91,
+      "end": 24.77,
+      "speaker": "SPEAKER_03",
+      "text": "এই যা না, চিঁড়ে এখানে যা যা যা। ওখানে দেখবি খাঁচার মধ্যে তোকে রেখে দেবে। আমি মুক্ত হবে তোরে। তাহলে যা।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 10,
+      "start": 20.53,
+      "end": 21.23,
+      "speaker": "SPEAKER_02",
+      "text": "ওখানে দেখলে।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 11,
+      "start": 24.87,
+      "end": 31.15,
+      "speaker": "SPEAKER_04",
+      "text": "না না না আমার আইডিয়াটা শোনো। হ্যাঁ আমি মিউজিয়াম যাব। মিউজিয়াম গেলে বেটার হয় না?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 12,
+      "start": 26.42,
+      "end": 27.17,
+      "speaker": "SPEAKER_03",
+      "text": "তোর আবার আইডিয়া।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 13,
+      "start": 29.45,
+      "end": 31.41,
+      "speaker": "SPEAKER_03",
+      "text": "মিউসিয়াম গেলে বেটার হয় না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 14,
+      "start": 31.41,
+      "end": 33.66,
+      "speaker": "SPEAKER_02",
+      "text": "ଭଲ ହାଏ ମାତ୍ର କାଢି ମେ ଘିଲି ଘିଲି",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 15,
+      "start": 31.46,
+      "end": 35.65,
+      "speaker": "SPEAKER_03",
+      "text": "ভালো হয়, মাত্র কাটিয়ে ফিলিফিলি রেখে দেবে ভেতরের মধ্যে, কিছুই তো নেই।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 16,
+      "start": 37.31,
+      "end": 38.09,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 17,
+      "start": 37.31,
+      "end": 39.7,
+      "speaker": "SPEAKER_03",
+      "text": "আবার কোন সেলিব্রিটি চলে এসেছে।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 18,
+      "start": 40.27,
+      "end": 45.03,
+      "speaker": "SPEAKER_04",
+      "text": "চল যাই আমি। আমি যাচ্ছি আমি যাচ্ছি। তোকে যেতে হবে না। আরে আমি যাচ্ছি। আমি গেলে পারাও না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 19,
+      "start": 46.4,
+      "end": 47.07,
+      "speaker": "SPEAKER_04",
+      "text": "ಹ್ಮ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 20,
+      "start": 47.23,
+      "end": 47.67,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 21,
+      "start": 48.19,
+      "end": 56.97,
+      "speaker": "SPEAKER_04",
+      "text": "না না তুই তো বলছিলি যাবি। যা। না না তুমি যাবি যা। সেলিব্রিটি বোধহয় এসছে কোন একটা। না না ঠিক আছে আমি দেখছি। প্লিজ একটু একটু দেখ।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 22,
+      "start": 53.62,
+      "end": 57.77,
+      "speaker": "SPEAKER_03",
+      "text": "কোথায় এসছে কোন একটা? হ্যাঁ, ঠিক আছে, আমি দেখছি। প্লিজ একটু একটু দেখো। ওকে ওকে, দাঁড়াও দাঁড়াও।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 23,
+      "start": 56.97,
+      "end": 57.63,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 24,
+      "start": 57.65,
+      "end": 57.99,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 25,
+      "start": 60.45,
+      "end": 66.04,
+      "speaker": "SPEAKER_03",
+      "text": "এ এ কি এ কি আপনি আপনি নমস্কার আপনি আপনি এখানে মানে",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 26,
+      "start": 66.27,
+      "end": 66.69,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 27,
+      "start": 66.36,
+      "end": 67.44,
+      "speaker": "SPEAKER_03",
+      "text": "কি বাবা রে মানে।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 28,
+      "start": 66.93,
+      "end": 70.65,
+      "speaker": "SPEAKER_00",
+      "text": "Mmm, mmm, mmm.",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 29,
+      "start": 70.65,
+      "end": 71.93,
+      "speaker": "SPEAKER_03",
+      "text": "ଏ ଏ ମୁଁ ତ",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 30,
+      "start": 71.93,
+      "end": 78.28,
+      "speaker": "SPEAKER_00",
+      "text": "মগুন। মগুন। মগুনলাল মেঘরাজ।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 31,
+      "start": 78.33,
+      "end": 82.65,
+      "speaker": "SPEAKER_03",
+      "text": "ওরে কি সাংঘাতিক ব্যাপার! আপনি এখানে কি করছেন?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 32,
+      "start": 82.71,
+      "end": 86.95,
+      "speaker": "SPEAKER_00",
+      "text": "আপনার কাছে একটা কিমতি জিনিস আছে যেটা আমার চাই, আমি কিনে নেব।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 33,
+      "start": 87.59,
+      "end": 92.31,
+      "speaker": "SPEAKER_03",
+      "text": "একটু এটা ভুল করছেন। আমরা মনে হয় বুঝতে কেন অসৎ চিন্তা করতে যেতে পারে না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 34,
+      "start": 91.12,
+      "end": 93.25,
+      "speaker": "SPEAKER_00",
+      "text": "ভুল করে না বাবা ল বাবু।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 35,
+      "start": 93.33,
+      "end": 96.72,
+      "speaker": "SPEAKER_03",
+      "text": "আরে বাবা রে বাবা, ভুল হচ্ছে, ভুল হচ্ছে আমি বলছি কিন্তু।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 36,
+      "start": 97.09,
+      "end": 98.17,
+      "speaker": "SPEAKER_00",
+      "text": "আমার ভুল হয় না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 37,
+      "start": 99.85,
+      "end": 104.84,
+      "speaker": "SPEAKER_03",
+      "text": "ঠিক বলেছেন আপনি। এই দুটোকে নিয়ে চলে যান। কিনতে জিনিস বিনা পয়সায় দিয়ে দিলাম যান যান।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 38,
+      "start": 104.89,
+      "end": 107.83,
+      "speaker": "SPEAKER_00",
+      "text": "এদেরকে নিয়ে আমি কি করবো? আমার অন্য জিনিস চাই।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 39,
+      "start": 106.67,
+      "end": 110.67,
+      "speaker": "SPEAKER_03",
+      "text": "আরে বাবা আর কি চাই আর বলুন কি চান আপনারা বলুন।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 40,
+      "start": 111.79,
+      "end": 115.17,
+      "speaker": "SPEAKER_00",
+      "text": "বাজারে অনেক নাম ডাক শুনছি এই বাওয়াল রাজবাড়ির।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 41,
+      "start": 115.18,
+      "end": 116.25,
+      "speaker": "SPEAKER_03",
+      "text": "ओ ओ अच्छा।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 42,
+      "start": 116.49,
+      "end": 120.19,
+      "speaker": "SPEAKER_00",
+      "text": "শুনছি আপনারা নাকি এখানে সারাদিন হাসি মজাক করেন খুব।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 43,
+      "start": 120.41,
+      "end": 120.91,
+      "speaker": "SPEAKER_03",
+      "text": "এই।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 44,
+      "start": 120.83,
+      "end": 121.78,
+      "speaker": "SPEAKER_00",
+      "text": "খুশি থাকেন।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 45,
+      "start": 121.71,
+      "end": 122.23,
+      "speaker": "SPEAKER_02",
+      "text": "ಖುಷಿ.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 46,
+      "start": 122.23,
+      "end": 123.21,
+      "speaker": "SPEAKER_03",
+      "text": "তাকে দেখছিস?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 47,
+      "start": 123.41,
+      "end": 127.38,
+      "speaker": "SPEAKER_00",
+      "text": "ফোন দেখছে ফোন। আমার রাজবাড়ির খুশি আমার চাই।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 48,
+      "start": 127.51,
+      "end": 131.97,
+      "speaker": "SPEAKER_03",
+      "text": "এই এই খুশি কি করে দেবো এইসব দেওয়া যায় না কেন দেওয়া জিনিস হলো এই শুনছিস?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 49,
+      "start": 131.99,
+      "end": 140.17,
+      "speaker": "SPEAKER_00",
+      "text": "এই কি করে দেবেন না দেবেন আপনার ব্যাপার, আমি আপনাকে পাঁচ মিনিট দিচ্ছি। কিরকম করবেন? যত টাকা কেস লাগে আমি দেবো কিন্তু।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 50,
+      "start": 140.17,
+      "end": 144.13,
+      "speaker": "SPEAKER_03",
+      "text": "আপনার চুল তো ভালো, কেস দিলে হবে না, আপনি বুঝতে পারছেন না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 51,
+      "start": 144.17,
+      "end": 145.1,
+      "speaker": "SPEAKER_00",
+      "text": "ইয়েস",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 52,
+      "start": 145.73,
+      "end": 146.89,
+      "speaker": "SPEAKER_03",
+      "text": "माल करे",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 53,
+      "start": 146.03,
+      "end": 149.47,
+      "speaker": "SPEAKER_00",
+      "text": "এত ভালো করে দেবো কিন্তু এই বাড়ির খুশি আমার চাই।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 54,
+      "start": 147.95,
+      "end": 159.98,
+      "speaker": "SPEAKER_03",
+      "text": "ব্যাপারটা আমি রাজি আছি। এ দিন না শুনুন না। এটা কোন কথা হলো? এ পাঁচ মিনিটে আমি কি করে দেবো? এ শুনুন না। ছেড়ে দিন না, ছেড়ে দিন না প্লিজ।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 55,
+      "start": 150.84,
+      "end": 151.28,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "od-IN"
+    },
+    {
+      "i": 56,
+      "start": 165.51,
+      "end": 177.1,
+      "speaker": "SPEAKER_03",
+      "text": "কি চমকাচ্ছে। এ বাবারে বাবা। এ কি বিটকে লোক মাইরি খুশকিটা আমি কি করে পাবো হ্যাঁ। এই বুঝেছিস। এই তুই মোবাইলে তখন দেখছিস কি দেখছিস বলতো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 57,
+      "start": 177.13,
+      "end": 179.73,
+      "speaker": "SPEAKER_04",
+      "text": "আরে আমি খুশি কি করে দেওয়া যায় তাই দেখছিলাম।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 58,
+      "start": 179.21,
+      "end": 179.98,
+      "speaker": "SPEAKER_03",
+      "text": "কাম অন",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 59,
+      "start": 179.99,
+      "end": 181.64,
+      "speaker": "SPEAKER_02",
+      "text": "খুশি কি করে দেওয়া যায় তোকে দেখলে?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 60,
+      "start": 180.0,
+      "end": 181.91,
+      "speaker": "SPEAKER_03",
+      "text": "দেখো খুশি কি করে দেওয়া যায় তোকে দেখলে তো",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 61,
+      "start": 181.91,
+      "end": 182.18,
+      "speaker": "SPEAKER_02",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 62,
+      "start": 182.18,
+      "end": 182.97,
+      "speaker": "SPEAKER_03",
+      "text": "अच्छा अच्छा।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 63,
+      "start": 182.33,
+      "end": 183.75,
+      "speaker": "SPEAKER_02",
+      "text": "আচ্ছা আচ্ছা আচ্ছা বুঝি দেখছি।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 64,
+      "start": 184.85,
+      "end": 195.76,
+      "speaker": "SPEAKER_02",
+      "text": "এই, ইয়ার্কি নাকি? ইয়ার্কি নাকি? ছাটার বাড়ি মারবো, শোন। বলো। ওকে মারতে পারি, একটাই অস্ত্র আছে। প্রচন্ড মারাত্মক। কি বলতো?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 65,
+      "start": 196.31,
+      "end": 200.41,
+      "speaker": "SPEAKER_03",
+      "text": "মগজাস্ত্র। এই আবার চলে এলো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 66,
+      "start": 199.42,
+      "end": 199.81,
+      "speaker": "SPEAKER_02",
+      "text": "ಆವಾಗ",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 67,
+      "start": 199.81,
+      "end": 203.96,
+      "speaker": "SPEAKER_04",
+      "text": "চলে এলো। এই আমি যাবো না, আমি আমি আমি। আরে না না না না আমি যাবো না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 68,
+      "start": 203.01,
+      "end": 204.83,
+      "speaker": "SPEAKER_03",
+      "text": "না না না না আমি যাবো না। যা না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 69,
+      "start": 204.72,
+      "end": 205.24,
+      "speaker": "SPEAKER_04",
+      "text": "আমি যাবো না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 70,
+      "start": 205.65,
+      "end": 206.67,
+      "speaker": "SPEAKER_02",
+      "text": "এবার কি ইয়ে করবো?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 71,
+      "start": 206.67,
+      "end": 207.12,
+      "speaker": "SPEAKER_03",
+      "text": "না না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 72,
+      "start": 207.96,
+      "end": 208.4,
+      "speaker": "SPEAKER_04",
+      "text": "",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 73,
+      "start": 209.75,
+      "end": 211.96,
+      "speaker": "SPEAKER_02",
+      "text": "ওকে দেখলে আরও বিপদ হয়ে যাবে, আমি একটা।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 74,
+      "start": 220.26,
+      "end": 228.79,
+      "speaker": "SPEAKER_03",
+      "text": "আছে আছে ওরে বাবা ভগবান আছে টেলিপ্যাথি টেলিপ্যাথি দেখো যার ভয় পাচ্ছিলাম বাঁচাতে চলে এসছে বেলুদা ওরে বাবা",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 75,
+      "start": 228.79,
+      "end": 237.95,
+      "speaker": "SPEAKER_02",
+      "text": "কি মানে সৌভাগ্য। এ বাই দা ওয়ে, রাস্তাটা দিয়ে আসতে অসুবিধা হয়নি তো? না না, কোনো অসুবিধা হয়নি। বড্ড সরু রাস্তা তো, কালো কালো গরু দেখেছেন নাকি কোনো রাস্তা?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 76,
+      "start": 237.95,
+      "end": 240.69,
+      "speaker": "SPEAKER_01",
+      "text": "না, সরু রাস্তা হলেও আমি তো খুব মোটা নই।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 77,
+      "start": 240.55,
+      "end": 244.68,
+      "speaker": "SPEAKER_02",
+      "text": "হ্যাঁ হ্যাঁ হ্যাঁ। এই যে কালো গরু একটা ঘুরে বাড়িটা কিলো শালা বুঝেছেন তো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 78,
+      "start": 241.15,
+      "end": 242.12,
+      "speaker": "SPEAKER_01",
+      "text": "এই যে কালো গুরু।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 79,
+      "start": 245.02,
+      "end": 253.69,
+      "speaker": "SPEAKER_02",
+      "text": "ঘুরে বেড়া। আর শুনুন না, একটা জিজ্ঞেস করবার ছিল। এই যে পাহাড় মাহাড়ে ঘোরেন আপনারা, পাহাড়টা বেশি ভাল লাগে, মানে কেমন লাগলো পাহাড়ে শুট করে?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 80,
+      "start": 248.02,
+      "end": 248.26,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 81,
+      "start": 254.13,
+      "end": 272.84,
+      "speaker": "SPEAKER_01",
+      "text": "পাহাড়টা তো এই পাহাড় হ্যাঁ, এই পাহাড় তো একদম বরফে মোড়া পাহাড়। হ্যাঁ। খুবই ভালো লেগেছিল শুট। অনেক সময় অনেকেই এরকম ধরাশ ধরাশ করে ভরকে পড়েছে। কিন্তু কারো পা টা ভাঙ্গেনি। কিন্তু এক অভিনব সে অভিজ্ঞতা। কাশ্মীর বলে কথা হ্যাঁ। ফু স্বর্গ। আচ্ছা এই ওখানে নুডুল পাওয়া যায়?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 82,
+      "start": 254.23,
+      "end": 255.13,
+      "speaker": "SPEAKER_02",
+      "text": "হঠাৎ এই",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 83,
+      "start": 273.84,
+      "end": 294.73,
+      "speaker": "SPEAKER_01",
+      "text": "হ্যাঁ, নুনু পাওয়া যায়, মোমো পাওয়া যায়। সত্যি? হ্যাঁ। আমার খুব ভালো কোনটা তোমার প্রিয়? কাশ্মীরি যদি খেতে হয় তাহলে আমার মনে হয় ওখানকার ওয়াজবানটা খাওয়াটাই ভালো। কি বললাম একটা? ওয়াজবান। একটা বড় থালাতে অনেক কিছু দেবে তার মধ্যে গোস্তাবা আছে, রিস্তা আছে, বিভিন্ন ধরনের মাংসের প্রিপারেশন। কি সব বলছেন?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 84,
+      "start": 294.33,
+      "end": 301.47,
+      "speaker": "SPEAKER_02",
+      "text": "খালি কিছু বুঝতে পারছি ফেলি তাহলে কথাবার্তা। এই যাই হোক, আপনি তো খুব ফিটনেস, ঠান্ডা মনে তখন একদমই লাগে না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 85,
+      "start": 302.04,
+      "end": 304.3,
+      "speaker": "SPEAKER_01",
+      "text": "না, ঠান্ডা লাগে। লাগে? হ্যাঁ, কিন্তু।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 86,
+      "start": 302.93,
+      "end": 303.57,
+      "speaker": "SPEAKER_02",
+      "text": "ലൈൻ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 87,
+      "start": 304.33,
+      "end": 304.85,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 88,
+      "start": 305.36,
+      "end": 316.89,
+      "speaker": "SPEAKER_02",
+      "text": "ও আচ্ছা। ফেলুদা বলে কথা। ফেলুদা বলে কথা। তারপরে এই আসল টোটাল মানে একজন মানে সাংঘাতিক ফিট। মানে কি বলবো। মানে যবে থেকে দেখেছি এক।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 89,
+      "start": 306.05,
+      "end": 307.03,
+      "speaker": "SPEAKER_01",
+      "text": "ফেলুদা বলে কও।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 90,
+      "start": 317.46,
+      "end": 324.9,
+      "speaker": "SPEAKER_02",
+      "text": "বয়স কমছে, বাজছে তো নয়। কেউ বলতে পারবে না। আচ্ছা বলছি কি যে সকালে আপনি ঘুম থেকে উঠে আপনি কিরকম এক্সারসাইজ করেন?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 91,
+      "start": 324.9,
+      "end": 327.93,
+      "speaker": "SPEAKER_01",
+      "text": "জিমে যাই না। বাড়ির ছাদে ঘরের মধ্যে এক্সারসাইজ করি।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 92,
+      "start": 325.65,
+      "end": 326.07,
+      "speaker": "SPEAKER_02",
+      "text": "ഹേ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 93,
+      "start": 328.08,
+      "end": 332.09,
+      "speaker": "SPEAKER_02",
+      "text": "আচ্ছা এরকম করে হয়েছে বাড়ির ছাদে আপনি ফিটনেস করছেন, পাশ থেকে কেউ দেখছে।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 94,
+      "start": 332.59,
+      "end": 333.91,
+      "speaker": "SPEAKER_01",
+      "text": "হ্যাঁ, কয়েক বছর হয়ে গেছে।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 95,
+      "start": 333.05,
+      "end": 343.84,
+      "speaker": "SPEAKER_02",
+      "text": "ওই যে ওই যে ওই যে এই আমার বউটা না এরকম করে। যাইহোক কিছু মনে করবেন না। হ্যাঁ আমি কি করবো এই শালাটাই সবচেয়ে নষ্টের গোল। আচ্ছা আপনি একদিকে পুলিশ।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 96,
+      "start": 344.29,
+      "end": 344.65,
+      "speaker": "SPEAKER_01",
+      "text": "হ্যাঁ।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 97,
+      "start": 344.83,
+      "end": 346.22,
+      "speaker": "SPEAKER_02",
+      "text": "একদিকে ঘুরে না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 98,
+      "start": 346.29,
+      "end": 346.55,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 99,
+      "start": 346.91,
+      "end": 354.05,
+      "speaker": "SPEAKER_02",
+      "text": "এ অনেক কি সাংঘাতিক ব্যাপার স্যাপার উনি পুলিশ গোয়েন্দা গোয়েন্দা পুলিশ উনি সামলাচ্ছেন কি করে?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 100,
+      "start": 354.86,
+      "end": 362.27,
+      "speaker": "SPEAKER_01",
+      "text": "শুটিং করার সময় সামলে নিয়েছি। এই ক'দিন একটু বুঝতে পারছি না। মাঝে মাঝে উঠেই সকালবেলা নিজেকে প্রশ্ন করি আমি কি আজ গোয়েন্দা না আমি আজ পুলিশ?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 101,
+      "start": 362.55,
+      "end": 363.53,
+      "speaker": "SPEAKER_02",
+      "text": "আজকে এখন কি?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 102,
+      "start": 363.73,
+      "end": 365.64,
+      "speaker": "SPEAKER_01",
+      "text": "పోయిందా పోయిందా గొడవ సన్ రైట్",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 103,
+      "start": 365.57,
+      "end": 385.35,
+      "speaker": "SPEAKER_02",
+      "text": "ও ও সরি আমি তো একচুয়ালি সাক্ষাৎ ফেলুদাকে দেখে না সরি মন কেমন যেন করে গেছি। আচ্ছা যাই হোক এই শোন আপনার এই একটা প্রশ্ন আছে। আপনার যে এই যে কোল্ড পয়েন্ট থ্রি টু। পয়েন্ট থ্রি টু। ধরুন একটা সিচুয়েশন দিচ্ছি হ্যাঁ। পয়েন্ট থ্রি টু টা আপনার কাছে রয়েছে। হঠাৎ করে আপনি শুয়েছেন।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 104,
+      "start": 366.45,
+      "end": 367.04,
+      "speaker": "SPEAKER_01",
+      "text": "ആ ആ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 105,
+      "start": 385.67,
+      "end": 396.0,
+      "speaker": "SPEAKER_02",
+      "text": "হঠাৎ করে আমার শালা এসে তিনটে গুলি ঝেড়ে দিয়েছে। তিনটে গুলি রয়েছে। বেশ। এই তিনটে গুলি আপনি ফায়ার করবেন নষ্ট লোকেদের, দুষ্ট লোকেদের জন্য।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 106,
+      "start": 396.01,
+      "end": 396.35,
+      "speaker": "SPEAKER_01",
+      "text": "ಹ್ಮ್.",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 107,
+      "start": 396.35,
+      "end": 398.02,
+      "speaker": "SPEAKER_02",
+      "text": "তাকে কাকে মারবেন বলুন তো?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 108,
+      "start": 398.02,
+      "end": 400.03,
+      "speaker": "SPEAKER_01",
+      "text": "শালার মৌ ফ্রি। মারতে পারি।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 109,
+      "start": 401.04,
+      "end": 416.51,
+      "speaker": "SPEAKER_01",
+      "text": "না, আমি বেশ কয়েকজনকে আমার মারার ইচ্ছে আছে, তবে তিনটে বড় কম হয়ে যাচ্ছে। এ একদম রাইট। আমি শালাকে বলবো দুটো কম ঝাড়তে। চারটে তো সেট করে দিই। হ্যাঁ, কিন্তু আমি সেটা বলতে পারবো না কাদের মারবো। কারণ সেটা সিক্রেট মিশন হবে একটা।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 110,
+      "start": 417.21,
+      "end": 418.86,
+      "speaker": "SPEAKER_02",
+      "text": "এটা কোনো সিনেমায় দেখতে পারলে খুব ভালো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 111,
+      "start": 418.75,
+      "end": 433.21,
+      "speaker": "SPEAKER_01",
+      "text": "ভাল হয় কিন্তু। ও ভাল হয়, আমার করার ইচ্ছে আছে না, রিয়েল লাইফে সিনেমা করার ইচ্ছে আছে। কয়েকজনের উপর আমার বিস্তর রাগ। হ্যাঁ। তাদেরকে আমি মারতেও পারি না। একদিন টুক করে গিয়ে আপনার শালাকে বলবেন কম গুলি ঝাট দে। ঝাট দে। হ্যাঁ। আমি গিয়ে মেরে চলে আসবো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 112,
+      "start": 433.15,
+      "end": 455.47,
+      "speaker": "SPEAKER_02",
+      "text": "আচ্ছা শুনুন না গল্পটা শ্রীজিত দাকে খবরদার বলবেন না আমার ছবি বানিয়ে ফেলবে আপনি বানাবেন। আচ্ছা বেশ। এই মা আমার ইচ্ছা আপনি একটা অনেকটা সিনেমা ডিরেক্ট করবেন আবার এবার আমরা। এই একটা না সমস্যা হচ্ছে আপনার নেমেছিস এই বাড়িতে এসে বড্ড গন্ডগোল করছে খালি খালি আসছে এসে খালি আমাদেরকে চমকাচ্ছে। এই কিছু একটা কিছু একটা করুন বুঝলেন তো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 113,
+      "start": 456.16,
+      "end": 456.79,
+      "speaker": "SPEAKER_01",
+      "text": "আসুক না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 114,
+      "start": 457.83,
+      "end": 460.73,
+      "speaker": "SPEAKER_01",
+      "text": "হয় আমি ওকে জব্দ করবো। হ্যাঁ। আর নয়তো...",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 115,
+      "start": 461.11,
+      "end": 464.14,
+      "speaker": "SPEAKER_02",
+      "text": "নয়তো কি মানে গোয়েন্দা করি ছেড়ে দিয়ে আমাকে আমাকে ভ্যালু দেবেন নিলেন।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 116,
+      "start": 464.63,
+      "end": 467.93,
+      "speaker": "SPEAKER_01",
+      "text": "না না, আমি এইটুকুনি যে ব্যাপারের জন্য কেন গোয়েন্দাগিরি ছাড়তে যাবো। তাই তো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 117,
+      "start": 472.24,
+      "end": 473.47,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 118,
+      "start": 475.77,
+      "end": 485.01,
+      "speaker": "SPEAKER_00",
+      "text": "খুশি কোথায় আছে বাবল বাবু? চলে এসছে। গন্ডগোল করতে চলে এসছে। ওকে, এরকম মুখ লুকিয়ে বসে আছে, ভয় পেয়েছে বোধহয়।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 119,
+      "start": 485.07,
+      "end": 485.61,
+      "speaker": "SPEAKER_01",
+      "text": "মেটা",
+      "skipped": null,
+      "lang": "kn-IN"
+    },
+    {
+      "i": 120,
+      "start": 487.95,
+      "end": 493.27,
+      "speaker": "SPEAKER_01",
+      "text": "পিসি মিটার। সে তো ভাব পায় না কাউকে মগনলাল জি।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 121,
+      "start": 492.59,
+      "end": 498.19,
+      "speaker": "SPEAKER_00",
+      "text": "মিস্টার মিত্র, মিস্টার মিত্র, আপনি এখানে এটা তো এটা তো টোয়েন্টি ওয়ান রজনীস্টান রোড নয়, আপনি এখানে কি করছেন মিস্টার মিত্র?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 122,
+      "start": 499.39,
+      "end": 503.44,
+      "speaker": "SPEAKER_01",
+      "text": "তো আপনি এখানে তো কিছু নিতে এসেছিলেন। হ্যাঁ, নিতে এসেছিলাম, খুশি।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 123,
+      "start": 501.89,
+      "end": 503.14,
+      "speaker": "SPEAKER_00",
+      "text": "হ্যাঁ, এসেছিলাম।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 124,
+      "start": 503.86,
+      "end": 504.56,
+      "speaker": "SPEAKER_01",
+      "text": "खुशी में।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 125,
+      "start": 503.95,
+      "end": 504.22,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 126,
+      "start": 504.96,
+      "end": 512.01,
+      "speaker": "SPEAKER_01",
+      "text": "তো আপনাকে আমি খুশিটা দিতে পারছি না। অন্য কিছু একটা জিনিস দিচ্ছি। ওহ, কি কি জিনিস? কি জিনিস?",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 127,
+      "start": 513.35,
+      "end": 514.17,
+      "speaker": "SPEAKER_01",
+      "text": "বয়",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 128,
+      "start": 514.31,
+      "end": 524.26,
+      "speaker": "SPEAKER_00",
+      "text": "মিস্টার মিত্রের পকেটে হাত দেবেন না, মিস্টার মিত্রের মিস্টার মিত্রের গোল্ড পয়েন্ট থ্রি টু আছে আপনি গুলি করে দেবেন ঠাই ঠাই ঠাই ঠাই ঠাই। মিস্টার মিত্রের বাবল বাবু, বাবল বাবু আমার ভুল হয়েছে বাবল বাবু।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 129,
+      "start": 524.27,
+      "end": 524.99,
+      "speaker": "SPEAKER_02",
+      "text": "ফেলুদার কাছে।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 130,
+      "start": 524.79,
+      "end": 530.73,
+      "speaker": "SPEAKER_00",
+      "text": "বাবা বাবু আপনার এত কানেকশন মিস্টার মিত্রের আপনার বাড়িতে বসে আছে বাবা বাবু আমি চলে যাচ্ছি বাবা বাবু আমি চলে যাচ্ছি",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 131,
+      "start": 530.37,
+      "end": 532.81,
+      "speaker": "SPEAKER_02",
+      "text": "দুঃখ পেও না, দুঃখ পেও না। একটা ছবি তুলে যাও অরেঞ্জ শো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 132,
+      "start": 532.71,
+      "end": 534.01,
+      "speaker": "SPEAKER_00",
+      "text": "ছবি আমি আমি ছবির হয়ে যাবো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 133,
+      "start": 533.75,
+      "end": 543.96,
+      "speaker": "SPEAKER_02",
+      "text": "এই এই হইচইতে রিলিজ করে আছে। তুমি আর ভয়ঙ্কর ভয়ঙ্কর আমি চলে এসেছি। আচ্ছা তুমি ভয়ঙ্কর ভয় পাবে চলে আসো। ছবি তোলো ছবি ছবি ছবি মন ভালো থাকবে।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 134,
+      "start": 536.01,
+      "end": 538.47,
+      "speaker": "SPEAKER_00",
+      "text": "হ্যাঁ হ্যাঁ ভয়ঙ্কর।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 135,
+      "start": 543.51,
+      "end": 544.99,
+      "speaker": "SPEAKER_01",
+      "text": "অর্জুন Magalar দিয়ে আসুন আসুন।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 136,
+      "start": 544.99,
+      "end": 546.84,
+      "speaker": "SPEAKER_02",
+      "text": "असं ना वावला जी",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 137,
+      "start": 545.0,
+      "end": 545.89,
+      "speaker": "SPEAKER_01",
+      "text": "అసలు మా వాళ్ళ",
+      "skipped": null,
+      "lang": "te-IN"
+    },
+    {
+      "i": 138,
+      "start": 548.19,
+      "end": 551.31,
+      "speaker": "SPEAKER_01",
+      "text": "এবার পেতেন তো খুশি। হ্যাঁ হ্যাঁ হ্যাঁ। এবার খুশি তো।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 139,
+      "start": 550.79,
+      "end": 556.92,
+      "speaker": "SPEAKER_02",
+      "text": "খুশি তো ওয়ান টু থ্রি শরবত শরবত ও শরবত ভয়ংকর",
+      "skipped": null,
+      "lang": "en-IN"
+    },
+    {
+      "i": 140,
+      "start": 558.42,
+      "end": 560.61,
+      "speaker": "SPEAKER_01",
+      "text": "শুধুমাত্র হয়েচইতে, দেখতে ভুলবেন না।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 141,
+      "start": 560.75,
+      "end": 564.26,
+      "speaker": "SPEAKER_02",
+      "text": "এই না না আমিও দেখবো। আমাকে নিয়ে যাবে কিন্তু।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 142,
+      "start": 568.67,
+      "end": 575.85,
+      "speaker": "SPEAKER_03",
+      "text": "ও এই শোনো না বলতে ভুলে গেছিলাম। এই মানে কি যেন বলবো। ও মামান দা একটু বলো না। এই চুপ।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 143,
+      "start": 575.57,
+      "end": 585.49,
+      "speaker": "SPEAKER_00",
+      "text": "যত টাকা কেস লাগে আমরা দেবো কিন্তু আমাদের লাইক, শেয়ার আর সাবস্ক্রাইব তাড়াতাড়ি করে দিন। না হলে...",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 144,
+      "start": 584.71,
+      "end": 585.55,
+      "speaker": "SPEAKER_03",
+      "text": "ना म्हणे.",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 145,
+      "start": 586.15,
+      "end": 587.5,
+      "speaker": "SPEAKER_00",
+      "text": "विपोजाचे",
+      "skipped": null,
+      "lang": "mr-IN"
+    },
+    {
+      "i": 146,
+      "start": 587.17,
+      "end": 588.69,
+      "speaker": "SPEAKER_03",
+      "text": "बहुत अच्छे।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 147,
+      "start": 588.13,
+      "end": 592.31,
+      "speaker": "SPEAKER_00",
+      "text": "अर्जुन अपना खेल दिखावे।",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 148,
+      "start": 590.45,
+      "end": 591.49,
+      "speaker": "SPEAKER_03",
+      "text": "",
+      "skipped": null,
+      "lang": "hi-IN"
+    },
+    {
+      "i": 149,
+      "start": 593.59,
+      "end": 594.49,
+      "speaker": "SPEAKER_00",
+      "text": "খুব ফুলে গেছে।",
+      "skipped": null,
+      "lang": "bn-IN"
+    },
+    {
+      "i": 150,
+      "start": 594.55,
+      "end": 595.31,
+      "speaker": "SPEAKER_03",
+      "text": "એ અમારો",
+      "skipped": null,
+      "lang": "gu-IN"
+    },
+    {
+      "i": 151,
+      "start": 595.65,
+      "end": 595.98,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": null,
+      "lang": "od-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 1519,
+  "elapsed_sec": 92.2,
+  "rtf": 0.1544,
+  "clip_dur_sec": 597.0,
+  "transcribed_at_utc": "2026-08-21T18:45:50+00:00",
+  "clip_language": null,
+  "n_segments": 152,
+  "n_failed_segments": 0,
+  "n_skipped_short": 4,
+  "detected_language": "bn-IN",
+  "languages_seen": [
+    "bn-IN",
+    "en-IN",
+    "gu-IN",
+    "hi-IN",
+    "kn-IN",
+    "ml-IN",
+    "mr-IN",
+    "od-IN",
+    "te-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "experiment": {
+    "prompt_version": "xlit-perclip-v1",
+    "model": "us.anthropic.claude-sonnet-4-6",
+    "temperature": 0,
+    "scope": "per-clip"
+  }
+}

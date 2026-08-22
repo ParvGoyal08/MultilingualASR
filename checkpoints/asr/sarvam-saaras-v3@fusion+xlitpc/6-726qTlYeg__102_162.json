@@ -1,0 +1,212 @@
+{
+  "clip_id": "6-726qTlYeg__102_162",
+  "system": "sarvam-saaras-v3@fusion+xlitpc",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.01,
+      "end": 6.95,
+      "speaker": "SPEAKER_00",
+      "text": "ഇമ്പോർട്ടന്റ് ആയിട്ട് ഇത്തരത്തിൽ ബിസിനസ് ആശയങ്ങൾ വരുകയാണ്. നമ്മൾ ഇന്ന് സഹായിക്കാൻ വേണ്ടിയിട്ട് ഇവിടുത്തെ കേരള മാർക്കറ്റിംഗ് ഇൻചാർജ് ആയിട്ടുള്ള യോഗിനി മാഡം നമ്മുടെ കൂടെയുണ്ട്. മാഡം നമസ്കാരം.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 1,
+      "start": 6.95,
+      "end": 7.39,
+      "speaker": "SPEAKER_01",
+      "text": "നമസ്കാരം.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 2,
+      "start": 7.32,
+      "end": 11.74,
+      "speaker": "SPEAKER_00",
+      "text": "മാഡം ആക്ച്വലി സാണ്ടവർ ലേറ്റ് ബോക്സ് എന്നുള്ള കമ്പനി ശരിക്കും ലക്സഡ് ലൊക്കേഷൻ എവിടെയാണ് വരുന്നത്?",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 3,
+      "start": 11.73,
+      "end": 20.43,
+      "speaker": "SPEAKER_01",
+      "text": "സാർ ഈ റോഡ് റെയിൽവേ സ്റ്റേഷനിൽ നിന്ന് അടുത്താണ്. റെയിൽവേ സ്റ്റേഷനിൽ നിന്ന് ഒരു ഫോർ ടു ഫൈവ് കിലോമീറ്റർ നമുക്ക് വരേണ്ടി വരും. അവിടുന്ന് ഓട്ടോ അല്ലെങ്കിൽ ടാക്സി പിടിക്കുകയാണെങ്കിൽ നമുക്ക് എ സി ആണ്. അവിടെ പറഞ്ഞാൽ അവർക്ക് അറിയാൻ പറ്റും.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 4,
+      "start": 13.46,
+      "end": 13.71,
+      "speaker": "SPEAKER_00",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 5,
+      "start": 16.34,
+      "end": 16.75,
+      "speaker": "SPEAKER_00",
+      "text": "ഓക്കേ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 6,
+      "start": 18.73,
+      "end": 22.72,
+      "speaker": "SPEAKER_00",
+      "text": "ഈസിയാണ് അവിടെ പറഞ്ഞാൽ അവർക്ക് അറിയാൻ പറ്റും. എന്താണ് ആന്റോ ലൈറ്റ് വർക്ക്സിന്റെ സ്പെഷ്യാലിറ്റി എന്ന് പറയുക.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 7,
+      "start": 22.23,
+      "end": 26.01,
+      "speaker": "SPEAKER_01",
+      "text": "നമ്മുടെ സ്പെഷ്യാലിറ്റി എന്ന് പറയുന്നത് നമ്മൾ 56 വർഷം കൊണ്ടുള്ള കമ്പനിയാണ്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 8,
+      "start": 25.77,
+      "end": 26.21,
+      "speaker": "SPEAKER_00",
+      "text": "ഓക്കേ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 9,
+      "start": 26.15,
+      "end": 31.37,
+      "speaker": "SPEAKER_01",
+      "text": "നമ്മൾ കോൾഡ് പ്രസ്സ് മെഷിനറീസിന്റെ ഫേമസ് ആയിട്ടുള്ള ഏഷ്യയിൽ തന്നെ നമ്പർ വൺ കമ്പനിയാണ്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 10,
+      "start": 30.65,
+      "end": 46.53,
+      "speaker": "SPEAKER_00",
+      "text": "നമ്പർ വൺ കമ്പനിയാണ്. അതായത് ഒരുപാട് പ്രോഡക്റ്റുകൾ ഇതിൽ തന്നെ പല വെറൈറ്റീസുകളും ഉണ്ട് അല്ലേ? ഏഷ്യയിലെ നമ്പർ വൺ കമ്പനിയാണ്. 1968-ൽ സ്ഥാപിതമായതാണ്. ഇപ്പോൾ 56 വർഷമായിട്ട് മാർക്കറ്റ് ലീഡേഴ്സ് ആണ്. അപ്പോൾ ഈ ഒരു ബിസിനസ് നിങ്ങളുടെ മുന്നിലേക്ക് എത്തിക്കാൻ പറ്റിയത് ഞാൻ വളരെ സന്തോഷിക്കുന്നു. ഇപ്പോൾ ഏതൊക്കെ ടൈപ്പ് കോൾ പ്രെസ്സിംഗ് മെഷീൻസ് ആണ് ഉള്ളത് മാഡം?",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 11,
+      "start": 31.59,
+      "end": 32.33,
+      "speaker": "SPEAKER_01",
+      "text": "അതായത് ഒരുപാട്",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 12,
+      "start": 33.89,
+      "end": 35.11,
+      "speaker": "SPEAKER_01",
+      "text": "അതെ സാർ.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 13,
+      "start": 45.98,
+      "end": 49.47,
+      "speaker": "SPEAKER_01",
+      "text": "ഇത് രണ്ട് തരത്തിലാണ് ഉള്ളത്. കോൾഡ് പ്രസ്സിൽ തന്നെ ഇരുമ്പ് ചെക്ക്, മരച്ചെക്കാണ്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 14,
+      "start": 46.67,
+      "end": 57.72,
+      "speaker": "SPEAKER_00",
+      "text": "ഇതിലാണ് ഉള്ളത്. ഓൾഡ് പ്രസ്സിൽ തന്നെ ഇരുമ്പ് ചെക്ക്, മരച്ചെക്കാണ്. ഇരുമ്പ് ചെക്ക്, മരച്ചെക്ക്. ഓക്കേ, നമുക്ക് ജസ്റ്റ് ഒന്ന് ആ പ്രോഡക്റ്റ് ഒന്ന് ജസ്റ്റ് കാണിക്കാം. എന്നിട്ട് നമുക്ക് ഇത് എങ്ങനെ ഉണ്ടാക്കുന്നത് എന്ന് നോക്കാം. ഇത് ഒന്നാമത്തേത് ഇരുമ്പ് ചെക്കാണ്. ഇരുമ്പ് ചെക്ക് വെച്ചാൽ ഈ ഒരു",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 15,
+      "start": 50.38,
+      "end": 50.58,
+      "speaker": "SPEAKER_01",
+      "text": "",
+      "skipped": "too_short",
+      "lang": null
+    },
+    {
+      "i": 16,
+      "start": 52.77,
+      "end": 53.17,
+      "speaker": "SPEAKER_01",
+      "text": "കാരണം",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 17,
+      "start": 55.27,
+      "end": 56.09,
+      "speaker": "SPEAKER_01",
+      "text": "ഇരുമ്പ് ചെക്കാണ്.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 18,
+      "start": 57.21,
+      "end": 59.97,
+      "speaker": "SPEAKER_01",
+      "text": "നമ്മുടെ ക്രഷിങ് ഏരിയ, ക്രഷിങ് ചേംബർ മാത്രം കാസ്റ്റ് ആയി.",
+      "skipped": null,
+      "lang": "ml-IN"
+    },
+    {
+      "i": 19,
+      "start": 58.38,
+      "end": 59.14,
+      "speaker": "SPEAKER_00",
+      "text": "കാഷ് ഇൻ ചേംബർ",
+      "skipped": null,
+      "lang": "en-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 209,
+  "elapsed_sec": 6.89,
+  "rtf": 0.1148,
+  "clip_dur_sec": 60.0,
+  "transcribed_at_utc": "2026-08-21T18:48:51+00:00",
+  "clip_language": null,
+  "n_segments": 20,
+  "n_failed_segments": 0,
+  "n_skipped_short": 2,
+  "detected_language": "ml-IN",
+  "languages_seen": [
+    "en-IN",
+    "ml-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "experiment": {
+    "prompt_version": "xlit-perclip-v1",
+    "model": "us.anthropic.claude-sonnet-4-6",
+    "temperature": 0,
+    "scope": "per-clip"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "clip_id": "4Qg2jWP6_T0__136_202",
+  "system": "sarvam-saaras-v3@fusion+xlitpc",
+  "status": "ok",
+  "strategy": "segment",
+  "diar_model": "fusion",
+  "merge_gap": 1.0,
+  "segments": [
+    {
+      "i": 0,
+      "start": 0.81,
+      "end": 21.31,
+      "speaker": "SPEAKER_00",
+      "text": "ਹੋਰ ਬਾਈ ਯਾਰ। ਹੁਣ ਫੇਰ ਬੇਬੇ ਕੀ ਬਣੂ ਮੇਰਾ ਮੇਲੇ ਦਾ ਬਾਈ ਵੱਡੇ ਭਾਈ। ਲੈ ਬਣੂਗਾ ਇਹਦਾ ਮੇਲੇ ਦਾ ਤੈਨੂੰ ਕਹਿਤਾ ਲੈ ਲਈ 200 ਰੁਪਈਆ। ਹਾਂ ਹੋਰ ਤੈਂ ਕੀ ਕਰਨਾ ਹੈਗਾ। ਬੇਬੇ 200 ਰੁਪਈਆ 200 ਰੁਪਈਏ ਦਾ ਇੱਥੇ ਹਰੇਕ ਨੂੰ ਦੇ ਦਿੰਦੇ ਬੇਬੇ ਦੋ ਚਾਰ ਸੌ ਵੱਧ ਦੀ ਲੋੜ ਹੈ। ਨਾ ਨਾ ਵੱਧ ਨਹੀਂ ਮਿਲਦੇ ਹੈਗੇ। ਲੈ ਵੱਡੇ ਭਾਈ ਹੁਣ ਤੇਰੇ ਨਾਲ ਮੈਂ ਕੰਮ ਕਰਾਊਂਗਾ ਤੂੰ ਕਹਿ ਦੇ ਮਾੜਾ ਬੇਬੇ ਨੂੰ। ਉਹ ਜਦੋਂ ਕਰਾਏਂਗਾ ਦੇਖੀ ਜਾਊ ਉਦੋਂ ਤੋਂ ਪਹਿਲਾਂ ਕੀ ਕਰ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 1,
+      "start": 14.57,
+      "end": 14.96,
+      "speaker": "SPEAKER_01",
+      "text": "ਨਾ ਨਾ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 2,
+      "start": 20.31,
+      "end": 24.57,
+      "speaker": "SPEAKER_01",
+      "text": "ਉਦੋਂ ਪੈਸੇ ਲੈ ਲਈ। ਨਾ ਉਦੋਂ ਪੈਸੇ ਲੈ ਲਈ ਜਦੋਂ ਕੰਮ ਕਰਾਇਆ ਮੈਂ ਕਿਹਾ ਉਦੋਂ ਪੈਸੇ ਲੈ ਲਈ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 3,
+      "start": 24.83,
+      "end": 30.52,
+      "speaker": "SPEAKER_00",
+      "text": "ਐਂ ਤਾਂ ਇਹਨੂੰ ਦੇ ਦਿਆਂਗੇ ਐਂ ਤਾਂ ਮੱਥਾ ਮੁੱਥਾ ਟੇਕ ਲਈ ਵਧੀਆ ਆਪਦਾ ਦੀਵਾਨ ਸੁਣ ਲਈ। ਬਾਈ ਇਹਨੇ ਮੈਨੂੰ ਪਹਿਲਾਂ ਹੀ ਦੱਸਿਆ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 4,
+      "start": 29.41,
+      "end": 32.45,
+      "speaker": "SPEAKER_01",
+      "text": "ਭਾਈ ਇਹਨੇ ਮੈਂ ਕੁੱਤੇ ਲਿਆਈ ਆਂ, 100 ਰੁਪਈਆ ਤੜਾਇਆ ਦਸ ਦਸਾਂ ਦੇ ਲਈ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 5,
+      "start": 33.12,
+      "end": 35.13,
+      "speaker": "SPEAKER_00",
+      "text": "10-10 ਦੇ ਬੇਬੇ ਬੇਬੇ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 6,
+      "start": 37.42,
+      "end": 48.78,
+      "speaker": "SPEAKER_00",
+      "text": "ਤੂੰ ਐਡਾ ਹੋ ਗਿਆ ਤੈਂ ਕਦੇ ਕੰਮ ਕਰਿਆ ਕੋਈ? ਬੇਬੇ ਕਰਿਆ ਤਾਂ ਹੈਗਾ ਬਾਈ ਨਾਲ ਟੋਕਾ ਟੂਕਾ ਕਰਾ ਦੇਣਾ ਮੈਂ ਘਰੇ ਕਰਕੇ ਤੇ ਰੱਖ ਦੇਣਾ। ਟੋਕਾ ਕਰਾ ਦੇਣਾ ਲੈ ਦੇਖ ਲੈ। ਕੀ ਕਹਿੰਦੇ ਟੋਕਾ ਮਹੀਨੇ ਚ ਇੱਕ ਦਿਨ ਕਰਤਾ ਹੁਣ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 7,
+      "start": 48.64,
+      "end": 50.65,
+      "speaker": "SPEAKER_01",
+      "text": "ਗਲਾਸ ਵੀ ਦੁੱਧ ਦਾ ਲੱਕ ਜਿੱਡਾ ਭਰ ਲੈਨੇ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 8,
+      "start": 51.03,
+      "end": 53.86,
+      "speaker": "SPEAKER_00",
+      "text": "ਬੇਬੇ ਉਹ ਤਾਂ ਹੁਣ ਆਪਣਾ ਘਰ ਆ, ਮੈਂ ਖਾਊਂ ਪੀਊਂ ਤਾਂ ਹੈਗੀ ਆ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 9,
+      "start": 53.61,
+      "end": 55.31,
+      "speaker": "SPEAKER_01",
+      "text": "ਖਾਵੇਂ ਪੀਵੇਂ ਦਾ ਕੰਮ ਵੀ ਕਰਨਾ ਪਊ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 10,
+      "start": 55.83,
+      "end": 63.37,
+      "speaker": "SPEAKER_00",
+      "text": "ਕੰਮ ਤਾਂ ਬੇਬੇ ਬਸ ਨਹੀਂ ਇਹਨੂੰ ਪਤਾ ਵੀ ਕਿਹੜੀ ਦੁੱਧ ਦਿੰਦੀ ਆ। ਹਾਂ ਬਾਈ ਮੈਂ ਇਸ ਤਾਂ ਨਹੀਂ ਪਤਾ ਫੇਰ ਵੀ ਮੈਂ ਕੱਖ ਤਾਂ ਪਾਉਣੀ ਆ ਬੇਬੇ ਕਦੇ ਨਾ ਕਦੇ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    },
+    {
+      "i": 11,
+      "start": 63.33,
+      "end": 65.51,
+      "speaker": "SPEAKER_01",
+      "text": "ਲੈ ਕਦੇ ਨਾ ਕਦੇ ਫਿਰ ਪੈਸੇ ਲੈ ਲਈ ਉਵੇਂ ਜਿਵੇਂ।",
+      "skipped": null,
+      "lang": "pa-IN"
+    }
+  ],
+  "words": [],
+  "n_words": 248,
+  "elapsed_sec": 6.01,
+  "rtf": 0.091,
+  "clip_dur_sec": 66.0,
+  "transcribed_at_utc": "2026-08-21T18:48:44+00:00",
+  "clip_language": null,
+  "n_segments": 12,
+  "n_failed_segments": 0,
+  "n_skipped_short": 0,
+  "detected_language": "pa-IN",
+  "languages_seen": [
+    "pa-IN"
+  ],
+  "settings_key": "beam?-cond1-lidself-batch0",
+  "experiment": {
+    "prompt_version": "xlit-perclip-v1",
+    "model": "us.anthropic.claude-sonnet-4-6",
+    "temperature": 0,
+    "scope": "per-clip"
+  }
+}
