@@ -142,19 +142,42 @@ threshold 0.5 (i.e. 2-of-3), frozen on dev before any Step 4 measurement
 both selected by **dev** DER. That is legitimate hyperparameter selection on a
 split held out from test, but it is not "GT-free", and the distinction matters.
 
-**Result:**
+**Result, with significance.** Paired bootstrap over clips, 10,000 resamples:
 
-| | DER | miss | FA | confusion | JER | spk acc |
-|---|---|---|---|---|---|---|
-| best single (`reverb-v2`) | 0.2521 | 0.0719 | 0.0681 | 0.1121 | 0.3834 | 60.6% |
-| **FUSION** | **0.2442** | 0.1138 | 0.0498 | 0.0806 | **0.3608** | **79.8%** |
+| comparison | Δ DER | 95% CI | per-clip W/L |
+|---|---|---|---|
+| `community-1` → fusion | −0.0193 | [−0.0254, −0.0139] | **83 / 16** |
+| `pyannote-3.1` → fusion | −0.0195 | [−0.0309, −0.0090] | 80 / 19 |
+| `diarizen-large` → fusion | −0.0184 | [−0.0287, −0.0067] | 80 / 19 |
+| `reverb-v2` → fusion | −0.0079 | **[−0.0353, +0.0161]** | **42 / 57** |
 
-**−3.1% relative DER**, and the fusion is simultaneously best on false alarm,
-confusion, JER and speaker-count accuracy. It is beaten only on **miss**, which
-is inherent: voting cannot recover speech a majority never found.
+**The fusion beats three of four constituents decisively (~7% relative, CIs
+excluding zero, 80+ of 99 clips) and is statistically indistinguishable from
+`reverb-v2` on DER.** The pooled −0.0079 is carried by a few long clips; per
+clip it loses 57 to 42, and on the dev half it is 6.8% *worse* than reverb-v2.
+An earlier draft reported "−3.1% relative DER over the best single system" as
+the Step 4 result; that figure is a point estimate whose interval spans zero,
+and it is withdrawn.
 
-The larger payoff is downstream (§4): as an ASR front-end the fusion is worth
-**−19.6% relative cpWER**, a far bigger effect than its DER gain.
+What survives, and is testable:
+
+| | `reverb-v2` | **FUSION** |
+|---|---|---|
+| DER | 0.2521 | 0.2442 *(not significant)* |
+| **JER** | 0.3834 | **0.3608** |
+| **speaker-count accuracy** | 60.6% | **79.8%** |
+| speaker MAE | 0.54 | **0.21** |
+| confusion | 0.1121 | **0.0806** |
+| false alarm | 0.0681 | **0.0498** |
+
+The fusion is also the **only system that is 1st or 2nd on both halves of the
+split**, across 2,000 random 50/49 resamples, 100% of the time (`reverb-v2`
+41.6%, the other three 0.0%). Rank stability, not variance reduction — the
+observed split spread is no lower than `community-1`'s.
+
+**The real payoff is downstream** (§4): as an ASR front-end the fusion is worth
+**−19.6% relative cpWER** and **−44.3% relative WDER**, winning 88 of 99 clips.
+That is where Step 4a earns its place, not in DER.
 
 Four other refinement ideas were implemented and **rejected on measurement**:
 segment transplantation, boundary padding, empty-segment pruning, and
@@ -178,14 +201,15 @@ are skipped; above 29.0 s they are split (a hard server limit).
 |---|---|---|---|---|---|---|
 | **`saaras-v3@fusion`** | 0.979 | 0.2787 | **0.3181** | 0.2787 | 0.0394 | **0.0628** |
 | `saaras-v3@reverb-v2` | 0.960 | 0.2728 | 0.3957 | 0.2728 | 0.1229 | 0.1128 |
-| `saaras-v4@reverb-v2` (9 clips) | 0.965 | 0.2606 | 0.3485 | 0.2606 | 0.0879 | 0.0718 |
-| `whisper-large-v3-turbo` ᵇ | 0.751 | 0.9827 | 0.9957 | 0.9827 | 0.0130 | 0.5471 |
-| `whisper-large-v3` ᵇ (35 clips) | 0.313 | 0.9296 | 0.9340 | 0.9296 | 0.0045 | 0.2664 |
+| **`saaras-v3@fusion+xlit+num`** (§6) | 0.981 | **0.2585** | **0.3017** | 0.2585 | 0.0432 | **0.0602** |
 
-`ratio` = hypothesis words ÷ reference words. **ᵇ = known-broken configuration**
-— greedy decoding, long-form and self-detected language, all three defects at
-once. Those rows record where a diagnosis started, not what Whisper can do. Rows
-with fewer than 99 clips are partial coverage and are not directly comparable.
+`ratio` = hypothesis words ÷ reference words. All rows are the full 99 clips.
+
+Whisper and IndicConformer are deliberately **not** in this table. Whisper's
+99-clip run used a configuration later shown to carry three independent defects
+at once, and quoting it as "Whisper's performance" would be wrong; both are
+reported properly in §4.1 from controlled probes. `saaras-v4` covered only 9
+clips and is compared against v3 on exactly those 9 in §8.
 
 **The fusion front-end is worth −19.6% relative cpWER and −44.3% relative WDER**
 over `reverb-v2`, and cuts the attribution component by two thirds
@@ -446,6 +470,78 @@ implausibilities the model could catch.
 
 ---
 
+## 6.1 Step 4b — script and numeral normalisation *(the stage that worked)*
+
+**Finding.** The reference writes code-switched English **phonetically in the
+native script** — the dual-form convention behind its 20,562 parenthesised
+glosses. Measured: the reference is 99.98% Indic script (27 Latin tokens in
+123,896); the Saaras hypothesis is 3.0% Latin (3,689 tokens). Of 21,357
+substitutions, **3,481 (16.3%) are reference-Indic against hypothesis-Latin**:
+
+```
+ఐ → i     టు → to    ఓకే → okay   సో → so
+એમએલ → ml  एंड → and  યુ → you     బోత్ → both
+```
+
+These are **not recognition errors**. Saaras heard the word and wrote it in the
+wrong script for this corpus's convention. A second, smaller mismatch of the
+same kind: the corpus writes numbers as spoken words (14 digit-bearing tokens in
+123,896) while Saaras writes digits (892).
+
+**Method.** Extract the Latin and digit **vocabulary from the hypothesis only** —
+1,651 unique (script, token) pairs and 382 numerals — have `claude-sonnet-4-6`
+render each in the clip's language, and apply the result as a **frozen lookup
+table**. One batch per script, cached by prompt hash. No per-clip inference, no
+re-run of the recogniser.
+
+**Why this is GT-free.** The target script comes from `data.dominant_script` on
+the *hypothesis* text; the spellings come from a general model's knowledge of
+the language. Deriving the mapping from reference pairs would be a leak and
+would inflate the result. (An independent audit confirmed this by rebuilding
+every cache key from the hypothesis vocabulary: 32/32 and 11/11 keys hit, while
+building from the wrong source gives 5 hits / 6 misses — so the prompts provably
+contained the hypothesis vocabulary and nothing else.)
+
+**Result, all 99 clips:**
+
+| stage | ratio | WER | cpWER | WDER |
+|---|---|---|---|---|
+| `saaras-v3@fusion` | 0.9786 | 0.2787 | 0.3181 | 0.0628 |
+| + transliteration | 0.9786 | 0.2614 | 0.3045 | 0.0603 |
+| **+ numerals** | 0.9807 | **0.2585** | **0.3017** | **0.0602** |
+
+**WER −7.2% relative, cpWER −5.2%, WDER −4.1%.** Substitutions fall 21,357 →
+18,671.
+
+| split | pooled Δ cpWER | 95% CI | better / worse / tie |
+|---|---|---|---|
+| all | −0.0164 | [−0.0279, −0.0078] | 72 / 1 / 26 |
+| dev | −0.0094 | [−0.0148, −0.0056] | **34 / 0 / 16** |
+| test | −0.0216 | [−0.0410, −0.0070] | 38 / 1 / 10 |
+
+Both CIs exclude zero; sign test p = 1.6 × 10⁻²⁰. **Not one clip regressed on
+dev** — by construction, since the stage only rewrites tokens the recogniser
+already emitted in Latin or as digits, so a wrong rendering leaves a
+substitution that was already a substitution. The downside is bounded at zero.
+
+**Not a scorer artefact.** Replacing 3,520 Latin tokens changes the hypothesis
+token count by **+2** (only 3 of 1,651 table values are multi-word), so the gain
+cannot come from token-count manipulation. The numeral stage does add tokens
+(+260 on 697 replacements) and pays for it: insertions +81 against substitutions
+−254. It costs, it does not flatter.
+
+**What was tested on the residual and rejected.** 46% of remaining substitutions
+are within two characters of the reference, but only 423 (2.2%) vanish under
+orthographic folding — nukta (`ज़्यादा`/`ज्यादा`) and chandrabindu/anusvara
+(`हूँ`/`हूं`) — worth 0.34% of tokens, and that is a *scoring* normalisation
+applied to both sides rather than a system change. The rest are genuinely
+different words (`તે`/`એ` is "that" vs "this"). Word-boundary convention
+accounts for a further 271 cases (0.22%), strikingly one-directional (271
+join-cases against 0 split-cases), but the suffix inventory would have to be
+learned from the reference. Both rejected.
+
+---
+
 ## 7. Final system and results
 
 **`sarvam-saaras-v3 @ DOVER-Lap(community-1, reverb-v2, diarizen-large)`,
@@ -455,25 +551,37 @@ per-segment, 1.0 s same-speaker merge.**
 
 | | DER | miss | FA | conf | JER | spk acc |
 |---|---|---|---|---|---|---|
-| baseline (best single, `reverb-v2`) | 0.2521 | 0.0719 | 0.0681 | 0.1121 | 0.3834 | 60.6% |
+| `reverb-v2` (best single by DER) | 0.2521 | 0.0719 | 0.0681 | 0.1121 | 0.3834 | 60.6% |
+| mean of the four singles | 0.2604 | — | — | — | 0.3762 | 70.9% |
 | **final (FUSION)** | **0.2442** | 0.1138 | 0.0498 | 0.0806 | **0.3608** | **79.8%** |
-| improvement | **−3.1%** | — | −27% | −28% | −5.9% | +19.2 pt |
+
+**DER against `reverb-v2` is a statistical tie** (Δ −0.0079, CI [−0.0353,
++0.0161], 42/57 per clip). Against the other three constituents the fusion wins
+by ~7% relative with CIs excluding zero and 80+/99 clips. The defensible
+diarization claims are **JER −5.9%**, **speaker-count accuracy +19.2 points**,
+**confusion −28%**, and rank stability across resampled splits.
 
 ### ASR — all 99 clips
 
 | | ratio | WER | cpWER | WDER |
 |---|---|---|---|---|
 | baseline (`saaras-v3@reverb-v2`) | 0.960 | 0.2728 | 0.3957 | 0.1128 |
-| **final (`saaras-v3@fusion`)** | 0.979 | 0.2787 | **0.3181** | **0.0628** |
-| improvement | — | (+2.2%) | **−19.6%** | **−44.3%** |
+| + Step 4a fusion front-end | 0.979 | 0.2787 | 0.3181 | 0.0628 |
+| **+ Step 4b normalisation (final)** | 0.981 | **0.2585** | **0.3017** | **0.0602** |
+| **total improvement** | — | **−5.2%** | **−23.8%** | **−46.6%** |
+
+Step 4a contributes −19.6% relative cpWER (88/99 clips), Step 4b a further
+−5.2% (72/99, CIs excluding zero on both halves). Flat WER dips at 4a — the
+fusion preserves overlap, so overlapped audio is transcribed once per speaker
+and some words appear twice — and 4b more than recovers it.
 
 ### Split-wise, final system
 
 | split | clips | ratio | WER | cpWER | WDER |
 |---|---|---|---|---|---|
-| dev | 50 | 0.986 | 0.2317 | 0.2676 | 0.0439 |
-| test | 49 | 0.973 | 0.3132 | 0.3552 | 0.0769 |
-| all | 99 | 0.979 | 0.2787 | 0.3181 | 0.0628 |
+| dev | 50 | 0.988 | 0.2219 | 0.2582 | 0.0423 |
+| test | 49 | 0.975 | 0.2854 | 0.3337 | 0.0736 |
+| all | 99 | 0.981 | 0.2585 | 0.3017 | 0.0602 |
 
 **Dev and test are not equally hard** (cpWER 0.2676 vs 0.3552). Only deltas
 transfer across the split; a dev absolute is not a prediction for test. The split
@@ -498,15 +606,15 @@ on what is unreachable and it flatters the final system slightly.
 **12.4% of remaining cpWER is attribution** (0.0394 of 0.3181); the other 87.6%
 is word error.
 
-**Per-video tables.** `results/step3_metrics.csv` — 341 rows, `system × clip`,
-with WER / cpWER / DI-cpWER / WDER and raw counts, regenerated from the
-**corrected** baseline (pooling it reproduces cpWER 0.3181 exactly).
-`local_out/results/step2_metrics.csv` — 396 rows, `model × clip`, DER / JER /
-speaker counts for the four single systems.
+**Per-video tables.** `results/step3_metrics.csv` — **539 rows**, `system × clip`,
+seven ASR systems including the final one (pooling reproduces cpWER 0.3017).
+`results/step2_metrics.csv` — **495 rows**, `model × clip`, all five diarization
+systems **including the fusion** (pooling reproduces DER 0.2442, JER 0.3608).
 
-**Known gap:** there is no per-clip DER/JER table for the *fusion* itself, so the
-diarization half of "baseline vs improved per video" is incomplete — the fusion's
-corpus numbers are reported here but its per-clip rows were never written out.
+Both tables are committed and pool exactly to the corpus figures above.
+`checkpoints/` additionally carries every diarization RTTM and ASR transcript, so
+a reviewer can re-derive every number in this report **without a GPU, without
+HF-gated model access, and without either API key** — see `checkpoints/README.md`.
 
 ---
 
@@ -599,15 +707,17 @@ timestamps displaced 1–5 s. **11 of the 15 worst-DER clips (fusion) are in the
    decoding and not segmentation. "Is the input what I think it is" should be
    checked before "is the model good enough".
 2. **Always measure the control, and check the control's own arithmetic.**
-   Boundary padding looked strong on dev (0.2390 → 0.2298) and was worth almost
-   nothing on test. Separately, the boundary-miss enrichment was first computed
+   The boundary-miss enrichment was first computed
    as 1.36× from a histogram whose denominator had been silently truncated; the
    correct value is 2.71×, and a sanity check — 19,820 boundaries × 0.4 s over
    44,130 s caps the null at 18% — would have caught it immediately. Order-of-
    magnitude checks on your own statistics are cheap.
-3. **Aggregates hide inverted rankings.** GT correction moved DER by 12.6% and
-   reversed which model is best. Dev and test invert rankings too. Any claim
-   resting on a 0.01 DER gap is noise.
+3. **Aggregates hide inverted rankings.** GT correction moved fusion DER by
+   **19.8%** and reversed which single model is best. Dev and test invert
+   rankings too — `reverb-v2` scores 0.2238 on dev and 0.2738 on test. Any claim
+   resting on a 0.01 DER gap is noise, **including one of our own**: the −0.0079
+   fusion-vs-`reverb-v2` gap was reported as a result before its interval was
+   computed, and it spans zero.
 4. **Structural impossibility beats validation.** Omitting speakers and
    timestamps from the LLM's response schema removed a whole class of failure
    that no amount of prompt instruction or post-hoc checking would have
@@ -640,20 +750,25 @@ Only proposals with measured support are listed.
    largest ceiling measured here. **Four interventions were built and measured,
    and none works:**
 
-   | intervention | result |
-   |---|---|
-   | lower the fusion vote to 1-of-3 in overlap | **+0.0564 DER** (5.8 s FA per 1 s recovered) |
-   | MSDD-style verifier on vote disagreement | candidates 11.5% precise; 77% of overlap miss is upstream |
-   | `segmentation-3.0` OSD ∩ constituent identity | 23.6% precise, **+0.0024 DER** |
-   | ConvTasNet separation of overlap regions | word recovery 52.6% → **50.0%** |
+   One intervention was built and measured end-to-end: **source separation of
+   overlapped regions**. On 100 GT-located overlap runs from the 10
+   most-overlapped clips, word recovery went **52.6% → 50.0%** — it hurts.
 
-   The separation control matters: an 8 kHz round-trip costs 0.6 points while
-   separation costs a further 2.0, so this is not a bandwidth artefact. What
-   these share is that every available component is either derived from
-   `pyannote/segmentation-3.0` (so its errors correlate with the fusion's) or
-   trained on clean English 2-speaker mixtures. **A genuinely independent,
-   in-domain overlap model — trained on multilingual conversational speech — is
-   the prerequisite, not a smarter way of combining what we have.**
+   | condition | word recovery |
+   |---|---|
+   | mixture @ 16 kHz | 52.6% |
+   | mixture 16k→8k→16k, no separation | 52.0% |
+   | ConvTasNet-Libri2Mix, 2 streams | **50.0%** |
+
+   **Scope this result carefully.** The bandwidth control shows the *recogniser*
+   tolerates 8 kHz audio (0.6 points), so the 2.0-point loss is not that. But
+   condition C also changes the *separator's* operating bandwidth, and mask
+   estimation depends on cues above 4 kHz that an 8 kHz model never sees — the
+   control cannot decompose those. And the overlap regions were located from the
+   reference, which no shipped system can do (fusion overlap recall is 21.6%).
+   So what is established is narrow: **an out-of-domain 8 kHz separator, given
+   oracle overlap regions, does not help.** Whether a 16 kHz in-domain separator
+   would is **untested**, and is the next thing to try — not a settled question.
 2. **Per-token script rail for any future LLM stage.** Would have caught all 7
    corrupting edits in §6; two lines.
 3. **IndicConformer at corpus scale, leak-free.** It beat Whisper 2.2× on 10
