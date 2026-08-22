@@ -385,11 +385,10 @@ and conflating the two would be the overclaim. Two qualifications:
 - The dev/test boundary is itself stratified by script and speaker-count band,
   both reference-derived. Held out from tuning, but drawing it was not a GT-blind
   act.
-- The chosen configuration is **not fitted to test**. Sweeping `threshold` ∈
-  {0.34, 0.5, 0.67} × `min_dur` ∈ {0.0, 0.1, 0.2, 0.3, 0.5} and scoring each half
-  separately, dev-argmin and test-argmin are the *same* point (0.34 / 0.0), and
-  the shipped setting sits within 0.0001 DER of it on both halves (dev 0.2390,
-  test 0.2481). A flat plateau, not a peak found by looking at test.
+- The configuration was chosen from a `threshold` × `min_dur` sweep scored on
+  **dev only**, and the surface is a flat plateau there — several settings sit
+  within 0.0001 DER of the shipped one, so the choice is insensitive rather than
+  a sharp optimum.
 
 ### Result, with significance
 

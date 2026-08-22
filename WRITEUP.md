@@ -68,11 +68,9 @@ majority voting they would be one vote counted twice.
 
 *GT-free at inference:* `dover_lap` reads only the three constituent RTTMs and the
 clip duration, which comes from the CSV manifest, not from any annotation. The
-configuration was selected on **dev** DER and frozen in `results/fusion_config.json`
-before test was scored — the operator is GT-free, the selection used dev DER, and
-those are kept apart deliberately. The choice is not fitted to test: sweeping
-threshold × `min_dur`, dev-argmin and test-argmin are the **same point**, and the
-shipped setting is within 0.0001 DER of it on both halves.
+configuration was selected on **dev** and frozen in `results/fusion_config.json`
+before test evaluation — the operator is GT-free, the selection used dev DER, and
+those are kept apart deliberately.
 
 **2 · A provenance bug — the largest lesson here.** 27 of 99 clips had been
 transcribed against a *stale two-system fusion*, so the measured "fusion" result
