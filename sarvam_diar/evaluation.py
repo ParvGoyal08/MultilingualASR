@@ -383,7 +383,8 @@ def summarize(cfg: Config, df: pd.DataFrame, extra: dict | None = None) -> dict[
 
 def estimate_reference_lag(ref, hypotheses: dict, hop: float = 0.01,
                            max_lag: float = 5.0) -> dict:
-    """Deprecated shim. Delegates to `gt_qc.assess_clip`.
+    """Deprecated shim, kept because obs.txt cites it by name. Delegates to
+    `gt_qc.assess_clip`; new code should call that directly.
 
     This module once carried its own detector using a mean-centred cross-
     correlation over +-10 s. `gt_qc` then grew a second one using IoU over
@@ -406,7 +407,17 @@ def estimate_reference_lag(ref, hypotheses: dict, hop: float = 0.01,
 
 
 def shift_turns(turns, delta: float, lo: float, hi: float):
-    """Move turns by `delta` seconds and clip to [lo, hi]."""
+    """Move turns by `delta` seconds and clip to [lo, hi].
+
+    DELIBERATELY UNCALLED. This is the only function that would apply the
+    GT-alignment corrections in results/gt_alignment_qc/corrections.json to a
+    reference. Nothing in the scoring path calls it, and that is the point:
+    every metric reported in WRITEUP.md is computed on the raw, unmodified
+    ground truth, and the absence of a call site is what makes that checkable
+    rather than merely asserted. The QC comparison in metrics_raw_vs_qc.csv is a
+    diagnostic produced by tools/gt_alignment_qc.py, which applies the offsets to
+    a COPY. Do not wire this into evaluation.score_clip.
+    """
     from .data import Turn
 
     out = []

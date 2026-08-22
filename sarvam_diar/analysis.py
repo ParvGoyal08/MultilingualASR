@@ -15,6 +15,8 @@ from __future__ import annotations
 
 import pandas as pd
 
+from .utils import LOG
+
 ERROR_SEC_COLS = ["der_fa_sec", "der_miss_sec", "der_confusion_sec"]
 
 # --------------------------------------------------------------- derived cols
@@ -113,13 +115,31 @@ def worst_by_contribution(df, n=20):
 
 # ---------------------------------------------------------- model comparison
 
-def model_comparison(df: pd.DataFrame, metric: str = "der") -> pd.DataFrame:
-    """Per-clip head-to-head. `delta` is positive where the first model is worse."""
+def model_comparison(df: pd.DataFrame, metric: str = "der",
+                     a: str | None = None, b: str | None = None) -> pd.DataFrame:
+    """Per-clip head-to-head. `delta` is positive where the first model is worse.
+
+    This compares exactly TWO systems. With more than two present and no
+    explicit `a`/`b`, it used to silently take the two alphabetically-first and
+    drop the rest under a name that promised a head-to-head; now it says which
+    pair it picked and what it ignored.
+    """
     if not len(df) or df.model.nunique() < 2:
         return pd.DataFrame()
     wide = df.pivot_table(index="clip_id", columns="model", values=metric)
-    models = list(wide.columns)
-    wide["delta"] = wide[models[0]] - wide[models[1]]
+    available = list(wide.columns)
+    if a is None or b is None:
+        a, b = available[0], available[1]
+        if len(available) > 2:
+            LOG.warning("model_comparison: %d systems present, comparing %s vs %s "
+                        "and ignoring %s -- pass a=/b= to choose",
+                        len(available), a, b,
+                        ", ".join(m for m in available if m not in (a, b)))
+    missing = [m for m in (a, b) if m not in available]
+    if missing:
+        raise KeyError(f"model_comparison: {missing} not in {available}")
+    models = [a, b]
+    wide["delta"] = wide[a] - wide[b]
     def _better(r):
         # A clip only one model ran has a NaN delta. Calling that a tie would
         # inflate the tie count with clips that were never compared.

@@ -374,6 +374,17 @@ def assert_no_reference_fields(frame, where: str = "pipeline stage") -> None:
     `data.ClipInput` covers the object path; this covers the DataFrame path,
     where a stray `n_gt_speakers` column is one `.get()` away from being handed
     to a diarizer as `num_speakers`.
+
+    KNOWN LIMITATION, stated so the name is not read as a stronger guarantee
+    than it is. This matches COLUMN NAMES against a prefix list; it does not
+    inspect values, and for a bare list of dicts it iterates the list rather than
+    its keys, so a `list[dict]` passes trivially. Its one production call site
+    guards `diarization.run()`'s own output frame, which is assembled from a
+    closed key set and therefore cannot fire. The frame that genuinely carries
+    `n_gt_speakers` / `gt_overlap_frac` / `ref_lang_script` is `extraction.run()`'s,
+    which reaches `data.split_reference()` unchecked. The real guarantee in this
+    pipeline is structural -- `ClipInput` has no reference field -- not this
+    function. WRITEUP.md section 1 says the same thing.
     """
     leaked = reference_fields(getattr(frame, "columns", frame))
     if leaked:

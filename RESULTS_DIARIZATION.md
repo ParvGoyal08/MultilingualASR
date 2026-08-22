@@ -181,6 +181,12 @@ Three configuration choices, all measured on dev rather than assumed:
 
 ## Things tried that did not work
 
+**Scope.** The grids below were run on the **dev half only** (`results/split.json`),
+which is where every Step 4 configuration decision was made; see `obs.txt` [32]
+and [35] for the full grids. They sit next to corpus-scale tables elsewhere in
+this file, so read the numbers here as dev, not as 99 clips. None of them was
+promoted, so none affects a reported result.
+
 Recorded because a negative result on a well-motivated idea is worth as much as
 a positive one.
 

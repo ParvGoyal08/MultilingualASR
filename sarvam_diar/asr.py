@@ -292,6 +292,12 @@ def transcribe_sarvam(cfg: Config, wav: Path, model: str = SARVAM_MODEL) -> tupl
     return words, meta
 
 
+# One of three sibling clients -- asr._sarvam_post, llm_refine._gemini_post,
+# translit._post -- that share one retry policy: Retry-After wins unjittered,
+# else exponential backoff with jitter; 429 and 5xx retry; any other 4xx is
+# _Fatal immediately. They are NOT merged on purpose: each carries
+# provider-specific request shaping and error handling, and all three produced
+# committed artifacts. Change the policy in one, change it in all three.
 def _sarvam_post(path: Path, key: str, model: str, retries: int = 7) -> dict:
     """POST one file, backing off on rate limits.
 

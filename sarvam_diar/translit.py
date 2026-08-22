@@ -92,6 +92,12 @@ def vocabulary(payloads: Iterable[dict], kind: str = "latin") -> dict[str, Count
     return out
 
 
+# One of three sibling clients -- asr._sarvam_post, llm_refine._gemini_post,
+# translit._post -- that share one retry policy: Retry-After wins unjittered,
+# else exponential backoff with jitter; 429 and 5xx retry; any other 4xx is
+# _Fatal immediately. They are NOT merged on purpose: each carries
+# provider-specific request shaping and error handling, and all three produced
+# committed artifacts. Change the policy in one, change it in all three.
 def _post(body: dict, key: str, model: str, retries: int = 6) -> dict:
     """Same retry discipline as the Sarvam client: Retry-After wins, 4xx is fatal."""
     import random

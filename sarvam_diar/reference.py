@@ -49,8 +49,13 @@ NONSPEECH_TAG_RE = re.compile(r"<[^>]{0,40}>")
 # A code-switch gloss: a Latin/digit run inside round, square or curly brackets.
 # The leading `\s?` absorbs the optional space in `ஹாய் (hi)` so the native head
 # word and its gloss are removed as one unit.
+# Same body as data.GLOSS_RE, deliberately compiled differently: data's has a
+# CAPTURE GROUP and is used with .findall() to count/extract glosses, this one
+# has no group and a leading \s? so .sub() removes the gloss AND the space that
+# preceded it. Two names, two jobs -- do not "deduplicate" them into one.
 _GLOSS_BODY = r"[\(\[{]\s*[A-Za-z0-9][^)\]}]{0,40}?\s*[\)\]}]"
-GLOSS_RE = re.compile(r"\s?" + _GLOSS_BODY)
+GLOSS_STRIP_RE = re.compile(r"\s?" + _GLOSS_BODY)
+GLOSS_RE = GLOSS_STRIP_RE          # backwards-compatible alias
 
 # `head(gloss)-suffix`, where a native grammatical suffix is re-attached after
 # the gloss (1,827 occurrences). The `(?=\s|$)` is load-bearing: it stops the
@@ -132,7 +137,7 @@ def strip_glosses(text: str) -> str:
     previous = None
     while previous != text:
         previous = text
-        text = GLOSS_RE.sub("", text)
+        text = GLOSS_STRIP_RE.sub("", text)
     return text
 
 
@@ -348,10 +353,6 @@ def to_annotation(ref: ClipReference):
     return ann
 
 
-def to_uem_line(ref: ClipReference) -> str:
-    return f"{ref.clip_id} 1 {ref.uem[0]:.3f} {ref.uem[1]:.3f}\n"
-
-
 # --------------------------------------------------------------- the runner
 
 
@@ -483,7 +484,3 @@ GOLDEN_CASES = [
 ]
 
 
-def golden_table() -> pd.DataFrame:
-    return pd.DataFrame(
-        [{"raw": c, "normalized": normalize_text(c)} for c in GOLDEN_CASES]
-    )

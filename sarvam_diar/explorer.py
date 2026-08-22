@@ -386,8 +386,12 @@ EXPORT_README = """\
 Standalone and offline. No Colab, no backend, no build step -- every number was
 computed by the Python pipeline and serialised; the browser only draws it.
 
-    python -m http.server 8000
-    # then open http://localhost:8000
+    python3 serve.py            # then open http://localhost:8000
+
+Use `serve.py`, NOT `python -m http.server`. The stdlib server does not
+implement HTTP Range, so a browser cannot seek inside a 30-minute WAV served by
+it -- the whole file has to download before audio will play. `serve.py` is the
+stdlib handler plus `206 Partial Content`.
 
 ## Layout
 

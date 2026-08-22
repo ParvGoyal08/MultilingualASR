@@ -26,7 +26,7 @@ from typing import Any, Iterable
 import pandas as pd
 
 from .config import SEGMENTS_CSV_FILE_ID, Config
-from .utils import LOG, read_json, write_json_atomic
+from .utils import LOG, write_json_atomic
 
 EXPECTED_COLUMNS = [
     "video_id",
@@ -565,5 +565,3 @@ def profile_dataset(clips: list[Clip], cfg: Config | None = None) -> dict[str, A
     return profile
 
 
-def load_dataset_profile(cfg: Config) -> dict | None:
-    return read_json(cfg.dataset_profile)

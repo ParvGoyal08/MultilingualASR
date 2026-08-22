@@ -85,8 +85,9 @@ number.
   predicted speakers, error type and reference text at that instant
 * scroll → zoom, drag → pan, or the fit / 2× / 5× / 10× / 25× buttons
 * space → play/pause
-* the model dropdown switches between community-1, pyannote-3.1, reverb-v2 and
-  any imported model, with a per-clip delta against the others
+* the model dropdown is populated from whatever the export contains — for the
+  current export that is community-1, pyannote-3.1, reverb-v2, diarizen-large
+  and the fusion — with a per-clip delta against the others
 * the chips at the bottom list the longest error regions — click one to jump
 
 ## 5. What to look for

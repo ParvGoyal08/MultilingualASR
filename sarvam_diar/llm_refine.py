@@ -125,6 +125,12 @@ def preflight(cfg: Config | None = None, model: str = DEFAULT_MODEL) -> dict:
 # ------------------------------------------------------------------ http
 
 
+# One of three sibling clients -- asr._sarvam_post, llm_refine._gemini_post,
+# translit._post -- that share one retry policy: Retry-After wins unjittered,
+# else exponential backoff with jitter; 429 and 5xx retry; any other 4xx is
+# _Fatal immediately. They are NOT merged on purpose: each carries
+# provider-specific request shaping and error handling, and all three produced
+# committed artifacts. Change the policy in one, change it in all three.
 def _gemini_post(body: dict, key: str, model: str, retries: int = 7) -> dict:
     """Mirrors asr._sarvam_post: Retry-After wins, else jittered exponential."""
     import random

@@ -216,30 +216,14 @@ def dover_lap(systems: dict[str, Sequence[Turn]], duration: float,
     return to_turns(active, cent_labels, min_dur)
 
 
-def fuse_corpus(cfg: Config, references: dict, models: Sequence[str],
-                clip_ids: Iterable[str], threshold: float = 0.5,
-                min_dur: float = 0.20) -> dict[str, list[Turn]]:
-    """Run the fusion over a set of clips. Returns clip_id -> fused turns."""
-    from . import diarization
-
-    out: dict[str, list[Turn]] = {}
-    for cid in clip_ids:
-        ref = references.get(cid)
-        if ref is None:
-            continue
-        systems = {m: diarization.load_hypothesis(cfg, m, cid)
-                   for m in models if diarization.is_done(cfg, m, cid)}
-        if not systems:
-            continue
-        out[cid] = dover_lap(systems, ref.uem[1], threshold=threshold, min_dur=min_dur)
-    LOG.info("fused %d clips from %d systems at threshold %.2f",
-             len(out), len(models), threshold)
-    return out
-
-
 # ------------------------------------------------- segmentation transplant
 
 
+# Uncalled by design. This is the implementation behind the segmentation-
+# transplant experiment reported as a NEGATIVE result in WRITEUP.md section 3 and
+# obs.txt [35] -- miss improved 0.0731 -> 0.0581 but confusion worsened, and no
+# cell of the 4x4 grid beat reverb-v2 alone. Deleting it would leave those claims
+# with no implementation to inspect, so it stays.
 def transplant(seg_turns: Sequence[Turn], lab_turns: Sequence[Turn],
                duration: float, min_dur: float = 0.20) -> list[Turn]:
     """Take WHERE speech is from one system and WHO is speaking from another.
@@ -298,6 +282,28 @@ def transplant(seg_turns: Sequence[Turn], lab_turns: Sequence[Turn],
 # ------------------------------------------------------------- materialise
 
 
+def _clip_duration(entry) -> float | None:
+    """Clip duration from either a ClipReference or a bare float.
+
+    Only the duration is ever needed here, and it comes from the CSV manifest's
+    start_sec/end_sec, not from any annotation -- so passing floats keeps ground
+    truth structurally out of the fusion stage. Accepting both shapes lets the
+    existing notebook callers keep working unchanged.
+    """
+    if entry is None:
+        return None
+    if isinstance(entry, (int, float)):
+        return float(entry)
+    uem = getattr(entry, "uem", None)
+    return float(uem[1]) if uem else None
+
+
+# Called from main_kaggle.ipynb and main_kaggle_2.ipynb -- this is what wrote the
+# committed fusion RTTMs under hypotheses/fusion/. `references` is a dict of
+# ClipReference for historical reasons, but ONLY `ref.uem[1]` is read, which is
+# the clip duration derived from the CSV manifest's start_sec/end_sec, not from
+# any annotation. A plain {clip_id: duration} mapping works and is preferred for
+# new callers; see _clip_duration below.
 def materialise(cfg: Config, references: dict, models: Sequence[str],
                 clip_ids: Iterable[str] | None = None, name: str = "fusion",
                 threshold: float = 0.5, min_dur: float = 0.20,
@@ -320,8 +326,8 @@ def materialise(cfg: Config, references: dict, models: Sequence[str],
 
     rows = []
     for cid in (clip_ids if clip_ids is not None else references):
-        ref = references.get(cid)
-        if ref is None:
+        dur = _clip_duration(references.get(cid))
+        if dur is None:
             continue
         if diarization.is_done(cfg, name, cid) and not force:
             rows.append({"model": name, "clip_id": cid, "status": "skipped"})
@@ -330,7 +336,7 @@ def materialise(cfg: Config, references: dict, models: Sequence[str],
                    for m in models if diarization.is_done(cfg, m, cid)}
         if not systems:
             continue
-        turns = dover_lap(systems, ref.uem[1], weights={m: 1.0 for m in systems},
+        turns = dover_lap(systems, dur, weights={m: 1.0 for m in systems},
                           threshold=threshold, min_dur=min_dur)
         tmp = cfg.work_dir / f"fuse_{name}_{cid}.rttm"
         tmp.parent.mkdir(parents=True, exist_ok=True)
@@ -341,7 +347,7 @@ def materialise(cfg: Config, references: dict, models: Sequence[str],
             "model": name, "clip_id": cid, "status": "ok", "oracle": False,
             "n_turns": len(turns),
             "n_speakers_hyp": len({t.speaker for t in turns}),
-            "clip_dur_sec": ref.uem[1],
+            "clip_dur_sec": dur,
             "max_end": round(max((t.end for t in turns), default=0.0), 3),
             "elapsed_sec": None, "rtf": None,
             "fused_from": list(systems), "threshold": threshold,

@@ -1,27 +1,42 @@
-# Explorer regression harnesses
+# tools/
 
-The error explorer is a single HTML file with no build step and no test
-framework, so these two node scripts are its test suite. Both take an export
-directory as their only argument and need nothing installed.
+Probes and drivers. **Nothing here writes under `asr/`, `hypotheses/` or
+`results/` unless it says so** — probes run in memory and print, so they can be
+re-run or thrown away at any time without invalidating a sweep.
 
-    node tools/explorer_smoke.mjs  <export_dir>   # does it run?
-    node tools/explorer_verify.mjs <export_dir>   # is it right?
+Every script takes `--root` (the data root) and works against `checkpoints/`
+unless told otherwise.
 
-`explorer_smoke.mjs` executes the page's real JavaScript against a stub DOM and
-drives it: boot, select every clip, switch models, isolate each error type,
-combine two, and focus every speaker of every model. It exists because the
-things that break a canvas UI -- an undefined identifier, a property read on a
-speaker that does not exist in the next clip -- are invisible in a diff.
+## Step 4b — script correction
 
-`explorer_verify.mjs` checks the filters are correct rather than merely
-non-crashing:
+| script | what it does | writes |
+|---|---|---|
+| `run_translit.py` | applies the committed corpus-vocabulary lookup tables (§6.1). Prefers `checkpoints/results/*_table.json`, so it needs **no API key**; `--rebuild-tables` is the only path that calls a model. | `asr/<src>+xlit/`, `+xlit+num/` |
+| `xlit_perclip_experiment.py` | the **shipped** per-clip stage (§6.2). One clip at a time, Sonnet 4.6, temperature 0, config frozen at `f284e59`. | `local_out/experiments/xlit_perclip/` |
+| `xlit_perclip_score.py` | scores that experiment. **The only place it opens ground truth is here, after inference.** | `experiments/.../score_*.json` |
 
-  * every error region is reachable by at least one type filter;
-  * every scored error region either implicates some speaker, or is flagged as
-    unattributed -- error time may never silently vanish under a filter;
-  * a MISS or FA label never contradicts the region it sits on;
-  * the list columns agree with the per-clip payload;
-  * DER really is error_sec / total_sec.
+## Provenance and audit
 
-Run both after touching index.html or explorer.py. On the 99-clip two-model
-export that is ~75,000 assertions and takes a couple of seconds.
+| script | what it does |
+|---|---|
+| `audit_segmentation.py` | checks every stored transcript against the diarization it was cut on. This is what caught the stale-fusion defect in §5. Run it before trusting any sweep. |
+| `gt_alignment_qc.py` | reference-alignment detector; writes `results/gt_alignment_qc/`. Corrections are applied to a **copy** — the raw annotations are never modified, and no reported metric uses them. |
+| `gt_hand_label.py`, `gt_qc_worksheet.py` | manual verification worksheets for that audit. |
+
+## ASR probes
+
+| script | what it does |
+|---|---|
+| `whisper_probe.py` | Whisper configuration sweep (8 configurations × 10 clips). Concluded: configuration is not the problem, do not sweep. |
+| `whisper_ab.py` | decoding A/B on 3 clips, in memory. No result file was kept. |
+| `indic_probe.py` | AI4Bharat IndicConformer-600M. `--lang` defaults to `lid`; `--lang oracle` feeds reference-derived language and is a diagnostic only. |
+| `llm_refine_probe.py` | Step 5 LLM contextual refinement, arms A and B, GT-blind clip selection. Measured null; not shipped. |
+| `llm_refine_report.py` | reports that pilot. Note its raw artifacts were overwritten — see `results/step5_llm_refine.md`. |
+
+## Explorer regression harnesses
+
+`explorer_smoke.mjs` and `explorer_verify.mjs` are the error explorer's test
+suite — it is a single HTML file with no build step and no test framework. Both
+take an export directory as their only argument and need nothing installed.
+
+`adopt_export.py` re-points an export at a different data root.
