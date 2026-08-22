@@ -80,5 +80,17 @@ changes what the *next* kernel restart loads, never a running one. Any library
 change that affects a notebook currently mid-sweep gets called out explicitly —
 which notebook, and whether it invalidates checkpoints already written.
 
-Checkpoints carry a `settings_key` (`beam5-cond1-lidlarge-v3-batch0`), so a
-decoding change makes stale work visibly stale rather than silently mixed.
+Checkpoints carry a `settings_key` so a decoding change makes stale work visibly
+stale rather than silently mixed. **On the per-segment path it does not yet do
+that job.** The committed values are `beam?-cond1-lidself-batch0` (297 payloads)
+and `None` (242): `run_segmented` builds the key from a meta dict that carries
+none of `beam_size`, `condition_on_previous_text`, `lid_model` or `batched` — the
+literal `?` is the missing beam width — and it records neither `merge_gap` nor
+the diarization model. So for per-segment runs the key is effectively a constant
+and fingerprints nothing.
+
+What actually caught the stale-fusion bug was `segmentation_key`, which is
+re-derived from each transcript's stored segment spans at audit time and compared
+against the diarization on disk — see `tools/audit_segmentation.py` and
+`WRITEUP.md` §5. Widening `settings_key` to cover the decoding parameters is
+listed as future work.

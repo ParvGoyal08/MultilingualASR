@@ -118,9 +118,10 @@ High values mean the label spans long silences or other speakers.
 ## Sampling, if you would rather not do all 55
 
 Rows are ranked by error contribution, so the head is worth more than the tail.
-The top 10 of A carry 138 s of the 218 s of false alarm (63%), and the top 5 of
-B carry 448 s of the 563 s of miss (80%). Fifteen rows therefore settle roughly
-three quarters of what is in question.
+The top 10 of A carry **185.4 s of the 218 s** of false alarm (85%) — the top 3
+alone carry 138 s (63%) — and the top 5 of B carry **556.9 s of the 563 s** of
+miss (99%), almost all of it row 1's 546 s. Fifteen rows therefore settle about
+**95%** of what is in question, not three quarters.
 
 ## One caveat on the evidence
 
