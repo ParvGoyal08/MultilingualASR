@@ -7,27 +7,6 @@ Every number here is re-derived from committed artefacts and reproduced by
 
 ---
 
-## 1 · Task and data
-
-Benchmark open-source diarization and multiple STT systems on conversational
-Indic YouTube audio, then build a pipeline on the best combination that
-measurably improves the output.
-
-**99 of 100 clips extracted, 12.26 h, nine Indic scripts, 2–8 speakers per clip,
-7.13 % overlapped speech**, 9 clips with no overlap.
-
-Two properties of this corpus drive every decision. Overlap is pervasive rather
-than an edge case, so overlap handling is the dominant axis. And the reference is
-**code-switched with a dual-form convention** — 20,599 parenthesised Latin glosses,
-e.g. `कॉफी(coffee)` — which means *surface form*, not just meaning, is scored.
-
-DER and JER at **collar 0.0 with overlapping speech included**, per the brief;
-**cpWER** (CHiME-6, exact Hungarian assignment) and **WDER**. **Ground truth is
-never a pipeline input** — stages receive `ClipInput`, a frozen dataclass that
-structurally carries no reference field.
-
-## 2 · Final system
-
 ```
 Saaras v3  @  DOVER-Lap(community-1, reverb-v2, diarizen-large)
            +  per-clip script correction (Claude Sonnet 4.6, temperature 0)
@@ -50,7 +29,26 @@ perfectly recognised, on the reference diarization, still scores cpWER **0.1242*
 one transcript cannot carry two simultaneous speakers. The final system sits
 **0.1807 above that floor**, not 0.3049 above zero.
 
-## 3 · What produced the gain
+## 1 · Data and discipline
+
+Benchmark open-source diarization and multiple STT systems on conversational
+Indic YouTube audio, then build a pipeline on the best combination that
+measurably improves the output.
+
+**99 of 100 clips extracted, 12.26 h, nine Indic scripts, 2–8 speakers per clip,
+7.13 % overlapped speech**, 9 clips with no overlap.
+
+Two properties of this corpus drive every decision. Overlap is pervasive rather
+than an edge case, so overlap handling is the dominant axis. And the reference is
+**code-switched with a dual-form convention** — 20,599 parenthesised Latin glosses,
+e.g. `कॉफी(coffee)` — which means *surface form*, not just meaning, is scored.
+
+DER and JER at **collar 0.0 with overlapping speech included**, per the brief;
+**cpWER** (CHiME-6, exact Hungarian assignment) and **WDER**. **Ground truth is
+never a pipeline input** — stages receive `ClipInput`, a frozen dataclass that
+structurally carries no reference field.
+
+## 2 · What produced the gain
 
 | step | cpWER | Δ |
 |---|---|---|
@@ -92,7 +90,7 @@ it is correcting — no corpus vocabulary, no other clip, never the reference.
 Replacement is whole-token, so token count is invariant and words cannot be added,
 deleted, reordered or translated.
 
-## 4 · Held-out validation
+## 3 · Held-out validation
 
 `results/split.json` is a frozen 50/49 dev/test split. Test was scored **once**,
 with model, prompt, temperature and every guard frozen at commit `f284e59`.
@@ -107,9 +105,10 @@ cross-script corruptions.** Zero harmful is structural — the reference holds 2
 Latin tokens in 123,896, so a Latin hypothesis token is almost never already a
 match and an edit can only help or be inert. The downside is bounded at zero.
 
-**On the diarization number, stated plainly.** The fusion beats `community-1`,
-`pyannote-3.1` and `diarizen-large` decisively (Δ −0.0193 / −0.0195 / −0.0184, all
-CIs excluding zero, 80+/99 clips). Against `reverb-v2` the DER difference is **not
+## 4 · The diarization number, stated plainly
+
+The fusion beats `community-1`, `pyannote-3.1` and `diarizen-large` decisively
+(Δ −0.0193 / −0.0195 / −0.0184, all CIs excluding zero, 80+/99 clips). Against `reverb-v2` the DER difference is **not
 significant** — Δ −0.0079, CI [−0.0353, +0.0161], `reverb-v2` winning 57 of 99
 clips. An earlier draft reported "−3.1 % relative DER" as the Step 4 result; that
 is **withdrawn**. What the fusion does win is JER, confusion, speaker-count
