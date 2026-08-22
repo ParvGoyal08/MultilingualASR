@@ -224,11 +224,19 @@ def apply_to_payload(payload: dict, table: dict[str, dict[str, str]]) -> tuple[d
     out = copy.deepcopy(payload)
     n = 0
     for s in out["segments"]:
-        toks = (s.get("text") or "").split()
         new = []
-        for t in toks:
+        for t in (s.get("text") or "").split():
             core = normalize_text(t, strip_gloss=False).strip()
-            if core and (is_latin(core) or has_digit(core)) and core in m:
+            if not core:
+                new.append(t); continue
+            # WHOLE-TOKEN ONLY, deliberately. Normalisation splits some raw
+            # tokens ("23,500" -> "23 500", "don't" -> "don t"), and mapping the
+            # pieces converts all 3,689 Latin and 892 numeral tokens instead of
+            # 3,520/697 -- but measured, that buys 0.0003 cpWER (noise) while
+            # turning contraction remnants like the "t" of "don't" into Indic
+            # letters and costing the zero-regression property on dev (0 -> 2
+            # clips worse). Not worth it.
+            if (is_latin(core) or has_digit(core)) and core in m:
                 new.append(m[core]); n += 1
             else:
                 new.append(t)

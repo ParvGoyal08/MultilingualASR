@@ -1618,3 +1618,51 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      heard word, and where a general model supplies the convention without ever
      seeing the reference. The failures were all attempts to fix RECOGNITION,
      which a text-only model cannot do.
+
+--------------------------------------------------------------------------
+[55] Swept the residual for more convention mismatches. Two small ones found,
+     both rejected on measurement. The path is exhausted.
+
+     After [53]+[54] the hypothesis still contains 169 Latin tokens (26 types)
+     and 195 digit tokens (51 types). Neither is a coverage gap -- all 1,651
+     Latin and all 382 numeral types were mapped, 0 missing. It is an
+     APPLICATION bug: normalize_text splits some raw tokens, "23,500" -> "23
+     500" and "don't" -> "don t", and the vocabulary is keyed on normalised
+     SINGLE tokens, so a multi-word core never matches.
+
+     Fixing it piecewise converts everything (3,520 -> 3,689 Latin, 697 -> 892
+     numerals) and is worth -0.0003 cpWER: 0.3017 -> 0.3014. Noise. And it
+     costs the safety property -- dev regressions go 0 -> 2, because mapping the
+     "t" of "don't" turns a contraction remnant into an Indic letter. NOT
+     SHIPPED; the whole-token version is kept and the reason is in the code.
+
+     Word-boundary convention. 271 cases (0.22% of tokens) where the reference
+     SPLITS and the hypothesis JOINS -- Odia 'କ ଣ' vs 'କଣ', Telugu 'సీట్ లు' vs
+     'సీట్లు', the plural suffix written separately. Strikingly one-directional:
+     271 join-cases against 0 split-cases, so the annotator consistently
+     separates suffixes the recogniser attaches. Real, but 0.22% is small and
+     the suffix inventory would have to be learned from the reference, which is
+     a leak. Rejected.
+
+     Orthographic folding (nukta, chandrabindu) was already rejected in [54] at
+     0.34% of tokens and is a scoring change rather than a system change.
+
+     FINAL SHIPPED STACK, all 99 clips:
+
+                          ratio      WER    cpWER     WDER
+       baseline          0.9786   0.2787   0.3181   0.0628
+       +xlit +numerals   0.9807   0.2585   0.3017   0.0602
+       delta            +0.0021  -0.0202  -0.0164  -0.0026
+
+       split  d cpWER   95% CI              better/worse/tie
+       all    -0.0164   [-0.0188, -0.0084]    72 / 1 / 26
+       dev    -0.0094   [-0.0137, -0.0062]    34 / 0 / 16
+       test   -0.0216   [-0.0274, -0.0081]    38 / 1 / 10
+
+     WER -7.2% relative, cpWER -5.2%, WDER -4.1%. Both split CIs exclude zero.
+
+     What is left in the residual is recognition error, not convention: 46% of
+     substitutions are within 2 characters but only 2.2% are deterministic
+     orthographic variants; the rest are different words. The remaining
+     deletions are backchannels the recogniser drops. Neither is reachable by a
+     text-only stage, and this line of work is closed.
