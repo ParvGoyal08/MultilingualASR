@@ -37,7 +37,7 @@ relative to `start_sec`.
 **Two properties of this corpus drive every design decision.** Overlap is 7.13%
 of time and only 9 clips have none, so overlap handling is the dominant axis
 rather than an edge case. And the reference is **code-switched with a dual-form
-convention** — 20,562 parenthesised Latin-alphabetic glosses (22,050 counting all
+convention** — 20,599 parenthesised Latin-alphabetic glosses (22,022 counting all
 round brackets), e.g. `कॉफी(coffee)` — which
 means surface form, not just meaning, is what gets scored.
 
@@ -88,7 +88,7 @@ aggregate: `reverb-v2` has the lowest miss (0.0719) but the worst confusion
 averaging 15.5 s against DiariZen's 2.6 s.
 
 **`pyannote 3.1` was excluded from fusion**: it shares `pyannote/segmentation-3.0`
-with `community-1` and differs by 0.44 s of miss+FA over 12.4 h. Under majority
+with `community-1` and differs by 0.320 s of miss+FA over 12.4 h. Under majority
 voting they are one vote counted twice.
 
 ### Ground-truth reliability
@@ -473,7 +473,7 @@ implausibilities the model could catch.
 ## 6.1 Step 4b — script and numeral normalisation *(the stage that worked)*
 
 **Finding.** The reference writes code-switched English **phonetically in the
-native script** — the dual-form convention behind its 20,562 parenthesised
+native script** — the dual-form convention behind its 20,599 parenthesised
 glosses. Measured: the reference is 99.98% Indic script (27 Latin tokens in
 123,896); the Saaras hypothesis is 3.0% Latin (3,689 tokens). Of 21,357
 substitutions, **3,481 (16.3%) are reference-Indic against hypothesis-Latin**:
@@ -515,11 +515,16 @@ contained the hypothesis vocabulary and nothing else.)
 
 | split | pooled Δ cpWER | 95% CI | better / worse / tie |
 |---|---|---|---|
-| all | −0.0164 | [−0.0279, −0.0078] | 72 / 1 / 26 |
-| dev | −0.0094 | [−0.0148, −0.0056] | **34 / 0 / 16** |
-| test | −0.0216 | [−0.0410, −0.0070] | 38 / 1 / 10 |
+| all | −0.0164 | [−0.0276, −0.0080] | 72 / 1 / 26 |
+| dev | −0.0094 | [−0.0147, −0.0056] | **34 / 0 / 16** |
+| test | −0.0216 | [−0.0405, −0.0072] | 38 / 1 / 10 |
 
-Both CIs exclude zero; sign test p = 1.6 × 10⁻²⁰. **Not one clip regressed on
+The intervals above are paired bootstraps of the **pooled** delta over 10,000
+clip resamples, matching the pooled point estimate beside them. Resampling the
+**per-clip mean** instead gives −0.0131, CI [−0.0188, −0.0084] — a different
+estimand with a narrower interval, reported in `obs.txt` [54]. Both exclude zero.
+
+All three CIs exclude zero; sign test p = 1.6 × 10⁻²⁰. **Not one clip regressed on
 dev** — by construction, since the stage only rewrites tokens the recogniser
 already emitted in Latin or as digits, so a wrong rendering leaves a
 substitution that was already a substitution. The downside is bounded at zero.
@@ -593,8 +598,8 @@ not itself GT-blind, though no per-clip metric influenced it.
 
 Feeding the reference transcript back as if recognised, attributed against the
 reference diarization, still scores **cpWER 0.1242 / WDER 0.0349** — and exactly
-0 on the 9 zero-overlap clips. The final system is **0.1939 above that floor**,
-not 0.3181 above zero.
+0 on the 9 zero-overlap clips. The final system is **0.1775 above that floor**,
+not 0.3017 above zero.
 
 Two components make up the floor, and only one is physical: 0.0424 is
 attribution ("one transcript cannot carry two simultaneous speakers"), and the

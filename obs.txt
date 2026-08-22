@@ -1586,9 +1586,20 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
        + numerals           0.9807   0.2585   0.3017   0.0602
        TOTAL               +0.0021  -0.0202  -0.0164  -0.0026
 
-     WER -7.2% relative, cpWER -5.2%. Per clip: 72 better, 1 worse, 26 tie;
-     95% CI [-0.0188, -0.0084], excludes zero. dev -0.0094 (34 better, 0 worse),
-     test -0.0216 (38 better, 1 worse).
+     WER -7.2% relative, cpWER -5.2%.
+
+     Two estimands, and they must not be quoted interchangeably. The table above
+     is POOLED (total errors / total reference words), which weights long clips
+     more: cpWER delta -0.0164. The paired bootstrap resamples CLIPS, so its
+     interval belongs to the PER-CLIP MEAN delta, which is -0.0131 with 95% CI
+     [-0.0188, -0.0084]. Both exclude zero and the sign agrees; pairing the
+     pooled -0.0164 with the mean's interval would be an error. The pooled delta
+     has its own bootstrap, [-0.0276, -0.0080] -- wider, because resampling
+     clips moves the denominator too. That is the interval WRITEUP.md quotes
+     beside the pooled figure, correctly.
+
+     Per clip: 72 better, 1 worse, 26 tie. Pooled by split: dev -0.0094
+     (34 better, 0 worse), test -0.0216 (38 better, 1 worse).
 
      Numerals are weaker than transliteration (-0.0028 vs -0.0136 cpWER) and
      carry the only regression: spelling a number out changes the token count,

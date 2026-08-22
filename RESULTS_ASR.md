@@ -179,14 +179,14 @@ A 50 s clip and a 30 min clip must not carry equal weight. Same rule as
 Feeding the **reference transcript back** as if it had been recognised, and
 attributing it against the **reference diarization**, still scores:
 
-    cpWER 0.1240      WDER 0.0348      (exactly 0 on the 9 zero-overlap clips)
+    cpWER 0.1242      WDER 0.0349      (exactly 0 on the 9 zero-overlap clips)
 
 One transcript cannot carry two people talking at once, so under overlap only the
 dominant speaker's words are recoverable and the other's are structurally lost.
 **12.8% of reference words** lie in overlapped speech — against 7.13% of *time*,
 because overlapped speech is denser.
 
-Every cpWER below should be read against 0.1240, not against zero.
+Every cpWER below should be read against 0.1242, not against zero.
 
 ---
 
@@ -246,7 +246,7 @@ independent corroboration that the fusion is the better ASR front-end.
 
 ### 5.1 Decomposition of the headline
 
-**cpWER 0.3957 against a floor of 0.1240** — Saaras v3 is **0.2717 above the
+**cpWER 0.3957 against a floor of 0.1242** — Saaras v3 is **0.2715 above the
 achievable floor**, not 0.3957 above zero.
 
 **31% of the cpWER is attribution, not words.** DI-cpWER discards attribution and
@@ -336,7 +336,7 @@ keeps large-v3's encoder but cuts the decoder from 32 layers to 4, and language
 ID degraded with it. Fixed in code by delegating detection to `large-v3`.
 
 **Why an LLM cannot repair this.** Back-translating the English output would not
-recover the reference's surface forms. The reference contains **19,948
+recover the reference's surface forms. The reference contains **20,599
 parenthesised English glosses** — code-switched words written phonetically in
 native script, e.g. Kannada `ಇನ್ಫಾರ್ಮೇಷನ್` for *information*. An LLM translating
 "information" back writes the native word `ಮಾಹಿತಿ`, not the phonetic loan the
@@ -510,4 +510,4 @@ resamples — so that result was noise, and 9 clips is not much better evidence.
 | exactness check for cpWER's assignment | `text_metrics.verify_assignment_exact` |
 | corpus sweeps | `main_kaggle.ipynb` §3 |
 | hypothesis probes | `main_kaggle_2.ipynb` |
-| decoding A/B | `tools/whisper_ab.py` → `results/whisper_ab.json` |
+| decoding A/B | `tools/whisper_ab.py` (run in-memory on 3 clips; no result file was kept) |

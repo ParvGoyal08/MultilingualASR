@@ -30,7 +30,7 @@ By component they behave completely differently:
 * `diarizen-large` owns **assignment** — confusion 0.0842 — and is the only
   model with essentially no speaker-count bias (+0.02 against −0.17 to −0.35).
 * `community-1` and `pyannote-3.1` are near-identical: they share
-  `pyannote/segmentation-3.0` and differ by 0.44 s of miss+FA over 12.4 hours.
+  `pyannote/segmentation-3.0` and differ by 0.320 s of miss+FA over 12.4 hours.
 
 Ranking by DER alone would report "the models are equivalent" and discard the
 only interesting result.
@@ -83,9 +83,10 @@ picking any single model amounts to betting on which half of the corpus you drew
 
 ## Ground-truth alignment (diagnostic, not the headline)
 
-23 of 99 clips carry annotations displaced 1.0–5.0 s later than the speech,
-detected by cross-model consensus with independent energy-VAD corroboration and
-spot-checked visually against the waveform. Corrections are applied to a copy at
+39 of 99 clips were flagged as carrying annotations displaced 1.0–5.0 s later
+than the speech, by cross-model consensus with independent energy-VAD
+corroboration and visual spot-checks against the waveform; **23** met the
+auto-accept bar and are the ones actually applied below. Corrections are applied to a copy at
 scoring time; the raw annotations are never modified.
 
 | system | DER | miss | FA | confusion | JER | spk acc | spk bias |

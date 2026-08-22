@@ -1,11 +1,15 @@
 # Runbook — who owns what
 
-Two notebooks, split by **role** rather than by system.
+Three notebooks, split by **role** rather than by system.
 
 | | role | writes? |
 |---|---|---|
-| `main_kaggle.ipynb` | **the deliverable** — every major run, Steps 1–4, all scoring and results | yes, exclusively |
+| `main.ipynb` | **the submission** — Steps 1–5 end to end from committed checkpoints, `SUBSET = 10 / 0` toggle. No GPU, no API key. | no |
+| `main_kaggle.ipynb` | **the sweep notebook** — every major run that produced the checkpoints | yes, exclusively |
 | `main_kaggle_2.ipynb` | **the experiment bench** — probes, hypotheses, approach decisions | **never** |
+
+`main.ipynb` is what a reviewer runs. The two Kaggle notebooks are what produced
+the artifacts it reads, and are kept for provenance.
 
 `main_kaggle_2` runs in memory over a handful of clips and writes no checkpoint.
 So it can be edited, re-run or thrown away at any time, including while
@@ -35,6 +39,39 @@ prints what is already on disk, so a `False` flag still tells you where you are.
 3. `main_kaggle_2` cells 1–3: long-form vs per-segment on 3 clips.
 4. If the ratio lands near 1.0 → `RUN_WHISPER = True` in `main_kaggle` 3.4.
 5. `main_kaggle` 3.5 / 3.6 for the current tables. Read-only, safe any time.
+
+## Step 4b — script and numeral normalisation
+
+Runs on the laptop, not Kaggle: it is text-only, so no audio and no GPU.
+
+```bash
+# applies the committed lookup tables -- no API key needed
+./.venv/bin/python tools/run_translit.py --root local_out/step4_input
+
+# rebuilds the tables from the hypothesis vocabulary (needs AWS_BEARER_TOKEN_BEDROCK)
+./.venv/bin/python tools/run_translit.py --root local_out/step4_input --rebuild-tables
+```
+
+`table_path()` prefers `checkpoints/results/{translit,numeral}_table.json` over
+the run root, so the default path reproduces the shipped result — 3,520 Latin
+tokens and 697 numerals replaced — with no network access at all. Only
+`--rebuild-tables` calls the model, and responses are cached by prompt hash, so
+the prompt and model ID are part of the key and a stale response can never be
+silently reused.
+
+Writes `asr/<source>+xlit/` and `asr/<source>+xlit+num/`. Segment boundaries,
+speakers and timestamps are copied through untouched, so `segmentation_key` still
+matches the source and `audit_segmentation` stays green.
+
+## Verifying the pipeline before trusting a sweep
+
+```bash
+./.venv/bin/python tools/audit_segmentation.py --root local_out   # expect: ok 99, MISMATCH 0
+```
+
+A mismatch means transcripts were produced against a different diarization than
+the one now on disk — the defect that cost 0.0200 cpWER before it was caught.
+Nothing downstream should be scored until this is clean.
 
 ## Editing the library while a sweep runs
 
