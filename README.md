@@ -6,7 +6,9 @@ Speaker diarization and speaker-attributed transcription over **99 YouTube clips
 **Start here: [`main.ipynb`](main.ipynb).** It runs end to end from committed
 checkpoints — no GPU, no API key, no gated model access — and has a `SUBSET = 10`
 toggle at the top so the whole pipeline can be verified in a few minutes before
-committing to the full corpus.
+committing to the full corpus. Verified from a fresh clone: it reproduces every
+number below. The one network call is a first-run fetch of the assignment's
+`youtube_segments.csv`, which is not redistributed in this repo.
 
 ## Result
 
@@ -37,7 +39,7 @@ not 0.3017 above zero.
 
 ## What produced the gain
 
-Two of the four things tried worked, and the larger win was not a modelling change:
+Three changes produced it, and the largest was not a modelling change at all:
 
 1. **A provenance bug.** 27 clips had been transcribed against a stale 2-system
    fusion. Detecting it needed a `segmentation_key` — a hash of the turn
