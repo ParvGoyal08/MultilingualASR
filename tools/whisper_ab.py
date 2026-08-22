@@ -79,7 +79,7 @@ def main() -> int:
     print(f"  model={args.model}  lid={args.lid or 'self'}  root={root}  "
           f"clips={len(picked)}\n")
     # Collected, not only printed. The last A/B was run, screenshotted and
-    # lost, and its conclusion then got quoted in RESULTS_ASR.md as if it were a
+    # lost, and its conclusion then got quoted in the ASR results doc as if it were a
     # benchmark. A run that leaves no artefact is not evidence.
     rows: list[dict] = []
     print(f"  {'setting':<36}{'ref w':>7}{'hyp w':>7}{'ratio':>7}{'WER':>8}{'del%':>7}{'sec':>7}")

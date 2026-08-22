@@ -287,7 +287,7 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
 
      Together the two classes account for 1.75 of community-1's 26.34 DER
      points -- 6.6% of all error, and that is the CEILING on what re-labelling
-     them could reclassify. Enumerated with timestamps in GT_AUDIT.md and
+     them could reclassify. Enumerated with timestamps in the GT audit (now README.md §11) and
      results/gt_*.csv. The earlier framing of "~45 minutes where the reference
      is unreliable" overstated it: 36 of those 45 minutes are the long turns,
      and all but one of those are fine. The writeup should report DER as
@@ -1007,7 +1007,8 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      settles it takes seconds and needs no audio. It should have come first.
 
 --------------------------------------------------------------------------
-[40] The Whisper numbers in RESULTS_ASR.md were never a measurement of Whisper.
+[40] The Whisper numbers then in RESULTS_ASR.md (now README.md §5) were never a
+     measurement of Whisper.
      Read back from the checkpoint sidecars rather than from memory, every one
      of the 99 turbo clips and all 35 large-v3 clips ran with:
 
@@ -1018,7 +1019,7 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      code has since changed on all three counts and none has been re-run. The
      numbers record where the diagnosis started, not what Whisper can do.
 
-     The claim in RESULTS_ASR.md that beam size and condition_on_previous_text
+     The claim then in RESULTS_ASR.md that beam size and condition_on_previous_text
      "were A/B tested and change nothing" rested on tools/whisper_ab.py at
      --clips 3, whose output was printed and never saved. A run that leaves no
      artefact is not evidence, and quoting it as one is how a probe becomes a
