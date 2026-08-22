@@ -427,7 +427,8 @@ here closes it.
 
 **One language resisted entirely.** `7YfsQPYY-W0__351_411` is Oriya and every
 configuration detected it as `bn` (p = 0.87). Oriya is the thinnest Indic
-language in Whisper's training data and is the single script miss.
+language Whisper cannot target at all -- `or` is absent from its 99-language
+set -- and is the single script miss.
 
 ### 7.4 Decision, and what remains untested
 

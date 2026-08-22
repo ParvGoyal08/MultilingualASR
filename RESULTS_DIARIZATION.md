@@ -63,7 +63,7 @@ detection. `diarizen-large` recovers **84%**, the closest match, and still has
 the *worst* miss. Overlap detection and miss are separable failures, and no
 model does both.
 
-The fusion marks 49.5% of the reference overlap *volume* but only **21.5%** of it coincides with true overlap (678 s of 3,148 s); recall is 21.5%, and the fusion recovers only ~50% — majority voting suppresses second speakers,
+Fusion overlap **recall is 21.5%** — it finds 678 s of the reference's 3,148 s of overlap. It marks 1,560 s as ≥2 speakers, so **882 s of the overlap it does claim is in the wrong place** (precision 43.5%). Majority voting suppresses second speakers,
 because a concurrent speaker needs the same majority as the first and
 `reverb-v2` votes against nearly all of them.
 

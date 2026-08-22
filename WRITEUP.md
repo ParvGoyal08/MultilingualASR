@@ -231,8 +231,8 @@ probes:
    in one pair the oracle is *worse*. `large-v3` is identical to four decimals.
 3. **It is an Indic capability gap.** AI4Bharat **IndicConformer-600M** on the
    same ten clips, same segmentation, language supplied to both, scores **WER
-   0.4158 (CTC)** against Whisper's best 0.9058 — **2.2× better** from a model an
-   order of magnitude smaller.
+   0.4158 (CTC)** against Whisper's best 0.9058 — **2.2× better** from a model
+   2.6× smaller (600 M against 1.55 B).
 
 Whisper's failure mode is specific and worth recording: on **92 of 99 clips it
 produced a different script from the reference**, emitting fluent English
@@ -709,7 +709,7 @@ boundaries are dense. An earlier draft reported 1.36× from a histogram that had
 silently capped its denominator at 800 ms; that was wrong and the corrected
 figure roughly doubles the estimated importance of boundary precision.
 
-**False alarm is mostly spill, not invention.** 1,329 s of FA in true reference
+**False alarm is mostly spill, not invention.** 1,372 s of FA in true reference
 silence across 3,427 runs, **median run 0.20 s**; only 7.9% is in runs over 5 s.
 
 **The transcript cannot see speaker errors — the assignment's hint does not hold
@@ -741,24 +741,24 @@ reaches only 30% of the damage; the 36% sitting in long segments has a 5.6% erro
 rate, so flagging it would be 94% false positives.
 
 **ASR error is overwhelmingly recognition, not attribution** — 87.6% of remaining
-cpWER. By script, on the **final system** (`saaras-v3@fusion`):
+cpWER. By script, on the **final system** (`saaras-v3@fusion+xlit+num`):
 
 | script | clips | WER | cpWER | WDER |
 |---|---|---|---|---|
-| Telugu | 12 | 0.4103 | **0.4524** | 0.1212 |
-| Malayalam | 7 | 0.3324 | 0.3902 | 0.0736 |
-| Oriya | 9 | 0.3490 | 0.3893 | 0.0531 |
-| Bengali | 8 | 0.2539 | 0.3802 | **0.1256** |
-| Gujarati | 12 | 0.3250 | 0.3527 | 0.0715 |
-| Kannada | 9 | 0.2621 | 0.3524 | 0.0706 |
-| Gurmukhi | 7 | 0.2780 | 0.3236 | 0.0550 |
-| Tamil | 10 | 0.2531 | 0.2785 | 0.0287 |
-| Devanagari | 25 | 0.1986 | **0.2088** | 0.0309 |
+| Telugu | 12 | 0.3521 | **0.4103** | 0.1122 |
+| Malayalam | 7 | 0.3299 | 0.3877 | 0.0732 |
+| Oriya | 9 | 0.3448 | 0.3852 | 0.0534 |
+| Bengali | 8 | 0.2455 | 0.3746 | **0.1233** |
+| Gujarati | 12 | 0.2901 | 0.3287 | 0.0672 |
+| Kannada | 9 | 0.2276 | 0.3183 | 0.0697 |
+| Gurmukhi | 7 | 0.2704 | 0.3169 | 0.0548 |
+| Tamil | 10 | 0.2458 | 0.2710 | 0.0282 |
+| Devanagari | 25 | 0.1885 | **0.1985** | 0.0292 |
 
-**Telugu is 2.17× Devanagari on cpWER.** Language is a far larger axis of
+**Telugu is 2.07× Devanagari on cpWER.** Language is a far larger axis of
 variation than anything else measured. WER and cpWER also rank scripts
-differently: **Bengali has the second-best WER (0.2539) but the worst WDER
-(0.1256)** and only the fourth-worst cpWER — its words are recognised well and
+differently: **Bengali has the third-best WER (0.2455) but the worst WDER
+(0.1233)** and only the fourth-worst cpWER — its words are recognised well and
 its speakers attributed badly. Group sizes are 7–25 clips, so read the ordering
 as indicative.
 
@@ -832,7 +832,7 @@ Only proposals with measured support are listed.
    condition C also changes the *separator's* operating bandwidth, and mask
    estimation depends on cues above 4 kHz that an 8 kHz model never sees — the
    control cannot decompose those. And the overlap regions were located from the
-   reference, which no shipped system can do (fusion overlap recall is 21.6%).
+   reference, which no shipped system can do (fusion overlap recall is 21.5%).
    So what is established is narrow: **an out-of-domain 8 kHz separator, given
    oracle overlap regions, does not help.** Whether a 16 kHz in-domain separator
    would is **untested**, and is the next thing to try — not a settled question.

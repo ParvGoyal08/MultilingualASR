@@ -104,6 +104,9 @@ dev; test was scored once.
 | [`RUNBOOK.md`](RUNBOOK.md) | how to re-run each stage, and which notebook owns what |
 | [`RESULTS_DIARIZATION.md`](RESULTS_DIARIZATION.md), [`RESULTS_ASR.md`](RESULTS_ASR.md) | per-stage detail |
 | [`GT_AUDIT.md`](GT_AUDIT.md) | reference-quality audit and the correction manifest |
+| [`ERROR_EXPLORER.md`](ERROR_EXPLORER.md) | how to run the local error browser (`sarvam_diar/explorer.py`) |
+| [`KAGGLE_SETUP.md`](KAGGLE_SETUP.md) | how the GPU sweeps were run |
+| `Errors.txt` | raw hand-written notes from listening to clips; unedited, kept as the audit trail behind `GT_AUDIT.md` |
 
 `main_kaggle.ipynb` is the sweep notebook that produced the checkpoints;
 `main_kaggle_2.ipynb` is the experiment bench and writes nothing.
