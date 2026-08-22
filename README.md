@@ -64,7 +64,11 @@ because the middle term is easy to hide inside the first:
    code-switched English phonetically in the native script and numbers as spoken
    words; Saaras writes Latin and digits. 3,481 of 21,357 substitutions were
    *correctly recognised words scored wrong for their spelling convention*.
-   −0.0164 cpWER, 72 clips better / 1 worse, 0 dev regressions.
+   −0.0164 cpWER, 72 clips better / 1 worse, 0 dev regressions. This stage is
+   **transductive** — its lookup table is built from all 99 clips' hypotheses
+   (not their ground truth), so the dev/test split does not test it. With a
+   dev-only table the gain is −0.0064; `WRITEUP.md` §6.1 reports both and
+   explains which applies when.
 
 Three interventions were built, measured end-to-end and **rejected**: a 1-of-3
 overlap vote, ConvTasNet source separation, and LLM contextual refinement. Each

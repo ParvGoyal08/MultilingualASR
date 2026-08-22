@@ -179,9 +179,9 @@ observed split spread is no lower than `community-1`'s.
 **−19.6% relative cpWER** and **−44.3% relative WDER**, winning 88 of 99 clips.
 That is where Step 4a earns its place, not in DER.
 
-Four other refinement ideas were implemented and **rejected on measurement**:
-segment transplantation, boundary padding, empty-segment pruning, and
-overlap-region deduplication. Details in §6 and `obs.txt`.
+Three other refinement ideas were implemented and **rejected on measurement**:
+segment transplantation, boundary padding, and overlap-region deduplication.
+Details in §6 and `obs.txt` [32], [35], [50].
 
 ---
 
@@ -524,6 +524,45 @@ clip resamples, matching the pooled point estimate beside them. Resampling the
 **per-clip mean** instead gives −0.0131, CI [−0.0188, −0.0084] — a different
 estimand with a narrower interval, reported in `obs.txt` [54]. Both exclude zero.
 
+**This stage is transductive, and the dev/test split does not test it.**
+`build_table` draws its vocabulary from the hypotheses of **all 99 clips**,
+including test. No ground truth is read — the leak audit above is unaffected —
+but the table's *coverage* was determined with the test clips' own transcripts in
+view, so both halves are in-vocabulary by construction and the split above cannot
+detect a generalisation failure. That has to be stated, because the table is
+otherwise easy to read as a held-out result.
+
+The inductive counterfactual: restrict the shipped table to keys observed in
+**dev** hypotheses only, then apply it everywhere.
+
+| split | baseline | shipped (99-clip vocab) | dev-only vocab |
+|---|---|---|---|
+| dev | 0.2676 | 0.2582 (−0.0094) | 0.2582 (−0.0094) |
+| test | 0.3552 | 0.3337 (**−0.0216**) | 0.3511 (**−0.0042**) |
+| all | 0.3181 | 0.3017 (−0.0164) | 0.3118 (−0.0064) |
+
+**About 80% of the measured test gain depends on the table having seen test
+vocabulary.** The dev column is unchanged to four decimals, which is itself the
+tell: dev is in-vocabulary either way, so no dev-side diagnostic could have
+caught this.
+
+The cause is coverage, not modelling. Latin code-switching is extremely
+concentrated in this corpus — dev holds 403 Latin types / 582 tokens against
+test's 1,365 types / 3,107 tokens, and only **8.6% of test types (18.9% of test
+tokens) appear anywhere in dev**. A dev-built table simply has no entry for most
+test words. The LLM itself generalises fine: it renders any word handed to it,
+and never saw the split. What does not transfer is the *word list*.
+
+Which number is the honest headline depends on the deployment, so both are
+reported. As a batch post-processor over a corpus you already hold — the setting
+here, and the normal one for offline transcription — you build the table from
+that corpus and get **−0.0164**. If new audio must be transcribed against a
+frozen table, the right expectation is **−0.0064**, and the fix is to extend the
+table at inference time, which costs one LLM call per unseen word type and needs
+no ground truth. The stage's other properties are unaffected either way: it can
+only rewrite tokens already emitted in Latin or as digits, so its downside stays
+bounded at zero.
+
 All three CIs exclude zero; sign test p = 1.6 × 10⁻²⁰. **Not one clip regressed on
 dev** — by construction, since the stage only rewrites tokens the recogniser
 already emitted in Latin or as digits, so a wrong rendering leaves a
@@ -576,7 +615,9 @@ diarization claims are **JER −5.9%**, **speaker-count accuracy +19.2 points**,
 | **total improvement** | — | **−5.2%** | **−23.8%** | **−46.6%** |
 
 Step 4a contributes −19.6% relative cpWER (88/99 clips), Step 4b a further
-−5.2% (72/99, CIs excluding zero on both halves). Flat WER dips at 4a — the
+−5.2% (72/99, CIs excluding zero on both halves — though see §6.1: Step 4b is
+**transductive**, so its dev/test split is not a generalisation test, and the
+inductive estimate is −0.0064 rather than −0.0164). Flat WER dips at 4a — the
 fusion preserves overlap, so overlapped audio is transcribed once per speaker
 and some words appear twice — and 4b more than recovers it.
 
@@ -801,10 +842,12 @@ Only proposals with measured support are listed.
    clips and covers Oriya, which Whisper structurally cannot. A `--lang lid` run
    over 99 clips would turn a probe into a benchmark.
 
-**Explicitly not claimed.** Boundary padding, segment transplantation,
-empty-segment pruning, overlap deduplication, and LLM refinement were all
-implemented and measured, and none of them improved the system on held-out data.
-They are reported as negative results.
+**Explicitly not claimed.** Boundary padding, segment transplantation, overlap
+deduplication, source separation and LLM refinement were all implemented and
+measured, and none of them improved the system. They are reported as negative
+results. The MSDD-style verifier and the OSD∩constituent intersection were
+**not** implemented — they were dropped after a candidate-precision audit — and
+are reported as audits, not experiments.
 
 ---
 
