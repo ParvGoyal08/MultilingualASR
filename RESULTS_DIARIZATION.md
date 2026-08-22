@@ -131,7 +131,8 @@ Three details worth reading:
 * **JER improves most in relative terms** — up to 20% — because it is computed
   per speaker, and a displaced reference damages every speaker's segments
   simultaneously rather than concentrating the damage anywhere.
-* **Speaker-count accuracy barely moves**, about one clip per system, and the
+* **Speaker-count accuracy barely moves**, +2.02 points — two clips — for
+  every system, and the
   bias is essentially unchanged. That is a consistency check rather than a null
   result: how many speakers a model finds should not depend on *when* the
   reference says they spoke. A correction that changed speaker counts would mean

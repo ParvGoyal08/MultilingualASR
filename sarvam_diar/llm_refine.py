@@ -394,7 +394,7 @@ def call_bedrock(cfg: Config, model: str, system: str, user: str,
     if use_cache:
         hit = read_json(path, None)
         if hit and hit.get("response"):
-            return {"cached": True, "key": ck, **hit}
+            return {"cached": True, "cache_key": ck, **hit}
     # Gemini gets its JSON from responseSchema; Bedrock has no equivalent, so
     # the format has to be demanded in-band AND pinned with an assistant
     # prefill. Without the prefill Sonnet returns the rendered transcript back
@@ -411,7 +411,7 @@ def call_bedrock(cfg: Config, model: str, system: str, user: str,
             "messages": [{"role": "user", "content": user}], **gen}
     t0 = time.perf_counter()
     resp = translit._post(body, translit.resolve_bedrock_key(cfg), model)
-    rec = {"cached": False, "key": ck, "model": model, "response": resp,
+    rec = {"cached": False, "cache_key": ck, "model": model, "response": resp,
            "prompt_version": PROMPT_VERSION,
            "elapsed_sec": round(time.perf_counter() - t0, 2), "at_utc": now_utc_iso()}
     write_json_atomic(path, {k: v for k, v in rec.items() if k != "cached"})
@@ -428,7 +428,7 @@ def call_gemini(cfg: Config, key: str, model: str, system: str, user: str,
     if use_cache:
         hit = read_json(path, None)
         if hit and hit.get("response"):
-            return {"cached": True, "key": ck, **hit}
+            return {"cached": True, "cache_key": ck, **hit}
 
     body = {"system_instruction": {"parts": [{"text": system}]},
             "contents": [{"role": "user", "parts": [{"text": user}]}],
@@ -443,7 +443,7 @@ def call_gemini(cfg: Config, key: str, model: str, system: str, user: str,
             resp = _gemini_post(body, key, model)
         else:
             raise
-    rec = {"cached": False, "key": ck, "model": model, "prompt_version": PROMPT_VERSION,
+    rec = {"cached": False, "cache_key": ck, "model": model, "prompt_version": PROMPT_VERSION,
            "response": resp, "elapsed_sec": round(time.perf_counter() - t0, 2),
            "at_utc": now_utc_iso()}
     write_json_atomic(path, {k: v for k, v in rec.items() if k != "cached"})

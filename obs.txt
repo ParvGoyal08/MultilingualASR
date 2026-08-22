@@ -5,7 +5,7 @@ The asr_segments ground truth uses a dual-form convention for code-switched word
 
 GT diarization is actually slightly exceeding the length of the videos - Might fix later....Bracket Convention for Code-Switched Glosses Is Not Uniform
 
-The dual-form convention above is written with three different bracket styles, not one. Round parens dominate (22,050 occurrences across 4,562 segments in 96 videos), but 521 glosses in 76 segments across 8 videos use square brackets — டவுட் [doubt], தேங்க்யூ [thankyou] — and 10 glosses in a single video (Iare1Emeueg) use curly braces — ट्राई {try}, लैपटॉप {laptop}. Critically, 16 segments across 8 videos mix more than one style within the same segment, so the style cannot be selected per-video. A normalizer written against round parens alone silently leaves square- and curly-bracket glosses in the reference, inflating WER exactly where code-switching is densest.
+The dual-form convention above is written with three different bracket styles, not one. Round parens dominate (22,050 occurrences across 4,562 segments in 96 videos -- [CORRECTED: 22,022 over the 99 extracted clips; 22,050 counted the unextracted 100th]), but 521 glosses in 76 segments across 8 videos use square brackets — டவுட் [doubt], தேங்க்யூ [thankyou] — and 10 glosses in a single video (Iare1Emeueg) use curly braces — ट्राई {try}, लैपटॉप {laptop}. Critically, 16 segments across 8 videos mix more than one style within the same segment, so the style cannot be selected per-video. A normalizer written against round parens alone silently leaves square- and curly-bracket glosses in the reference, inflating WER exactly where code-switching is densest.
 
 Three further traps in the same convention: 29 segments have unbalanced or doubled parens (((Stardom)), ଫାସିଲିଟିଜ((facilities)) which a naive re.sub(r'\([^)]*\)','') corrupts rather than cleans; 1,831 glosses are followed by a re-attached native case suffix (चॅनल(channel)-वर, ସେକ୍ସନରେ(section)-ରେ) that leaves a dangling hyphen-suffix token once the gloss is stripped; and 1,300 glosses are numerals (एक(1), दीड(1.5)) where the choice of which form to keep changes the reference token count.
 
@@ -227,6 +227,8 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
      Miss falls 33% relative, 0.1079 -> 0.0719. That is the largest single
      movement in this benchmark and it confirms [18] directly: the two pyannote
      pipelines could not move miss or FA at all (0.44 s apart over 12.4 h)
+     [CORRECTED: recomputed as 0.320 s -- miss 0.127 s + FA 0.193 s. The
+      conclusion is unchanged; the figure was wrong.]
      because they share pyannote/segmentation-3.0, and the first model with a
      different segmenter moved it immediately.
 
@@ -722,6 +724,7 @@ Cku_X_SL7qU (12 bad-rate segments + 90s unannotated) and QuA_B6IZ6Ls (dropped se
        Equal weights beat it 0.2105 to 0.2223 on dev.
 
      * THREE SYSTEMS, dropping pyannote-3.1. It and community-1 differ by 0.44 s
+       [CORRECTED: 0.320 s. Conclusion unchanged.]
        of miss+FA over 12.4 h ([18]), so including both double-weights one
        segmentation and lets a single lineage carry a majority. Dropping it
        improved dev from 0.2181 to 0.2105.
